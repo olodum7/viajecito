@@ -1,0 +1,12 @@
+
+.container-search{
+    background-color: #50EFD4;
+    display: flex;
+    border-radius: 25px;
+    width: 80%;
+}
+
+.range-date{
+    display: flex;
+    flex-direction: column;
+}
