@@ -10,6 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface IImagenRepository extends JpaRepository<Imagen,Long> {
-    @Query("FROM Imagen i WHERE i.nombre = :nombre")
-    Optional<Imagen> buscarXNombre(@Param("nombre") String nombre);
+    Optional<Imagen> findByNombre(String nombre);
 }

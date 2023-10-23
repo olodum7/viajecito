@@ -43,7 +43,7 @@ public class ActividadService implements IActividadService {
     }
 
     @Override
-    public void borrar(Long id) throws BadRequestException {
+    public void eliminar(Long id) throws BadRequestException {
         if (buscarPorId(id).isPresent())
             actividadRepository.deleteById(id);
     }
@@ -51,7 +51,7 @@ public class ActividadService implements IActividadService {
     @Transactional
     @Override
     public ActividadDTO modificar(Actividad actividad) throws BadRequestException {
-        // Agregando las direcciones primero (solo en caso de que no existan)
+        // Modificando las direcciones
         Set<Direccion> dirreciones = direccionService.agregarTodas(actividad.getDirecciones());
         actividad.setDirecciones(dirreciones);
 
@@ -78,6 +78,22 @@ public class ActividadService implements IActividadService {
         return actividadesDTOS;
     }
 
+    public Set<Actividad> agregarTodos(Set<Actividad> actividades){
+        Set<Actividad> actividadesAgragadas = new HashSet<Actividad>();
+        for (Actividad actividad : actividades){
+            // Agrego domicilios primero
+            Set<Direccion> direcciones = direccionService.agregarTodas(actividad.getDirecciones());
+            actividad.setDirecciones(direcciones);
+
+            Optional<Actividad> existe = actividadRepository.findByNombreAndFechaHora(actividad.getNombre(), actividad.getFechaHora());
+            if(existe.isPresent()){
+                actividadesAgragadas.add(actividadRepository.findById(existe.get().getId()).orElse(null));
+            }else{
+                actividadesAgragadas.add(actividadRepository.save(actividad));
+            }
+        }
+        return actividadesAgragadas;
+    }
     private ActividadDTO toDTO(Actividad d){
         return mapper.convertValue(d, ActividadDTO.class);
     }

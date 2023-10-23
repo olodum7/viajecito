@@ -38,7 +38,7 @@ public class AlojamientoService implements IAlojamientoService {
     }
 
     @Override
-    public void borrar(Long id) throws BadRequestException {
+    public void eliminar(Long id) throws BadRequestException {
         if(buscarPorId(id).isPresent())
             alojamientoRepository.deleteById(id);
     }
@@ -71,6 +71,23 @@ public class AlojamientoService implements IAlojamientoService {
         if(alojamientosDTOS.size() == 0)
             throw new BadRequestException("INFORMACIÓN: La lista de alojamientos se encuentra vacía");
         return alojamientosDTOS;
+    }
+
+    public Set<Alojamiento> agregarTodos(Set<Alojamiento> alojamientos){
+        Set<Alojamiento> alojamientosAgregados = new HashSet<Alojamiento>();
+        for(Alojamiento alojamiento : alojamientos){
+            // Agrego domicilios primero
+            Set<Direccion> direcciones = direccionService.agregarTodas(alojamiento.getDirecciones());
+            alojamiento.setDirecciones(direcciones);
+
+            Optional<Alojamiento> existe = alojamientoRepository.findByNombreAndDireccionesIn(alojamiento.getNombre(), alojamiento.getDirecciones());
+            if(existe.isPresent()){
+                alojamientosAgregados.add(alojamientoRepository.findById(existe.get().getId()).orElse(null));
+            }else {
+                alojamientosAgregados.add(alojamientoRepository.save(alojamiento));
+            }
+        }
+        return alojamientosAgregados;
     }
 
     private AlojamientoDTO toDTO(Alojamiento d){

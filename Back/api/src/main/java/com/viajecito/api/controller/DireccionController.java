@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/direcciones")
+@RequestMapping("/direccion")
 public class DireccionController {
     private static final Logger log = Logger.getLogger(DireccionController.class);
 
@@ -29,7 +29,7 @@ public class DireccionController {
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id) throws BadRequestException {
         ResponseEntity<String> respuesta = null;
-        direccionService.borrar(id);
+        direccionService.eliminar(id);
         respuesta = ResponseEntity.status(HttpStatus.OK).body("INFORMACIÓN: Direccion eliminada correctamente");
         return respuesta;
     }
@@ -51,7 +51,7 @@ public class DireccionController {
 
     @ExceptionHandler({BadRequestException.class})
     public ResponseEntity<String> procesarBadRequestException(BadRequestException exception){
-        log.error("ERROR: " + exception.getMessage());
+        log.error("ERROR EN DIRECCION: " + exception.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
     }
 }

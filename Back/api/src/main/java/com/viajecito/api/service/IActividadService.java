@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface IActividadService {
     ActividadDTO agregar(ActividadDTO actividadDTO) throws BadRequestException;
-    void borrar(Long id) throws BadRequestException;
+    void eliminar(Long id) throws BadRequestException;
     ActividadDTO modificar(Actividad actividad) throws BadRequestException;
     Optional<ActividadDTO> buscarPorId(Long id) throws BadRequestException;
     Collection<ActividadDTO> listarTodos() throws BadRequestException;

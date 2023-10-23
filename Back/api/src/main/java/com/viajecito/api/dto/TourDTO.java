@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter @Setter
@@ -18,6 +19,6 @@ public class TourDTO implements Serializable {
     private Double precio;
     private String transporte;
     private TourCategoria categoria;
-    private List<Alojamiento> alojamientos;
-    private List<Actividad> actividades;
+    private Set<Alojamiento> alojamientos;
+    private Set<Actividad> actividades;
 }

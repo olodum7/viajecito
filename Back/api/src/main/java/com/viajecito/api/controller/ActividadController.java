@@ -30,7 +30,7 @@ public class ActividadController {
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id) throws BadRequestException{
         ResponseEntity<String> respuesta = null;
-        actividadService.borrar(id);
+        actividadService.eliminar(id);
         respuesta = ResponseEntity.status(HttpStatus.OK).body("INFORMACIÓN: Actividad eliminada correctamente");
         return respuesta;
     }
@@ -52,7 +52,7 @@ public class ActividadController {
 
     @ExceptionHandler({BadRequestException.class})
     public ResponseEntity<String> procesarBadRequestException(BadRequestException exception){
-        log.error("ERROR: " + exception.getMessage());
+        log.error("ERROR EN ACTIVIDAD: " + exception.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
     }
 }

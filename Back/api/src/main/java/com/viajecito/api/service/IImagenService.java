@@ -6,5 +6,4 @@ import com.viajecito.api.exception.BadRequestException;
 public interface IImagenService {
     ImagenDTO agregar(ImagenDTO dto) throws BadRequestException;
     void borrar(Long id) throws BadRequestException;
-    ImagenDTO buscarPorNombre(String nombre) throws BadRequestException;
 }

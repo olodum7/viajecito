@@ -29,7 +29,7 @@ public class DireccionService implements IDireccionService {
     }
 
     @Override
-    public void borrar(Long id) throws BadRequestException {
+    public void eliminar(Long id) throws BadRequestException {
         if (!buscarPorId(id).isPresent()) {
             throw new BadRequestException("ACCIÓN NO REALIZADA: No existe la dirección a borrar");
         }

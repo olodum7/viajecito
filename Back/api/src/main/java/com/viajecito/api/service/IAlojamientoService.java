@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface IAlojamientoService {
     AlojamientoDTO agregar(AlojamientoDTO alojamientoDTO) throws BadRequestException;
-    void borrar(Long id) throws BadRequestException;
+    void eliminar(Long id) throws BadRequestException;
     AlojamientoDTO modificar(Alojamiento alojamiento) throws BadRequestException;
     Optional<AlojamientoDTO> buscarPorId(Long id) throws BadRequestException;
     Collection<AlojamientoDTO> listarTodos() throws BadRequestException;
