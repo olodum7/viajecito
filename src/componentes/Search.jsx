@@ -58,7 +58,7 @@ export function Search(){
                         placeholderText="Fecha de Vuelta"
                     />
                 </div>
-            <button className='formButton'>Buscar Vuelos</button>
+            <button className='formButton'>Buscar</button>
         </div>
     )
 }
