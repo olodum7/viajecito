@@ -25,8 +25,9 @@ export function Search(){
                     </select>
                 </div>
                 <div className="people-select">
-                    <label htmlFor="people">¿Cuántas personas viajan contigo?:</label>
+                    <label htmlFor="people">Personas</label>
                     <select id="country" name="country">
+                        <option value="">¿Cuántas personas viajan contigo?:</option>
                         <option value="">1</option>
                         <option value="">2</option>
                         <option value="">3</option>
@@ -41,6 +42,7 @@ export function Search(){
                 </div>
                 <div className='range-date'>
                     <label>Selecciona el rango de fechas:</label>
+                    <div>
                     <DatePicker
                         selected={dateRange[0]}
                         selectsStart
@@ -57,6 +59,7 @@ export function Search(){
                         onChange={(date) => handleDateChange(date, 1)}
                         placeholderText="Fecha de Vuelta"
                     />
+                    </div>
                 </div>
             <button className='formButton'>Buscar</button>
         </div>
