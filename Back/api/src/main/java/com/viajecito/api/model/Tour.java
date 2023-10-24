@@ -50,6 +50,12 @@ public class Tour {
             inverseJoinColumns = @JoinColumn(name = "ACTIVIDAD_ID"))
     private Set<Actividad> actividades = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(name = "TOUR_IMAGEN",
+            joinColumns = @JoinColumn(name = "TOUR_ID"),
+            inverseJoinColumns = @JoinColumn(name = "IMAGEN_ID"))
+    private Set<Imagen> imagenes = new HashSet<>();
+
     @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
     private Set<Reserva> reservas = new HashSet<>();
 }

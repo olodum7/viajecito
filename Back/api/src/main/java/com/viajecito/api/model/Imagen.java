@@ -28,11 +28,15 @@ public class Imagen {
     @Column(name = "URL")
     private String url;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
+    @ManyToMany(mappedBy = "imagenes")
     @JsonIgnore
     private Set<Alojamiento> alojamiento = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
+    @ManyToMany(mappedBy = "imagenes")
     @JsonIgnore
     private Set<Actividad> actividades = new HashSet<>();
+
+    @ManyToMany(mappedBy = "imagenes")
+    @JsonIgnore
+    private Set<Tour> tours = new HashSet<>();
 }

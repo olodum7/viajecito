@@ -15,5 +15,5 @@ import java.util.Set;
 public class AlojamientoDTO implements Serializable {
     private String nombre;
     private Set<Direccion> direcciones;
-    private List<Imagen> imagenes;
+    private Set<Imagen> imagenes;
 }
