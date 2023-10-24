@@ -1,0 +1,7 @@
+.category-container{
+    display: flex;
+    justify-content: space-around;
+    font-size: .9rem;
+    background-color: beige;
+    color: #763FC4;
+}
