@@ -1,6 +1,6 @@
 import { Card } from "./Card"
 import { Search } from "./Search"
-import './style/Body.css'
+import '../style/Body.css'
 export function Body(){
     return (
         <>

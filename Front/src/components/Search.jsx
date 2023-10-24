@@ -1,7 +1,7 @@
-import './style/Search.css'
+import '../style/Search.css'
 import { useState } from "react";
-import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export function Search(){
     // const [startDate, setStartDate] = React.useState(null);

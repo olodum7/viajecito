@@ -1,4 +1,4 @@
-import { Body } from './componentes/Body'
+import { Body } from './components/Body'
 import './App.css'
 
 function App() {
