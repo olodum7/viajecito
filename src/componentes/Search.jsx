@@ -1,11 +1,9 @@
 import './style/Search.css'
 import { useState } from "react";
-import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css"
 import DatePicker from "react-datepicker";
 
 export function Search(){
-    // const [startDate, setStartDate] = React.useState(null);
-    // const [endDate, setEndDate] = React.useState(null);
     const [dateRange, setDateRange] = useState([null, null]);
 
     const handleDateChange = (date, index) => {
@@ -60,7 +58,7 @@ export function Search(){
                         placeholderText="Fecha de Vuelta"
                     />
                 </div>
-            <button>Buscar Vuelos</button>
+            <button className='formButton'>Buscar Vuelos</button>
         </div>
     )
 }
