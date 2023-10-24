@@ -1,7 +1,7 @@
-import { Card } from "./Card"
-import { Search } from "./Search"
-import { Category } from "./Category"
-import { Cover } from "./Cover"
+import { Card } from "../componentes/Card"
+import { Search } from "../componentes/Search"
+import { Category } from "../componentes/Category"
+import { Cover } from "../componentes/Cover"
 import '../style/Body.css'
 export function Body(){
     return (
