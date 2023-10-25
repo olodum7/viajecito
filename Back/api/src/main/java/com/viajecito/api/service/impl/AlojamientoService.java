@@ -27,7 +27,7 @@ public class AlojamientoService implements IAlojamientoService {
     @Transactional
     @Override
     public AlojamientoDTO agregar(AlojamientoDTO alojamientoDTO) throws BadRequestException {
-        // Agregando las direcciones primero (solo en caso de que no existan)
+        // Agregando las direcciones
         Set<Direccion> dirreciones = direccionService.agregarTodas(alojamientoDTO.getDirecciones());
         alojamientoDTO.setDirecciones(dirreciones);
 
@@ -62,15 +62,11 @@ public class AlojamientoService implements IAlojamientoService {
     }
 
     @Override
-    public Collection<AlojamientoDTO> listarTodos() throws BadRequestException {
+    public Collection<Alojamiento> listarTodos() throws BadRequestException {
         List<Alojamiento> alojamientos = alojamientoRepository.findAll();
-        Set<AlojamientoDTO> alojamientosDTOS = new HashSet<AlojamientoDTO>();
-        for (Alojamiento alojamiento: alojamientos)
-            alojamientosDTOS.add(toDTO(alojamiento));
-
-        if(alojamientosDTOS.size() == 0)
+        if(alojamientos.size() == 0)
             throw new BadRequestException("INFORMACIÓN: La lista de alojamientos se encuentra vacía");
-        return alojamientosDTOS;
+        return alojamientos;
     }
 
     public Set<Alojamiento> agregarTodos(Set<Alojamiento> alojamientos){

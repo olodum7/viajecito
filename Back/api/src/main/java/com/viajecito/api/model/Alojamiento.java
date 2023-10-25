@@ -32,10 +32,14 @@ public class Alojamiento {
             inverseJoinColumns = @JoinColumn(name = "DIRECCION_ID"))
     private Set<Direccion> direcciones = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany
+    @JoinTable(name = "ALOJAMIENTO_IMAGEN",
+            joinColumns = @JoinColumn(name = "ALOJAMIENTO_ID"),
+            inverseJoinColumns = @JoinColumn(name = "IMAGEN_ID"))
     private Set<Imagen> imagenes = new HashSet<>();
 
+    /*
     @ManyToMany(mappedBy = "alojamientos")
     @JsonIgnore
-    private Set<Tour> tours = new HashSet<>();
+    private Set<Tour> tours = new HashSet<>();*/
 }

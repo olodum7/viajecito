@@ -19,7 +19,7 @@ public class DireccionController {
     private static final Logger log = Logger.getLogger(DireccionController.class);
 
     @Autowired
-    IDireccionService direccionService;
+    private IDireccionService direccionService;
 
     @PostMapping
     public ResponseEntity<?> agregar(@RequestBody DireccionDTO direccionDTO) throws BadRequestException {
@@ -45,7 +45,7 @@ public class DireccionController {
     }
 
     @GetMapping
-    public Collection<DireccionDTO> listarTodos() throws BadRequestException {
+    public Collection<Direccion> listarTodos() throws BadRequestException {
         return direccionService.listarTodos();
     }
 

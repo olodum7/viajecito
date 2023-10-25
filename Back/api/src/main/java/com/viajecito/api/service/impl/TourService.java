@@ -6,6 +6,7 @@ import com.viajecito.api.dto.TourDTO;
 import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.Actividad;
 import com.viajecito.api.model.Alojamiento;
+import com.viajecito.api.model.Direccion;
 import com.viajecito.api.model.Tour;
 import com.viajecito.api.repository.ITourRepository;
 import com.viajecito.api.service.ITourService;
@@ -20,11 +21,11 @@ public class TourService implements ITourService {
     @Autowired
     private ITourRepository tourRepository;
 
-    @Autowired
+   /* @Autowired
     private ActividadService actividadService;
 
     @Autowired
-    private AlojamientoService alojamientoService;
+    private AlojamientoService alojamientoService;*/
 
     @Autowired
     ObjectMapper mapper;
@@ -32,16 +33,15 @@ public class TourService implements ITourService {
     @Transactional
     @Override
     public TourDTO agregar(TourDTO tourDTO) throws BadRequestException {
-        // Agrego actividades (solo en caso de que no existan)
-        Set<Actividad> actividades = actividadService.agregarTodos(tourDTO.getActividades());
+        // Agregando las actividades
+        /*Set<Actividad> actividades = actividadService.agregarTodos(tourDTO.getActividades());
         tourDTO.setActividades(actividades);
 
-        // Agrego alojamientos (solo en caso de que no existan)
+        // Agregando los alojamientos
         Set<Alojamiento> alojamientos = alojamientoService.agregarTodos(tourDTO.getAlojamientos());
-        tourDTO.setAlojamientos(alojamientos);
+        tourDTO.setAlojamientos(alojamientos);*/
 
-        if (tourRepository
-                .findByNombreAndActividadesInAndAlojamientosIn(tourDTO.getNombre(), tourDTO.getActividades(), tourDTO.getAlojamientos()).isPresent())
+        if (tourRepository.findByNombre(tourDTO.getNombre()).isPresent())
             throw new BadRequestException("ACCIÓN NO REALIZADA: Ya existe un tour con los datos ingresados");
         return toDTO(tourRepository.save(toModel(tourDTO)));
     }
@@ -55,16 +55,15 @@ public class TourService implements ITourService {
     @Transactional
     @Override
     public TourDTO modificar(Tour tour) throws BadRequestException {
-        // Actualizo actividad
+        /*// Modificando las actividades
         Set<Actividad> actividades = actividadService.agregarTodos(tour.getActividades());
         tour.setActividades(actividades);
 
-        // Actualizo actividad
+        // Modificando los alojamientos
         Set<Alojamiento> alojamientos = alojamientoService.agregarTodos(tour.getAlojamientos());
-        tour.setAlojamientos(alojamientos);
+        tour.setAlojamientos(alojamientos);*/
 
-        if (tourRepository
-                .findByNombreAndActividadesInAndAlojamientosIn( tour.getNombre(), tour.getActividades(), tour.getAlojamientos()).isPresent())
+        if (tourRepository.findByNombre(tour.getNombre()).isPresent())
             throw new BadRequestException("ACCIÓN NO REALIZADA: Ya existe un tour con los datos ingresados");
         return toDTO(tourRepository.save(tour));
     }
@@ -76,12 +75,9 @@ public class TourService implements ITourService {
     }
 
     @Override
-    public Collection<TourDTO> listarTodos(){
+    public Collection<Tour> listarTodos(){
         List<Tour> tours = tourRepository.findAll();
-        Set<TourDTO> toursDTOS = new HashSet<TourDTO>();
-        for (Tour tour : tours)
-            toursDTOS.add(toDTO(tour));
-        return toursDTOS;
+        return tours;
     }
 
     private TourDTO toDTO(Tour d){

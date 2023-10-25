@@ -4,8 +4,10 @@ import com.viajecito.api.dto.ActividadDTO;
 import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.Actividad;
 import com.viajecito.api.service.impl.ActividadService;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 public interface IActividadService {
@@ -13,5 +15,5 @@ public interface IActividadService {
     void eliminar(Long id) throws BadRequestException;
     ActividadDTO modificar(Actividad actividad) throws BadRequestException;
     Optional<ActividadDTO> buscarPorId(Long id) throws BadRequestException;
-    Collection<ActividadDTO> listarTodos() throws BadRequestException;
+    Collection<Actividad> listarTodos() throws BadRequestException;
 }

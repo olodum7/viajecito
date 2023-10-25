@@ -3,6 +3,7 @@ package com.viajecito.api.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.viajecito.api.model.Actividad;
 import com.viajecito.api.model.Alojamiento;
+import com.viajecito.api.model.Imagen;
 import com.viajecito.api.model.TourCategoria;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,8 +18,9 @@ public class TourDTO implements Serializable {
     private String nombre;
     private String descripcion;
     private Double precio;
-    private String transporte;
+    // private String transporte;
     private TourCategoria categoria;
-    private Set<Alojamiento> alojamientos;
-    private Set<Actividad> actividades;
+   /* private Set<Alojamiento> alojamientos;
+    private Set<Actividad> actividades;*/
+    private Set<Imagen> imagenes;
 }
