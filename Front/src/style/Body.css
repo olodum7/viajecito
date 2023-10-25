@@ -13,10 +13,7 @@ html, body{
     background-color: white;
 }
 
-.search {
-    display: flex;
-    justify-content: center;
-}
+
 .country-select {
     font-family: Arial, sans-serif;
     margin: 10px;

@@ -18,14 +18,19 @@ export function Body(){
                 <div className="body">
                     <Card></Card>
                     <Card></Card>
-                </div>
-                
-                <h2>Categorias</h2>
+                </div>              
                 <div className="body">
                     <Card></Card>
                     <Card></Card>
                 </div>
-                <h2>Recomendaciones</h2>
+                <div className="body">
+                    <Card></Card>
+                    <Card></Card>
+                </div>
+                <div className="body">
+                    <Card></Card>
+                    <Card></Card>
+                </div>
                 <div className="body">
                     <Card></Card>
                     <Card></Card>

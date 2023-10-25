@@ -1,10 +1,14 @@
+.search{    
+    position: absolute;
+    right: 18%;
+    width: 65%;
+}
 
 .container-search{
     background-color: #ffffff;
     color: black;
     display: flex;
-    border-radius: 25px;
-    width: 100%;
+    border-radius: 3rem;
     justify-content: space-evenly;
     height: 4rem;
 }

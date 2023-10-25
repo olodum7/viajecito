@@ -1,4 +1,9 @@
 import '../style/Card.css'
+import estrella from '../assets/estrella.png'
+import reloj from '../assets/reloj.png'
+import frecuencia from '../assets/frecuencia.png'
+import calendario from '../assets/calendario.png'
+
 export function Card(){
     return (
         
@@ -9,6 +14,25 @@ export function Card(){
             <div className='cardInfo'>
                 <p className='cardInfoP'>Desde <strong>{`USD valor`}</strong></p>
                 <button className='cardButton'>Reservar</button>
+            </div>
+            <hr />
+            <div className='cardInfoExtra'>
+                <div className='cardInfoExtraContent'>
+                    <img src={estrella} alt="" />
+                    <p>texto</p>
+                </div>
+                <div className='cardInfoExtraContent'>
+                    <img src={reloj} alt="" />
+                    <p>texto</p>
+                </div>
+                <div className='cardInfoExtraContent'>
+                    <img src={frecuencia} alt="" />
+                    <p>texto</p>
+                </div>
+                <div className='cardInfoExtraContent'>
+                    <img src={calendario} alt="" />
+                    <p>texto</p>
+                </div>
             </div>
         </div>
         
