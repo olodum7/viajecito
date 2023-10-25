@@ -92,7 +92,7 @@ public class AlojamientoController {
     }
 
     @GetMapping
-    public Collection<AlojamientoDTO> listarTodos() throws BadRequestException{
+    public Collection<Alojamiento> listarTodos() throws BadRequestException{
         return alojamientoService.listarTodos();
     }
 

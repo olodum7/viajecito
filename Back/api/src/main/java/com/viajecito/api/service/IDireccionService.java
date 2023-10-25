@@ -13,6 +13,6 @@ public interface IDireccionService {
     void eliminar(Long id) throws BadRequestException;
     DireccionDTO modificar(Direccion domicilio) throws BadRequestException;
     Optional<DireccionDTO> buscarPorId(Long id) throws BadRequestException;
-    Collection<DireccionDTO> listarTodos() throws BadRequestException;
+    Collection<Direccion> listarTodos() throws BadRequestException;
     Set<Direccion> agregarTodas(Set<Direccion> direcciones);
 }

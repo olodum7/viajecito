@@ -50,15 +50,11 @@ public class DireccionService implements IDireccionService {
     }
 
     @Override
-    public Collection<DireccionDTO> listarTodos() throws BadRequestException {
+    public Collection<Direccion> listarTodos() throws BadRequestException {
         List<Direccion> direcciones = direccionRepository.findAll();
-        Set<DireccionDTO> direccionesDTOS = new HashSet<DireccionDTO>();
-        for(Direccion direccion: direcciones)
-            direccionesDTOS.add(toDTO(direccion));
-
-        if (direccionesDTOS.size() == 0)
+        if (direcciones.size() == 0)
             throw new BadRequestException("INFORMACIÓN: La lista de direcciones se encuentra vacía");
-        return direccionesDTOS;
+        return direcciones;
     }
 
     @Override
