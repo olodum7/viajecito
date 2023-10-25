@@ -38,7 +38,8 @@ public class Alojamiento {
             inverseJoinColumns = @JoinColumn(name = "IMAGEN_ID"))
     private Set<Imagen> imagenes = new HashSet<>();
 
+    /*
     @ManyToMany(mappedBy = "alojamientos")
     @JsonIgnore
-    private Set<Tour> tours = new HashSet<>();
+    private Set<Tour> tours = new HashSet<>();*/
 }

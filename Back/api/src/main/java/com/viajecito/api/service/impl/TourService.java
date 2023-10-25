@@ -21,11 +21,11 @@ public class TourService implements ITourService {
     @Autowired
     private ITourRepository tourRepository;
 
-    @Autowired
+   /* @Autowired
     private ActividadService actividadService;
 
     @Autowired
-    private AlojamientoService alojamientoService;
+    private AlojamientoService alojamientoService;*/
 
     @Autowired
     ObjectMapper mapper;
@@ -34,15 +34,14 @@ public class TourService implements ITourService {
     @Override
     public TourDTO agregar(TourDTO tourDTO) throws BadRequestException {
         // Agregando las actividades
-        Set<Actividad> actividades = actividadService.agregarTodos(tourDTO.getActividades());
+        /*Set<Actividad> actividades = actividadService.agregarTodos(tourDTO.getActividades());
         tourDTO.setActividades(actividades);
 
         // Agregando los alojamientos
         Set<Alojamiento> alojamientos = alojamientoService.agregarTodos(tourDTO.getAlojamientos());
-        tourDTO.setAlojamientos(alojamientos);
+        tourDTO.setAlojamientos(alojamientos);*/
 
-        if (tourRepository
-                .findByNombreAndActividadesInAndAlojamientosIn(tourDTO.getNombre(), tourDTO.getActividades(), tourDTO.getAlojamientos()).isPresent())
+        if (tourRepository.findByNombre(tourDTO.getNombre()).isPresent())
             throw new BadRequestException("ACCIÓN NO REALIZADA: Ya existe un tour con los datos ingresados");
         return toDTO(tourRepository.save(toModel(tourDTO)));
     }
@@ -56,16 +55,15 @@ public class TourService implements ITourService {
     @Transactional
     @Override
     public TourDTO modificar(Tour tour) throws BadRequestException {
-        // Modificando las actividades
+        /*// Modificando las actividades
         Set<Actividad> actividades = actividadService.agregarTodos(tour.getActividades());
         tour.setActividades(actividades);
 
         // Modificando los alojamientos
         Set<Alojamiento> alojamientos = alojamientoService.agregarTodos(tour.getAlojamientos());
-        tour.setAlojamientos(alojamientos);
+        tour.setAlojamientos(alojamientos);*/
 
-        if (tourRepository
-                .findByNombreAndActividadesInAndAlojamientosIn( tour.getNombre(), tour.getActividades(), tour.getAlojamientos()).isPresent())
+        if (tourRepository.findByNombre(tour.getNombre()).isPresent())
             throw new BadRequestException("ACCIÓN NO REALIZADA: Ya existe un tour con los datos ingresados");
         return toDTO(tourRepository.save(tour));
     }

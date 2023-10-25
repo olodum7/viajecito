@@ -27,11 +27,12 @@ public class TourController {
     @Autowired
     private ITourService tourService;
 
+    /*
     @Autowired
     private AlojamientoService alojamientoService;
 
     @Autowired
-    private ActividadService actividadService;
+    private ActividadService actividadService;*/
 
     @Autowired
     private ImagenService imagenService;
@@ -43,21 +44,21 @@ public class TourController {
     public ResponseEntity<?> agregar(@RequestParam("nombre")  String nombre,
                                      @RequestParam("descripcion") String descripcion,
                                      @RequestParam("precio") Double precio,
-                                     @RequestParam("transporte") String transporte,
+                                     //@RequestParam("transporte") String transporte,
                                      @RequestParam("categoria")TourCategoria categoria,
-                                     @RequestParam("alojamientos") List<Long> alojamientos,
-                                     @RequestParam("actividades") List<Long> actividades,
+                                     /*RequestParam("alojamientos") List<Long> alojamientos,
+                                     @RequestParam("actividades") List<Long> actividades,*/
                                      @RequestPart("imagenes") List<MultipartFile> imagenes) throws BadRequestException{
         TourDTO tourDTO = new TourDTO();
         tourDTO.setNombre(nombre);
         tourDTO.setDescripcion(descripcion);
         tourDTO.setPrecio(precio);
-        tourDTO.setTransporte(transporte);
+        //tourDTO.setTransporte(transporte);
         tourDTO.setCategoria(categoria);
 
         try{
             // Guardo los alojamientos
-            if (!alojamientos.isEmpty()){
+            /*if (!alojamientos.isEmpty()){
                 // Obtengo alojamiento segun id
                 Set<Alojamiento> alojamientosAgregados = new HashSet<>();
                 for (Long id : alojamientos){
@@ -77,7 +78,7 @@ public class TourController {
                     actividadesAgregadas.add(actividadEncontrada);
                 }
                 tourDTO.setActividades(actividadesAgregadas);
-            }
+            }*/
 
             //Guardo las imagenes en carpeta api/images
             if (!imagenes.isEmpty()) {
