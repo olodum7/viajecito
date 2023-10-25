@@ -36,5 +36,7 @@
   "bugs": {
     "url": "https://github.com/olodum7/viajecito/issues"
   },
-  "homepage": "https://github.com/olodum7/viajecito#readme"
+  "homepage": "https://github.com/olodum7/viajecito#readme",
+  "proxy": "http://localhost:8089"
 }
+

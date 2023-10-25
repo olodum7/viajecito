@@ -3,35 +3,67 @@ import React, { useState } from 'react';
 const RegistrarTour = () => {
   const [tourData, setTourData] = useState({
     nombre: '',
-    subtitulo: '',
+    descripcion: '',
     precio: '',
-    rating: '',
-    duiracion: '',
-    dificultad: '',
-    fecha_de_salida: '',
-    itinerario: ''
+    transporte: '',
+    categoria: '',
+    alojamiento: '',
+    actividad: '',
+    imagenes: null
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setTourData({ ...tourData, [name]: value });
+    const { name, value, type, files } = e.target;
+    let parsedValue = value;
+
+    if (name === 'precio' || name === 'alojamiento' || name === 'actividad') {
+      parsedValue = parseFloat(value);
+    }
+
+    if (type === 'file') {
+      parsedValue = files[0];
+    }
+
+    setTourData({ ...tourData, [name]: parsedValue });
   };
 
   const handleReset = () => {
     setTourData({
       nombre: '',
-      subtitulo: '',
+      descripcion: '',
       precio: '',
-      rating: '',
-      duracion: '',
-      dificultad: '',
-      fecha_de_salida: '',
-      itinerario: ''
+      transporte: '',
+      categoria: '',
+      alojamiento: '',
+      actividad: '',
+      imagenes: null
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    Object.entries(tourData).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    fetch('http://localhost:8089/tour', {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Tour agregado con éxito:', data);
+        e.target.reset();
+      })
+      .catch(error => {
+        console.error('Error al enviar el tour:', error);
+      });
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>
         Nombre:
         <input
@@ -43,11 +75,11 @@ const RegistrarTour = () => {
       </label>
       <br />
       <label>
-        Subtítulo:
+        Descripcion:
         <input
           type="text"
-          name="subtitulo"
-          value={tourData.subtitulo}
+          name="descripcion"
+          value={tourData.descripcion}
           onChange={handleChange}
         />
       </label>
@@ -63,51 +95,51 @@ const RegistrarTour = () => {
       </label>
       <br />
       <label>
-        Rating:
+        Transporte:
         <input
           type="text"
-          name="rating"
-          value={tourData.rating}
+          name="transporte"
+          value={tourData.transporte}
           onChange={handleChange}
         />
       </label>
       <br />
       <label>
-        Duración:
+        Categoria:
         <input
           type="text"
-          name="duracion"
-          value={tourData.duracion}
+          name="categoria"
+          value={tourData.categoria}
           onChange={handleChange}
         />
       </label>
       <br />
       <label>
-        Dificultad:
+        Alojamiento:
         <input
           type="text"
-          name="dificultad"
-          value={tourData.dificultad}
+          name="alojamiento"
+          value={tourData.alojamiento}
           onChange={handleChange}
         />
       </label>
       <br />
       <label>
-        Fecha de Salida:
+        Actividad:
         <input
           type="text"
-          name="fecha_de_salida"
-          value={tourData.fecha_de_salida}
+          name="actividad"
+          value={tourData.actividad}
           onChange={handleChange}
         />
       </label>
       <br />
       <label>
-        Itinerario:
+        Imagen:
         <input
-          type="text"
-          name="itinerario"
-          value={tourData.itinerario}
+          type="file"
+          name="imagenes"
+          accept="image/*"
           onChange={handleChange}
         />
       </label>
