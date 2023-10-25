@@ -45,7 +45,7 @@ public class DireccionController {
     }
 
     @GetMapping
-    public Collection<DireccionDTO> listarTodos() throws BadRequestException {
+    public Collection<Direccion> listarTodos() throws BadRequestException {
         return direccionService.listarTodos();
     }
 

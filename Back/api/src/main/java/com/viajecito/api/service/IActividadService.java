@@ -15,5 +15,5 @@ public interface IActividadService {
     void eliminar(Long id) throws BadRequestException;
     ActividadDTO modificar(Actividad actividad) throws BadRequestException;
     Optional<ActividadDTO> buscarPorId(Long id) throws BadRequestException;
-    Collection<ActividadDTO> listarTodos() throws BadRequestException;
+    Collection<Actividad> listarTodos() throws BadRequestException;
 }

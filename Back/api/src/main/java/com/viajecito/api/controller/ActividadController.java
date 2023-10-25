@@ -102,7 +102,7 @@ public class ActividadController {
     }
 
     @GetMapping
-    public Collection<ActividadDTO> listarTodos() throws BadRequestException{
+    public Collection<Actividad> listarTodos() throws BadRequestException{
         return actividadService.listarTodos();
     }
 

@@ -77,12 +77,9 @@ public class TourService implements ITourService {
     }
 
     @Override
-    public Collection<TourDTO> listarTodos(){
+    public Collection<Tour> listarTodos(){
         List<Tour> tours = tourRepository.findAll();
-        Set<TourDTO> toursDTOS = new HashSet<TourDTO>();
-        for (Tour tour : tours)
-            toursDTOS.add(toDTO(tour));
-        return toursDTOS;
+        return tours;
     }
 
     private TourDTO toDTO(Tour d){

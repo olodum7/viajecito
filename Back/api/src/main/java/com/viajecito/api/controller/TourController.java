@@ -118,7 +118,7 @@ public class TourController {
     }
 
     @GetMapping
-    public Collection<TourDTO> listarTodos(){
+    public Collection<Tour> listarTodos(){
         return tourService.listarTodos();
     }
 
