@@ -1,16 +1,15 @@
-import { Body } from './components/Body'
-import RegistrarTour from './Routes/Registrar_Tour.jsx';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css'
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import RegistrarTour from './Routes/Registrar_Tour'
+import './index.css'
 
 function App() {
 
   return (
     <Router>
-      <Switch>
-        <Route path="/body" component={Body} />
-        <Route path="/Registrar_Tour" component={RegistrarTour} />
-      </Switch>
+      <Routes>
+        <Route path="/Registrar_Tour" element={<RegistrarTour/>} />
+      </Routes>
     </Router>
   )
   
