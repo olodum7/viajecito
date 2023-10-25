@@ -3,6 +3,7 @@ import { Search } from "../componentes/Search"
 import { Category } from "../componentes/Category"
 import { Cover } from "../componentes/Cover"
 import '../style/Body.css'
+
 export function Body(){
     return (
         <>

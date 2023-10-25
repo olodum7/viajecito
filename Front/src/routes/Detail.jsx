@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react"
 import {useParams} from 'react-router-dom'
 
-const Detail = () => {
+export function Detail () {
     const { id } = useParams();
     const [tour, setTour] = useState({}); 
 
@@ -26,6 +26,7 @@ const Detail = () => {
             <div className='S2-Datos'>
                 <div className='A1-Info'>
                     <h1>iNFO</h1>
+                    <p>la categoria es: {tour.categoria}</p>
                 </div>
                 <div className='A2-Cantidad'>
                     <h1>CANTIDAD</h1>
@@ -42,4 +43,3 @@ const Detail = () => {
     )
 
 }
-export default Detail
