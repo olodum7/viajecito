@@ -40,3 +40,8 @@
 [2023-10-23 15:53:08] [ ERROR] [ActividadController:55] ERROR EN ACTIVIDAD: INFORMACIÓN: La lista de actividades se encuentra vacía
 [2023-10-23 16:02:59] [ ERROR] [AlojamientoController:43] ERROR EN ALOJAMIENTO: ACCIÓN NO REALIZADA: Ya existe un alojamiento con los datos ingresados
 [2023-10-23 16:07:44] [ ERROR] [ActividadController:55] ERROR EN TOUR: INFORMACIÓN: La lista de tours se encuentra vacía
+[2023-10-24 10:31:40] [ ERROR] [DireccionController:54] ERROR EN DIRECCION: INFORMACIÓN: La lista de direcciones se encuentra vacía
+[2023-10-24 12:21:45] [ ERROR] [DireccionController:54] ERROR EN DIRECCION: INFORMACIÓN: La lista de direcciones se encuentra vacía
+[2023-10-24 13:00:48] [ ERROR] [ActividadController:85] ERROR EN ACTIVIDAD: ACCIÓN NO REALIZADA: Ya existe una actividad con los datos ingresados
+[2023-10-24 13:20:00] [ ERROR] [ActividadController:85] ERROR EN ACTIVIDAD: ACCIÓN NO REALIZADA: Ya existe una actividad con los datos ingresados
+[2023-10-24 16:03:52] [ ERROR] [DireccionController:54] ERROR EN DIRECCION: ACCIÓN NO REALIZADA: Ya existe una direccion con los datos ingresados

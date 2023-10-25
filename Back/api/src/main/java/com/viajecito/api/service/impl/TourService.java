@@ -6,6 +6,7 @@ import com.viajecito.api.dto.TourDTO;
 import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.Actividad;
 import com.viajecito.api.model.Alojamiento;
+import com.viajecito.api.model.Direccion;
 import com.viajecito.api.model.Tour;
 import com.viajecito.api.repository.ITourRepository;
 import com.viajecito.api.service.ITourService;
@@ -32,11 +33,11 @@ public class TourService implements ITourService {
     @Transactional
     @Override
     public TourDTO agregar(TourDTO tourDTO) throws BadRequestException {
-        // Agrego actividades (solo en caso de que no existan)
+        // Agregando las actividades
         Set<Actividad> actividades = actividadService.agregarTodos(tourDTO.getActividades());
         tourDTO.setActividades(actividades);
 
-        // Agrego alojamientos (solo en caso de que no existan)
+        // Agregando los alojamientos
         Set<Alojamiento> alojamientos = alojamientoService.agregarTodos(tourDTO.getAlojamientos());
         tourDTO.setAlojamientos(alojamientos);
 
@@ -55,11 +56,11 @@ public class TourService implements ITourService {
     @Transactional
     @Override
     public TourDTO modificar(Tour tour) throws BadRequestException {
-        // Actualizo actividad
+        // Modificando las actividades
         Set<Actividad> actividades = actividadService.agregarTodos(tour.getActividades());
         tour.setActividades(actividades);
 
-        // Actualizo actividad
+        // Modificando los alojamientos
         Set<Alojamiento> alojamientos = alojamientoService.agregarTodos(tour.getAlojamientos());
         tour.setAlojamientos(alojamientos);
 

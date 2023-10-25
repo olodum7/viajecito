@@ -27,7 +27,7 @@ public class AlojamientoService implements IAlojamientoService {
     @Transactional
     @Override
     public AlojamientoDTO agregar(AlojamientoDTO alojamientoDTO) throws BadRequestException {
-        // Agregando las direcciones primero (solo en caso de que no existan)
+        // Agregando las direcciones
         Set<Direccion> dirreciones = direccionService.agregarTodas(alojamientoDTO.getDirecciones());
         alojamientoDTO.setDirecciones(dirreciones);
 

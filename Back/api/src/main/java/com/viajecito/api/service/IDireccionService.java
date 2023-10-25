@@ -6,6 +6,7 @@ import com.viajecito.api.model.Direccion;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.Set;
 
 public interface IDireccionService {
     DireccionDTO agregar(DireccionDTO direccionDTO) throws BadRequestException;
@@ -13,4 +14,5 @@ public interface IDireccionService {
     DireccionDTO modificar(Direccion domicilio) throws BadRequestException;
     Optional<DireccionDTO> buscarPorId(Long id) throws BadRequestException;
     Collection<DireccionDTO> listarTodos() throws BadRequestException;
+    Set<Direccion> agregarTodas(Set<Direccion> direcciones);
 }
