@@ -30,13 +30,50 @@ select {
     margin-bottom: 1rem;
 }
 
-
-/* Estilos para el input de archivo */
-
 .form-control[type="file"] {
     width: 100%;
-    padding: 10px;
     background-color: var(--white)!important;
-    border: 1px solid var(--primary);
-    /* Cambiar el cursor para que parezca un botón */
+    border: none;
+}
+
+[type="file"]::-webkit-file-upload-button {
+    background-color: var(--white);
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    color: var(--primary);
+    padding: 16px 32px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 450ms;
+}
+
+[type="file"]:hover::-webkit-file-upload-button {
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    color: var(--white);
+}
+
+button[type="reset"] {
+    background-color: var(--white);
+    border-radius: 8px;
+    border: 2px solid var(--primary);
+    margin-right: 16px;
+    padding: 16px 32px;
+}
+
+button[type="submit"] {
+    background-color: var(--secondary);
+    border-radius: 8px;
+    border: 2px solid var(--secondary);
+    color: var(--primary);
+    margin-right: 16px;
+    padding: 16px 32px;
+}
+
+@media (max-width: 767px) {
+    button {
+        margin-top: 16px;
+        width: 100%;
+    }
 }
