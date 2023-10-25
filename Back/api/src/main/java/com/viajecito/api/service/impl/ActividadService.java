@@ -73,15 +73,11 @@ public class ActividadService implements IActividadService {
     }
 
     @Override
-    public Collection<ActividadDTO> listarTodos() throws BadRequestException {
+    public Collection<Actividad> listarTodos() throws BadRequestException {
         List<Actividad> actividades = actividadRepository.findAll();
-        Set<ActividadDTO> actividadesDTOS = new HashSet<ActividadDTO>();
-        for (Actividad actividad: actividades)
-            actividadesDTOS.add(toDTO(actividad));
-
-        if(actividadesDTOS.size() == 0)
+        if(actividades.size() == 0)
             throw new BadRequestException("INFORMACIÓN: La lista de actividades se encuentra vacía");
-        return actividadesDTOS;
+        return actividades;
     }
 
     public Set<Actividad> agregarTodos(Set<Actividad> actividades){
