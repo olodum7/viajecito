@@ -31,14 +31,14 @@ public class Tour {
     @Column(name = "PRECIO")
     private Double precio;
 
-    @Column(name = "TRANSPORTE")
-    private String transporte;
+    /*@Column(name = "TRANSPORTE")
+    private String transporte;*/
 
     @Column(name = "CATEGORIA")
     @Enumerated(EnumType.STRING)
     private TourCategoria categoria;
 
-    @ManyToMany
+   /* @ManyToMany
     @JoinTable( name = "TOUR_AlOJAMIENTO",
             joinColumns = @JoinColumn(name = "TOUR_ID"),
             inverseJoinColumns = @JoinColumn(name = "ALOJAMIENTO_ID"))
@@ -48,7 +48,7 @@ public class Tour {
     @JoinTable( name = "TOUR_ACTIVIDAD",
             joinColumns = @JoinColumn(name = "TOUR_ID"),
             inverseJoinColumns = @JoinColumn(name = "ACTIVIDAD_ID"))
-    private Set<Actividad> actividades = new HashSet<>();
+    private Set<Actividad> actividades = new HashSet<>();*/
 
     @ManyToMany
     @JoinTable(name = "TOUR_IMAGEN",
