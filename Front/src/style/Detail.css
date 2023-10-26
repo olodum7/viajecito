@@ -1,15 +1,25 @@
+.S1-galeria-imagenes {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
 
-.detail-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
+
+.parte-superior-galeria {
+  flex: 1; /* Toma todo el espacio disponible en la parte superior */
+  display: flex;
+  /*justify-content: space-between;*/
+  align-items: center;
+  width: 100%;
+}
   
-  .image-container {
-    flex: 1;
-    text-align: center;
-  }
+
+.image-container {
+  flex: 1;
+  text-align: center;
+}
   
   .image-container img {
     max-width: 100%;
@@ -17,7 +27,7 @@
   }
   
   .image-grid {
-    flex: 1;
+    flex: 1; /* Toma todo el espacio disponible en la parte derecha */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px; /* Espacio entre imágenes en la grilla */
@@ -28,7 +38,56 @@
     max-height: 150px; /* Ajusta el tamaño según tus necesidades */
   }
   
-  button {
-    /* Estilos del botón "Ver más" */
+
+  .parte-inferior-galeria {
+    flex: 1; /* Toma todo el espacio disponible en la parte inferior */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+.ver-mas-button {
+    background-color: #50EFD4; /* Color de fondo azul (puedes ajustarlo) */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    color: #763FC4; 
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    position: sticky;
+    bottom: 150px;
+    font-weight: bold;
+    right: 100px; /* Alinea el botón a la derecha */ 
   }
   
+  /* Estilo al pasar el mouse por encima */
+  .ver-mas-button:hover {
+    background-color: #50EFD4; /* Cambia el color al pasar el mouse */
+  }
+  
+  /* Estilo para cuando se hace clic */
+  .ver-mas-button:active {
+    background-color: #50EFD4; /* Cambia el color cuando se hace clic */
+  }
+
+
+  
+
+.S2-Datos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px; /* Agrega margen en la parte superior */
+}
+  
+
+
+
+.S3-Itinerario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
