@@ -1,16 +1,15 @@
-
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import RegistrarTour from './Routes/Registrar_Tour'
+import { Outlet } from "react-router-dom";
+import Navbar from './Components/Navbar'
+import Footer from "./Components/Footer";
 import './index.css'
 
 function App() {
-
   return (
-    <Router>
-      <Routes>
-        <Route path="/Registrar_Tour" element={<RegistrarTour/>} />
-      </Routes>
-    </Router>
+    <>
+        <Navbar/>
+        <Outlet/>
+        <Footer/>
+      </>
   )
   
 }

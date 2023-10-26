@@ -1,0 +1,17 @@
+
+.container-search{
+    background-color: #50EFD4;
+    display: flex;
+    border-radius: 25px;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.range-date{
+    display: flex;
+    flex-direction: column;
+}
+.formButton {
+    border-radius: 50%;
+    background-color: rgb(35, 77, 77);
+}
