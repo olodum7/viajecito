@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b7f1950-4e14-44da-bbbc-3c8de4e1001e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/Home.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front/src/routes/ImageGallery.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front/src/routes/imagenesPrueba/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front/src/routes/imagenesPrueba/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front/src/routes/imagenesPrueba/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front/src/routes/imagenesPrueba/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front/src/routes/imagenesPrueba/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front/src/style/ImageGallery.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/Detail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/Detail.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/style/Detail.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/style/Detail.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
