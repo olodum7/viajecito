@@ -1,12 +1,12 @@
 .search{    
     position: absolute;
-    right: 18%;
-    width: 65%;
+    right: 13%;
+    width: 74%;
 }
 
 .container-search{
-    background-color: #ffffff;
-    color: black;
+    background-color: var(--white);
+    color: var(--black);
     display: flex;
     border-radius: 3rem;
     justify-content: space-evenly;
@@ -19,6 +19,9 @@ label{
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+.country-date-select select{
+    width: 2rem;
 }
 .people-select{
     display: flex;
@@ -33,22 +36,65 @@ label{
 }
 .formButton {
     border-radius: 50%;
-    background-color: rgb(35, 77, 77);
+    background-color: var(--secondary);
 }
 
 #country{
-    background-color: #ffffff;
+    background-color: var(--white);
+    color: var(--black);
     border-radius: 2rem;
-    color: black;
-    width: 15rem;
+    width: 10rem;
     border: 0;
 }
 input{
-    background-color: #ffffff;
+    background-color: var(--white);
+    color: var(--black);
     border-radius: 2rem;
     padding-left: .5rem;
-    color: black;
     width: 7rem;
     height: 1.4rem;
     border: 0;
+}
+
+
+@media (max-width: 900px) {
+    .search {
+        padding-top: 2rem;
+        background-color: var(--primary);
+        position: static;
+        display: flex;
+        width: 100%;
+    }
+    .country-date-select label, .people-select label, .range-date label{
+        display: none;
+    }
+    .people-select{
+        padding: 1rem 0;
+    }
+    #country{
+        width: 23rem;
+    }
+    .react-datepicker-wrapper {
+        display: inline-block;
+        width: 15rem;
+    }
+
+    .container-search{
+        background-color: var(--primary);
+        color: var(--black);
+        display: flex;
+        flex-direction: column;    
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        height:auto;
+    }
+    
+    .formButton {
+        margin: 1rem 0;
+        width: 45%;
+        height: 2rem;
+        border-radius: 5px;
+        color: var(--primary);
+    }
 }

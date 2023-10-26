@@ -4,12 +4,19 @@
     display: flex;
     font-size: .9rem;
     background-color: var(--light-primary);
-    color: #763FC4;
-    padding: 1rem 0;
+    color: var(--primary);
+    padding: 1rem 6.5rem;
     align-items: flex-end;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
-
+.category-icons{    
+    display: flex;
+    gap: 5rem;
+}
+.category-container h5{
+    width: 10rem;
+    text-align: left;
+}
 .category-button{
     display: flex;
     flex-direction: column;
@@ -19,9 +26,24 @@
 }
 
 .category-button img{
-    width: 2rem;
+    width: 20px;
 }
 
 .category-button strong{
     font-size: .8rem;
+}
+
+@media (max-width: 900px) {
+    .category-container{
+        height: 4rem;
+        display: flex;
+    }
+    .category-icons{    
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin: auto;
+    }
 }
