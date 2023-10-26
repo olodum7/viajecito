@@ -1,0 +1,14 @@
+.cover{
+    width: 100%;
+}
+.cover img{
+    width: 100%;
+    position: relative;
+    top: 2rem;
+}
+
+@media (max-width: 900px) {
+    .cover {
+        display: none;
+    }
+}

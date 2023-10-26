@@ -12,6 +12,17 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  
+  --primary: #763FC4;
+  --secondary: #53F5DA;
+  --black: #2A2A2A;
+  --gray: #8B8B8B;
+  --light-gray: #D9D9D9;
+  --light-primary: #F8F5FC;
+  --light-secondary: #A1F8E7;
+  --white: #FFFFFF;
+  --error: #F1406B;
+
 }
 
 a {
@@ -37,13 +48,9 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  border: 0px solid transparent;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
