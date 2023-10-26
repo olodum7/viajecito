@@ -1,79 +1,75 @@
 .card{
-    color: black;
-    width: 25rem;
-    height: 31rem;
-    border-radius: 8px;
-    background-color:white;
+    width: 20rem;
+    height: 25rem;
+    max-width: 560px;
+    border-radius: 12px;
+    border: none;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    margin: 20px;
     text-align: center;
-    transition: all 0.25;
-    border-radius: 1rem;
+    transition: all 300ms;
 }
 
 .card:hover{
+    border: 1px solid var(--primary);
     transform: translateY(-15px);
-    box-shadow: 0 1.2rem 1.6rem rgba(0, 0, 0, 0.2);
 }
 
-.card > img{
+.card .card-header{
+    height: 100%;
     width: 100%;
-    height: 10rem;
+    height: 180px;
+    overflow: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.card .card-header img{
+    width: 100%;
+    height: 100%;
+}
+
+.card .card-body {
+    text-align: left;
+    padding: 10px;
+}
+
+.card-h2 {
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
 .card h3{
-    display: flex;
-    color: #763FC4;
-    font-size: small;
     font-weight: 600;
-    padding-left: 1.2rem;
-}
-
-.card h5 strong{
-    display: flex;
+    color: var(--black);
     font-size: 1rem;
-    color: black;
-    text-align: left;
-    padding-left: 1.2rem;
-}
-.cardInfo{
-    color: #763FC4;
-    display: flex;   
-    justify-content: space-around;
-    align-items: center;
-}
-.cardInfoP{
-    font-size: 1rem;
-    color: black;
-}
-strong{
-    color: #763FC4;
-    font-size: 1.5rem;
-}
-.cardButton {
-    font-weight: bold;
-    color: #763FC4;
-    width: 8rem;
-    height: 1.5rem;
-    border-radius: 10rem;
-    background-color: #50EFD4;
 }
 
-hr {
-    width: 90%;
-}
-
-.cardInfoExtra {
-    display: flex;
-}
-
-.cardInfoExtraContent {
-    display: flex;
-    align-items: center;
+.card p{
     padding: 0 1rem;
+    font-size: 16px;
+    font-weight: 300;
 }
 
-.cardInfoExtraContent p {
-    padding: 0 .5rem;
+.card .card-footer {
+    color: var(--black);
+    background-color: var(--white);
+    border-top: 1.2px solid var(--primary);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    padding: .8rem 0 0 0;
+    font-size: 16px;
+}
+
+.card .card-footer svg {
+    margin-right: 4px;
+}
+
+.card .card-footer .icon {
+    width: 16px;
+    color: var(--primary);
+    margin-bottom: 4px;
 }

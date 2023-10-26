@@ -1,100 +1,101 @@
-.search{    
-    position: absolute;
-    right: 13%;
-    width: 74%;
+.search {
+  position: absolute;
+  right: 13%;
+  width: 74%;
 }
 
-.container-search{
-    background-color: var(--white);
-    color: var(--black);
-    display: flex;
-    border-radius: 3rem;
-    justify-content: space-evenly;
-    height: 4rem;
+.container-search {
+  background-color: var(--white);
+  color: var(--black);
+  display: flex;
+  border-radius: 3rem;
+  justify-content: space-evenly;
+  height: 4rem;
 }
-label{
-    font-size: .9rem;
+label {
+  font-size: 0.9rem;
 }
-.country-date-select{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.country-date-select {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.country-date-select select{
-    width: 2rem;
+.country-date-select select {
+  width: 2rem;
 }
-.people-select{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.people-select {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.range-date{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.range-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .formButton {
-    border-radius: 50%;
-    background-color: var(--secondary);
+  border-radius: 50%;
+  background-color: var(--secondary);
 }
 
-#country{
-    background-color: var(--white);
-    color: var(--black);
-    border-radius: 2rem;
-    width: 10rem;
-    border: 0;
+#country {
+  background-color: var(--white);
+  color: var(--black);
+  border-radius: 2rem;
+  width: 10rem;
+  border: 0;
 }
-input{
-    background-color: var(--white);
-    color: var(--black);
-    border-radius: 2rem;
-    padding-left: .5rem;
-    width: 7rem;
-    height: 1.4rem;
-    border: 0;
+input {
+  background-color: var(--white);
+  color: var(--black);
+  border-radius: 2rem;
+  padding-left: 0.5rem;
+  width: 7rem;
+  height: 1.4rem;
+  border: 0;
 }
-
 
 @media (max-width: 900px) {
-    .search {
-        padding-top: 2rem;
-        background-color: var(--primary);
-        position: static;
-        display: flex;
-        width: 100%;
-    }
-    .country-date-select label, .people-select label, .range-date label{
-        display: none;
-    }
-    .people-select{
-        padding: 1rem 0;
-    }
-    #country{
-        width: 23rem;
-    }
-    .react-datepicker-wrapper {
-        display: inline-block;
-        width: 15rem;
-    }
+  .search {
+    padding-top: 2rem;
+    background-color: var(--primary);
+    position: static;
+    display: flex;
+    width: 100%;
+  }
+  .country-date-select label,
+  .people-select label,
+  .range-date label {
+    display: none;
+  }
+  .people-select {
+    padding: 1rem 0;
+  }
+  #country {
+    width: 23rem;
+  }
+  .react-datepicker-wrapper {
+    display: inline-block;
+    width: 15rem;
+  }
 
-    .container-search{
-        background-color: var(--primary);
-        color: var(--black);
-        display: flex;
-        flex-direction: column;    
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        height:auto;
-    }
-    
-    .formButton {
-        margin: 1rem 0;
-        width: 45%;
-        height: 2rem;
-        border-radius: 5px;
-        color: var(--primary);
-    }
+  .container-search {
+    background-color: var(--primary);
+    color: var(--black);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+
+  .formButton {
+    margin: 1rem 0;
+    width: 45%;
+    height: 2rem;
+    border-radius: 5px;
+    color: var(--primary);
+  }
 }

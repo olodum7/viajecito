@@ -35,21 +35,21 @@ const Home = () => {
   return (
     <main>
       <section className="content-wrapper">
-      <div>
-            <div className="cover">
-                <Cover></Cover>
-            </div>
-            <div className="search">
-                <Search></Search>
-            </div>
-            <div className="category">
-                <Category></Category>
-            </div>
-            <div className="subtitles">
-                <h2>Explora nuestros destinos destacados</h2>
-                <h4>Descubre un mundo de posibilidades</h4>
-            </div>
-            </div>
+        <div>
+          <div className="cover">
+            <Cover></Cover>
+          </div>
+          <div className="search">
+            <Search></Search>
+          </div>
+          <div className="category">
+            <Category></Category>
+          </div>
+          <div className="subtitles">
+            <h2>Explora nuestros destinos destacados</h2>
+            <h4>Descubre un mundo de posibilidades</h4>
+          </div>
+        </div>
         <div className="work-wrapper">
           {shuffledTours.map((tour) => (
             <Card key={tour.id} id={tour.id} nombre={tour.nombre} descripcion={tour.descripcion} precio={tour.precio} categoria={tour.categoria} imagenes={tour.imagenes} />
