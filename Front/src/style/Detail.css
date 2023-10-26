@@ -1,93 +1,93 @@
-.caja{
-    background-color: white;
-    
+.S1-galeria-imagenes {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  width: 100%; /* Ocupa todo el ancho disponible */
 }
-.S1-Imagenes{
+
+
+.parte-superior-galeria {
+  flex: 1; /* Toma todo el espacio disponible en la parte superior */
+  display: flex;
+  /*justify-content: space-between;*/
+  align-items: center;
+  width: 100%;
+}
+  
+
+.image-container {
+  flex: 1;
+  text-align: center;
+}
+  
+  .image-container img {
+    max-width: 100%;
+    max-height: 300px; /* Ajusta el tamaño según tus necesidades */
+  }
+  
+  .image-grid {
+    flex: 1; /* Toma todo el espacio disponible en la parte derecha */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; /* Espacio entre imágenes en la grilla */
+  }
+  
+  .image-grid img {
+    max-width: 100%;
+    max-height: 150px; /* Ajusta el tamaño según tus necesidades */
+  }
+  
+
+  .parte-inferior-galeria {
+    flex: 1; /* Toma todo el espacio disponible en la parte inferior */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+.ver-mas-button {
+    background-color: #50EFD4; /* Color de fondo azul (puedes ajustarlo) */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    color: #763FC4; 
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    position: sticky;
+    bottom: 150px;
+    font-weight: bold;
+    right: 100px; /* Alinea el botón a la derecha */ 
+  }
+  
+  /* Estilo al pasar el mouse por encima */
+  .ver-mas-button:hover {
+    background-color: #50EFD4; /* Cambia el color al pasar el mouse */
+  }
+  
+  /* Estilo para cuando se hace clic */
+  .ver-mas-button:active {
+    background-color: #50EFD4; /* Cambia el color cuando se hace clic */
+  }
+
+
+  
+
+.S2-Datos {
     display: flex;
     justify-content: center;
-}
-.Imagen{
-    width: 300px;
-    height: 200px;
-    background-color: rgb(63, 175, 179);
-    border-width: 20px;
-    border-color: rgb(233, 28, 52);
-    margin: 20px;
-    text-align: center;
-}
-
-.A1-Info{
-   margin: left 0px; 
-   text-align: left;
-   
-}
-
-.A1-Info h1{
-    color: #763FC4;
-}
-/*
-==================================
-          S2-Datos
-==================================
-*/
-
-.S2-Datos{
-    height: 50%;
-    display: flex;
     align-items: center;
-    color: black;
-    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px; /* Agrega margen en la parte superior */
 }
+  
 
-.S2-Datos div{
-    margin: 20px;
-    width: 50%;
-}
 
-hr{
-   
-    background-color: #763FC4;
-    height: 1px;
-}
 
-ul{
-    padding: 0px;
-    list-style: none;
-    text-align: left;
-}
-
-/* S2 A1*/
-.A1-Info h3{
-    text-align: left;
-    color: #763FC4;
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.A1-Info  ul{
-    text-align: left;
-    font-size: 16px;
-    font-weight: 400;
-}
-
-/* S2 A2*/
-.A2-Cantidad{
-    font-size: 16px;
-    font-weight: 600;
-    color: #763FC4;
-
-}
-
-.S3-Itinerario{
-    font-size: 20px;
-    font-weight: 600;
-    color: #763FC4;
-    text-align: left;
-}
-
-.S3-Itinerario p{
-    color: black;
-    text-align: left;
-    font-size: 16px;
-    font-weight: 400;
+.S3-Itinerario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
