@@ -1,15 +1,12 @@
-import {Body} from './routes/Body';
 import './App.css'
+
+import {Body} from './routes/Body';
 import {Detail} from './routes/Detail';
+import {ImageGallery} from './routes/ImageGallery';
+
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 //import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
 
-/*<Switch>
-            <Route path="/" element={<Navigate to="/body"/>} />
-            <Route path="/body" element={<Body/>} />
-            <Route path="/tour/:id" element={<Detail/>} />
-          </Routes>
-        */
  function App() {
   
   return (
@@ -17,6 +14,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
         <Switch>
           <Route path="/" exact component={Body} />
           <Route path="/tour/:id" component={Detail} />
+          <Route path="/image-gallery" component={ImageGallery} />
         </Switch>
     </Router>
     
@@ -24,6 +22,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 }
 
 export default App;
+
 
 /*  function App() {
   
@@ -35,5 +34,11 @@ export default App;
 }*/
 
 
+/*<Switch>
+            <Route path="/" element={<Navigate to="/body"/>} />
+            <Route path="/body" element={<Body/>} />
+            <Route path="/tour/:id" element={<Detail/>} />
+          </Routes>
+        */
 
 

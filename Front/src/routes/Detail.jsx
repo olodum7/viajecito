@@ -1,5 +1,9 @@
 import React, {useEffect, useState} from "react"
 import {useParams} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
+import {ImageGallery} from './ImageGallery';
+
 import '../style/Detail.css';
 
 
@@ -9,7 +13,7 @@ import image2 from './imagenesPrueba/2.jpg';
 import image3 from './imagenesPrueba/3.jpg';
 import image4 from './imagenesPrueba/4.jpg';
 import image5 from './imagenesPrueba/5.jpg';
-//la carpeta de estas imágenes provisorias está debtro de "routes"
+//la carpeta de estas imágenes provisorias está dentro de "routes"
 
 
 export function Detail () {
@@ -48,7 +52,9 @@ export function Detail () {
 
                 <div className="parte-inferior-galeria">
                     <div className="ver-mas-button">
-                        Ver más
+                        <Link to="/image-gallery">
+                            Ver más
+                        </Link>
                     </div>
                 </div>
 
