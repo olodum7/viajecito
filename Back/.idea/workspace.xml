@@ -5,15 +5,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b7f1950-4e14-44da-bbbc-3c8de4e1001e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Front/src/routes/ImageGallery.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/routes/imagenesPrueba/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/routes/imagenesPrueba/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/routes/imagenesPrueba/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/routes/imagenesPrueba/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/routes/imagenesPrueba/5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/style/ImageGallery.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/config/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/ImagenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/ImagenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/TourCategoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/TourCategoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/public/viajecito-illustration-footer.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Components/Card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/Card.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Components/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/Category.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Components/Cover.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/Cover.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Components/Imagen.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Components/NavBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/NavBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Components/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/Search.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Routes/Detail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/Detail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/style/Detail.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/style/Detail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/Registrar_Tour.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/assets/calendario.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/assets/corazon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/assets/desafiantes.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/assets/estrella.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/assets/exoticas.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/assets/frecuencia.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/assets/gastronomicas.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/assets/naturales.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/assets/nieve.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/assets/playa.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/assets/reloj.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/routes/ImageGallery.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/routes/imagenesPrueba/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/routes/imagenesPrueba/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/routes/imagenesPrueba/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/routes/imagenesPrueba/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/routes/imagenesPrueba/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/style/Card.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/style/Card_Richard.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/style/Category.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/style/Cover.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/style/Detail.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/style/Form.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/style/Home.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/style/ImageGallery.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/style/Search.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +59,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/config/CorsConfig.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/ImagenController.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/TourDTO.java" root0="SKIP_INSPECTION" />

@@ -1,6 +1,6 @@
-import { React, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
-function Imagen({ nombre }) {
+const Imagen = ({ nombre }) => {
     const [imageURL, setImageURL] = useState(null);
 
     useEffect(() => {
@@ -23,7 +23,7 @@ function Imagen({ nombre }) {
 
     return (
         <>
-            {imageURL && <img src={imageURL} alt="Imagen" />}
+            <img src={imageURL} alt="Imagen" />
         </>
     );
 }

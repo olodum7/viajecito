@@ -12,17 +12,21 @@
   justify-content: space-evenly;
   height: 4rem;
 }
+
 label {
   font-size: 0.9rem;
 }
+
 .country-date-select {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 .country-date-select select {
   width: 2rem;
 }
+
 .people-select {
   display: flex;
   flex-direction: column;
@@ -34,6 +38,7 @@ label {
   flex-direction: column;
   justify-content: center;
 }
+
 .formButton {
   border-radius: 50%;
   background-color: var(--secondary);
@@ -46,6 +51,7 @@ label {
   width: 10rem;
   border: 0;
 }
+
 input {
   background-color: var(--white);
   color: var(--black);

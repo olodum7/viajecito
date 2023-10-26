@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect, useState } from 'react'
 import Card from "../Components/Card";
 import { Search } from "../Components/Search"
@@ -33,14 +32,24 @@ const Home = () => {
   const shuffledTours = randomArray(result);
 
   return (
-    <main>
-      <section className="content-wrapper">
-        <div>
-          <div className="cover">
-            <Cover></Cover>
+    <>
+      <Cover></Cover>
+
+      <section className="text-center bg-light">
+        <div className="container products">
+          <p>Explora nuestros destinos destacados </p>
+          <div className="row d-flex justify-content-between">
+              {shuffledTours.map((tour) => (
+                <Card key={tour.id} id={tour.id} nombre={tour.nombre} descripcion={tour.descripcion} imagenes={tour.imagenes} />
+              ))}
           </div>
-          <div className="search">
-            <Search></Search>
+        </div>
+      </section>
+
+      {/* <Search></Search> */}
+
+      {/* <div className="search">
+            
           </div>
           <div className="category">
             <Category></Category>
@@ -49,14 +58,8 @@ const Home = () => {
             <h2>Explora nuestros destinos destacados</h2>
             <h4>Descubre un mundo de posibilidades</h4>
           </div>
-        </div>
-        <div className="work-wrapper">
-          {shuffledTours.map((tour) => (
-            <Card key={tour.id} id={tour.id} nombre={tour.nombre} descripcion={tour.descripcion} precio={tour.precio} categoria={tour.categoria} imagenes={tour.imagenes} />
-          ))}
-        </div>
-      </section>
-    </main>
+        </div> */}
+    </>
   );
 };
 

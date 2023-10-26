@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -151,27 +151,5 @@ h1 {
   .mb-5 {
     margin-bottom: 1.8rem !important;
   }
-  footer .container .row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column-reverse;
-    text-align: center;
-    gap: 8px;
-    font-size: 0.8rem;
-  }
-  footer img {
-    width: 280px;
-  }
-  footer .legal {
-    display: block;
-    margin-top: 16px;
-  }
-  footer .legend {
-    text-align: center;
-  }
-  footer .legend span svg {
-    margin-left: 4px;
-    width: 24px;
-  }
-}
+  
+} */

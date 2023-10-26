@@ -40,6 +40,7 @@ public class TourController {
     @Autowired
     private ObjectMapper mapper;
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping
     public ResponseEntity<?> agregar(@RequestParam("nombre")  String nombre,
                                      @RequestParam("descripcion") String descripcion,
@@ -92,6 +93,7 @@ public class TourController {
         return ResponseEntity.ok(tourService.agregar(tourDTO));
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id) throws BadRequestException{
         ResponseEntity<String> respuesta = null;
@@ -100,6 +102,7 @@ public class TourController {
         return respuesta;
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @PutMapping
     public ResponseEntity<?> modificar(@RequestBody Tour tour) throws BadRequestException{
         /*// Actualizo actividad
@@ -113,16 +116,19 @@ public class TourController {
         return ResponseEntity.ok(tourService.modificar(tour));
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping(path = "/{id}")
     public Optional<TourDTO> buscarPorId(@PathVariable Long id) throws Exception{
         return tourService.buscarPorId(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping
     public Collection<Tour> listarTodos(){
         return tourService.listarTodos();
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @ExceptionHandler({BadRequestException.class})
     public ResponseEntity<String> procesarBadRequestException(BadRequestException exception){
         log.error("ERROR EN TOUR: " + exception.getMessage());

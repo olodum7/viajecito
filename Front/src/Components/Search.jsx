@@ -1,7 +1,8 @@
-import '../style/Search.css'
+// import '../style/Search.css'
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import '../assets/css/search.css'
 
 export function Search(){
     const [dateRange, setDateRange] = useState([null, null]);

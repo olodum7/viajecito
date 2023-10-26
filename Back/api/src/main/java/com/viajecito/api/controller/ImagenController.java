@@ -29,6 +29,7 @@ public class ImagenController{
     @Autowired
     private IImagenService imagenService;
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping
     public Set<Imagen> agregar(@RequestPart("imagenes") List<MultipartFile> imagenes) {
         Set<Imagen> resultado = new HashSet<Imagen>();
@@ -39,6 +40,8 @@ public class ImagenController{
         }
         return resultado;
     }
+
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/{nombre}")
     public ResponseEntity<byte[]> buscarPorNombre(@PathVariable String nombre) {
         return ResponseEntity.ok()
@@ -46,11 +49,13 @@ public class ImagenController{
                 .body(imagenService.buscarPorNombre(nombre));
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping
     public List<String> listarTodas(){
         return imagenService.listarTodas();
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id) throws BadRequestException{
         ResponseEntity<String> respuesta = null;
@@ -59,6 +64,7 @@ public class ImagenController{
         return respuesta;
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @ExceptionHandler({BadRequestException.class})
     public ResponseEntity<String> procesarBadRequestException(BadRequestException exception){
         log.error("ERROR EN IMAGEN: " + exception.getMessage());

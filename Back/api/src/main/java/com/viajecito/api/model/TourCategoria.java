@@ -3,8 +3,8 @@ package com.viajecito.api.model;
 public enum TourCategoria {
     PLAYA,
     NIEVE,
-    NATURALEZA,
-    DESAFIANTE,
+    NATURALES,
+    DESAFIANTES,
     GASTRONOMIA,
     EXOTICO
 }

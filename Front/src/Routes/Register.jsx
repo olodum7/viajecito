@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../style/Form.css";
+import "../assets/css/form.css";
 
 const RegistrarTour = () => {
   const [tourData, setTourData] = useState({
@@ -58,18 +58,14 @@ const RegistrarTour = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="form-container mt-5">
       <form onSubmit={handleSubmit}>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group mb-5">
-              <label for="nombre" class="form-label">
-                Nombre*
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                id="nombre"
+        
+        <div className="row">
+          <div className="col-md-6">
+            <div className="form-group mb-5">
+              <label htmlFor="nombre" className="form-label"> Nombre* </label>
+              <input type="text" className="form-control" id="nombre"
                 name="nombre"
                 value={tourData.nombre}
                 onChange={handleChange}
@@ -77,14 +73,14 @@ const RegistrarTour = () => {
               />
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group mb-5">
-              <label for="descripcion" class="form-label">
+          <div className="col-md-6">
+            <div className="form-group mb-5">
+              <label htmlFor="descripcion" className="form-label">
                 Descripción*
               </label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="descripcion"
                 name="descripcion"
                 value={tourData.descripcion}
@@ -94,15 +90,16 @@ const RegistrarTour = () => {
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group mb-5">
-              <label for="precio" class="form-label">
+
+        <div className="row">
+          <div className="col-md-6">
+            <div className="form-group mb-5">
+              <label htmlFor="precio" className="form-label">
                 Precio*
               </label>
               <input
                 type="number"
-                class="form-control"
+                className="form-control"
                 id="precio"
                 name="precio"
                 value={tourData.precio}
@@ -111,15 +108,15 @@ const RegistrarTour = () => {
               />
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group mb-5">
-              <label for="categoria" class="form-label">
+          <div className="col-md-6">
+            <div className="form-group mb-5">
+              <label htmlFor="categoria" className="form-label">
                 Categoría*
               </label>
 
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="categoria"
                 name="categoria"
                 value={tourData.categoria}
@@ -138,24 +135,29 @@ const RegistrarTour = () => {
             </div>
           </div>
         </div>
-        <div class="form-group mb-5">
-          <label for="imagenes" class="form-label">
-            Imágenes*
-          </label>
-          <input
-            type="file"
-            class="form-control"
-            id="imagenes"
-            name="imagenes"
-            accept="image/*"
-            onChange={handleChange}
-            required
-          />
+
+        <div className="row">
+          <div className="col-md-6">
+            <div className="form-group mb-5">
+                <label htmlFor="imagenes" className="form-label">
+                  Imágenes*
+                </label>
+                <input type="file"
+                  className="form-control"
+                  id="imagenes"
+                  name="imagenes"
+                  accept="image/*"
+                  onChange={handleChange}
+                  required
+                />
+            </div>
+          </div>
         </div>
-        <button type="reset" class="btn btn-secondary" onClick={handleReset}>
+
+        <button type="reset" className="btn btn-secondary" onClick={handleReset}>
           Resetear Formulario
         </button>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Agregar Tour
         </button>
       </form>
