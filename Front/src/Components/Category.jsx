@@ -1,10 +1,10 @@
 import '../style/Category.css'
-import playa from '../assets/Playa.png'
-import nieve from '../assets/Nieve.png'
-import naturales from '../assets/Naturales.png'
-import desafiantes from '../assets/Desafiantes.png'
-import gastronomicos from '../assets/Gastronomicas.png'
-import exoticos from '../assets/Exoticas.png'
+import playa from '../assets/playa.svg'
+import nieve from '../assets/nieve.svg'
+import naturales from '../assets/naturales.svg'
+import desafiantes from '../assets/desafiantes.svg'
+import gastronomicos from '../assets/gastronomicas.svg'
+import exoticos from '../assets/exoticas.svg'
 
 export function Category() {
     return (
