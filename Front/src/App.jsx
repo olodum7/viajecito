@@ -1,20 +1,15 @@
-import { Routes, Route } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Navbar from './Components/Navbar'
-import Home from "./Routes/Home";
-import './index.css'
 import Footer from "./Components/Footer";
-
+import './index.css'
 
 function App() {
-  
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-      <Footer />
-    </>
+        <Navbar/>
+        <Outlet/>
+        <Footer/>
+      </>
   )
 }
 
