@@ -1,0 +1,93 @@
+.caja{
+    background-color: white;
+    
+}
+.S1-Imagenes{
+    display: flex;
+    justify-content: center;
+}
+.Imagen{
+    width: 300px;
+    height: 200px;
+    background-color: rgb(63, 175, 179);
+    border-width: 20px;
+    border-color: rgb(233, 28, 52);
+    margin: 20px;
+    text-align: center;
+}
+
+.A1-Info{
+   margin: left 0px; 
+   text-align: left;
+   
+}
+
+.A1-Info h1{
+    color: #763FC4;
+}
+/*
+==================================
+          S2-Datos
+==================================
+*/
+
+.S2-Datos{
+    height: 50%;
+    display: flex;
+    align-items: center;
+    color: black;
+    justify-content: space-between;
+}
+
+.S2-Datos div{
+    margin: 20px;
+    width: 50%;
+}
+
+hr{
+   
+    background-color: #763FC4;
+    height: 1px;
+}
+
+ul{
+    padding: 0px;
+    list-style: none;
+    text-align: left;
+}
+
+/* S2 A1*/
+.A1-Info h3{
+    text-align: left;
+    color: #763FC4;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.A1-Info  ul{
+    text-align: left;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* S2 A2*/
+.A2-Cantidad{
+    font-size: 16px;
+    font-weight: 600;
+    color: #763FC4;
+
+}
+
+.S3-Itinerario{
+    font-size: 20px;
+    font-weight: 600;
+    color: #763FC4;
+    text-align: left;
+}
+
+.S3-Itinerario p{
+    color: black;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 400;
+}
