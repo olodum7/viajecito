@@ -6,10 +6,7 @@ const RegistrarTour = () => {
     nombre: "",
     descripcion: "",
     precio: "",
-    transporte: "",
     categoria: "",
-    alojamiento: "",
-    actividad: "",
     imagenes: null,
   });
 
@@ -17,7 +14,7 @@ const RegistrarTour = () => {
     const { name, value, type, files } = e.target;
     let parsedValue = value;
 
-    if (name === "precio" || name === "alojamiento" || name === "actividad") {
+    if (name === "precio") {
       parsedValue = parseFloat(value);
     }
 
@@ -33,10 +30,7 @@ const RegistrarTour = () => {
       nombre: "",
       descripcion: "",
       precio: "",
-      transporte: "",
       categoria: "",
-      alojamiento: "",
-      actividad: "",
       imagenes: null,
     });
   };
@@ -122,21 +116,25 @@ const RegistrarTour = () => {
               <label for="categoria" class="form-label">
                 Categoría*
               </label>
-              <select
+
+              <input
+                type="text"
                 class="form-control"
                 id="categoria"
                 name="categoria"
                 value={tourData.categoria}
                 onChange={handleChange}
                 required
-              >
-                <option value="Playas">Playas</option>
-                <option value="Nieve">Nieve</option>
-                <option value="Naturales">Naturales</option>
-                <option value="Desafiantes">Desafiantes</option>
-                <option value="Gastronómicas">Gastronómicas</option>
-                <option value="Exóticas">Exóticas</option>
-              </select>
+              />
+
+              {/* <select class="form-control" id="categoria" name="categoria" value={tourData.categoria} onChange={handleChange} required>
+                <option value="PLAYA">Playas</option>
+                <option value="NIEVE">Nieve</option>
+                <option value="NATURALEZA">Naturales</option>
+                <option value="DESAFIANTE">Desafiantes</option>
+                <option value="GASTRONOMIA">Gastronómicas</option>
+                <option value="EXOTICO">Exóticas</option>
+              </select> */}
             </div>
           </div>
         </div>
