@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./../form.css";
+import "../style/Form.css";
 
 const RegistrarTour = () => {
   const [tourData, setTourData] = useState({
