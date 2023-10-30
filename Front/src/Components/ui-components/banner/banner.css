@@ -1,0 +1,40 @@
+section#banner {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 64px 0;
+    margin-top: 8rem;
+    width: 100%;
+}
+
+section#banner h2 {
+    font-weight: 800;
+    margin-bottom: 48px;
+}
+
+section#banner .banner-illustration {
+    position: relative;
+}
+
+section#banner .banner-illustration img {
+    position: absolute;
+    top: -10rem;
+    right: 0;
+}
+
+@media (max-width: 1200px) {
+    section#banner {
+        padding: 0 24px 48px;
+    }
+    section#banner .row {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    section#banner .row h2 {
+        margin-top: 14rem;
+    }
+    section#banner .banner-illustration img {
+        position: absolute;
+        top: -12rem;
+        right: 20%;
+    }
+}

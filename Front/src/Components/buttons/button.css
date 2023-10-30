@@ -1,0 +1,14 @@
+.btn {
+    background-color: var(--secondary);
+    border-radius: 32px;
+    color: var(--primary);
+    font-weight: 600;
+    padding: 8px 24px;
+    text-transform: uppercase;
+    transition: all 300ms;
+}
+
+.btn:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}

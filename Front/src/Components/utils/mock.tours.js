@@ -48,7 +48,7 @@ export const tours = [{
         "title": "Río de Janeiro: Encanto Carioca",
         "subtitle": "Vive la vibrante cultura, playas de ensueño y la vida en la ciudad de Río",
         "price": 670,
-        "rating": "4.8 (276",
+        "rating": "4.8 (276)",
         "duration": "7 días",
         "difficulty": "Baja",
         "releases": "Septiembre-Febrero"

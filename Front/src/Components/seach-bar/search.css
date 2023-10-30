@@ -1,0 +1,77 @@
+section#search-bar {
+    background-color: var(--white);
+    border-radius: 64px;
+    box-shadow: 0 0 16px rgba(118, 63, 196, .2);
+    padding: 1rem 1rem 1rem 1.6rem;
+    position: relative;
+    top: -2.6rem;
+    left: 0;
+}
+
+section#search-bar label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: .8rem;
+}
+
+section#search-bar .form-group .form-control,
+section#search-bar .form-group input {
+    border: 0;
+    padding: 0;
+}
+
+section#search-bar .form-group .form-control,
+section#search-bar .form-group input::placeholder {
+    color: var(--gray);
+}
+
+section#search-bar .selected-option {
+    color: var(--black);
+}
+
+@media (max-width: 1240px) {
+    section#search-bar {
+        background-color: var(--primary);
+        border-radius: 0;
+        box-shadow: none;
+        padding: 1rem 1rem 1rem 1.6rem;
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-left: 0;
+        margin-right: 0;
+        max-width: 100%;
+    }
+    section#search-bar form {
+        margin: 2rem 0;
+    }
+    section#search-bar label {
+        display: none;
+    }
+    section#search-bar .form-group {
+        margin-bottom: 1rem;
+    }
+    section#search-bar .form-group .form-control {
+        padding: 1rem 1.4rem;
+    }
+    section#search-bar .form-group input {
+        max-width: 120px;
+        padding: 1rem .6rem;
+    }
+    section#search-bar .form-group input:first-child {
+        margin-right: 1rem;
+    }
+    section#search-bar .form-group input {
+        border-radius: 4px;
+    }
+}
+
+@media (max-width: 768px) {
+    section#search-bar .form-group input {
+        padding: 1rem 1.4rem;
+    }
+    section#search-bar .form-group input {
+        font-size: 1rem;
+        max-width: 36vw;
+    }
+}

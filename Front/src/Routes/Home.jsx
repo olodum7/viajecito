@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
-import Card from "../Components/Card";
-import { Search } from "../Components/Search"
-import { Category } from "../Components/Category"
-import { Cover } from "../Components/Cover"
+import React, { useState, useEffect } from "react";
+import Card from "../components/card/Card";
+import mockTours from "./../Components/utils/mock.tours";
+import Banner from "../components/ui-components/banner/Banner";
+import Hero from "../components/ui-components/hero/Hero";
+import CategoryNav from "../components/category/CategoryNav";
+import { Search } from "../components/seach-bar/Search";
 
 const Home = () => {
   const [result, setResult] = useState("");
@@ -14,9 +16,9 @@ const Home = () => {
         setResult(data);
       })
       .catch((error) => {
-        console.error("Error al obtener los tours: \n", error)
-      })
-  }, [])
+        console.error("Error al obtener los tours: \n", error);
+      });
+  }, []);
 
   // Función para mostrar las cards de manera aleatoria cada vez que se ingrea al sitio
   const randomArray = (array) => {
@@ -29,37 +31,27 @@ const Home = () => {
   };
 
   // Mezclar aleatoriamente el array de tours
-  const shuffledTours = randomArray(result);
+  //const shuffledTours = randomArray(result);
+  const shuffledTours = randomArray(mockTours);
 
   return (
-    <>
-      <Cover></Cover>
+    <main>
+      <Hero />
+      <Search/>
+      <CategoryNav />
 
-      <section className="text-center bg-light">
-        <div className="container products">
-          <p>Explora nuestros destinos destacados </p>
-          <div className="row d-flex justify-content-between">
-              {shuffledTours.map((tour) => (
-                <Card key={tour.id} id={tour.id} nombre={tour.nombre} descripcion={tour.descripcion} imagenes={tour.imagenes} />
-              ))}
-          </div>
+      <section className="content-wrapper">
+        <h1>Explora nuestros destinos destacados</h1>
+        <p className="mb-5 subtitle">Descubre un mundo de posibilidades</p>
+
+        <div className="cards-wrapper">
+          {shuffledTours.map((tour) => (
+            <Card data={tour} key={tour.id} />
+          ))}
         </div>
       </section>
-
-      {/* <Search></Search> */}
-
-      {/* <div className="search">
-            
-          </div>
-          <div className="category">
-            <Category></Category>
-          </div>
-          <div className="subtitles">
-            <h2>Explora nuestros destinos destacados</h2>
-            <h4>Descubre un mundo de posibilidades</h4>
-          </div>
-        </div> */}
-    </>
+      <Banner />
+    </main>
   );
 };
 

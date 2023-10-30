@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../assets/css/form.css";
 
 const RegistrarTour = () => {
   const [tourData, setTourData] = useState({
@@ -58,7 +57,7 @@ const RegistrarTour = () => {
   };
 
   return (
-    <div className="form-container mt-5">
+    <section id="form-container" className="container">
       <form onSubmit={handleSubmit}>
         
         <div className="row">
@@ -114,30 +113,20 @@ const RegistrarTour = () => {
                 Categoría*
               </label>
 
-              <input
-                type="text"
-                className="form-control"
-                id="categoria"
-                name="categoria"
-                value={tourData.categoria}
-                onChange={handleChange}
-                required
-              />
-
-              {/* <select class="form-control" id="categoria" name="categoria" value={tourData.categoria} onChange={handleChange} required>
+              <select className="form-control" id="categoria" name="categoria" value={tourData.categoria} onChange={handleChange} required>
                 <option value="PLAYA">Playas</option>
                 <option value="NIEVE">Nieve</option>
                 <option value="NATURALEZA">Naturales</option>
                 <option value="DESAFIANTE">Desafiantes</option>
                 <option value="GASTRONOMIA">Gastronómicas</option>
                 <option value="EXOTICO">Exóticas</option>
-              </select> */}
+              </select> 
             </div>
           </div>
         </div>
 
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-12">
             <div className="form-group mb-5">
                 <label htmlFor="imagenes" className="form-label">
                   Imágenes*
@@ -154,14 +143,15 @@ const RegistrarTour = () => {
           </div>
         </div>
 
-        <button type="reset" className="btn btn-secondary" onClick={handleReset}>
+        <button type="reset" onClick={handleReset}>
           Resetear Formulario
         </button>
-        <button type="submit" className="btn btn-primary">
+
+        <button type="submit">
           Agregar Tour
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 
