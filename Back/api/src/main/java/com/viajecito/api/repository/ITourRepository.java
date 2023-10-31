@@ -11,6 +11,5 @@ import java.util.Set;
 
 @Repository
 public interface ITourRepository extends JpaRepository<Tour, Long> {
-    // Optional<Tour> findByNombreAndActividadesInAndAlojamientosIn(String nombre, Set<Actividad> actividades, Set<Alojamiento> alojamientos);
-    Optional<Tour> findByNombre(String nombre);
+    Optional<Tour> findByTitulo(String titulo);
 }

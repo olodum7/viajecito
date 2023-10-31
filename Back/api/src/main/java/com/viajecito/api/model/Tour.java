@@ -1,9 +1,11 @@
 package com.viajecito.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.catalina.User;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -22,21 +24,26 @@ public class Tour {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "NOMBRE")
-    private String nombre;
+    @Column(name = "TITULO")
+    private String titulo;
 
-    @Column(name = "DESCRIPCION")
-    private String descripcion;
+    @Column(name = "SUB_TITULO")
+    private String subtitulo;
 
     @Column(name = "PRECIO")
     private Double precio;
 
-    /*@Column(name = "TRANSPORTE")
-    private String transporte;*/
-
-    @Column(name = "CATEGORIA")
-    @Enumerated(EnumType.STRING)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CATEGORIA_ID", referencedColumnName = "ID", updatable = false, nullable = false)
     private TourCategoria categoria;
+
+    @Column(name = "DURACION")
+    private String duracion;
+
+    @Column(name = "DIFICULTAD")
+    @Enumerated(EnumType.STRING)
+    private TourDificultad dificultad;
+
 
    /* @ManyToMany
     @JoinTable( name = "TOUR_AlOJAMIENTO",
@@ -55,6 +62,12 @@ public class Tour {
             joinColumns = @JoinColumn(name = "TOUR_ID"),
             inverseJoinColumns = @JoinColumn(name = "IMAGEN_ID"))
     private Set<Imagen> imagenes = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "TOUR_FAVORITOS",
+            joinColumns = @JoinColumn(name = "TOUR_ID"),
+            inverseJoinColumns = @JoinColumn(name = "USER_ID"))
+    private Set<AppUser> usuarios = new HashSet<>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
     private Set<Reserva> reservas = new HashSet<>();

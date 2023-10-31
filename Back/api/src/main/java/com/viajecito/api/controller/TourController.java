@@ -42,20 +42,24 @@ public class TourController {
 
     @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping
-    public ResponseEntity<?> agregar(@RequestParam("nombre")  String nombre,
-                                     @RequestParam("descripcion") String descripcion,
+    public ResponseEntity<?> agregar(@RequestParam("titulo")  String titulo,
+                                     @RequestParam("subtitulo") String subtitulo,
                                      @RequestParam("precio") Double precio,
-                                     //@RequestParam("transporte") String transporte,
-                                     @RequestParam("categoria")TourCategoria categoria,
+                                     @RequestParam("categoria") TourCategoria categoria,
+                                     @RequestParam("duracion") String duracion,
+                                     @RequestParam("dificultad") TourDificultad dificultad,
                                      /*RequestParam("alojamientos") List<Long> alojamientos,
                                      @RequestParam("actividades") List<Long> actividades,*/
-                                     @RequestPart("imagenes") List<MultipartFile> imagenes) throws BadRequestException{
+                                     @RequestPart("imagenes") List<MultipartFile> imagenes,
+                                     @RequestParam("favoritos") Set<AppUser> usuariosFav) throws BadRequestException{
         TourDTO tourDTO = new TourDTO();
-        tourDTO.setNombre(nombre);
-        tourDTO.setDescripcion(descripcion);
+        tourDTO.setTitulo(titulo);
+        tourDTO.setSubtitulo(subtitulo);
         tourDTO.setPrecio(precio);
-        //tourDTO.setTransporte(transporte);
         tourDTO.setCategoria(categoria);
+        tourDTO.setDuracion(duracion);
+        tourDTO.setDificultad(dificultad);
+        tourDTO.setUsuariosFav(usuariosFav);
 
         try{
             // Guardo los alojamientos

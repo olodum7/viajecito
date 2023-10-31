@@ -41,7 +41,7 @@ public class TourService implements ITourService {
         Set<Alojamiento> alojamientos = alojamientoService.agregarTodos(tourDTO.getAlojamientos());
         tourDTO.setAlojamientos(alojamientos);*/
 
-        if (tourRepository.findByNombre(tourDTO.getNombre()).isPresent())
+        if (tourRepository.findByTitulo(tourDTO.getTitulo()).isPresent())
             throw new BadRequestException("ACCIÓN NO REALIZADA: Ya existe un tour con los datos ingresados");
         return toDTO(tourRepository.save(toModel(tourDTO)));
     }
@@ -63,7 +63,7 @@ public class TourService implements ITourService {
         Set<Alojamiento> alojamientos = alojamientoService.agregarTodos(tour.getAlojamientos());
         tour.setAlojamientos(alojamientos);*/
 
-        if (tourRepository.findByNombre(tour.getNombre()).isPresent())
+        if (tourRepository.findByTitulo(tour.getTitulo()).isPresent())
             throw new BadRequestException("ACCIÓN NO REALIZADA: Ya existe un tour con los datos ingresados");
         return toDTO(tourRepository.save(tour));
     }

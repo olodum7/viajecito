@@ -1,5 +1,6 @@
 package com.viajecito.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class AppUser implements UserDetails {
@@ -33,6 +36,9 @@ public class AppUser implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private AppUserRol appUserRol;
+
+    @ManyToMany(mappedBy = "usuarios")
+    private Set<Tour> favoritos = new HashSet<>();
 
     public AppUser() {
     }

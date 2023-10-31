@@ -13,8 +13,8 @@ const Card = ({ data }) => {
     <div className="card">
       <div className="img-wrapper">
         <img src={data.image} />
-        <Category_pills url="#" categoryName="Categoría"/>
-        <FavButton/>
+        <Category_pills url="#" categoryName="Categoría" />
+        <FavButton />
       </div>
       <div className="card-body">
         <div className="card-headers">
@@ -29,7 +29,7 @@ const Card = ({ data }) => {
               </p>
             </div>
             <div className="col-12 col-md-6 btn-container">
-              <Button url="#" buttonName="Reservar"/>
+              <Button url="#" buttonName="Reservar" />
             </div>
           </div>
           <div className="card-footer">
