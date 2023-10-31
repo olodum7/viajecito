@@ -29,6 +29,13 @@ section#search-bar .selected-option {
     color: var(--black);
 }
 
+@media (min-width: 1240px) and (max-width: 1400px) {
+    section#search-bar .form-group input {
+        font-size: 1rem;
+        width: 170px;
+    }
+}
+
 @media (max-width: 1240px) {
     section#search-bar {
         background-color: var(--primary);

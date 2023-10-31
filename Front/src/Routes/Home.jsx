@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Card from "../components/card/Card";
-import mockTours from "./../Components/utils/mock.tours";
-import Banner from "../components/ui-components/banner/Banner";
-import Hero from "../components/ui-components/hero/Hero";
-import CategoryNav from "../components/category/CategoryNav";
-import { Search } from "../components/seach-bar/Search";
+import Card from "../Components/card/Card";
+import mockTours from "../Components/utils/mock.tours";
+import Banner from "../Components/ui-components/banner/Banner";
+import Hero from "../Components/ui-components/hero/Hero";
+import CategoryNav from "../Components/category/CategoryNav";
+import { Search } from "../Components/seach-bar/Search";
 
 const Home = () => {
   const [result, setResult] = useState("");
