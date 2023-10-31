@@ -1,6 +1,6 @@
 export const tours = [{
         "id": 1,
-        "image": "./src/components/utils/san-martin-de-los-andes-1.png",
+        "image": "./src/Components/utils/san-martin-de-los-andes-1.png",
         "title": "San Martín de los Andes por 7 lagos",
         "subtitle": "Descubre la Magia de San Martín de los Andes: Un Viaje Épico a Través de los 7 Lagos",
         "price": 70,
@@ -11,7 +11,7 @@ export const tours = [{
     },
     {
         "id": 2,
-        "image": "./src/components/utils/cruce-andino-en-bicicleta-1.png",
+        "image": "./src/Components/utils/cruce-andino-en-bicicleta-1.png",
         "title": "Cruce Andino en bicicleta",
         "subtitle": "Pedalea a lo desconocido: cruza los Andes en bici y disfuta un recorrido lleno de historia",
         "price": 125,
@@ -22,7 +22,7 @@ export const tours = [{
     },
     {
         "id": 3,
-        "image": "./src/components/utils/la-ruta-del-chivito-uruguayo-1.png",
+        "image": "./src/Components/utils/la-ruta-del-chivito-uruguayo-1.png",
         "title": "La ruta del chivito uruguayo",
         "subtitle": "Preparate para una experiencia de 3 días recorriendo parrilladas y mercados emblemáticos de Uruguay",
         "price": 170,
@@ -33,7 +33,7 @@ export const tours = [{
     },
     {
         "id": 4,
-        "image": "./src/components/utils/auroras-en-el-norte-luces-del-artico-1.png",
+        "image": "./src/Components/utils/auroras-en-el-norte-luces-del-artico-1.png",
         "title": "Auroras en el Norte: Luces del Ártico",
         "subtitle": "Un viaje único a los países nórdicos para contemplar las mágicas Auroras Boreales",
         "price": 2100,
@@ -44,7 +44,7 @@ export const tours = [{
     },
     {
         "id": 5,
-        "image": "./src/components/utils/rio-de-janeiro-encanto-carioca-1.png",
+        "image": "./src/Components/utils/rio-de-janeiro-encanto-carioca-1.png",
         "title": "Río de Janeiro: Encanto Carioca",
         "subtitle": "Vive la vibrante cultura, playas de ensueño y la vida en la ciudad de Río",
         "price": 670,
@@ -55,7 +55,7 @@ export const tours = [{
     },
     {
         "id": 6,
-        "image": "./src/components/utils/japon-entre-tradicion-y-futuro.png",
+        "image": "./src/Components/utils/japon-entre-tradicion-y-futuro.png",
         "title": "Japón: Entre Tradición y Futuro",
         "subtitle": "Un viaje único para descubrir la cultura, ciudades impresionantes y templos legendarios de Japón",
         "price": 3150,
