@@ -1,9 +1,9 @@
 //import { Link } from "react-router-dom";
 //import Image from './Image';
 import React from "react";
-import Category_pills from "../category/CategoryPills";
-import Button from "../buttons/button";
-import FavButton from "../favs/FavButton";
+import Category_pills from "./../category/CategoryPills";
+import Button from "./../buttons/Button";
+import FavButton from "./../favs/FavButton";
 
 {
   /*const Card = ({ id, nombre, descripcion, imagenes }) => { */
