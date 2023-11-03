@@ -1,18 +1,13 @@
 package com.viajecito.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.viajecito.api.dto.ActividadDTO;
 import com.viajecito.api.dto.AlojamientoDTO;
 import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.Alojamiento;
-import com.viajecito.api.model.Direccion;
 import com.viajecito.api.model.Imagen;
 import com.viajecito.api.service.IAlojamientoService;
-import com.viajecito.api.service.impl.DireccionService;
 import com.viajecito.api.service.impl.ImagenService;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,13 +19,8 @@ import java.util.*;
 @RestController
 @RequestMapping("/alojamiento")
 public class AlojamientoController {
-    private static final Logger log = Logger.getLogger(AlojamientoController.class);
-
     @Autowired
     private IAlojamientoService alojamientoService;
-
-    @Autowired
-    private DireccionService direccionService;
 
     @Autowired
     private ImagenService imagenService;
@@ -40,31 +30,16 @@ public class AlojamientoController {
 
     @PostMapping
     public ResponseEntity<?> agregar(@RequestParam("nombre") String nombre,
-                                     @RequestParam("direcciones") List<Long> direcciones,
-                                     @RequestPart("imagenes") List<MultipartFile> imagenes ) throws BadRequestException {
+                                     @RequestPart("imagenes") List<MultipartFile> imagenes ) throws BadRequestException, IOException {
 
         AlojamientoDTO alojamientoDTO = new AlojamientoDTO();
+        Set<Imagen> imagenesAlojamiento = new HashSet<>();
         alojamientoDTO.setNombre(nombre);
 
-        try {
-            // Guardo las direcciones en caso de que no esten en la bd
-            if(!direcciones.isEmpty()){
-                // Obtengo el objeto Direccion para la id brindada
-                Set<Direccion> dirrecionesAgregadas = new HashSet<Direccion>();
-                for (Long idDireccion : direcciones){
-                    Direccion direccionEncontrada = mapper.convertValue(direccionService.buscarPorId( idDireccion ) , Direccion.class);
-                    dirrecionesAgregadas.add(direccionEncontrada);
-                }
-                alojamientoDTO.setDirecciones(dirrecionesAgregadas);
-            }
-
-            //Guardo las imagenes en carpeta api/images
-            if (!imagenes.isEmpty()) {
-                Set<Imagen> pathImagenes = imagenService.agregar(imagenes);
-                alojamientoDTO.setImagenes(pathImagenes);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        /**** Si las imagene no existen, se agregan ****/
+        if (!imagenes.isEmpty()) {
+            imagenesAlojamiento = imagenService.agregar(imagenes);
+            alojamientoDTO.setImagenes(imagenesAlojamiento);
         }
         return ResponseEntity.ok(alojamientoService.agregar(alojamientoDTO));
     }
@@ -79,10 +54,6 @@ public class AlojamientoController {
 
     @PutMapping
     public ResponseEntity<?> modificar(@RequestBody Alojamiento alojamiento) throws BadRequestException{
-        // Modificando las direcciones
-        Set<Direccion> dirreciones = direccionService.agregarTodas(alojamiento.getDirecciones());
-        alojamiento.setDirecciones(dirreciones);
-
         return ResponseEntity.ok(alojamientoService.modificar(alojamiento));
     }
 
@@ -94,11 +65,5 @@ public class AlojamientoController {
     @GetMapping
     public Collection<Alojamiento> listarTodos() throws BadRequestException{
         return alojamientoService.listarTodos();
-    }
-
-    @ExceptionHandler({BadRequestException.class})
-    public ResponseEntity<String> procesarBadRequestException(BadRequestException exception){
-        log.error("ERROR EN ALOJAMIENTO: " + exception.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
     }
 }

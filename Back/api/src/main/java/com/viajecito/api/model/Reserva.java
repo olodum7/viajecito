@@ -15,8 +15,7 @@ import java.util.Set;
 @Table(name = "RESERVA")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 public class Reserva {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE,  generator = "reserva_seq")
@@ -33,9 +32,9 @@ public class Reserva {
     @Column(name = "ACOMPANIANTES")
     private Integer acompaniantes;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "USUARIO_ID", referencedColumnName = "ID", updatable = false, nullable = false)
-    private AppUser usuario;
+    @ManyToOne
+    @JoinColumn(name = "USUARIO_ID")
+    private Usuario usuario;
 
     @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
     @JsonIgnore

@@ -4,70 +4,73 @@ import com.viajecito.api.dto.ImagenDTO;
 import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.Imagen;
 import com.viajecito.api.service.IImagenService;
-import org.apache.log4j.Logger;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 @RequestMapping("/imagen")
 public class ImagenController{
-    private static final Logger log = Logger.getLogger(DireccionController.class);
 
     @Autowired
     private IImagenService imagenService;
 
-    @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping
-    public Set<Imagen> agregar(@RequestPart("imagenes") List<MultipartFile> imagenes) {
-        Set<Imagen> resultado = new HashSet<Imagen>();
-        try {
-            resultado = imagenService.agregar(imagenes);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public Set<Imagen> agregar(@RequestPart("imagenes") List<MultipartFile> imagenes) throws BadRequestException, IOException {
+        Set<Imagen> resultado = new HashSet<>();
+        resultado = imagenService.agregar(imagenes);
         return resultado;
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/{nombre}")
-    public ResponseEntity<byte[]> buscarPorNombre(@PathVariable String nombre) {
-        return ResponseEntity.ok()
-                .contentType(MediaType.IMAGE_JPEG) // Ajusta el tipo de contenido según el tipo de imagen
-                .body(imagenService.buscarPorNombre(nombre));
+    @GetMapping("/{id}")
+    public ResponseEntity<byte[]> buscarPorId(@PathVariable Long id) {
+        Optional<ImagenDTO> imagen = imagenService.buscarPorId(id);
+        if (imagen.isPresent()) {
+            byte[] contenidoImagen = imagen.get().getContenido();
+            HttpHeaders headers = new HttpHeaders();
+
+            /**** Formato de la imagen (extension) ****/
+            String nombre = imagen.get().getNombre();
+            String formatoImagen = nombre.substring(nombre.lastIndexOf(".")+1);
+
+            /**** Asigno el tipo de archivo ****/
+            if (formatoImagen != null) {
+                switch (formatoImagen) {
+                    case "png":
+                        headers.setContentType(MediaType.IMAGE_PNG);
+                        break;
+                    default:
+                        headers.setContentType(MediaType.IMAGE_JPEG);
+                }
+            } else {
+                headers.setContentType(MediaType.IMAGE_JPEG); // Example: GIF
+            }
+
+            return new ResponseEntity<>(contenidoImagen, headers, HttpStatus.OK);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping
-    public List<String> listarTodas(){
+    public List<Imagen> listarTodas(){
         return imagenService.listarTodas();
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable Long id) throws BadRequestException{
-        ResponseEntity<String> respuesta = null;
-        imagenService.eliminar(id);
-        respuesta = ResponseEntity.status(HttpStatus.OK).body("INFORMACIÓN: Imagen eliminada correctamente");
-        return respuesta;
-    }
-
-    @CrossOrigin(origins = "http://localhost:5173")
-    @ExceptionHandler({BadRequestException.class})
-    public ResponseEntity<String> procesarBadRequestException(BadRequestException exception){
-        log.error("ERROR EN IMAGEN: " + exception.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+    public ResponseEntity<?> eliminar(@PathVariable Long id) throws BadRequestException {
+        try {
+            imagenService.eliminar(id);
+        } catch (BadRequestException e) {
+            throw new BadRequestException("No es posible eliminar la imagen: " + e);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body("Imagen eliminada correctamente");
     }
 }

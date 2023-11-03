@@ -2,24 +2,14 @@ package com.viajecito.api.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.viajecito.api.dto.ActividadDTO;
-import com.viajecito.api.dto.ImagenDTO;
 import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.Actividad;
-import com.viajecito.api.model.Direccion;
-import com.viajecito.api.model.Imagen;
 import com.viajecito.api.repository.IActividadRepository;
 import com.viajecito.api.service.IActividadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 @Service
@@ -28,21 +18,13 @@ public class ActividadService implements IActividadService {
     private IActividadRepository actividadRepository;
 
     @Autowired
-    private DireccionService direccionService;
-
-    @Autowired
     private ImagenService imagenService;
 
     @Autowired
     ObjectMapper mapper;
 
-    @Transactional
     @Override
     public ActividadDTO agregar(ActividadDTO actividadDTO) throws BadRequestException {
-        // Agregando las direcciones
-        Set<Direccion> dirreciones = direccionService.agregarTodas(actividadDTO.getDirecciones());
-        actividadDTO.setDirecciones(dirreciones);
-
         if (actividadRepository.findByNombreAndFechaHora(actividadDTO.getNombre(), actividadDTO.getFechaHora()).isPresent())
             throw new BadRequestException("ACCIÓN NO REALIZADA: Ya existe una actividad con los datos ingresados");
         return toDTO(actividadRepository.save(toModel(actividadDTO)));
@@ -57,10 +39,6 @@ public class ActividadService implements IActividadService {
     @Transactional
     @Override
     public ActividadDTO modificar(Actividad actividad) throws BadRequestException {
-        // Modificando las direcciones
-        Set<Direccion> dirreciones = direccionService.agregarTodas(actividad.getDirecciones());
-        actividad.setDirecciones(dirreciones);
-
         if (actividadRepository.findById(actividad.getId() ) == null)
             throw new BadRequestException("ACCIÓN NO REALIZADA: No existe la actividad a modificar");
         return toDTO(actividadRepository.save(actividad));
@@ -83,10 +61,6 @@ public class ActividadService implements IActividadService {
     public Set<Actividad> agregarTodos(Set<Actividad> actividades){
         Set<Actividad> actividadesAgragadas = new HashSet<Actividad>();
         for (Actividad actividad : actividades){
-            // Agrego domicilios primero
-            Set<Direccion> direcciones = direccionService.agregarTodas(actividad.getDirecciones());
-            actividad.setDirecciones(direcciones);
-
             Optional<Actividad> existe = actividadRepository.findByNombreAndFechaHora(actividad.getNombre(), actividad.getFechaHora());
             if(existe.isPresent()){
                 actividadesAgragadas.add(actividadRepository.findById(existe.get().getId()).orElse(null));

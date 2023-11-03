@@ -8,11 +8,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public interface IImagenService {
-    Set<Imagen> agregar(List<MultipartFile> imagenes) throws IOException;
+    Set<Imagen> agregar(List<MultipartFile> imagenes) throws BadRequestException, IOException;
     void eliminar(Long id) throws BadRequestException;
-    byte[] buscarPorNombre(String nombre);
-    List<String> listarTodas();
+    Optional<ImagenDTO> buscarPorId(Long id);
+    List<Imagen> listarTodas();
 }

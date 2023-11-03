@@ -45,3 +45,52 @@
 [2023-10-24 13:00:48] [ ERROR] [ActividadController:85] ERROR EN ACTIVIDAD: ACCIÓN NO REALIZADA: Ya existe una actividad con los datos ingresados
 [2023-10-24 13:20:00] [ ERROR] [ActividadController:85] ERROR EN ACTIVIDAD: ACCIÓN NO REALIZADA: Ya existe una actividad con los datos ingresados
 [2023-10-24 16:03:52] [ ERROR] [DireccionController:54] ERROR EN DIRECCION: ACCIÓN NO REALIZADA: Ya existe una direccion con los datos ingresados
+[2023-10-31 22:51:27] [ ERROR] [DireccionController:67] ERROR EN IMAGEN: ERROR AL GUARDAR IMAGEN: Se superó el tamaño máximo permitido
+[2023-10-31 22:58:07] [ ERROR] [DireccionController:60] ERROR EN IMAGEN: ERROR AL GUARDAR IMAGEN: Se superó el tamaño máximo permitido
+[2023-10-31 22:59:14] [ ERROR] [DireccionController:60] ERROR EN IMAGEN: ERROR AL GUARDAR IMAGEN: Se superó el tamaño máximo permitido
+[2023-10-31 23:08:16] [ ERROR] [DireccionController:60] ERROR EN IMAGEN: ERROR AL GUARDAR IMAGEN: Se superó el tamaño máximo permitido
+[2023-10-31 23:10:38] [ ERROR] [DireccionController:60] ERROR EN IMAGEN: ERROR AL GUARDAR IMAGEN: Se superó el tamaño máximo permitido
+[2023-10-31 23:12:33] [ ERROR] [DireccionController:60] ERROR EN IMAGEN: ERROR AL GUARDAR IMAGEN: Se superó el tamaño máximo permitido 1920x1080 
+[2023-11-02 19:50:08] [ ERROR] [DireccionController:60] ERROR EN IMAGEN: ERROR AL GUARDAR IMAGEN: Se superó el tamaño máximo permitido 1920x1080 
+[2023-11-02 20:20:28] [ ERROR] [DireccionController:61] ERROR EN IMAGEN: ERROR AL GUARDAR IMAGEN: Se superó el tamaño máximo permitido 1920x1080 
+[2023-11-02 20:27:59] [ ERROR] [DireccionController:61] ERROR EN IMAGEN: ERROR AL GUARDAR IMAGEN: Se superó el tamaño máximo permitido 1920x1080 
+[2023-11-02 21:19:24] [ ERROR] [ExceptionController:16] ERROR en BadRequestException: AGREGAR: Una o más imágenes no son válidas
+[2023-11-02 21:40:37] [ ERROR] [ExceptionController:16] ERROR en NullPointerException: Cannot invoke "java.util.List.add(Object)" because "contenidoImagenes" is null
+[2023-11-02 21:48:26] [ ERROR] [ExceptionController:16] ERROR en HttpMessageNotWritableException: No converter for [class java.util.ArrayList] with preset Content-Type 'image/jpeg'
+[2023-11-02 21:50:50] [ ERROR] [ExceptionController:16] ERROR en HttpMessageNotWritableException: No converter for [class java.util.ArrayList] with preset Content-Type 'image/jpeg'
+[2023-11-03 01:07:47] [ ERROR] [ExceptionController:18] DataIntegrityViolationException: not-null property references a null or transient value : com.viajecito.api.model.Categoria.tour; nested exception is org.hibernate.PropertyValueException: not-null property references a null or transient value : com.viajecito.api.model.Categoria.tour
+[2023-11-03 01:09:58] [ ERROR] [ExceptionController:18] DataIntegrityViolationException: not-null property references a null or transient value : com.viajecito.api.model.Categoria.tour; nested exception is org.hibernate.PropertyValueException: not-null property references a null or transient value : com.viajecito.api.model.Categoria.tour
+[2023-11-03 01:15:22] [ ERROR] [ExceptionController:18] IllegalArgumentException: Cannot construct instance of `com.viajecito.api.model.Categoria` (although at least one Creator exists): no long/Long-argument constructor/factory method to deserialize from Number value (1)
+ at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: com.viajecito.api.model.Tour["categoria"])
+[2023-11-03 01:29:49] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'categoria' es obligatorio
+[2023-11-03 01:30:44] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'categoria' es obligatorio
+[2023-11-03 01:30:52] [ ERROR] [ExceptionController:19] IllegalArgumentException: Cannot deserialize value of type `java.lang.Long` from Object value (token `JsonToken.START_OBJECT`)
+ at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: com.viajecito.api.dto.TourDTO["categoria"])
+[2023-11-03 01:31:19] [ ERROR] [ExceptionController:19] IllegalArgumentException: Cannot deserialize value of type `java.lang.Long` from Object value (token `JsonToken.START_OBJECT`)
+ at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: com.viajecito.api.dto.TourDTO["categoria"])
+[2023-11-03 01:41:15] [ ERROR] [ExceptionController:19] IllegalArgumentException: Cannot deserialize value of type `java.lang.Long` from Object value (token `JsonToken.START_OBJECT`)
+ at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: com.viajecito.api.dto.TourDTO["categoria"])
+[2023-11-03 01:45:31] [ ERROR] [ExceptionController:19] IllegalArgumentException: Cannot deserialize value of type `java.lang.Long` from Object value (token `JsonToken.START_OBJECT`)
+ at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: com.viajecito.api.dto.TourDTO["categoria"])
+[2023-11-03 01:54:42] [ ERROR] [ExceptionController:19] IllegalArgumentException: Cannot construct instance of `com.viajecito.api.model.Categoria` (although at least one Creator exists): no long/Long-argument constructor/factory method to deserialize from Number value (1)
+ at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: com.viajecito.api.model.Tour["categoria"])
+[2023-11-03 01:58:06] [ ERROR] [ExceptionController:19] IllegalArgumentException: Cannot deserialize value of type `java.lang.Long` from Object value (token `JsonToken.START_OBJECT`)
+ at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: com.viajecito.api.dto.TourDTO["categoria"])
+[2023-11-03 18:23:50] [ ERROR] [ExceptionController:32] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-03 18:24:03] [ ERROR] [ExceptionController:19] InvalidDataAccessApiUsageException: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : com.viajecito.api.model.Tour.categoria -> com.viajecito.api.model.Categoria; nested exception is java.lang.IllegalStateException: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : com.viajecito.api.model.Tour.categoria -> com.viajecito.api.model.Categoria
+[2023-11-03 18:27:31] [ ERROR] [ExceptionController:19] InvalidDataAccessApiUsageException: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : com.viajecito.api.model.Tour.categoria -> com.viajecito.api.model.Categoria; nested exception is java.lang.IllegalStateException: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : com.viajecito.api.model.Tour.categoria -> com.viajecito.api.model.Categoria
+[2023-11-03 18:44:52] [ ERROR] [ExceptionController:19] IllegalArgumentException: Cannot deserialize value of type `java.lang.Long` from Object value (token `JsonToken.START_OBJECT`)
+ at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: com.viajecito.api.dto.TourDTO["categoria"])
+[2023-11-03 18:51:38] [ ERROR] [ExceptionController:19] IllegalArgumentException: Cannot deserialize value of type `java.lang.Long` from Object value (token `JsonToken.START_OBJECT`)
+ at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: com.viajecito.api.dto.TourDTO["categoria"])
+[2023-11-03 19:02:05] [ ERROR] [ExceptionController:19] IllegalArgumentException: Cannot deserialize value of type `java.lang.Long` from Object value (token `JsonToken.START_OBJECT`)
+ at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: com.viajecito.api.dto.TourDTO["categoria"])
+[2023-11-03 19:05:23] [ ERROR] [ExceptionController:19] IllegalArgumentException: Cannot deserialize value of type `java.lang.Long` from Object value (token `JsonToken.START_OBJECT`)
+ at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: com.viajecito.api.dto.TourDTO["categoria"])
+[2023-11-03 19:54:14] [ ERROR] [ExceptionController:19] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.util.List'; nested exception is java.lang.NumberFormatException: For input string: "[1,2]"
+[2023-11-03 19:55:07] [ ERROR] [ExceptionController:25] BadRequestException: Una o más imágenes no son válidas.
+[2023-11-03 19:55:19] [ ERROR] [ExceptionController:19] DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [null]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+[2023-11-03 20:01:47] [ ERROR] [ExceptionController:19] HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.time.LocalDateTime` from String "01/05/2023 16:00": Failed to deserialize java.time.LocalDateTime: (java.time.format.DateTimeParseException) Text '01/05/2023 16:00' could not be parsed at index 0; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.time.LocalDateTime` from String "01/05/2023 16:00": Failed to deserialize java.time.LocalDateTime: (java.time.format.DateTimeParseException) Text '01/05/2023 16:00' could not be parsed at index 0
+ at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 3, column: 18] (through reference chain: com.viajecito.api.dto.ActividadDTO["fechaHora"])
+[2023-11-03 20:08:22] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'nombre' es obligatorio
+[2023-11-03 20:08:35] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'nombre' es obligatorio

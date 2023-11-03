@@ -35,26 +35,10 @@ public class Actividad {
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime fechaHora;
 
-    @Column(name = "PRECIO")
-    private Double precio;
-
     @Enumerated(EnumType.STRING)
     private ActividadEstado estado;
 
-    @ManyToMany
-    @JoinTable( name = "ACTIVIDAD_DIRECCION",
-            joinColumns = @JoinColumn(name = "ACTIVIDAD_ID"),
-            inverseJoinColumns = @JoinColumn(name = "DIRECCION_ID"))
-    private Set<Direccion> direcciones = new HashSet<>();
-
-    @ManyToMany
-    @JoinTable(name = "ACTIVIDAD_IMAGEN",
-            joinColumns = @JoinColumn(name = "ACTIVIDAD_ID"),
-            inverseJoinColumns = @JoinColumn(name = "IMAGEN_ID"))
-    private Set<Imagen> imagenes = new HashSet<>();
-
-    /*
     @ManyToMany(mappedBy = "actividades")
     @JsonIgnore
-    private Set<Tour> tours = new HashSet<>();*/
+    private Set<Tour> tours = new HashSet<>();
 }
