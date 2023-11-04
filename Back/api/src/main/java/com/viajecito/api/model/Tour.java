@@ -48,15 +48,15 @@ public class Tour {
     @Column(name = "TRASLADO")
     private Boolean traslado;
 
+    @Column(name = "ENTRADAS")
+    private String entradas;
+
+    @Column(name = "GUIA_ES")
+    private Boolean guia_es;
+
     @ManyToOne
     @JoinColumn(name = "ALOJAMIENTO_ID")
     private Alojamiento alojamiento;
-
-    @ManyToMany
-    @JoinTable( name = "TOUR_ACTIVIDAD",
-            joinColumns = @JoinColumn(name = "TOUR_ID"),
-            inverseJoinColumns = @JoinColumn(name = "ACTIVIDAD_ID"))
-    private Set<Actividad> actividades = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "TOUR_IMAGEN",

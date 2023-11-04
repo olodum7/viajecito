@@ -26,6 +26,13 @@ public class Alojamiento {
     @Column(name = "NOMBRE")
     private String nombre;
 
+    @Column(name = "TIPO")
+    @Enumerated(EnumType.STRING)
+    private AlojamientoTipo tipo;
+
+    @Column(name = "UBICACION")
+    private String ubicacion;
+
     @ManyToMany
     @JoinTable(name = "ALOJAMIENTO_IMAGEN",
             joinColumns = @JoinColumn(name = "ALOJAMIENTO_ID"),

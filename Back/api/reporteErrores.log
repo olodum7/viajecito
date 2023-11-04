@@ -94,3 +94,7 @@
  at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 3, column: 18] (through reference chain: com.viajecito.api.dto.ActividadDTO["fechaHora"])
 [2023-11-03 20:08:22] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'nombre' es obligatorio
 [2023-11-03 20:08:35] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'nombre' es obligatorio
+[2023-11-04 17:39:21] [ ERROR] [ExceptionController:25] BadRequestException: INFORMACIÓN: La lista de actividades se encuentra vacía
+[2023-11-04 18:03:14] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'nombre' es obligatorio
+[2023-11-04 18:32:20] [ ERROR] [ExceptionController:19] RuntimeException: com.viajecito.api.exception.BadRequestException: Se superó el tamaño máximo permitido 1920x1080.
+[2023-11-04 19:47:55] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'guia' es obligatorio

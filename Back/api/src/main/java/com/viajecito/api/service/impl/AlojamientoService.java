@@ -58,7 +58,7 @@ public class AlojamientoService implements IAlojamientoService {
     }
 
     public Set<Alojamiento> agregarTodos(Set<Alojamiento> alojamientos){
-        Set<Alojamiento> alojamientosAgregados = new HashSet<Alojamiento>();
+        Set<Alojamiento> alojamientosAgregados = new HashSet<>();
         for(Alojamiento alojamiento : alojamientos){
             Optional<Alojamiento> existe = alojamientoRepository.findByNombre(alojamiento.getNombre());
             if(existe.isPresent()){

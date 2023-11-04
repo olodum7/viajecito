@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -24,6 +25,7 @@ public class Reserva {
     private Long id;
 
     @Column(name = "FECHA_HORA_SALIDA")
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime fechaHoraSalida;
 
     @Column(name = "CANT_DIAS")

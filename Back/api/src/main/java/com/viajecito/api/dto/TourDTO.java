@@ -20,8 +20,9 @@ public class TourDTO implements Serializable {
     private TourDificultad dificultad;
     private String transporte;
     private Boolean traslado;
+    private String entradas;
+    private Boolean guia_es;
     private Alojamiento alojamiento;
-    private Set<Actividad> actividades;
     private Set<Imagen> imagenes;
     private Set<Usuario> usuariosFav;
 }

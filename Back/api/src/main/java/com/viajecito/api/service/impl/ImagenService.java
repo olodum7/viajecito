@@ -7,6 +7,7 @@ import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.Imagen;
 import com.viajecito.api.repository.IImagenRepository;
 import com.viajecito.api.service.IImagenService;
+import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -48,7 +49,7 @@ public class ImagenService implements IImagenService {
                     int ancho = imagenBI.getWidth();
                     int alto = imagenBI.getHeight();
                     if (ancho > 1920 || alto > 1080){
-                        throw new BadRequestException("Se superó el tamaño máximo permitido 1920x1080.");
+                        imagenBI = Scalr.resize(imagenBI, 1920, 1080);
                     }
                 }
 
@@ -67,8 +68,6 @@ public class ImagenService implements IImagenService {
                 imagen.getInputStream().close();
             } catch (IOException e) {
                 throw new RuntimeException("AGREGAR: " + nombre + " " + e);
-            } catch (BadRequestException e) {
-                throw new RuntimeException(e);
             }
         }
         return agregadas;
