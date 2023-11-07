@@ -1,29 +1,6 @@
-/* import React from "react";
-
-const gallery = () => {
-  return (
-    <>
-      <section id="gallery-detail">
-        <div className="container">
-          <div className="row">
-            <div class="images-grid gap-4">
-              <img src="https://placekitten.com/400/400" alt="" />
-              <img src="https://placekitten.com/600/300" alt="" />
-              <img src="https://placekitten.com/900/800" alt="" />
-              <img src="https://placekitten.com/1200/400" alt="" />
-              <img src="https://placekitten.com/1200/400" alt="" />
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-};
-
-export default gallery; */
-
 import React, { useState, useEffect } from "react";
 import GalleryModal from "./GalleryModal";
+import GalleryButton from "./../buttons/gallery-button/GalleryButton";
 
 const imgUrls = [
   "https://source.unsplash.com/PC_lbSSxCZE/800x600",
@@ -70,6 +47,10 @@ const Gallery = () => {
     }
   };
 
+  const openModalFromButton = () => {
+    openModal(0); 
+  };
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.keyCode === 27) {
@@ -109,6 +90,9 @@ const Gallery = () => {
               src={imgUrls[currentIndex]}
             />
           )}
+        </div>
+        <div className="row">
+          <GalleryButton onButtonClick={openModalFromButton}/>
         </div>
       </div>
     </section>

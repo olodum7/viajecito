@@ -1,34 +1,35 @@
-.return-container {
+.gallery-button-container {
     color: var(--primary);
     text-align: right;
     width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    margin-top: 1rem;
 }
 
-.return-container a {
+.gallery-button-container a {
     color: var(--black);
     font-weight: 600;
     text-decoration: none;
 }
 
-.return-container:hover a {
+.gallery-button-container:hover a {
     color: var(--primary);
     transition: all 300ms;
 }
 
-.return-container a span {
+.gallery-button-container a span {
     background-color: var(--secondary);
     border: none;
     border-radius: 64px;
     color: var(--primary);
     margin-right: 8px;
-    padding: 8px 4.5px;
+    padding: 8px 6px;
     transition: all 300ms;
 }
 
-.return-container a span svg {
+.gallery-button-container a span svg {
     width: 24px;
     height: 24px;
     padding-bottom: 4px;
@@ -37,15 +38,15 @@
     transition: all 300ms;
 }
 
-.return-container a:hover {
+.gallery-button-container a:hover {
     text-decoration: underline;
 }
 
-.return-container a:hover span {
+.gallery-button-container a:hover span {
     background-color: var(--primary);
     color: var(--white);
 }
 
-.return-container a:hover svg {
+.gallery-button-container a:hover svg {
     stroke: var(--white);
 }

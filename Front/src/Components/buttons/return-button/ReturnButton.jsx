@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const ReturnButton = () => {
   return (
     <div className="return-container">
+      <Link to="/">
       <span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +19,7 @@ const ReturnButton = () => {
           <path d="M5 10h11a4 4 0 1 1 0 8h-1"></path>
         </svg>
       </span>
-      <Link to="/">Volver al inicio</Link>
+      Volver al inicio</Link>
     </div>
   );
 };

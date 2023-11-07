@@ -88,6 +88,61 @@ section#form-container {
     margin-bottom: 4em;
 }
 
+section#detail {
+    margin-top: 2.5rem;
+    margin-bottom: 6rem;
+}
+
+section#detail .row:first-child,
+section#detail .container-details {
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+
+section#detail h1 {
+    color: var(--primary);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+section#detail h2 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+section#detail h3 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+section#detail .container-details .row {
+    margin-bottom: 1rem;
+}
+
+section#detail .container-details .row svg {
+    margin-right: 8px;
+}
+
+section#detail .container-details .row em {
+    color: var(--primary);
+    font-style: normal;
+    font-weight: 600;
+}
+
+section#detail .container-itinerary h3 {
+    color: var(--primary);
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+section#detail .container-itinerary h4 {
+    color: var(--primary);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
 
 /* Scrollbar */
 

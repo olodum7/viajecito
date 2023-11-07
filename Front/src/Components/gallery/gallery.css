@@ -27,8 +27,8 @@
         grid-auto-flow: dense;
     }
     .images-grid>*:first-child {
-        grid-column: span;
-        grid-row: span;
+        grid-column: span 1;
+        grid-row: span 1;
     }
 }
 

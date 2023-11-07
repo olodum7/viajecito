@@ -24,7 +24,7 @@ const Breadcrumb = ({ tourName }) => {
   );
 
   return (
-    <div className="container breadcrumb-container">
+    <div className="container breadcrumb-container mb-3">
       <div className="row">
         <div className="col-8">
           <nav aria-label="breadcrumb">
