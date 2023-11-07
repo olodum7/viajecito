@@ -39,7 +39,7 @@ public class AlojamientoController {
                                      @RequestParam("ubicacion") String ubicacion,
                                      @RequestPart("imagenes") List<MultipartFile> imagenes ) throws BadRequestException, IOException {
 
-        AlojamientoDTO alojamientoDTO = new AlojamientoDTO();
+        Alojamiento alojamiento = new Alojamiento();
         Set<Imagen> imagenesAlojamiento = new HashSet<>();
 
         try{
@@ -47,16 +47,16 @@ public class AlojamientoController {
             if (nombre == null || tipo == null || ubicacion == null || (imagenes == null || imagenes.isEmpty()))
                 throw new BadRequestException("Todos los campos son obligatorios.");
 
-            alojamientoDTO.setTipo(tipo);
-            alojamientoDTO.setNombre(nombre);
-            alojamientoDTO.setUbicacion(ubicacion);
+            alojamiento.setTipo(tipo);
+            alojamiento.setNombre(nombre);
+            alojamiento.setUbicacion(ubicacion);
 
             /**** Si las imagenes no existen, se agregan ****/
             if (!imagenes.isEmpty()) {
                 imagenesAlojamiento = imagenService.agregar(imagenes);
-                alojamientoDTO.setImagenes(imagenesAlojamiento);
+                alojamiento.setImagenes(imagenesAlojamiento);
             }
-            return ResponseEntity.ok(alojamientoService.agregar(alojamientoDTO));
+            return ResponseEntity.ok(alojamientoService.agregar(alojamiento));
 
         } catch (BadRequestException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

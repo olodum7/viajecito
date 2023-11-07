@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.viajecito.api.dto.AlojamientoDTO;
 import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.Alojamiento;
+import com.viajecito.api.model.Imagen;
 import com.viajecito.api.repository.IAlojamientoRepository;
 import com.viajecito.api.service.IAlojamientoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,11 @@ public class AlojamientoService implements IAlojamientoService {
 
     @Transactional
     @Override
-    public AlojamientoDTO agregar(AlojamientoDTO alojamientoDTO) throws BadRequestException {
-        Optional<Alojamiento> encotrado = alojamientoRepository.findByNombre(alojamientoDTO.getNombre());
+    public AlojamientoDTO agregar(Alojamiento alojamiento) throws BadRequestException {
+        Optional<Alojamiento> encotrado = alojamientoRepository.findByNombre(alojamiento.getNombre());
         if(encotrado.isPresent())
             throw new BadRequestException("Ya existe un alojamiento con el nombre ingresado");
-        return toDTO(alojamientoRepository.save(toModel(alojamientoDTO)));
+        return toDTO(alojamientoRepository.save(alojamiento));
     }
 
     @Override
@@ -70,8 +71,19 @@ public class AlojamientoService implements IAlojamientoService {
         return alojamientosAgregados;
     }
 
-    private AlojamientoDTO toDTO(Alojamiento d){
-        return mapper.convertValue(d, AlojamientoDTO.class);
+    private AlojamientoDTO toDTO(Alojamiento a){
+        AlojamientoDTO dto = new AlojamientoDTO();
+        Set<Long> imagenesId = new HashSet<>();
+
+        dto.setNombre(a.getNombre());
+        dto.setTipo(a.getTipo());
+        dto.setUbicacion(a.getUbicacion());
+
+        for (Imagen imagen : a.getImagenes())
+            imagenesId.add(imagen.getId());
+        dto.setImagenes(imagenesId);
+
+        return dto;
     }
 
     private Alojamiento toModel(AlojamientoDTO d){

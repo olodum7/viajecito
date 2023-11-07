@@ -50,8 +50,10 @@ public class TourController {
                                      @RequestParam("alojamiento") Long alojamientoId,
                                      @RequestPart("imagenes") List<MultipartFile> imagenes) throws BadRequestException{
 
-        TourDTO tourDTO = new TourDTO();
+        Tour tour = new Tour();
         Set<Imagen> imagenesTour = new HashSet<>();
+        Set<Long> imagenesId = new HashSet<>();
+
         try {
             /************* VALIDACION DE CAMPOS *************/
             if (titulo == null || subtitulo == null || precio == null || categoriaId == null ||
@@ -63,37 +65,36 @@ public class TourController {
                 throw new BadRequestException("Los campos no pueden quedar vacíos.");
             }
 
-            tourDTO.setTitulo(titulo);
-            tourDTO.setSubtitulo(subtitulo);
-            tourDTO.setPrecio(precio);
+            tour.setTitulo(titulo);
+            tour.setSubtitulo(subtitulo);
+            tour.setPrecio(precio);
 
             /**** Categoria ****/
             Categoria categoria = categoriaRepository.findById(categoriaId).orElse(null);
             if (categoria == null)
                 throw new BadRequestException("La categoria seleccionada no existe.");
-            tourDTO.setCategoria(categoria);
+            tour.setCategoria(categoria);
 
-            tourDTO.setDuracion(duracion);
-            tourDTO.setDificultad(dificultad);
-            tourDTO.setTransporte(transporte);
-            tourDTO.setTraslado(traslado);
-            tourDTO.setGuia_es(guia_es);
+            tour.setDuracion(duracion);
+            tour.setDificultad(dificultad);
+            tour.setTransporte(transporte);
+            tour.setTraslado(traslado);
+            tour.setGuia_es(guia_es);
 
             /**** Alojamiento ****/
             Alojamiento alojamiento = alojamientoRepository.findById(alojamientoId).orElse(null);
             if (alojamiento == null)
                 throw new BadRequestException("El alojamiento seleccionado no existe.");
-            tourDTO.setAlojamiento(alojamiento);
+            tour.setAlojamiento(alojamiento);
 
-            tourDTO.setEntradas(entradas);
+            tour.setEntradas(entradas);
 
             /**** Si las imagenes no existen, se agregan ****/
             if (!imagenes.isEmpty()) {
                 imagenesTour = imagenService.agregar(imagenes);
-                tourDTO.setImagenes(imagenesTour);
+                tour.setImagenes(imagenesTour);
             }
-            return ResponseEntity.ok(tourService.agregar(tourDTO));
-
+            return ResponseEntity.ok(tourService.agregar(tour));
         } catch (BadRequestException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (IOException e) {
@@ -122,12 +123,12 @@ public class TourController {
     }
 
     @GetMapping(path = "/{id}")
-    public Optional<TourDTO> buscarPorId(@PathVariable Long id){
+    public TourDTO buscarPorId(@PathVariable Long id) throws BadRequestException {
         return tourService.buscarPorId(id);
     }
 
     @GetMapping
-    public Collection<Tour> listarTodos(){
+    public Collection<TourDTO> listarTodos(){
         return tourService.listarTodos();
     }
 }

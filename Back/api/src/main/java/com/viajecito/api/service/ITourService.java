@@ -8,9 +8,9 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface ITourService {
-    TourDTO agregar(TourDTO tourDTO) throws BadRequestException;
+    TourDTO agregar(Tour tour) throws BadRequestException;
     void eliminar(Long id) throws BadRequestException;
     TourDTO modificar(Tour tour) throws BadRequestException;
-    Optional<TourDTO> buscarPorId(Long id);
-    Collection<Tour> listarTodos();
+    TourDTO buscarPorId(Long id) throws BadRequestException;
+    Collection<TourDTO> listarTodos();
 }

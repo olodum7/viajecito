@@ -12,17 +12,18 @@ import java.util.Set;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter @Setter
 public class TourDTO implements Serializable {
+    private Long id;
     private String titulo;
     private String subtitulo;
     private Double precio;
-    private Categoria categoria;
+    private String categoria;
     private String duracion;
-    private TourDificultad dificultad;
+    private String dificultad;
     private String transporte;
     private Boolean traslado;
     private String entradas;
     private Boolean guia_es;
-    private Alojamiento alojamiento;
-    private Set<Imagen> imagenes;
-    private Set<Usuario> usuariosFav;
+    private Long alojamiento;
+    private Set<Long> imagenes;
+    private Long usuariosFav;
 }

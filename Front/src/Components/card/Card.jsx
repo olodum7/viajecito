@@ -1,31 +1,56 @@
-//import { Link } from "react-router-dom";
-//import Image from './Image';
-import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+import Image from "../Image";
 import Category_pills from "../category/CategoryPills";
 import Button from "../buttons/button";
 import FavButton from "../favs/FavButton";
+import "../card/card.css";
 
-{
-  /*const Card = ({ id, nombre, descripcion, imagenes }) => { */
-}
-const Card = ({ data }) => {
+const Card = (props) => {
+  const {
+    id,
+    titulo,
+    subtitulo,
+    precio,
+    categoria,
+    duracion,
+    dificultad,
+    imagenes,
+    usuariosFav,
+  } = props.data;
+
+  // Defino las propiedades esperadas
+  Card.propTypes = {
+    data: PropTypes.shape({
+      id: PropTypes.number,
+      titulo: PropTypes.string,
+      subtitulo: PropTypes.string,
+      precio: PropTypes.number,
+      categoria: PropTypes.string,
+      duracion: PropTypes.string,
+      dificultad: PropTypes.string,
+      imagenes: PropTypes.array,
+      usuariosFav: PropTypes.number,
+    }),
+  };
+
   return (
     <div className="card">
       <div className="img-wrapper">
-        <img src={data.image} />
-        <Category_pills url="#" categoryName="Categoría" />
+        <Image key={imagenes[0]} id={imagenes[0]} />
+        <Category_pills url="#" categoryName={categoria} />
         <FavButton />
       </div>
       <div className="card-body">
         <div className="card-headers">
-          <h2 className="card-h2">{data.title}</h2>
-          <h3 className="mt-2 mb-5">{data.subtitle}</h3>
+          <Link to={`tour/${id}`} className="card-link"><h2 className="card-h2">{titulo}</h2> </Link>
+          <h3 className="mt-2 mb-5">{subtitulo}</h3>
         </div>
         <div className="card-details">
           <div className="row card-price">
             <div className="col">
               <p className="d-flex align-items-center">
-                Desde <strong>USD {data.price}</strong>
+                Desde <strong>USD {precio}</strong>
               </p>
             </div>
             <div className="col-12 col-md-6 btn-container">
@@ -52,8 +77,8 @@ const Card = ({ data }) => {
                   strokeWidth="0"
                   fill="currentColor"
                 ></path>
-              </svg>
-              {data.rating}
+              </svg>{" "}
+              0{usuariosFav}
             </div>
             <div className="duration">
               <svg
@@ -73,7 +98,7 @@ const Card = ({ data }) => {
                 <path d="M12 12l2 3"></path>
                 <path d="M12 7v5"></path>
               </svg>
-              {data.duration}
+              {duracion}
             </div>
             <div className="difficulty">
               <svg
@@ -96,7 +121,7 @@ const Card = ({ data }) => {
                 <path d="M17 12v9"></path>
                 <path d="M16 20h2"></path>
               </svg>
-              {data.difficulty}
+              {dificultad}
             </div>
             <div className="releases">
               <svg
@@ -119,7 +144,7 @@ const Card = ({ data }) => {
                 <path d="M16 19h6"></path>
                 <path d="M19 16v6"></path>
               </svg>
-              {data.releases}
+              {/* {data.releases} */}
             </div>
           </div>
         </div>
@@ -129,19 +154,3 @@ const Card = ({ data }) => {
 };
 
 export default Card;
-
-{
-  /*
-        <div className="col">
-            <div className="card card-product">
-                <div className="card-header">
-                    <Image nombre={imagenes[0].nombre} />
-                </div>
-                <div className="card-body">
-                    <h4 className="card-title">{nombre}</h4>
-                    <h6 className="card-subtitle">{descripcion} </h6>
-                    <Link to={`tour/${id}`} className="card-link"> <p> Ver detalle </p> </Link>
-                </div>
-            </div>
-    </div> */
-}

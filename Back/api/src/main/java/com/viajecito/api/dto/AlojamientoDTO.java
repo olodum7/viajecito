@@ -15,5 +15,5 @@ public class AlojamientoDTO implements Serializable {
     private String nombre;
     private AlojamientoTipo tipo;
     private String ubicacion;
-    private Set<Imagen> imagenes;
+    private Set<Long> imagenes;
 }
