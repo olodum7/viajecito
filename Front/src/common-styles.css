@@ -81,81 +81,11 @@ h1 {
     width: 100%;
 }
 
-
-/* Forms */
-
 section#form-container {
     display: flex;
     justify-content: center;
     margin-top: 8rem;
     margin-bottom: 4em;
-}
-
-section#form-container label {
-    color: var(--gray);
-    display: block;
-    font-size: .8rem;
-    margin-bottom: .4rem;
-}
-
-section#form-container input[type="text"],
-section#form-container input[type="number"],
-section#form-container select {
-    border: none !important;
-    border-bottom: 2px solid var(--black) !important;
-    border-radius: 0 !important;
-    color: var(--black) !important;
-    font-size: 1.4rem !important;
-    font-weight: 600 !important;
-    margin-bottom: 1rem;
-}
-
-section#form-container .form-control[type="file"] {
-    width: 100%;
-    background-color: var(--white)!important;
-    border: none;
-}
-
-section#form-container [type="file"]::-webkit-file-upload-button {
-    background-color: var(--white);
-    border: 2px solid var(--primary);
-    border-radius: 8px;
-    color: var(--primary);
-    padding: 16px 32px;
-    font-weight: 600;
-    text-transform: uppercase;
-    transition: all 450ms;
-}
-
-section#form-container [type="file"]:hover::-webkit-file-upload-button {
-    background-color: var(--primary);
-    border: 2px solid var(--primary);
-    border-radius: 8px;
-    color: var(--white);
-}
-
-section#form-container button[type="reset"] {
-    background-color: var(--white);
-    border-radius: 8px;
-    border: 2px solid var(--primary);
-    margin-right: 16px;
-    padding: 16px 32px;
-}
-
-section#form-container button[type="submit"] {
-    background-color: var(--secondary);
-    border-radius: 8px;
-    border: 2px solid var(--secondary);
-    color: var(--primary);
-    margin-right: 16px;
-    padding: 16px 32px;
-}
-
-@media (max-width: 767px) {
-    section#form-container button {
-        margin-top: 16px;
-        width: 100%;
-    }
 }
 
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import mainLogo from "./logo.svg";
-import Button from "./../../buttons/Button";
+import Button from "../../buttons/button/Button";
 
 
 const Navbar = () => {
@@ -66,13 +66,13 @@ const Navbar = () => {
 
           <div className="collapse navbar-collapse gap-3" id="navbarCollapse">
             <div className="navbar-nav ms-lg-4">
-              <Link className="nav-item nav-link" to="#">
+              <Link className="nav-item nav-link" to="/login">
                 Iniciar sesión
               </Link>
             </div>
 
             <div className="d-flex align-items-lg-center mt-3 mt-lg-0">
-              <Button url="#" buttonName="Crear cuenta"/>
+              <Button url="/create" buttonName="Crear cuenta"/>
             </div>
           </div>
         </div>

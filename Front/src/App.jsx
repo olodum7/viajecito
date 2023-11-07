@@ -3,8 +3,10 @@ import Navbar from "./Components/ui-components/navbar/Navbar";
 import Home from "./Routes/Home";
 import Register from "./Routes/Register";
 import Detail from "./Routes/Detail";
-import Gallery from "./Routes/Gallery";
-import Footer from "./Components/ui-components/footer/Footer";
+import GalleryC from "./Routes/GalleryC";
+import Login from "./Routes/Login";
+import Create from "./Routes/Create";
+
 
 function App() {
   return (
@@ -12,11 +14,17 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/create" element={<Create />} />
+
+        <Route path="/admin" element={<Create />} />
+
+
+
         <Route path="register" element={<Register />} />
         <Route path="tour/:id" element={<Detail />} />
-        <Route path="gallery" element={<Gallery />} />
+        <Route path="gallery" element={<GalleryC />} />
       </Routes>
-      <Footer />
     </>
   );
 }

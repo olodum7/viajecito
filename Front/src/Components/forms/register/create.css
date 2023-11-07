@@ -1,0 +1,59 @@
+#register {
+    background: url('./../../ui-components/hero/hero-image.png') no-repeat center bottom / cover;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    min-height: calc(100vh - 96px);
+}
+
+#register .row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 100%;
+}
+
+#register .register-form-container .card {
+    padding: 48px;
+    margin-right: 120px;
+    min-width: 598px;
+}
+
+#register .register-form-container .card h1 {
+    font-weight: 600;
+}
+
+#register .register-form-container .card p {
+    color: var(--gray);
+}
+
+#register .register-form-container .card .card-body {
+    padding: 0;
+}
+
+#register .register-form-container .card .card-body .nav-link {
+    display: inline-block;
+    padding: 0 0 0 .4rem;
+}
+
+@media (min-width: 1400px) {
+    #register .container-fluid {
+        max-width: 1320px;
+    }
+    #register .register-form-container .card {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 991px) {
+    #register .register-form-container .card {
+        margin-right: 0;
+        margin-top: 48px;
+        margin-bottom: 48px;
+        min-width: 100%;
+    }
+    .container-fluid {
+        padding: 0 24px;
+    }
+}

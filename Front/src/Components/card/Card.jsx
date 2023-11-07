@@ -2,7 +2,7 @@
 //import Image from './Image';
 import React from "react";
 import Category_pills from "./../category/CategoryPills";
-import Button from "./../buttons/Button";
+import Button from "../buttons/button/Button";
 import FavButton from "./../favs/FavButton";
 
 {
@@ -29,7 +29,7 @@ const Card = ({ data }) => {
               </p>
             </div>
             <div className="col-12 col-md-6 btn-container">
-              <Button url="#" buttonName="Reservar"/>
+              <Button url={`tour/${data.id}`} buttonName="Reservar"/>
             </div>
           </div>
           <div className="card-footer">

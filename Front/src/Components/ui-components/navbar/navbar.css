@@ -1,4 +1,4 @@
-nav {
+.navbar {
     box-shadow: 0 0 16px rgba(118, 63, 196, .2);
     background-color: var(--white);
     display: sticky;

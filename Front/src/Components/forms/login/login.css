@@ -1,0 +1,57 @@
+#login {
+    background: url('./../../ui-components/hero/hero-image.png') no-repeat center bottom / cover;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    min-height: calc(100vh - 96px);
+}
+
+#login .row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 100%;
+}
+
+#login .login-form-container .card {
+    padding: 48px;
+    margin-right: 120px;
+    min-width: 598px;
+}
+
+#login .login-form-container .card h1 {
+    font-weight: 600;
+}
+
+#login .login-form-container .card p {
+    color: var(--gray);
+}
+
+#login .login-form-container .card .card-body {
+    padding: 0;
+}
+
+#login .login-form-container .card .card-body .nav-link {
+    display: inline-block;
+    padding: 0 0 0 .4rem;
+}
+
+@media (min-width: 1400px) {
+    #login .container-fluid {
+        max-width: 1320px;
+    }
+    #login .login-form-container .card {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 991px) {
+    #login .login-form-container .card {
+        margin-right: 0;
+        min-width: 100%;
+    }
+    .container-fluid {
+        padding: 0 24px;
+    }
+}

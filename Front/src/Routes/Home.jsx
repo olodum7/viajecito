@@ -5,6 +5,7 @@ import Banner from "../Components/ui-components/banner/Banner";
 import Hero from "../Components/ui-components/hero/Hero";
 import CategoryNav from "../Components/category/CategoryNav";
 import { Search } from "../Components/seach-bar/Search";
+import Footer from "../Components/ui-components/footer/Footer";
 
 const Home = () => {
   const [result, setResult] = useState("");
@@ -35,23 +36,26 @@ const Home = () => {
   const shuffledTours = randomArray(mockTours);
 
   return (
-    <main>
-      <Hero />
-      <Search/>
-      <CategoryNav />
+    <>
+      <main>
+        <Hero />
+        <Search />
+        <CategoryNav />
 
-      <section className="content-wrapper">
-        <h1>Explora nuestros destinos destacados</h1>
-        <p className="mb-5 subtitle">Descubre un mundo de posibilidades</p>
+        <section className="content-wrapper">
+          <h1>Explora nuestros destinos destacados</h1>
+          <p className="mb-5 subtitle">Descubre un mundo de posibilidades</p>
 
-        <div className="cards-wrapper">
-          {shuffledTours.map((tour) => (
-            <Card data={tour} key={tour.id} />
-          ))}
-        </div>
-      </section>
-      <Banner />
-    </main>
+          <div className="cards-wrapper">
+            {shuffledTours.map((tour) => (
+              <Card data={tour} key={tour.id} />
+            ))}
+          </div>
+        </section>
+        <Banner />
+      </main>
+      <Footer />
+    </>
   );
 };
 

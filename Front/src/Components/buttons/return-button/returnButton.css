@@ -1,0 +1,38 @@
+.return-container {
+    color: var(--primary);
+    text-align: right;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.return-container span {
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary);
+    margin-right: 8px;
+    padding: 4px;
+    transition: all 300ms;
+}
+
+.return-container span:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.return-container span svg {
+    width: 24px;
+    height: 24px;
+    padding-bottom: 4px;
+    stroke-width: 2px;
+    stroke: var(--primary);
+}
+
+.return-container span:hover svg {
+    stroke: var(--white);
+}
