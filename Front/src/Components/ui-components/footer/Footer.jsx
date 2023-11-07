@@ -1,4 +1,3 @@
-import React from "react";
 import logoFooter from "./logo-footer.svg";
 
 const Footer = () => {

@@ -1,8 +1,8 @@
 package com.viajecito.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.viajecito.api.model.AppUser;
 import com.viajecito.api.model.Tour;
+import com.viajecito.api.model.Usuario;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +15,6 @@ public class ReservaDTO implements Serializable {
     private LocalDateTime fechaHoraSalida;
     private Integer cantDias;
     private Integer acompaniantes;
-    private AppUser usuario;
+    private Usuario usuario;
     private Tour tour;
 }

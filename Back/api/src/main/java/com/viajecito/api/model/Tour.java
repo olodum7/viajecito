@@ -22,39 +22,53 @@ public class Tour {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "NOMBRE")
-    private String nombre;
+    @Column(name = "TITULO")
+    private String titulo;
 
-    @Column(name = "DESCRIPCION")
-    private String descripcion;
+    @Column(name = "SUB_TITULO")
+    private String subtitulo;
 
     @Column(name = "PRECIO")
     private Double precio;
 
-    /*@Column(name = "TRANSPORTE")
-    private String transporte;*/
+    @ManyToOne
+    @JoinColumn(name = "CATEGORIA_ID")
+    private Categoria categoria;
 
-    @Column(name = "CATEGORIA")
+    @Column(name = "DURACION")
+    private String duracion;
+
+    @Column(name = "DIFICULTAD")
     @Enumerated(EnumType.STRING)
-    private TourCategoria categoria;
+    private TourDificultad dificultad;
 
-   /* @ManyToMany
-    @JoinTable( name = "TOUR_AlOJAMIENTO",
-            joinColumns = @JoinColumn(name = "TOUR_ID"),
-            inverseJoinColumns = @JoinColumn(name = "ALOJAMIENTO_ID"))
-    private Set<Alojamiento> alojamientos = new HashSet<>();
+    @Column(name = "TRANSPORTE")
+    private String transporte;
 
-    @ManyToMany
-    @JoinTable( name = "TOUR_ACTIVIDAD",
-            joinColumns = @JoinColumn(name = "TOUR_ID"),
-            inverseJoinColumns = @JoinColumn(name = "ACTIVIDAD_ID"))
-    private Set<Actividad> actividades = new HashSet<>();*/
+    @Column(name = "TRASLADO")
+    private Boolean traslado;
+
+    @Column(name = "ENTRADAS")
+    private String entradas;
+
+    @Column(name = "GUIA_ES")
+    private Boolean guia_es;
+
+    @ManyToOne
+    @JoinColumn(name = "ALOJAMIENTO_ID")
+    private Alojamiento alojamiento;
 
     @ManyToMany
     @JoinTable(name = "TOUR_IMAGEN",
             joinColumns = @JoinColumn(name = "TOUR_ID"),
             inverseJoinColumns = @JoinColumn(name = "IMAGEN_ID"))
     private Set<Imagen> imagenes = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "TOUR_FAVORITOS",
+            joinColumns = @JoinColumn(name = "TOUR_ID"),
+            inverseJoinColumns = @JoinColumn(name = "USER_ID"))
+    private Set<Usuario> usuarios = new HashSet<>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
     private Set<Reserva> reservas = new HashSet<>();

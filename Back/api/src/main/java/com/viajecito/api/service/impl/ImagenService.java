@@ -1,31 +1,27 @@
 package com.viajecito.api.service.impl;
 
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.viajecito.api.dto.ImagenDTO;
 import com.viajecito.api.exception.BadRequestException;
-import com.viajecito.api.model.Direccion;
 import com.viajecito.api.model.Imagen;
 import com.viajecito.api.repository.IImagenRepository;
 import com.viajecito.api.service.IImagenService;
-import org.apache.commons.io.IOUtils;
+import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.stream.Collectors;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ImagenService implements IImagenService {
-
-    @Value("${file.upload-dir}")
-    private String uploadDirectory;
 
     @Autowired
     private IImagenRepository imagenRepository;
@@ -33,31 +29,47 @@ public class ImagenService implements IImagenService {
     @Autowired
     ObjectMapper mapper;
     @Override
-    public Set<Imagen> agregar(List<MultipartFile> imagenes) throws IOException {
-        Set<Imagen> agregadas = new HashSet<Imagen>();
+    public Set<Imagen> agregar(List<MultipartFile> imagenes) throws BadRequestException, IOException {
+        Set<Imagen> agregadas = new HashSet<>();
 
-        Path uploadPath = Paths.get(uploadDirectory);
+        /**** Recorro lista de imagenes ****/
         for(MultipartFile imagen : imagenes){
-            if (!uploadPath.toFile().exists()) {
-                uploadPath.toFile().mkdir();
+            /** Corroboro que no este vacia **/
+            if (imagen == null || imagen.getSize() == 0) {
+                throw new BadRequestException("Una o más imágenes no son válidas.");
             }
 
-            String fileName = imagen.getOriginalFilename();
-            File destFile = new File(uploadPath.toString() + File.separator + fileName);
+            String nombre = imagen.getOriginalFilename();
+            byte[] contenido = imagen.getBytes();
+
             try{
-                imagen.transferTo(destFile);
+                /** Corroboro tamaño máximo **/
+                BufferedImage imagenBI = ImageIO.read(imagen.getInputStream());
+                if (imagenBI != null) {
+                    int ancho = imagenBI.getWidth();
+                    int alto = imagenBI.getHeight();
+                    if (ancho > 1920 || alto > 1080){
+                        imagenBI = Scalr.resize(imagenBI, 1920, 1080);
+                    }
+                }
+
+                ImagenDTO imagenDTO = new ImagenDTO();
+                imagenDTO.setNombre(nombre);
+                imagenDTO.setContenido(contenido);
+
+                Imagen existeImagen = imagenRepository.findByNombre(nombre).orElse(null);
+                if (existeImagen != null) {
+                    agregadas.add(existeImagen);
+                }else{
+                    agregadas.add(imagenRepository.save(toModel(imagenDTO)));
+                }
+
+                /** Limpio temporales de forma manual **/
+                imagen.getInputStream().close();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException("AGREGAR: " + nombre + " " + e);
             }
-
-            // Agrego en la base de datos
-            ImagenDTO imagenDTO = new ImagenDTO();
-            imagenDTO.setNombre(fileName);
-            imagenDTO.setUrl(uploadDirectory+fileName);
-
-            agregadas.add(imagenRepository.save(toModel(imagenDTO)));
         }
-
         return agregadas;
     }
 
@@ -65,36 +77,20 @@ public class ImagenService implements IImagenService {
     public void eliminar(Long id) throws BadRequestException {
         Optional<Imagen> imagen = imagenRepository.findById(id);
         if (!imagen.isPresent()) {
-            throw new BadRequestException("ACCIÓN NO REALIZADA: No existe la imagen a borrar");
+            throw new BadRequestException("La imagen a eliminar no existe.");
         }
-
-        File archivo = new File(imagen.get().getUrl());
-        if (archivo.exists()) {
-            archivo.delete();
-        }
-
         imagenRepository.deleteById(id);
     }
 
     @Override
-    public byte[] buscarPorNombre(String nombre) {
-        byte[] imageBytes;
-        try {
-            InputStream imageStream = new FileInputStream(uploadDirectory + nombre);
-            imageBytes = IOUtils.toByteArray(imageStream);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return imageBytes;
+    public Optional<ImagenDTO> buscarPorId(Long id) {
+        Optional<Imagen> encontrada = imagenRepository.findById(id);
+        return encontrada.map(imagen -> toDTO(imagen));
     }
 
     @Override
-    public List<String> listarTodas() {
-        List<Imagen> imagenesBD = imagenRepository.findAll();
-        List<String> urls = imagenesBD.stream()
-                .map(Imagen::getUrl)
-                .collect(Collectors.toList());
-        return urls;
+    public List<Imagen> listarTodas() {
+        return imagenRepository.findAll();
     }
 
     private ImagenDTO toDTO(Imagen i){
@@ -104,4 +100,5 @@ public class ImagenService implements IImagenService {
     private Imagen toModel(ImagenDTO i){
         return mapper.convertValue(i, Imagen.class);
     }
+
 }

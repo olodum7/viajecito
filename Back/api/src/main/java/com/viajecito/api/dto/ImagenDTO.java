@@ -10,5 +10,5 @@ import java.io.Serializable;
 @Getter @Setter
 public class ImagenDTO implements Serializable {
     private String nombre;
-    private String url;
+    private  byte[] contenido;
 }

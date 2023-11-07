@@ -1,18 +1,15 @@
 package com.viajecito.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.viajecito.api.dto.ActividadDTO;
 import com.viajecito.api.dto.AlojamientoDTO;
 import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.Alojamiento;
-import com.viajecito.api.model.Direccion;
+import com.viajecito.api.model.AlojamientoTipo;
 import com.viajecito.api.model.Imagen;
+import com.viajecito.api.repository.IAlojamientoRepository;
 import com.viajecito.api.service.IAlojamientoService;
-import com.viajecito.api.service.impl.DireccionService;
 import com.viajecito.api.service.impl.ImagenService;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,13 +21,11 @@ import java.util.*;
 @RestController
 @RequestMapping("/alojamiento")
 public class AlojamientoController {
-    private static final Logger log = Logger.getLogger(AlojamientoController.class);
-
     @Autowired
     private IAlojamientoService alojamientoService;
 
     @Autowired
-    private DireccionService direccionService;
+    private IAlojamientoRepository alojamientoRepository;
 
     @Autowired
     private ImagenService imagenService;
@@ -40,50 +35,75 @@ public class AlojamientoController {
 
     @PostMapping
     public ResponseEntity<?> agregar(@RequestParam("nombre") String nombre,
-                                     @RequestParam("direcciones") List<Long> direcciones,
-                                     @RequestPart("imagenes") List<MultipartFile> imagenes ) throws BadRequestException {
+                                     @RequestParam("tipo") AlojamientoTipo tipo,
+                                     @RequestParam("ubicacion") String ubicacion,
+                                     @RequestPart("imagenes") List<MultipartFile> imagenes ) throws BadRequestException, IOException {
 
-        AlojamientoDTO alojamientoDTO = new AlojamientoDTO();
-        alojamientoDTO.setNombre(nombre);
+        Alojamiento alojamiento = new Alojamiento();
+        Set<Imagen> imagenesAlojamiento = new HashSet<>();
 
-        try {
-            // Guardo las direcciones en caso de que no esten en la bd
-            if(!direcciones.isEmpty()){
-                // Obtengo el objeto Direccion para la id brindada
-                Set<Direccion> dirrecionesAgregadas = new HashSet<Direccion>();
-                for (Long idDireccion : direcciones){
-                    Direccion direccionEncontrada = mapper.convertValue(direccionService.buscarPorId( idDireccion ) , Direccion.class);
-                    dirrecionesAgregadas.add(direccionEncontrada);
-                }
-                alojamientoDTO.setDirecciones(dirrecionesAgregadas);
-            }
+        try{
+            /************* VALIDACION DE CAMPOS *************/
+            if (nombre == null || tipo == null || ubicacion == null || (imagenes == null || imagenes.isEmpty()))
+                throw new BadRequestException("Todos los campos son obligatorios.");
 
-            //Guardo las imagenes en carpeta api/images
+            alojamiento.setTipo(tipo);
+            alojamiento.setNombre(nombre);
+            alojamiento.setUbicacion(ubicacion);
+
+            /**** Si las imagenes no existen, se agregan ****/
             if (!imagenes.isEmpty()) {
-                Set<Imagen> pathImagenes = imagenService.agregar(imagenes);
-                alojamientoDTO.setImagenes(pathImagenes);
+                imagenesAlojamiento = imagenService.agregar(imagenes);
+                alojamiento.setImagenes(imagenesAlojamiento);
             }
+            return ResponseEntity.ok(alojamientoService.agregar(alojamiento));
+
+        } catch (BadRequestException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-        return ResponseEntity.ok(alojamientoService.agregar(alojamientoDTO));
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id) throws BadRequestException{
-        ResponseEntity<String> respuesta = null;
-        alojamientoService.eliminar(id);
-        respuesta = ResponseEntity.status(HttpStatus.OK).body("INFORMACIÓN: Alojamiento eliminada correctamente");
-        return respuesta;
+        try {
+            alojamientoService.eliminar(id);
+        } catch (BadRequestException e) {
+            throw new BadRequestException("No es posible eliminar el alojamiento: " + e);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body("Alojamiento eliminado correctamente.");
     }
 
-    @PutMapping
-    public ResponseEntity<?> modificar(@RequestBody Alojamiento alojamiento) throws BadRequestException{
-        // Modificando las direcciones
-        Set<Direccion> dirreciones = direccionService.agregarTodas(alojamiento.getDirecciones());
-        alojamiento.setDirecciones(dirreciones);
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<?> modificar(@PathVariable Long id,
+                                       @RequestParam("tipo") AlojamientoTipo tipo,
+                                       @RequestParam("ubicacion") String ubicacion,
+                                       @RequestPart("imagenes") List<MultipartFile> imagenes ) throws BadRequestException{
+        Set<Imagen> imagenesAlojamiento = new HashSet<>();
 
-        return ResponseEntity.ok(alojamientoService.modificar(alojamiento));
+        try {
+            Optional<Alojamiento> alojamiento = alojamientoRepository.findById(id);
+            if(!alojamiento.isPresent())
+                throw new BadRequestException("El alojamiento indicado no existe.");
+
+            alojamiento.get().setTipo(tipo);
+            alojamiento.get().setUbicacion(ubicacion);
+
+            /**** Si las imagenes no existen, se agregan ****/
+            /* Pendiente ver casos donde se eliminan */
+            if (!imagenes.isEmpty()) {
+                imagenesAlojamiento = imagenService.agregar(imagenes);
+                alojamiento.get().setImagenes(imagenesAlojamiento);
+            }
+
+            alojamientoService.modificar(alojamiento.get());
+        } catch (BadRequestException e) {
+            throw new BadRequestException("No es posible modificar el alojamiento: " + e);
+        } catch (IOException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.status(HttpStatus.OK).body("Alojamiento modificado correctamente.");
     }
 
     @GetMapping(path = "/{id}")
@@ -94,11 +114,5 @@ public class AlojamientoController {
     @GetMapping
     public Collection<Alojamiento> listarTodos() throws BadRequestException{
         return alojamientoService.listarTodos();
-    }
-
-    @ExceptionHandler({BadRequestException.class})
-    public ResponseEntity<String> procesarBadRequestException(BadRequestException exception){
-        log.error("ERROR EN ALOJAMIENTO: " + exception.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
     }
 }

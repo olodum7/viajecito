@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import Card from "../Components/card/Card";
-import mockTours from "../Components/utils/mock.tours";
-import Banner from "../Components/ui-components/banner/Banner";
-import Hero from "../Components/ui-components/hero/Hero";
-import CategoryNav from "../Components/category/CategoryNav";
-import { Search } from "../Components/seach-bar/Search";
+import { useState, useEffect } from "react";
+import Card from "../components/card/Card";
+import Banner from "../components/ui-components/banner/Banner";
+import Hero from "../components/ui-components/hero/Hero";
+import CategoryNav from "../components/category/CategoryNav";
+import { Search } from "../components/seach-bar/Search";
 
 const Home = () => {
   const [result, setResult] = useState("");
@@ -20,7 +19,7 @@ const Home = () => {
       });
   }, []);
 
-  // Función para mostrar las cards de manera aleatoria cada vez que se ingrea al sitio
+  // Función para mostrar las cards de manera aleatoria cada vez que se ingresa al sitio
   const randomArray = (array) => {
     const random = [...array];
     for (let i = random.length - 1; i > 0; i--) {
@@ -31,8 +30,7 @@ const Home = () => {
   };
 
   // Mezclar aleatoriamente el array de tours
-  //const shuffledTours = randomArray(result);
-  const shuffledTours = randomArray(mockTours);
+  const shuffledTours = randomArray(result);
 
   return (
     <main>
@@ -43,13 +41,13 @@ const Home = () => {
       <section className="content-wrapper">
         <h1>Explora nuestros destinos destacados</h1>
         <p className="mb-5 subtitle">Descubre un mundo de posibilidades</p>
-
         <div className="cards-wrapper">
           {shuffledTours.map((tour) => (
             <Card data={tour} key={tour.id} />
           ))}
         </div>
       </section>
+  
       <Banner />
     </main>
   );
