@@ -4,7 +4,6 @@ import Banner from "./../Components/ui-components/banner/Banner";
 import Hero from "./../Components/ui-components/hero/Hero";
 import CategoryNav from "./../Components/category/CategoryNav";
 import { Search } from "./../Components/seach-bar/Search";
-import Footer from "./../Components/ui-components/footer/Footer";
 
 const Home = () => {
   const [result, setResult] = useState("");
@@ -52,7 +51,6 @@ const Home = () => {
 
         <Banner />
       </main>
-      <Footer />
     </>
   );
 };

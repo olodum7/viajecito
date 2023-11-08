@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Gallery from "./../Components/gallery/Gallery";
 import Breadcrumb from "./../Components/breadcrumb/Breadcrumb";
-import Footer from "./../Components/ui-components/footer/Footer";
 import Banner from "./../Components/ui-components/banner/Banner";
 
 const GalleryC = () => {
@@ -241,7 +240,6 @@ const GalleryC = () => {
         </section>
         <Banner />
       </main>
-      <Footer />
     </>
   );
 };

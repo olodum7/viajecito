@@ -1,5 +1,5 @@
 #register {
-    background: url('./../../ui-components/hero/hero-image.png') no-repeat center bottom / cover;
+    background: url('/fondo.png') no-repeat center bottom / cover;
     display: flex;
     align-items: center;
     justify-content: flex-end;
