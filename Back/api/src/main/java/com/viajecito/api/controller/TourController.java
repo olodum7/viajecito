@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/tour")
 public class TourController {
@@ -94,11 +95,11 @@ public class TourController {
                 imagenesTour = imagenService.agregar(imagenes);
                 tour.setImagenes(imagenesTour);
             }
-            return ResponseEntity.ok(tourService.agregar(tour));
+            return ResponseEntity.ok(new MensajeRespuesta("ok", "Tour " + tourService.agregar(tour).getTitulo() + " agregado correctamente."));
         } catch (BadRequestException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
         } catch (IOException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
         }
     }
 
@@ -117,9 +118,9 @@ public class TourController {
         try{
             tourService.modificar(tour);
         } catch (BadRequestException e) {
-            throw new BadRequestException("No es posible modificar el tour: " + e);
+            return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
         }
-        return ResponseEntity.status(HttpStatus.OK).body("Tour modificado correctamente.");
+        return ResponseEntity.ok(new MensajeRespuesta("ok", "Tour " + tour.getTitulo() + " modificado correctamente."));
     }
 
     @GetMapping(path = "/{id}")

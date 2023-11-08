@@ -9,6 +9,7 @@
   --light-secondary: #a1f8e7;
   --white: #ffffff;
   --error: #f1406b;
+  --success: #a1f8a4;
 }
 
 * {
@@ -200,4 +201,91 @@ section#form-container button[type="submit"] {
   .mb-5 {
     margin-bottom: 1.8rem !important;
   }
+}
+
+/********** FORMULARIOS **********/
+.form-container {
+  margin-top: 70px;
+  background: url("./fondo.png") left center / cover;
+  width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+  padding: 40px 60px;
+}
+
+.form {
+  max-width: 450px;
+  width: 100%;
+  border-radius: 16px;
+  background: var(--white);
+  padding: 40px;
+}
+
+.form-container input {
+  border: none;
+  border-bottom: 2px solid var(--black);
+  border-radius: 0px;
+  font-size: 14px;
+  padding: 3px;
+}
+
+.input-group-text{
+  border: none;
+}
+
+.form-container input:focus{
+  border-color: var(--primary);
+  box-shadow: none;
+}
+
+.form .col small{
+  font-size: 12px;
+}
+
+.form .col p:first-child {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.form .col p:nth-child(2){
+  font-size: 14px;
+  color: var(--gray);
+}
+
+.form .btn-primary{
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  margin: 5px 0px;
+}
+
+.signIn{
+  font-size: 14px;
+  text-align: center;
+  margin: 10px;
+  color: var(--gray);
+}
+
+.div-error {
+  background-color: var(--error);
+  padding: 0px !important;
+  margin: 10px;
+}
+
+.div-error p,
+.div-ok p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  padding: 5px;
+  margin: 0px;
+  font-weight: bold;
+  text-align: center;
+  transition: ease-in-out 1ms;
+  animation: bounce 0.5s 5 alternate;
+}
+
+.div-ok {
+  background-color: var(--success) !important;
+  padding: 0px !important;
+  margin: 10px;
 }
