@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,8 +16,7 @@ import java.util.Set;
 @Table(name = "RESERVA")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 public class Reserva {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE,  generator = "reserva_seq")
@@ -25,6 +25,7 @@ public class Reserva {
     private Long id;
 
     @Column(name = "FECHA_HORA_SALIDA")
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime fechaHoraSalida;
 
     @Column(name = "CANT_DIAS")
@@ -33,9 +34,9 @@ public class Reserva {
     @Column(name = "ACOMPANIANTES")
     private Integer acompaniantes;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "USUARIO_ID", referencedColumnName = "ID", updatable = false, nullable = false)
-    private AppUser usuario;
+    @ManyToOne
+    @JoinColumn(name = "USUARIO_ID")
+    private Usuario usuario;
 
     @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
     @JsonIgnore

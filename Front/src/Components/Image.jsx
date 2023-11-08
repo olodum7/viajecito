@@ -1,10 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
-const Imagen = ({ nombre }) => {
+const Imagen = ({ id }) => {
+    Imagen.propTypes = {
+        id: PropTypes.number.isRequired
+    }
+
     const [imageURL, setImageURL] = useState(null);
-
     useEffect(() => {
-        fetch(`http://localhost:8089/imagen/${nombre}`)
+        fetch(`http://localhost:8089/imagen/${id}`)
             .then((response) => {
                 if (response.ok) {
                     return response.blob(); // Convertir la respuesta en un objeto Blob
@@ -19,7 +23,7 @@ const Imagen = ({ nombre }) => {
             .catch((error) => {
                 console.error(error);
             });
-    }, []);
+    }, [id]);
 
     return (
         <>

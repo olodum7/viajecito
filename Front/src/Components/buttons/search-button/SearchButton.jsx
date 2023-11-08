@@ -1,11 +1,9 @@
-import React from "react";
-
 const SearchButton = () => {
   return (
     <button type="submit" className="search-button">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="icon icon-tabler icon-tabler-search"
+        className="icon icon-tabler icon-tabler-search"
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"

@@ -1,13 +1,11 @@
 package com.viajecito.api.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.viajecito.api.dto.ActividadDTO;
 import com.viajecito.api.dto.TourDTO;
 import com.viajecito.api.exception.BadRequestException;
-import com.viajecito.api.model.Actividad;
-import com.viajecito.api.model.Alojamiento;
-import com.viajecito.api.model.Direccion;
+import com.viajecito.api.model.Imagen;
 import com.viajecito.api.model.Tour;
+import com.viajecito.api.repository.ICategoriaRepository;
 import com.viajecito.api.repository.ITourRepository;
 import com.viajecito.api.service.ITourService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,67 +19,78 @@ public class TourService implements ITourService {
     @Autowired
     private ITourRepository tourRepository;
 
-   /* @Autowired
-    private ActividadService actividadService;
-
     @Autowired
-    private AlojamientoService alojamientoService;*/
+    private ICategoriaRepository categoriaRepository;
 
     @Autowired
     ObjectMapper mapper;
 
     @Transactional
     @Override
-    public TourDTO agregar(TourDTO tourDTO) throws BadRequestException {
-        // Agregando las actividades
-        /*Set<Actividad> actividades = actividadService.agregarTodos(tourDTO.getActividades());
-        tourDTO.setActividades(actividades);
-
-        // Agregando los alojamientos
-        Set<Alojamiento> alojamientos = alojamientoService.agregarTodos(tourDTO.getAlojamientos());
-        tourDTO.setAlojamientos(alojamientos);*/
-
-        if (tourRepository.findByNombre(tourDTO.getNombre()).isPresent())
-            throw new BadRequestException("ACCIÓN NO REALIZADA: Ya existe un tour con los datos ingresados");
-        return toDTO(tourRepository.save(toModel(tourDTO)));
-    }
-
-    @Override
-    public void eliminar(Long id) throws BadRequestException {
-        if(buscarPorId(id).isPresent())
-            tourRepository.deleteById(id);
-    }
-
-    @Transactional
-    @Override
-    public TourDTO modificar(Tour tour) throws BadRequestException {
-        /*// Modificando las actividades
-        Set<Actividad> actividades = actividadService.agregarTodos(tour.getActividades());
-        tour.setActividades(actividades);
-
-        // Modificando los alojamientos
-        Set<Alojamiento> alojamientos = alojamientoService.agregarTodos(tour.getAlojamientos());
-        tour.setAlojamientos(alojamientos);*/
-
-        if (tourRepository.findByNombre(tour.getNombre()).isPresent())
-            throw new BadRequestException("ACCIÓN NO REALIZADA: Ya existe un tour con los datos ingresados");
+    public TourDTO agregar(Tour tour) throws BadRequestException {
+        /************* VALIDACION DE CAMPOS *************/
+        /**** Controlo ingreso repetido ****/
+        if (tourRepository.findByTitulo(tour.getTitulo()).isPresent())
+            throw new BadRequestException("Ya existe un tour con los datos ingresados.");
         return toDTO(tourRepository.save(tour));
     }
 
     @Override
-    public Optional<TourDTO> buscarPorId(Long id) throws BadRequestException {
-        Optional<Tour> encontrado = tourRepository.findById(id);
-        return encontrado.map(tour -> toDTO(tour));
+    public void eliminar(Long id) throws BadRequestException {
+        /**** Controlo que exista ****/
+        if(buscarPorId(id) == null)
+            throw new BadRequestException("El tour a eliminar no existe.");
+        tourRepository.deleteById(id);
     }
 
     @Override
-    public Collection<Tour> listarTodos(){
-        List<Tour> tours = tourRepository.findAll();
-        return tours;
+    public TourDTO modificar(Tour tour) throws BadRequestException {
+        /**** Controlo que el titulo no se repita ****/
+        if (tourRepository.findByTitulo(tour.getTitulo()).isPresent())
+            throw new BadRequestException("Ya existe un tour con el titulo ingresado.");
+        return toDTO(tourRepository.save(tour));
+    }
+
+    @Override
+    public TourDTO buscarPorId(Long id) throws BadRequestException {
+        Tour encontrado = tourRepository.findById(id)
+                .orElseThrow(() -> new
+                        BadRequestException("No se ha encontrado un Tour con ID: " + id));
+        return toDTO(encontrado);
+    }
+
+    @Override
+    public Collection<TourDTO> listarTodos(){
+        Collection<TourDTO> collection = new ArrayList<>();
+        for (Tour tour : tourRepository.findAll())
+            collection.add(toDTO(tour));
+        return collection;
     }
 
     private TourDTO toDTO(Tour d){
-        return mapper.convertValue(d, TourDTO.class);
+        TourDTO dto = new TourDTO();
+        Set<Long> imagenesId = new HashSet<>();
+
+        dto.setId(d.getId());
+        dto.setTitulo(d.getTitulo());
+        dto.setSubtitulo(d.getSubtitulo());
+        dto.setPrecio(d.getPrecio());
+        dto.setCategoria(d.getCategoria().getNombre());
+        dto.setDuracion(d.getDuracion());
+        dto.setDificultad(d.getDificultad().getDescripcion());
+        dto.setTransporte(d.getTransporte());
+        dto.setTraslado(d.getTraslado());
+        dto.setEntradas(d.getEntradas());
+        dto.setGuia_es(d.getGuia_es());
+        dto.setAlojamiento(d.getAlojamiento().getId());
+
+        for (Imagen imagen : d.getImagenes())
+            imagenesId.add(imagen.getId());
+        dto.setImagenes(imagenesId);
+
+        dto.setUsuariosFav(d.getUsuarios().stream().count());
+
+        return dto;
     }
 
     private Tour toModel(TourDTO d){

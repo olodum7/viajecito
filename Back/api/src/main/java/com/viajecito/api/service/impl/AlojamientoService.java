@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.viajecito.api.dto.AlojamientoDTO;
 import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.Alojamiento;
-import com.viajecito.api.model.Direccion;
+import com.viajecito.api.model.Imagen;
 import com.viajecito.api.repository.IAlojamientoRepository;
 import com.viajecito.api.service.IAlojamientoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +19,15 @@ public class AlojamientoService implements IAlojamientoService {
     private IAlojamientoRepository alojamientoRepository;
 
     @Autowired
-    private DireccionService direccionService;
-
-    @Autowired
     ObjectMapper mapper;
 
     @Transactional
     @Override
-    public AlojamientoDTO agregar(AlojamientoDTO alojamientoDTO) throws BadRequestException {
-        // Agregando las direcciones
-        Set<Direccion> dirreciones = direccionService.agregarTodas(alojamientoDTO.getDirecciones());
-        alojamientoDTO.setDirecciones(dirreciones);
-
-        Optional<Alojamiento> encotrado = alojamientoRepository.findByNombreAndDireccionesIn(alojamientoDTO.getNombre(), alojamientoDTO.getDirecciones());
+    public AlojamientoDTO agregar(Alojamiento alojamiento) throws BadRequestException {
+        Optional<Alojamiento> encotrado = alojamientoRepository.findByNombre(alojamiento.getNombre());
         if(encotrado.isPresent())
-            throw new BadRequestException("ACCIÓN NO REALIZADA: Ya existe un alojamiento con los datos ingresados");
-        return toDTO(alojamientoRepository.save(toModel(alojamientoDTO)));
+            throw new BadRequestException("Ya existe un alojamiento con el nombre ingresado");
+        return toDTO(alojamientoRepository.save(alojamiento));
     }
 
     @Override
@@ -46,10 +39,6 @@ public class AlojamientoService implements IAlojamientoService {
     @Transactional
     @Override
     public AlojamientoDTO modificar(Alojamiento alojamiento) throws BadRequestException {
-        // Modificando las direcciones
-        Set<Direccion> dirreciones = direccionService.agregarTodas(alojamiento.getDirecciones());
-        alojamiento.setDirecciones(dirreciones);
-
         if(alojamientoRepository.findById(alojamiento.getId() ) == null)
             throw new BadRequestException("ACCIÓN NO REALIZADA: No existe el alojamiento a modificar");
         return toDTO(alojamientoRepository.save(alojamiento));
@@ -70,13 +59,9 @@ public class AlojamientoService implements IAlojamientoService {
     }
 
     public Set<Alojamiento> agregarTodos(Set<Alojamiento> alojamientos){
-        Set<Alojamiento> alojamientosAgregados = new HashSet<Alojamiento>();
+        Set<Alojamiento> alojamientosAgregados = new HashSet<>();
         for(Alojamiento alojamiento : alojamientos){
-            // Agrego domicilios primero
-            Set<Direccion> direcciones = direccionService.agregarTodas(alojamiento.getDirecciones());
-            alojamiento.setDirecciones(direcciones);
-
-            Optional<Alojamiento> existe = alojamientoRepository.findByNombreAndDireccionesIn(alojamiento.getNombre(), alojamiento.getDirecciones());
+            Optional<Alojamiento> existe = alojamientoRepository.findByNombre(alojamiento.getNombre());
             if(existe.isPresent()){
                 alojamientosAgregados.add(alojamientoRepository.findById(existe.get().getId()).orElse(null));
             }else {
@@ -86,8 +71,19 @@ public class AlojamientoService implements IAlojamientoService {
         return alojamientosAgregados;
     }
 
-    private AlojamientoDTO toDTO(Alojamiento d){
-        return mapper.convertValue(d, AlojamientoDTO.class);
+    private AlojamientoDTO toDTO(Alojamiento a){
+        AlojamientoDTO dto = new AlojamientoDTO();
+        Set<Long> imagenesId = new HashSet<>();
+
+        dto.setNombre(a.getNombre());
+        dto.setTipo(a.getTipo());
+        dto.setUbicacion(a.getUbicacion());
+
+        for (Imagen imagen : a.getImagenes())
+            imagenesId.add(imagen.getId());
+        dto.setImagenes(imagenesId);
+
+        return dto;
     }
 
     private Alojamiento toModel(AlojamientoDTO d){

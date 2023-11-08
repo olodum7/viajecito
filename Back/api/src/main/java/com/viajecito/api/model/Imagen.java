@@ -25,16 +25,13 @@ public class Imagen {
     @Column(name = "NOMBRE")
     private String nombre;
 
-    @Column(name = "URL")
-    private String url;
+    @Column(name = "CONTENIDO")
+    @Lob
+    private byte[] contenido;
 
     @ManyToMany(mappedBy = "imagenes")
     @JsonIgnore
     private Set<Alojamiento> alojamiento = new HashSet<>();
-
-    @ManyToMany(mappedBy = "imagenes")
-    @JsonIgnore
-    private Set<Actividad> actividades = new HashSet<>();
 
     @ManyToMany(mappedBy = "imagenes")
     @JsonIgnore

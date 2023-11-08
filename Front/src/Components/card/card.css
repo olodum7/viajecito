@@ -10,7 +10,7 @@
     background-color: var(--white);
     border: 1px solid var(--light-gray);
     border-radius: 12px;
-    max-width: 520px;
+    max-width: 500px;
     overflow: hidden;
     transition: all 300ms;
 }
@@ -18,6 +18,16 @@
 .card:hover {
     border: 1px solid var(--primary);
     box-shadow: 0 0 16px rgba(118, 63, 196, .4);
+}
+
+.img-wrapper{
+    max-height: 270px;
+    overflow: hidden;
+}
+
+.img-wrapper img{
+    width: 100%;
+    overflow: hidden;
 }
 
 .card .card-body {

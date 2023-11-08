@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-//import Image from '../Components/Image'
-//import '../assets/css/detail.css';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Image from '../Components/Image';
 
 const Detail = () => {
     const { id } = useParams();
@@ -14,7 +13,7 @@ const Detail = () => {
                 setResult(data);
             })
             .catch((error) => {
-                console.error("Error al obtener los tours: \n", error)
+                console.error("Error al obtener el detalle: \n", error)
             })
     }, [id])
 
@@ -23,28 +22,23 @@ const Detail = () => {
             <div>
                 <div className='S1-galeria-imagenes'>
                     <div className="parte-superior-galeria">
-                        <div className="image-container">
-                            {/* <Image nombre={result.imagenes[0].nombre} /> */}
-                        </div>
                         <div className="image-grid">
-                            {/* <>
-                            {result.map((image) => (
-                                <Image key={image.id} nombre={image.nombre} />
-                            ))}
-                        </> */}
+                            {result.imagenes && result.imagenes.length > 0 && (
+                                result.imagenes.map((imagen) => (
+                                    <Image key={imagen} id={imagen} />
+                                ))
+                            )}
                         </div>
-                    </div>
-                    <div className="parte-inferior-galeria">
-                        {/* <div className="ver-mas-button"> */}
-                        {/* <Link to="/Gallery"> Ver más </Link> */}
-                        {/* </div> */}
                     </div>
                 </div>
                 <div className='S2-Datos'>
                     <div className='A1-Info'>
-                        <h1>{result.descripcion}</h1>
-                        <p>Categoria : {result.categoria}</p>
-                        <p>Precio: {result.precio}</p>
+                        <h1>{result.titulo}</h1>
+                        <p>Categoria : {result.subtitulo}</p>
+                        <p>Precio: USD {result.precio}</p>
+                        <p>Categoria: {result.categoria}</p>
+                        <p>Dificultad: {result.dificultad}</p>
+                        <p>Duracion: {result.duracion}</p>
                     </div>
                 </div>
             </div >
