@@ -70,7 +70,7 @@ const ListarTours = () => {
       <ul>
         {tours.map((tour) => (
           <li key={tour.id}>
-            {tour.nombre} - {tour.categoria}
+            {tour.titulo} - {tour.categoria}
             {editingTour === tour ? (
               <>
                 <select
