@@ -4,6 +4,10 @@
     display: sticky;
 }
 
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
 .nav-link {
     color: var(--primary);
     text-decoration: underline;

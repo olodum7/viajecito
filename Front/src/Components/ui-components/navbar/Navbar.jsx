@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import mainLogo from "./logo.svg";
 import Button from "../../buttons/button/Button";
 
 
 const Navbar = () => {
+  const location = useLocation();
   const [toggleIcon, setToggleIcon] = useState(false);
 
   return (
@@ -71,9 +72,12 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <div className="d-flex align-items-lg-center mt-3 mt-lg-0">
-              <Button url="/create" buttonName="Crear cuenta"/>
-            </div>
+            { location.pathname !== '/signUp' && (
+              <div className="d-flex align-items-lg-center mt-3 mt-lg-0">
+                <Button url={'signUp'} buttonName="Crear cuenta" />
+              </div>
+            )}
+
           </div>
         </div>
       </nav>
