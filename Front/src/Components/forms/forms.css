@@ -1,0 +1,88 @@
+.form-normal label {
+    color: var(--gray);
+    display: block;
+    font-size: .8rem;
+    margin-bottom: .4rem;
+}
+
+.form-normal input[type="text"],
+.form-normal input[type="number"],
+.form-normal input[type="password"],
+.form-normal input[type="email"],
+.form-normal select {
+    border: none !important;
+    border-bottom: 2.5px solid var(--black) !important;
+    border-radius: 0 !important;
+    color: var(--black) !important;
+    font-size: 1.4rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 1rem;
+}
+
+.form-normal input[type="text"]:focus,
+.form-normal input[type="number"]:focus,
+.form-normal input[type="password"]:focus,
+.form-normal input[type="email"]:focus,
+.form-normal select:focus,
+.form-normal input[type="text"]:hover,
+.form-normal input[type="number"]:hover,
+.form-normal input[type="password"]:hover,
+.form-normal input[type="email"]:hover,
+.form-normal select:hover {
+    border-bottom: 2.5px solid var(--primary) !important;
+}
+
+.form-normal .form-control[type="file"] {
+    width: 100%;
+    background-color: var(--white)!important;
+    border: none;
+}
+
+.form-normal [type="file"]::-webkit-file-upload-button {
+    background-color: var(--white);
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    color: var(--primary);
+    padding: 16px 32px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 450ms;
+}
+
+.form-normal [type="file"]:hover::-webkit-file-upload-button {
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    color: var(--white);
+}
+
+.form-normal button[type="reset"] {
+    background-color: var(--white);
+    border-radius: 8px;
+    border: 2px solid var(--primary);
+    margin-right: 16px;
+    padding: 16px 32px;
+}
+
+.form-normal button[type="submit"] {
+    background-color: var(--secondary);
+    border-radius: 8px;
+    border: 2px solid var(--secondary);
+    color: var(--primary);
+    margin-right: 16px;
+    padding: 16px 32px;
+    transition: all 300ms;
+}
+
+.form-normal button[type="submit"]:hover {
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+    color: var(--white);
+}
+
+@media (max-width: 767px) {
+    .form-normal button {
+        margin-top: 16px;
+        width: 100%;
+    }
+}

@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import Card from "../components/card/Card";
-import Banner from "../components/ui-components/banner/Banner";
-import Hero from "../components/ui-components/hero/Hero";
-import CategoryNav from "../components/category/CategoryNav";
-import { Search } from "../components/seach-bar/Search";
+import React, { useState, useEffect } from "react";
+import Card from "./../Components/card/Card";
+import Banner from "./../Components/ui-components/banner/Banner";
+import Hero from "./../Components/ui-components/hero/Hero";
+import CategoryNav from "./../Components/category/CategoryNav";
+import { Search } from "./../Components/seach-bar/Search";
 
 const Home = () => {
   const [result, setResult] = useState("");
@@ -33,23 +33,25 @@ const Home = () => {
   const shuffledTours = randomArray(result);
 
   return (
-    <main>
-      <Hero />
-      <Search/>
-      <CategoryNav />
+    <>
+      <main>
+        <Hero />
+        <Search />
+        <CategoryNav />
 
-      <section className="content-wrapper">
-        <h1>Explora nuestros destinos destacados</h1>
-        <p className="mb-5 subtitle">Descubre un mundo de posibilidades</p>
-        <div className="cards-wrapper">
-          {shuffledTours.map((tour) => (
-            <Card data={tour} key={tour.id} />
-          ))}
-        </div>
-      </section>
-  
-      <Banner />
-    </main>
+        <section className="content-wrapper">
+          <h1>Explora nuestros destinos destacados</h1>
+          <p className="mb-5 subtitle">Descubre un mundo de posibilidades</p>
+          <div className="cards-wrapper">
+            {shuffledTours.map((tour) => (
+              <Card data={tour} key={tour.id} />
+            ))}
+          </div>
+        </section>
+
+        <Banner />
+      </main>
+    </>
   );
 };
 

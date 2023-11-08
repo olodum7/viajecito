@@ -1,0 +1,51 @@
+.return-container {
+    color: var(--primary);
+    text-align: right;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.return-container a {
+    color: var(--black);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.return-container:hover a {
+    color: var(--primary);
+    transition: all 300ms;
+}
+
+.return-container a span {
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 64px;
+    color: var(--primary);
+    margin-right: 8px;
+    padding: 8px 4.5px;
+    transition: all 300ms;
+}
+
+.return-container a span svg {
+    width: 24px;
+    height: 24px;
+    padding-bottom: 4px;
+    stroke-width: 2px;
+    stroke: var(--primary);
+    transition: all 300ms;
+}
+
+.return-container a:hover {
+    text-decoration: underline;
+}
+
+.return-container a:hover span {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.return-container a:hover svg {
+    stroke: var(--white);
+}

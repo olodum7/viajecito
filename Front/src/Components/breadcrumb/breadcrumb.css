@@ -1,0 +1,29 @@
+.breadcrumb-container {
+    margin-top: 2.5rem;
+}
+
+.breadcrumb {
+    font-size: .8rem;
+    margin-bottom: 0;
+}
+
+.breadcrumb-container .row>div {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb .breadcrumb-item a {
+    color: var(--gray);
+    text-decoration: none;
+    transition: all 300ms;
+}
+
+.breadcrumb .breadcrumb-item a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.breadcrumb .active {
+    color: var(--primary);
+    font-weight: 600;
+}

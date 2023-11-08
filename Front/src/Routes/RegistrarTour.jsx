@@ -58,7 +58,7 @@ const RegistrarTour = () => {
 
   return (
     <section id="form-container" className="container">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form-normal">
         
         <div className="row">
           <div className="col-md-6">

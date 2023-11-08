@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import mainLogo from "./logo.svg";
-import Button from "./../../buttons/Button";
+import Button from "../../buttons/button/Button";
 
 
 const Navbar = () => {
@@ -67,7 +67,7 @@ const Navbar = () => {
 
           <div className="collapse navbar-collapse gap-3" id="navbarCollapse">
             <div className="navbar-nav ms-lg-4">
-              <Link className="nav-item nav-link" to="#">
+              <Link className="nav-item nav-link" to="/login">
                 Iniciar sesión
               </Link>
             </div>
