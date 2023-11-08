@@ -18,7 +18,7 @@ const Banner = () => {
           </div>
           <div className="col-12 col-xl-5">
             <div className="banner-illustration">
-              <img src="./src/components/ui-components/banner/illustration-footer.svg" className="h-8" alt="..." />
+              <img src="/src/components/ui-components/banner/illustration-footer.svg" className="h-8" alt="..." />
             </div>
           </div>
         </div>

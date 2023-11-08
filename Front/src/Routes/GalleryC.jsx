@@ -1,21 +1,36 @@
-import Gallery from "../Components/gallery/Gallery";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Gallery from "./../Components/gallery/Gallery";
 import Breadcrumb from "./../Components/breadcrumb/Breadcrumb";
 import Footer from "./../Components/ui-components/footer/Footer";
 import Banner from "./../Components/ui-components/banner/Banner";
 
 const GalleryC = () => {
+  const { id } = useParams();
+  const [result, setResult] = useState("");
+
+  useEffect(() => {
+      fetch(`http://localhost:8089/tour/${id}`)
+          .then((response) => response.json())
+          .then((data) => {
+              setResult(data);
+          })
+          .catch((error) => {
+              console.error("Error al obtener el detalle: \n", error)
+          })
+  }, [id])
+
   return (
     <>
       <main>
-        <Breadcrumb tourName="Río de Janeiro: Encanto Carioca" />
-        <Gallery />
+        <Breadcrumb tourName={result.titulo} />
+        <Gallery/>
 
         <section className="container" id="detail">
           <div className="row">
-            <h1>Río de Janeiro: Encanto Carioca</h1>
+            <h1>{result.subtitulo}</h1>
             <h2>
-              Vive la vibrante cultura, playas de ensueño y la vida en la ciudad
-              de Río
+            {result.subtitulo}
             </h2>
           </div>
           <div className="container-details">

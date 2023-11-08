@@ -19,11 +19,10 @@ function App() {
 
         <Route path="/admin" element={<Create />} />
 
-
-
         <Route path="register" element={<Register />} />
-        <Route path="tour/:id" element={<Detail />} />
         <Route path="gallery" element={<GalleryC />} />
+
+        <Route path="tour/:id" element={<GalleryC />} />
       </Routes>
     </>
   );

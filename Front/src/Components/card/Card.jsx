@@ -1,18 +1,9 @@
-<<<<<<< HEAD
-//import { Link } from "react-router-dom";
-//import Image from './Image';
-import React from "react";
-import Category_pills from "./../category/CategoryPills";
-import Button from "../buttons/button/Button";
-import FavButton from "./../favs/FavButton";
-=======
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
-import Image from "../Image";
-import Category_pills from "../category/CategoryPills";
-import Button from "../buttons/button";
-import FavButton from "../favs/FavButton";
-import "../card/card.css";
+import Category_pills from "./../category/CategoryPills";
+import Button from "./../buttons/button/Button";
+import FavButton from "./../favs/FavButton";
+import Image from "./../imagen/Image"
 
 const Card = (props) => {
   const {
@@ -41,7 +32,6 @@ const Card = (props) => {
       usuariosFav: PropTypes.number,
     }),
   };
->>>>>>> 748dd69e1335189378491d746c313b40efea514b
 
   return (
     <div className="card">
@@ -52,7 +42,7 @@ const Card = (props) => {
       </div>
       <div className="card-body">
         <div className="card-headers">
-          <Link to={`tour/${id}`} className="card-link"><h2 className="card-h2">{titulo}</h2> </Link>
+          <h2 className="card-h2">{titulo}</h2>
           <h3 className="mt-2 mb-5">{subtitulo}</h3>
         </div>
         <div className="card-details">
@@ -63,11 +53,7 @@ const Card = (props) => {
               </p>
             </div>
             <div className="col-12 col-md-6 btn-container">
-<<<<<<< HEAD
-              <Button url={`tour/${data.id}`} buttonName="Reservar"/>
-=======
-              <Button url="#" buttonName="Reservar" />
->>>>>>> 748dd69e1335189378491d746c313b40efea514b
+              <Button url={`tour/${id}`} buttonName="Reservar"/>
             </div>
           </div>
           <div className="card-footer">
