@@ -4,9 +4,10 @@ const ListarTours = () => {
   const [tours, setTours] = useState([]);
   const [editingTour, setEditingTour] = useState(null);
   const [newCategoria, setNewCategoria] = useState("");
+  const [tourDetails, setTourDetails] = useState(null);
 
   useEffect(() => {
-
+    // Hacer la solicitud al backend para obtener la lista de tours
     fetch("http://localhost:8089/tour")
       .then((response) => response.json())
       .then((data) => {
@@ -20,23 +21,36 @@ const ListarTours = () => {
   const handleEditCategoria = (tour) => {
     setEditingTour(tour);
     setNewCategoria(tour.categoria);
+
+    // Hacer la solicitud al backend para obtener los detalles del tour
+    fetch(`http://localhost:8089/tour/${tour.id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setTourDetails(data);
+      })
+      .catch((error) => {
+        console.error("Error al obtener los detalles del tour: \n", error);
+      });
   };
 
-  const handleSaveCategoria = (id) => {
-    
-    fetch(`http://localhost:8089/tour/${id}`, {
+  const handleSaveCategoria = () => {
+    // Combinar los detalles del tour con la nueva categoría
+    const updatedTour = { ...tourDetails, categoria: newCategoria };
+
+    // Hacer la solicitud al backend para guardar la actualización
+    fetch(`http://localhost:8089/tour/${tourDetails.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ categoria: newCategoria }),
+      body: JSON.stringify(updatedTour),
     })
       .then((response) => response.json())
       .then((data) => {
-        
+        // Actualizar la lista de tours después de guardar la nueva categoría
         setTours((prevTours) =>
           prevTours.map((tour) =>
-            tour.id === id ? { ...tour, categoria: newCategoria } : tour
+            tour.id === tourDetails.id ? updatedTour : tour
           )
         );
         setEditingTour(null);
@@ -48,13 +62,11 @@ const ListarTours = () => {
   };
 
   const handleDeleteTour = (id) => {
-    
     fetch(`http://localhost:8089/tour/${id}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
       .then((data) => {
-        
         setTours((prevTours) =>
           prevTours.filter((tour) => tour.id !== id)
         );
