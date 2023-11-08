@@ -190,3 +190,26 @@
 [2023-11-07 00:10:24] [ ERROR] [ExceptionController:19] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
 [2023-11-07 00:27:14] [ ERROR] [ExceptionController:19] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
 [2023-11-07 00:30:04] [ ERROR] [ExceptionController:19] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-11-07 23:18:39] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'email' es obligatorio
+[2023-11-07 23:51:34] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'nombre' es obligatorio
+[2023-11-07 23:53:33] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'nombre' es obligatorio
+[2023-11-08 00:10:00] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'nombre' es obligatorio
+[2023-11-08 00:21:52] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'email' es obligatorio
+[2023-11-08 00:29:09] [ ERROR] [ExceptionController:19] IllegalArgumentException: When allowCredentials is true, allowedOrigins cannot contain the special value "*" since that cannot be set on the "Access-Control-Allow-Origin" response header. To allow credentials to a set of origins, list them explicitly or consider using "allowedOriginPatterns" instead.
+[2023-11-08 00:29:52] [ ERROR] [ExceptionController:19] IllegalArgumentException: When allowCredentials is true, allowedOrigins cannot contain the special value "*" since that cannot be set on the "Access-Control-Allow-Origin" response header. To allow credentials to a set of origins, list them explicitly or consider using "allowedOriginPatterns" instead.
+[2023-11-08 00:31:04] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'email' es obligatorio
+[2023-11-08 00:38:25] [ ERROR] [ExceptionController:19] IllegalArgumentException: When allowCredentials is true, allowedOrigins cannot contain the special value "*" since that cannot be set on the "Access-Control-Allow-Origin" response header. To allow credentials to a set of origins, list them explicitly or consider using "allowedOriginPatterns" instead.
+[2023-11-08 01:15:02] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'email' es obligatorio
+[2023-11-08 01:15:49] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'email' es obligatorio
+[2023-11-08 01:21:37] [ ERROR] [ExceptionController:25] BadRequestException: Ya existe un usuario con el email ingresado
+[2023-11-08 01:23:11] [ ERROR] [ExceptionController:25] BadRequestException: Ya existe un usuario con el email ingresado
+[2023-11-08 01:26:20] [ ERROR] [ExceptionController:25] BadRequestException: Ya existe un usuario con el email ingresado
+[2023-11-08 01:26:45] [ ERROR] [ExceptionController:25] BadRequestException: Ya existe un usuario con el email ingresado
+[2023-11-08 01:27:41] [ ERROR] [ExceptionController:25] BadRequestException: Ya existe un usuario con el email ingresado
+[2023-11-08 01:29:22] [ ERROR] [ExceptionController:25] BadRequestException: Ya existe un usuario con el email ingresado
+[2023-11-08 01:32:35] [ ERROR] [ExceptionController:25] BadRequestException: Ya existe un usuario con el email ingresado
+[2023-11-08 01:34:22] [ ERROR] [ExceptionController:25] BadRequestException: Ya existe un usuario con el email ingresado
+[2023-11-08 01:35:57] [ ERROR] [ExceptionController:25] BadRequestException: Ya existe un usuario con el email ingresado
+[2023-11-08 01:36:32] [ ERROR] [ExceptionController:25] BadRequestException: Ya existe un usuario con el email ingresado
+[2023-11-08 01:37:04] [ ERROR] [ExceptionController:25] BadRequestException: Ya existe un usuario con el email ingresado
+[2023-11-08 08:31:19] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'email' es obligatorio
