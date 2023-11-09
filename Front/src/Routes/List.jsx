@@ -33,16 +33,21 @@ const List = () => {
   };
 
   const handleSaveCategoria = () => {
+    // Validaciones de campos aquí
+    if (isNaN(parseInt(newCategoria))) {
+      console.error("La nueva categoría no es un número válido.");
+      return;
+    }
+
     const formData = new FormData();
-  
     Object.entries(tourDetails).forEach(([key, value]) => {
       formData.append(key, value);
     });
-    // Agregar la nueva categoría
-    formData.append('categoria', parseInt(newCategoria));
+
+    formData.append('categoria', newCategoria);
 
     console.log(formData);
-  
+
     fetch(`http://localhost:8089/tour`, {
       method: "PUT",
       body: formData,
@@ -78,40 +83,41 @@ const List = () => {
   };
 
   return (
-    <div>
-        <h1>dgf</h1>
-        <h1>dgf</h1>
-        <h1>dgf</h1>
-        <h1>dgf</h1>
-      <ul>
+    <table class="table">
+      <thead><tr>
+        <th>Nombre del Tour</th><th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
         {tours.map((tour) => (
-          <li key={tour.id}>
-            {tour.titulo} - {tour.categoria}
+          <tr key={tour.id}>
+            <td>{tour.titulo} - {tour.categoria}</td>
             {editingTour === tour ? (
               <div className="row" id="categoria">
                 <Categoria
                   tourData={{ categoria: parseInt(tour.categoria) }}
                   handleChange={(e) => setNewCategoria(e.target.value)}
                 />
-                
-                <button onClick={handleSaveCategoria}>
+
+                <td><button onClick={handleSaveCategoria}>
                   Guardar Categoría
-                </button>
-                </div>
+                </button></td>
+              </div>
             ) : (
-              <div>
-                <button onClick={() => handleEditCategoria(tour)}>
+              <td>
+                <button type="button" class="btn btn-warning" onClick={() => handleEditCategoria(tour)}>
                   Editar Categoría
                 </button>
-                <button onClick={() => handleDeleteTour(tour.id)}>
+                <button type="button" class="btn btn-danger" onClick={() => handleDeleteTour(tour.id)}>
                   Eliminar Tour
                 </button>
-                </div>
+              </td>
+
             )}
-          </li>
+          </tr>
         ))}
-      </ul>
-    </div>
+    </tbody>
+    </table>
   );
 };
 
