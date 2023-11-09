@@ -1,6 +1,6 @@
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import ReturnButton from "./../buttons/return-button/ReturnButton";
+import ReturnButton from "/src/Components/buttons/ReturnButton.jsx";
+import PropTypes from 'prop-types';
 
 const Breadcrumb = ({ tourName }) => {
   const location = useLocation();
@@ -37,6 +37,10 @@ const Breadcrumb = ({ tourName }) => {
       </div>
     </div>
   );
+};
+
+Breadcrumb.propTypes = {
+    tourName: PropTypes.number.isRequired,
 };
 
 export default Breadcrumb;

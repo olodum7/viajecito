@@ -1,0 +1,207 @@
+/***** ESTILOS PARA TODOS LOS BOTONES E ICONOS *****/
+/* Principal */
+.btn {
+    background-color: var(--secondary);
+    border-radius: 32px;
+    color: var(--primary);
+    font-weight: 600;
+    padding: 8px 24px;
+    text-transform: uppercase;
+    transition: all 300ms;
+    border: none;
+    margin: 0px 10px;
+    box-shadow: none;
+}
+
+.btn:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+/* Secundario - Fondo blanco */
+.btn-secondary {
+    border-radius: 8px;
+    margin: 0px 10px;
+    background-color: var(--white);
+    border: 1px solid var(--primary);
+}
+
+/* Botones en el navbar */
+#search-bar>div>form>div>div.col-lg-1 {
+    text-align: right;
+}
+
+.search-button {
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 64px;
+    color: var(--primary);
+    padding: 1.4rem;
+    transition: all 300ms;
+}
+
+.search-button:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.search-button svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2px;
+}
+
+.search-button span {
+    display: none;
+}
+
+@media (max-width: 992px) {
+    .search-button {
+        border-radius: 4px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        min-width: 100%;
+        text-transform: uppercase;
+        padding: 1rem;
+    }
+
+    .search-button span {
+        display: block;
+    }
+
+    .search-button svg {
+        display: none;
+    }
+}
+
+/* Icono favorito */
+.fav-btn {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+}
+
+.fav-btn svg {
+    stroke: var(--white);
+    fill: rgba(255, 255, 255, 0.3);
+    transition: all 300ms;
+}
+
+.fav-btn svg:hover {
+    stroke: var(--secondary);
+    fill: var(--secondary);
+}
+
+/* Botones XL */
+.btn-lg {
+    border-radius: 8px;
+    width: 100%;
+    padding: 16px 32px;
+}
+
+/* Galeria de imagenes */
+.gallery-button-container {
+    color: var(--primary);
+    text-align: right;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.gallery-button-container a {
+    color: var(--black);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.gallery-button-container:hover a {
+    color: var(--primary);
+    transition: all 300ms;
+}
+
+.gallery-button-container a span {
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 64px;
+    color: var(--primary);
+    margin-right: 8px;
+    padding: 8px 6px;
+    transition: all 300ms;
+}
+
+.gallery-button-container a span svg {
+    width: 24px;
+    height: 24px;
+    padding-bottom: 4px;
+    stroke-width: 2px;
+    stroke: var(--primary);
+    transition: all 300ms;
+}
+
+.gallery-button-container a:hover {
+    text-decoration: underline;
+}
+
+.gallery-button-container a:hover span {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.gallery-button-container a:hover svg {
+    stroke: var(--white);
+}
+
+/* Return  */
+.return-container {
+    color: var(--primary);
+    text-align: right;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.return-container a {
+    color: var(--black);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.return-container:hover a {
+    color: var(--primary);
+    transition: all 300ms;
+}
+
+.return-container a span {
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 64px;
+    color: var(--primary);
+    margin-right: 8px;
+    padding: 8px 4.5px;
+    transition: all 300ms;
+}
+
+.return-container a span svg {
+    width: 24px;
+    height: 24px;
+    padding-bottom: 4px;
+    stroke-width: 2px;
+    stroke: var(--primary);
+    transition: all 300ms;
+}
+
+.return-container a:hover {
+    text-decoration: underline;
+}
+
+.return-container a:hover span {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.return-container a:hover svg {
+    stroke: var(--white);
+}

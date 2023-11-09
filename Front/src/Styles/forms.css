@@ -1,0 +1,220 @@
+.card-title{
+    margin: 0px;
+}
+.form-normal label {
+    color: var(--gray);
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+}
+
+.form-normal input[type="text"],
+.form-normal input[type="number"],
+.form-normal input[type="password"],
+.form-normal input[type="email"],
+.form-normal select {
+    border: none !important;
+    border-bottom: 2.5px solid var(--black) !important;
+    border-radius: 0 !important;
+    color: var(--black) !important;
+    font-size: .8rem !important;
+    font-weight: 600 !important;
+    padding: 5px;
+}
+
+.form-normal input[type="text"]:focus,
+.form-normal input[type="number"]:focus,
+.form-normal input[type="password"]:focus,
+.form-normal input[type="email"]:focus,
+.form-normal select:focus,
+.form-normal input[type="text"]:hover,
+.form-normal input[type="number"]:hover,
+.form-normal input[type="password"]:hover,
+.form-normal input[type="email"]:hover,
+.form-normal select:hover {
+    border-bottom: 2.5px solid var(--primary) !important;
+}
+
+.form-normal .form-control[type="file"] {
+    width: 100%;
+    background-color: var(--white) !important;
+    border: none;
+}
+
+.form-normal [type="file"]::-webkit-file-upload-button {
+    background-color: var(--white);
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    color: var(--primary);
+    padding: 16px 32px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 450ms;
+}
+
+.form-normal [type="file"]:hover::-webkit-file-upload-button {
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    color: var(--white);
+}
+
+.form-normal button[type="reset"] {
+    background-color: var(--white);
+    border-radius: 8px;
+    border: 2px solid var(--primary);
+    margin-right: 16px;
+    padding: 16px 32px;
+}
+
+.form-normal button[type="submit"] {
+    background-color: var(--secondary);
+    border-radius: 8px;
+    border: 2px solid var(--secondary);
+    color: var(--primary);
+    margin-right: 16px;
+    padding: 16px 32px;
+    transition: all 300ms;
+}
+
+.form-normal button[type="submit"]:hover {
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+    color: var(--white);
+}
+
+@media (max-width: 767px) {
+    .form-normal button {
+        margin-top: 16px;
+        width: 100%;
+    }
+}
+
+/* Formulario de registro */
+#register {
+    background: url("/fondo.png") no-repeat center bottom / cover;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: calc(100vh + 120px);
+}
+
+#register .row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 100%;
+}
+
+#register .register-form-container .card {
+    padding: 40px;
+    margin: 50px;
+    max-width: 500px;
+    width: 100%;
+}
+
+#register .register-form-container .card h1 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.0
+}
+
+#register .register-form-container .card p {
+    font-size: .9rem;
+    color: var(--gray);
+    line-height: 1.0;
+}
+
+#register .register-form-container .card .card-body {
+    padding: 0;
+}
+
+#register .register-form-container .card .card-body .nav-link {
+    display: inline-block;
+    padding: 0 0 0 0.4rem;
+}
+
+@media (min-width: 1400px) {
+    #register .container-fluid {
+        max-width: 1320px;
+    }
+
+    #register .register-form-container .card {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 991px) {
+    #register .register-form-container .card {
+        margin-right: 0;
+        margin-top: 48px;
+        margin-bottom: 48px;
+        min-width: 100%;
+    }
+
+    .container-fluid {
+        padding: 0 24px;
+    }
+}
+
+/* INICIO DE SESION */
+#login {
+    background: url("/fondo.png") no-repeat center bottom / cover;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: calc(100vh - 150px);
+}
+
+#login .row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 100%;
+}
+
+#login .login-form-container .card {
+    padding: 48px;
+    margin-right: 120px;
+    min-width: 598px;
+}
+
+#login .login-form-container .card h1 {
+    font-weight: 600;
+}
+
+#login .login-form-container .card p {
+    color: var(--gray);
+}
+
+#login .login-form-container .card .card-body {
+    padding: 0;
+}
+
+#login .login-form-container .card .card-body .nav-link {
+    display: inline-block;
+    padding: 0 0 0 0.4rem;
+}
+
+@media (min-width: 1400px) {
+    #login .container-fluid {
+        max-width: 1320px;
+    }
+
+    #login .login-form-container .card {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 991px) {
+    #login .login-form-container .card {
+        margin-right: 0;
+        min-width: 100%;
+    }
+
+    .container-fluid {
+        padding: 0 24px;
+    }
+}

@@ -44,6 +44,7 @@ public class TourController {
                                      @RequestParam("categoria") Long categoriaId,
                                      @RequestParam("duracion") String duracion,
                                      @RequestParam("dificultad") TourDificultad dificultad,
+                                     @RequestParam("pasajes") Boolean pasajes,
                                      @RequestParam("transporte") String transporte,
                                      @RequestParam("traslado") Boolean traslado,
                                      @RequestParam("entradas") String entradas,
@@ -59,11 +60,11 @@ public class TourController {
             /************* VALIDACION DE CAMPOS *************/
             if (titulo == null || subtitulo == null || precio == null || categoriaId == null ||
                     duracion == null || dificultad == null || (imagenes == null || imagenes.isEmpty())) {
-                throw new BadRequestException("Todos los campos son obligatorios.");
+                return ResponseEntity.badRequest().body(new MensajeRespuesta("error", "Todos los campos son obligatorios."));
             }
 
             if (titulo.isEmpty() || subtitulo.isEmpty() || precio.isNaN() || duracion.isEmpty() ) {
-                throw new BadRequestException("Los campos no pueden quedar vacíos.");
+                return ResponseEntity.badRequest().body(new MensajeRespuesta("error", "Los campos no pueden quedar vacíos."));
             }
 
             tour.setTitulo(titulo);
@@ -73,11 +74,12 @@ public class TourController {
             /**** Categoria ****/
             Categoria categoria = categoriaRepository.findById(categoriaId).orElse(null);
             if (categoria == null)
-                throw new BadRequestException("La categoria seleccionada no existe.");
+                return ResponseEntity.badRequest().body(new MensajeRespuesta("error", "La categoria seleccionada no existe."));
             tour.setCategoria(categoria);
 
             tour.setDuracion(duracion);
             tour.setDificultad(dificultad);
+            tour.setPasajes(pasajes);
             tour.setTransporte(transporte);
             tour.setTraslado(traslado);
             tour.setGuia_es(guia_es);
@@ -85,7 +87,7 @@ public class TourController {
             /**** Alojamiento ****/
             Alojamiento alojamiento = alojamientoRepository.findById(alojamientoId).orElse(null);
             if (alojamiento == null)
-                throw new BadRequestException("El alojamiento seleccionado no existe.");
+                return ResponseEntity.ok(new MensajeRespuesta("error", "El alojamiento seleccionado no existe."));
             tour.setAlojamiento(alojamiento);
 
             tour.setEntradas(entradas);
@@ -95,7 +97,7 @@ public class TourController {
                 imagenesTour = imagenService.agregar(imagenes);
                 tour.setImagenes(imagenesTour);
             }
-            return ResponseEntity.ok(new MensajeRespuesta("ok", "Tour " + tourService.agregar(tour).getTitulo() + " agregado correctamente."));
+            return ResponseEntity.ok(new MensajeRespuesta("ok", tourService.agregar(tour).getTitulo() + " agregado correctamente."));
         } catch (BadRequestException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
         } catch (IOException e) {

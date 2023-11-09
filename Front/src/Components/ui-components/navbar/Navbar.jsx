@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import mainLogo from "./logo.svg";
-import Button from "../../buttons/button/Button";
+import mainLogo from "/public/logo.svg";
+import Button from "/src/Components/buttons/Button.jsx";
 
 
 const Navbar = () => {

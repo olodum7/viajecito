@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const ReturnButton = () => {
@@ -23,5 +22,4 @@ const ReturnButton = () => {
     </div>
   );
 };
-
 export default ReturnButton;

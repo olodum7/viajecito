@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
-import Category_pills from "./../category/CategoryPills";
-import Button from "./../buttons/button/Button";
-import FavButton from "./../favs/FavButton";
-import Image from "./../imagen/Image"
+import Image from "../image/Image";
+import Category_pills from "../category/CategoryPills";
+import Button from "../buttons/Button";
+import FavButton from "../buttons/FavButton";
 
 const Card = (props) => {
   const {
@@ -42,7 +42,7 @@ const Card = (props) => {
       </div>
       <div className="card-body">
         <div className="card-headers">
-          <h2 className="card-h2">{titulo}</h2>
+          <Link to={`tour/${id}`} className="card-link"><h2 className="card-h2">{titulo}</h2> </Link>
           <h3 className="mt-2 mb-5">{subtitulo}</h3>
         </div>
         <div className="card-details">
@@ -53,7 +53,7 @@ const Card = (props) => {
               </p>
             </div>
             <div className="col-12 col-md-6 btn-container">
-              <Button url={`tour/${id}`} buttonName="Reservar"/>
+              <Button url={`tour/${id}`} buttonName="Reservar" />
             </div>
           </div>
           <div className="card-footer">
