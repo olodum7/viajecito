@@ -253,6 +253,10 @@ input[type="file"] {
   background: var(--primary);
 }
 
+.table {
+  margin-top: 7rem;
+}
+
 @media (max-width: 1200px) {
   main .content-wrapper {
     margin-top: 4rem;
