@@ -3,6 +3,7 @@ package com.viajecito.api.controller;
 import com.viajecito.api.dto.ImagenDTO;
 import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.Imagen;
+import com.viajecito.api.model.MensajeRespuesta;
 import com.viajecito.api.service.IImagenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -30,7 +31,7 @@ public class ImagenController{
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<byte[]> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
         Optional<ImagenDTO> imagen = imagenService.buscarPorId(id);
         if (imagen.isPresent()) {
             byte[] contenidoImagen = imagen.get().getContenido();
@@ -52,10 +53,9 @@ public class ImagenController{
             } else {
                 headers.setContentType(MediaType.IMAGE_JPEG); // Example: GIF
             }
-
-            return new ResponseEntity<>(contenidoImagen, headers, HttpStatus.OK);
+            return new ResponseEntity(contenidoImagen, headers, HttpStatus.OK);
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.badRequest().body(new MensajeRespuesta("error", "Error al obtener las imagenes"));
         }
     }
 

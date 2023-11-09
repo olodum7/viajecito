@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap");
-
 :root {
   --primary: #763fc4;
   --secondary: #53f5da;
@@ -15,6 +14,10 @@
 
 * {
   font-family: "Sora", sans-serif;
+}
+
+li{
+  list-style: none;
 }
 
 body {
@@ -276,4 +279,26 @@ input[type="file"] {
   .mb-5 {
     margin-bottom: 1.8rem !important;
   }
+}
+
+
+.div-img-container{
+  max-width: 350px;
+  max-height: 180px;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.div-img-container img{
+  display: flex;
+  width: 100%;
+}
+
+#list-tour{
+  height: calc(100vh);
+}
+
+#list-tour .container-fluid{
+  margin-top: 150px;
 }

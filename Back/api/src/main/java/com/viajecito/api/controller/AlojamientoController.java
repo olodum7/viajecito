@@ -6,6 +6,7 @@ import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.Alojamiento;
 import com.viajecito.api.model.AlojamientoTipo;
 import com.viajecito.api.model.Imagen;
+import com.viajecito.api.model.MensajeRespuesta;
 import com.viajecito.api.repository.IAlojamientoRepository;
 import com.viajecito.api.service.IAlojamientoService;
 import com.viajecito.api.service.impl.ImagenService;
@@ -45,7 +46,7 @@ public class AlojamientoController {
         try{
             /************* VALIDACION DE CAMPOS *************/
             if (nombre == null || tipo == null || ubicacion == null || (imagenes == null || imagenes.isEmpty()))
-                throw new BadRequestException("Todos los campos son obligatorios.");
+                return ResponseEntity.badRequest().body(new MensajeRespuesta("error", "Todos los campos son obligatorios."));
 
             alojamiento.setTipo(tipo);
             alojamiento.setNombre(nombre);
@@ -56,12 +57,11 @@ public class AlojamientoController {
                 imagenesAlojamiento = imagenService.agregar(imagenes);
                 alojamiento.setImagenes(imagenesAlojamiento);
             }
-            return ResponseEntity.ok(alojamientoService.agregar(alojamiento));
-
+            return ResponseEntity.ok(new MensajeRespuesta( "ok", alojamientoService.agregar(alojamiento).getTipo() + " agregado correctamente."));
         } catch (BadRequestException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
         } catch (IOException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
         }
     }
 
@@ -112,7 +112,7 @@ public class AlojamientoController {
     }
 
     @GetMapping
-    public Collection<Alojamiento> listarTodos() throws BadRequestException{
+    public Collection<Alojamiento> listarTodos(){
         return alojamientoService.listarTodos();
     }
 }

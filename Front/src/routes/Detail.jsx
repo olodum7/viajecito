@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Gallery from "../Components/gallery/Gallery";
+import Image from "../Components/image/Image.jsx";
 // import Breadcrumb from "../Components/breadcrumb/Breadcrumb";
 
 const Detail = () => {
   const { id } = useParams();
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState({});
+  const [lodging, setLodging] = useState({});
 
+  /* Obtengo el tour */
   useEffect(() => {
     fetch(`http://localhost:8089/tour/${id}`)
       .then((response) => response.json())
@@ -17,6 +20,22 @@ const Detail = () => {
         console.error("Error al obtener el detalle: \n", error)
       })
   }, [id])
+
+  /* Obtengo el alojamiento */
+  useEffect(() => {
+    if (result.alojamiento) {
+      fetch(`http://localhost:8089/alojamiento/${result.alojamiento}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setLodging(data);
+        })
+        .catch((error) => {
+          console.error("Error al obtener el alojamiento: \n", error)
+        })
+    }
+  }, [result.alojamiento])
+
+  console.log(lodging.imagenes)
 
   return (
     <>
@@ -80,7 +99,7 @@ const Detail = () => {
               </div>
             }
 
-            {result.guia &&
+            {result.guia_es &&
               <div className="row">
                 <div className="guide">
                   <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" >
@@ -96,7 +115,7 @@ const Detail = () => {
               </div>
             }
 
-            {/* <div className="row">
+            <div className="row">
               <div className="hotel">
                 <svg
                   xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-building-skyscraper" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" >
@@ -109,9 +128,20 @@ const Detail = () => {
                   <path d="M9 15l0 .01"></path>
                   <path d="M9 18l0 .01"></path>
                 </svg>
-                <em>Hotel Único</em> con media pensión incluida
+                <em>Alojamiento en {lodging.nombre}</em>
               </div>
-            </div> */}
+
+              {/* Imagenes del alojamiento */}
+
+              {lodging.imagenes && lodging.imagenes.length > 0 && lodging.imagenes.slice(0, 3).map((imagen) => (
+                <>
+                  <div className='div-img-container'>
+                    <Image key={imagen} id={imagen} />
+                  </div>
+                </>
+              ))}
+
+            </div>
           </div>
 
           {/* <div className="container-itinerary">

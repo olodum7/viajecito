@@ -13,7 +13,7 @@ import java.util.Set;
 @Getter @Setter
 public class AlojamientoDTO implements Serializable {
     private String nombre;
-    private AlojamientoTipo tipo;
+    private String tipo;
     private String ubicacion;
     private Set<Long> imagenes;
 }

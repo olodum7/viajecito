@@ -51,11 +51,8 @@ public class AlojamientoService implements IAlojamientoService {
     }
 
     @Override
-    public Collection<Alojamiento> listarTodos() throws BadRequestException {
-        List<Alojamiento> alojamientos = alojamientoRepository.findAll();
-        if(alojamientos.size() == 0)
-            throw new BadRequestException("INFORMACIÓN: La lista de alojamientos se encuentra vacía");
-        return alojamientos;
+    public Collection<Alojamiento> listarTodos(){
+        return alojamientoRepository.findAll();
     }
 
     public Set<Alojamiento> agregarTodos(Set<Alojamiento> alojamientos){
@@ -76,7 +73,7 @@ public class AlojamientoService implements IAlojamientoService {
         Set<Long> imagenesId = new HashSet<>();
 
         dto.setNombre(a.getNombre());
-        dto.setTipo(a.getTipo());
+        dto.setTipo(a.getTipo().getDescripcion());
         dto.setUbicacion(a.getUbicacion());
 
         for (Imagen imagen : a.getImagenes())

@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import Categoria from "../Components/Category/CategoryTour";
-import Lodging from "../Components/alojamiento/Lodging";
+import Lodging from "../Components/Lodging/Lodging";
 
 const AddTour = () => {
   const [mensaje, setMensaje] = useState("");

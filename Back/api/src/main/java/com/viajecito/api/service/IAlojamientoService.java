@@ -12,5 +12,5 @@ public interface IAlojamientoService {
     void eliminar(Long id) throws BadRequestException;
     AlojamientoDTO modificar(Alojamiento alojamiento) throws BadRequestException;
     Optional<AlojamientoDTO> buscarPorId(Long id) throws BadRequestException;
-    Collection<Alojamiento> listarTodos() throws BadRequestException;
+    Collection<Alojamiento> listarTodos();
 }
