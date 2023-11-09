@@ -7,6 +7,7 @@ import Detail from "./Routes/Detail";
 import SignUp from './Routes/SignUp';
 import NotFound from "./Routes/NotFound";
 import Login from "./Routes/Login";
+import List from "./Routes/List";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -17,7 +18,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="tour/:id" element={<Detail />} />
         <Route path="signUp" element={<SignUp />} />
         <Route path="login" element={<Login/>} /> 
-        
+        <Route path="list" element={<List/>} />
         {/* Unificar estilos al con el signUp */}
         {/* <Route path="create" element={<Create />} />*/}
       </Route>
