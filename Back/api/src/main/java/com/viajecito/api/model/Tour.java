@@ -42,6 +42,9 @@ public class Tour {
     @Enumerated(EnumType.STRING)
     private TourDificultad dificultad;
 
+    @Column(name = "PASAJES")
+    private Boolean pasajes;
+
     @Column(name = "TRANSPORTE")
     private String transporte;
 

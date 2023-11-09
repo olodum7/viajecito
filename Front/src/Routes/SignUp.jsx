@@ -71,7 +71,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className="d-flex justify-content-end form-container">
+        <div className="d-flex justify-content-end form-container form-login">
             <form className="form" >
                 <div className="row">
                     <div className="col">
@@ -119,7 +119,7 @@ const SignUp = () => {
                 </div>
                 <div className="row">
                     <div className="col">
-                        <button className="btn btn-primary" type="button" onClick={handleSubmit}>Crear cuenta</button>
+                        <button className="btn" type="button" onClick={handleSubmit}>Crear cuenta</button>
                     </div>
                     <p className="signIn"> ¿Ya tienes una cuenta? <Link to="#"> Iniciar sesión  </Link> </p>
 

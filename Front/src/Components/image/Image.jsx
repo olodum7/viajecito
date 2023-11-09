@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const Imagen = ({ id }) => {
-    Imagen.propTypes = {
+const Image = ({ id }) => {
+    Image.propTypes = {
         id: PropTypes.number.isRequired
     }
 
@@ -32,5 +32,4 @@ const Imagen = ({ id }) => {
     );
 }
 
-export default Imagen;
-
+export default Image;

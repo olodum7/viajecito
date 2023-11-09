@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
-import Image from "../Image";
+import Image from "../image/Image";
 import Category_pills from "../category/CategoryPills";
-import Button from "../buttons/button";
-import FavButton from "../favs/FavButton";
-import "../card/card.css";
+import Button from "../button/Button";
+import FavButton from "../button/FavButton";
 
 const Card = (props) => {
   const {

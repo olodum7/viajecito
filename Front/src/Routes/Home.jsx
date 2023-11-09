@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import Card from "../components/card/Card";
-import Banner from "../components/ui-components/banner/Banner";
-import Hero from "../components/ui-components/hero/Hero";
-import CategoryNav from "../components/category/CategoryNav";
-import { Search } from "../components/seach-bar/Search";
+import Card from "../Components/card/Card.jsx";
+import Banner from "../Components/ui-components/banner/Banner";
+import Hero from "../Components/ui-components/hero/Hero";
+import CategoryNav from "../Components/category/CategoryNav";
+import { Search } from "../Components/search/Search";
 
 const Home = () => {
   const [result, setResult] = useState("");

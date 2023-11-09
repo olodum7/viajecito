@@ -213,3 +213,33 @@
 [2023-11-08 01:36:32] [ ERROR] [ExceptionController:25] BadRequestException: Ya existe un usuario con el email ingresado
 [2023-11-08 01:37:04] [ ERROR] [ExceptionController:25] BadRequestException: Ya existe un usuario con el email ingresado
 [2023-11-08 08:31:19] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'email' es obligatorio
+[2023-11-08 19:05:52] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'categoria' es obligatorio
+[2023-11-08 19:11:35] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'categoria' es obligatorio
+[2023-11-08 19:16:25] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'pasajes' es obligatorio
+[2023-11-08 19:21:08] [ ERROR] [ExceptionController:32] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 19:22:28] [ ERROR] [ExceptionController:32] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 19:23:45] [ ERROR] [ExceptionController:32] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 19:25:36] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'precio' es obligatorio
+[2023-11-08 19:28:24] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'dificultad' es obligatorio
+[2023-11-08 19:38:07] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'precio' es obligatorio
+[2023-11-08 19:39:48] [ ERROR] [ExceptionController:39] BadRuntimeException FALTAN PARAMETROS: El parámetro 'precio' es obligatorio
+[2023-11-08 19:45:40] [ ERROR] [ExceptionController:41] BadRuntimeException FALTAN PARAMETROS: El parámetro 'precio' es obligatorio
+[2023-11-08 19:46:10] [ ERROR] [ExceptionController:41] BadRuntimeException FALTAN PARAMETROS: El parámetro 'guia' es obligatorio
+[2023-11-08 19:47:10] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 19:50:54] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 19:51:16] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 19:58:17] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 20:03:40] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 20:09:03] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 20:10:59] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 20:13:08] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 20:13:47] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 20:15:17] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 20:16:11] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 20:17:29] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 20:26:51] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 20:28:08] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 20:29:15] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 20:35:52] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-08 20:45:40] [ ERROR] [ExceptionController:21] MultipartException: Failed to parse multipart servlet request; nested exception is org.apache.tomcat.util.http.fileupload.FileUploadException: the request was rejected because no multipart boundary was found
+[2023-11-08 20:53:09] [ ERROR] [ExceptionController:21] MultipartException: Failed to parse multipart servlet request; nested exception is org.apache.tomcat.util.http.fileupload.FileUploadException: the request was rejected because no multipart boundary was found

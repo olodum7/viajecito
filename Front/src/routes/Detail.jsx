@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Image from '../Components/Image';
+import Image from '../Components/image/Image';
 
 const Detail = () => {
     const { id } = useParams();

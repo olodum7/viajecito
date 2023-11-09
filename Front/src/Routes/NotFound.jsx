@@ -1,13 +1,13 @@
+import Button from "../Components/button/Button";
 
 const PageNotFound = () => {
     return (
-        <div>
+        <div className="container-error">
             <img src="./public/404.svg" alt="" />
-            <p>¡Ups! Parece que nos desviamos del camino.</p>
+            <h1>¡Ups! Parece que nos desviamos del camino.</h1>
             <p>No te preocupes, puedes volver a la página de inicio para continuar tu aventura.</p>
-            <button className="btn btn-primary" type="button">Volver al inicio</button>
+            <Button url={'/'} buttonName="Volver al inicio" />
         </div>
     )
 }
-
 export default PageNotFound;

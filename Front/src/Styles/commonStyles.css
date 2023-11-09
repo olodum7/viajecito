@@ -1,0 +1,279 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap");
+
+:root {
+  --primary: #763fc4;
+  --secondary: #53f5da;
+  --black: #2a2a2a;
+  --gray: #8b8b8b;
+  --light-gray: #d9d9d9;
+  --light-primary: #f8f5fc;
+  --light-secondary: #a1f8e7;
+  --white: #ffffff;
+  --error: #f1406b;
+  --success: #a1f8a4;
+}
+
+* {
+  font-family: "Sora", sans-serif;
+}
+
+body {
+  color: var(--black);
+  font-size: 16px;
+  line-height: 1.4;
+  background-color: var(--white);
+  margin: 0 auto;
+  padding: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6rem;
+}
+
+h1,
+h3 {
+  font-size: 1.6rem;
+  line-height: 2.1rem;
+}
+
+h1 {
+  font-weight: 800;
+}
+
+h3 {
+  font-weight: 600;
+}
+
+p.subtitle {
+  color: var(--gray);
+}
+
+.primary-color {
+  color: var(--primary);
+}
+
+.secondary-color {
+  color: var(--secondary);
+}
+
+.content-wrapper {
+  margin: 2em 0;
+}
+
+.content-wrapper > h1 {
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  padding: 0;
+  margin: 0;
+}
+
+.img-wrapper {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.img-wrapper > img {
+  object-fit: cover;
+  width: 100%;
+}
+
+/********** FORMULARIOS **********/
+.form-container {
+  margin-top: 70px;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.form-login {
+  background: url("/fondo.png") left center / cover;
+  height: 100%;
+  padding: 40px 60px;
+}
+
+.form-tour {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+}
+
+.form {
+  width: 100%;
+  border-radius: 16px;
+  background: var(--white);
+  padding: 40px;
+}
+
+.form-login .form {
+  max-width: 450px;
+}
+
+.form-container .form h2 {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 8px;
+  background-color: var(--primary);
+  color: var(--white);
+  margin: 10px 0px;
+}
+
+.form-container input {
+  border: none;
+  border-bottom: 2px solid var(--black);
+  border-radius: 0px;
+  font-size: 14px;
+  padding: 3px;
+}
+
+.input-group-text {
+  border: none;
+}
+
+.form-container input:focus {
+  border-color: var(--primary);
+  box-shadow: none;
+}
+
+.form .col small {
+  font-size: 12px;
+}
+
+.form .col p:first-child {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.form .col p:nth-child(2) {
+  font-size: 14px;
+  color: var(--gray);
+}
+
+.form .row:last-child {
+  margin-top: 20px;
+}
+
+.signIn {
+  font-size: 14px;
+  text-align: center;
+  margin: 10px;
+  color: var(--gray);
+}
+
+.label-checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+input[type="checkbox"] {
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  border-radius: 0px;
+  padding: 5px;
+  margin: 0px 5px;
+}
+
+input[type="file"] {
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.p-img {
+  font-size: 0.8rem;
+}
+
+.div-imagenes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  border: 2px dashed var(--gray);
+  border-radius: 8px;
+  padding: 0px 20px;
+  margin: 10px;
+}
+
+#cont-input-entradas {
+  display: none;
+}
+
+.div-error {
+  background-color: var(--error);
+  padding: 0px !important;
+  margin: 10px;
+}
+
+.div-error p,
+.div-ok p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  padding: 5px;
+  margin: 0px;
+  font-weight: bold;
+  text-align: center;
+  transition: ease-in-out 1ms;
+  animation: bounce 0.5s 5 alternate;
+}
+
+.div-ok {
+  background-color: var(--success) !important;
+  padding: 0px !important;
+  margin: 10px;
+}
+
+/********** SCROLLBAR **********/
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  transition: all 300ms;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+@media (max-width: 1200px) {
+  main .content-wrapper {
+    margin-top: 4rem;
+    padding: 24px;
+  }
+
+  .container-xl {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 992px) {
+  body {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 767px) {
+  main .content-wrapper {
+    margin-top: 0;
+  }
+
+  .mb-5 {
+    margin-bottom: 1.8rem !important;
+  }
+}
