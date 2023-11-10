@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import Categoria from "../Components/Category/CategoryTour";
-import Lodging from "../Components/Lodging/Lodging";
+import Categoria from "./../Components/category/CategoryTour";
+import Hotel from "../Components/hotel/Hotel";
 
 const AddTour = () => {
   const [mensaje, setMensaje] = useState("");
@@ -206,7 +206,7 @@ const AddTour = () => {
           </div>
         </div>
         <div className="row">
-          <Lodging tourData={{ alojamiento: parseInt(tourData.alojamiento) }} handleChange={handleChange} />
+          <Hotel tourData={{ alojamiento: parseInt(tourData.alojamiento) }} handleChange={handleChange} />
         </div>
         <div className="row">
           <div className="col">
