@@ -35,12 +35,18 @@ public class Tour {
     @JoinColumn(name = "CATEGORIA_ID")
     private Categoria categoria;
 
+    @Column(name = "RATING")
+    private String rating;
+
     @Column(name = "DURACION")
     private String duracion;
 
     @Column(name = "DIFICULTAD")
     @Enumerated(EnumType.STRING)
     private TourDificultad dificultad;
+
+    @Column(name = "SALIDAS")
+    private String salidas;
 
     @Column(name = "PASAJES")
     private Boolean pasajes;
@@ -56,6 +62,9 @@ public class Tour {
 
     @Column(name = "GUIA_ES")
     private Boolean guia_es;
+
+    @Column(name = "ITINERARIO")
+    private String itinerario;
 
     @ManyToOne
     @JoinColumn(name = "ALOJAMIENTO_ID")

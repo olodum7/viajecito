@@ -42,13 +42,16 @@ public class TourController {
                                      @RequestParam("subtitulo") String subtitulo,
                                      @RequestParam("precio") Double precio,
                                      @RequestParam("categoria") Long categoriaId,
+                                     @RequestParam("rating") String rating,
                                      @RequestParam("duracion") String duracion,
                                      @RequestParam("dificultad") TourDificultad dificultad,
+                                     @RequestParam("salidas") String salidas,
                                      @RequestParam("pasajes") Boolean pasajes,
                                      @RequestParam("transporte") String transporte,
                                      @RequestParam("traslado") Boolean traslado,
                                      @RequestParam("entradas") String entradas,
                                      @RequestParam("guia") Boolean guia_es,
+                                     @RequestParam("itinerario") String itinerario,
                                      @RequestParam("alojamiento") Long alojamientoId,
                                      @RequestPart("imagenes") List<MultipartFile> imagenes) throws BadRequestException{
 
