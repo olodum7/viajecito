@@ -1,6 +1,7 @@
-.card-title{
+.card-title {
     margin: 0px;
 }
+
 .form-normal label {
     color: var(--gray);
     display: block;
@@ -90,7 +91,9 @@
     }
 }
 
+
 /* Formulario de registro */
+
 #register {
     background: url("/fondo.png") no-repeat center bottom / cover;
     display: flex;
@@ -139,7 +142,6 @@
     #register .container-fluid {
         max-width: 1320px;
     }
-
     #register .register-form-container .card {
         margin-right: 0;
     }
@@ -152,20 +154,21 @@
         margin-bottom: 48px;
         min-width: 100%;
     }
-
     .container-fluid {
         padding: 0 24px;
     }
 }
 
+
 /* INICIO DE SESION */
+
 #login {
-    background: url("/fondo.png") no-repeat center bottom / cover;
+    background: url('/fondo.png') no-repeat center bottom / cover;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     width: 100%;
-    height: calc(100vh - 150px);
+    min-height: calc(100vh - 96px);
 }
 
 #login .row {
@@ -195,14 +198,13 @@
 
 #login .login-form-container .card .card-body .nav-link {
     display: inline-block;
-    padding: 0 0 0 0.4rem;
+    padding: 0 0 0 .4rem;
 }
 
 @media (min-width: 1400px) {
     #login .container-fluid {
         max-width: 1320px;
     }
-
     #login .login-form-container .card {
         margin-right: 0;
     }
@@ -213,7 +215,6 @@
         margin-right: 0;
         min-width: 100%;
     }
-
     .container-fluid {
         padding: 0 24px;
     }

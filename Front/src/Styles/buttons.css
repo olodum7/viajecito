@@ -1,5 +1,8 @@
 /***** ESTILOS PARA TODOS LOS BOTONES E ICONOS *****/
+
+
 /* Principal */
+
 .btn {
     background-color: var(--secondary);
     border-radius: 32px;
@@ -8,9 +11,6 @@
     padding: 8px 24px;
     text-transform: uppercase;
     transition: all 300ms;
-    border: none;
-    margin: 0px 10px;
-    box-shadow: none;
 }
 
 .btn:hover {
@@ -18,7 +18,9 @@
     color: var(--white);
 }
 
+
 /* Secundario - Fondo blanco */
+
 .btn-secondary {
     border-radius: 8px;
     margin: 0px 10px;
@@ -26,7 +28,9 @@
     border: 1px solid var(--primary);
 }
 
+
 /* Botones en el navbar */
+
 #search-bar>div>form>div>div.col-lg-1 {
     text-align: right;
 }
@@ -64,17 +68,17 @@
         text-transform: uppercase;
         padding: 1rem;
     }
-
     .search-button span {
         display: block;
     }
-
     .search-button svg {
         display: none;
     }
 }
 
+
 /* Icono favorito */
+
 .fav-btn {
     position: absolute;
     top: 16px;
@@ -92,14 +96,18 @@
     fill: var(--secondary);
 }
 
+
 /* Botones XL */
+
 .btn-lg {
     border-radius: 8px;
     width: 100%;
     padding: 16px 32px;
 }
 
+
 /* Galeria de imagenes */
+
 .gallery-button-container {
     color: var(--primary);
     text-align: right;
@@ -153,7 +161,9 @@
     stroke: var(--white);
 }
 
+
 /* Return  */
+
 .return-container {
     color: var(--primary);
     text-align: right;
