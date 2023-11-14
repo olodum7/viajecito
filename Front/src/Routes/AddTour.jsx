@@ -9,14 +9,17 @@ const AddTour = () => {
     subtitulo: "",
     precio: 0,
     categoria: 0,
+    rating: "4580",
     duracion: "",
     dificultad: "",
+    salidas: "Lunes y martes",
     pasajes: false,
     transporte: "",
     traslado: false,
     entradas: "",
     guia: false,
     alojamiento: 0,
+    itinerario: "www",
     imagenes: FileList,
   });
 

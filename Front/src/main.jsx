@@ -16,13 +16,11 @@ createRoot(document.getElementById("root")).render(
         <Route index element={<Home />} />
         <Route path="tour" element={<AddTour />} />
         <Route path="tour/:id" element={<Detail />} />
-        <Route path="signUp" element={<SignUp />} />
+        <Route path="sign-up" element={<SignUp />} />
         <Route path="login" element={<Login/>} /> 
         <Route path="list" element={<List/>} />
-        {/* Unificar estilos al con el signUp */}
-        {/* <Route path="create" element={<Create />} />*/}
+        <Route path="*" element={<NotFound/>}/>
       </Route>
-      <Route path="*" element={<NotFound/>}/>
     </Routes>
   </BrowserRouter>
 );

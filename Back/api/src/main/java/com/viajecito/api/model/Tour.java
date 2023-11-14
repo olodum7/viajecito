@@ -63,7 +63,7 @@ public class Tour {
     @Column(name = "GUIA_ES")
     private Boolean guia_es;
 
-    @Column(name = "ITINERARIO")
+    @Column(name = "ITINERARIO", columnDefinition = "TEXT")
     private String itinerario;
 
     @ManyToOne

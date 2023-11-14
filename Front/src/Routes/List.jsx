@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Categoria from "../Components/Category/CategoryTour";
+import Categoria from "./../Components/category/CategoryTour";
 
 const List = () => {
   const [tours, setTours] = useState([]);

@@ -20,14 +20,16 @@
     box-shadow: 0 0 16px rgba(118, 63, 196, .4);
 }
 
-.img-wrapper{
+.img-wrapper {
     max-height: 270px;
     overflow: hidden;
 }
 
-.img-wrapper img{
+.img-wrapper img {
     width: 100%;
-    overflow: hidden;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
 }
 
 .card .card-body {

@@ -17,7 +17,7 @@ const Banner = () => {
             </p>
           </div>
           <div className="col-12 col-xl-5">
-            <div className="banner-illustration">
+            <div className="banner-illustration" data-aos="fade-up">
               <img src="/illustration-footer.svg" className="h-8" alt="..." />
             </div>
           </div>

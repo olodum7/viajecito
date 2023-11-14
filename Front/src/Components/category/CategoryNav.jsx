@@ -11,7 +11,7 @@ const CategoryNav = () => {
           <div className="col-12 col-md-10">
             <div className="row">
               {mockCategories.map((category) => (
-                <div key={category.id} className="col-6 col-lg-2">
+                <div key={category.id} className="col-6 col-lg-2" data-aos="zoom-in">
                   <div className="category-item">
                     <div dangerouslySetInnerHTML={{ __html: category.icon }} />
                     <p>{category.title}</p>

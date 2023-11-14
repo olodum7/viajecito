@@ -3,19 +3,21 @@
 
 /* Principal */
 
-.btn {
-    background-color: var(--secondary);
+.btn,
+.swal2-confirm {
+    background-color: var(--secondary) !important;
     border-radius: 32px;
-    color: var(--primary);
+    color: var(--primary) !important;
     font-weight: 600;
     padding: 8px 24px;
     text-transform: uppercase;
     transition: all 300ms;
 }
 
-.btn:hover {
-    background-color: var(--primary);
-    color: var(--white);
+.btn:hover,
+.swal2-confirm:hover {
+    background-color: var(--primary) !important;
+    color: var(--white) !important;
 }
 
 
@@ -99,7 +101,8 @@
 
 /* Botones XL */
 
-.btn-lg {
+.btn-lg,
+.swal2-confirm {
     border-radius: 8px;
     width: 100%;
     padding: 16px 32px;
@@ -190,7 +193,7 @@
     border-radius: 64px;
     color: var(--primary);
     margin-right: 8px;
-    padding: 8px 4.5px;
+    padding: 8px 6px;
     transition: all 300ms;
 }
 

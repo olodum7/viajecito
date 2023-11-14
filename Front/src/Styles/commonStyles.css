@@ -76,16 +76,6 @@ h1 {
     margin: 0;
 }
 
-.img-wrapper {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.img-wrapper>img {
-    object-fit: cover;
-    width: 100%;
-}
-
 
 /********** FORMULARIOS **********/
 
@@ -194,6 +184,8 @@ input[type="file"] {
     padding: 10px;
 }
 
+
+/*
 .p-img {
     font-size: 0.8rem;
 }
@@ -235,6 +227,81 @@ input[type="file"] {
     background-color: var(--success) !important;
     padding: 0px !important;
     margin: 10px;
+}
+*/
+
+section#form-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 8rem;
+    margin-bottom: 4em;
+}
+
+section#detail {
+    margin-top: 2.5rem;
+    margin-bottom: 6rem;
+}
+
+section#detail .row:first-child,
+section#detail .container-details {
+    border-bottom: 1px solid var(--primary);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+
+section#detail h1 {
+    color: var(--primary);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+section#detail h2 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+section#detail h3 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+section#detail .container-details .row {
+    margin-bottom: 1rem;
+}
+
+section#detail .container-details .row svg {
+    margin-right: 8px;
+}
+
+section#detail .container-details .row em {
+    color: var(--primary);
+    font-style: normal;
+    font-weight: 600;
+}
+
+section#detail .row:last-child,
+section#detail .container-details .hotel-gallery .row {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+section#detail .container-details .hotel-gallery img {
+    width: 100%;
+}
+
+section#detail .container-itinerary h3 {
+    color: var(--primary);
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+section#detail .container-itinerary h4 {
+    color: var(--primary);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: .4rem !important;
 }
 
 
@@ -287,6 +354,8 @@ input[type="file"] {
     }
 }
 
+
+/*
 .div-img-container {
     max-width: 350px;
     max-height: 180px;
@@ -306,4 +375,4 @@ input[type="file"] {
 
 #list-tour .container-fluid {
     margin-top: 150px;
-}
+} */

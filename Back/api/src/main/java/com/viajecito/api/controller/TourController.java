@@ -80,12 +80,15 @@ public class TourController {
                 return ResponseEntity.badRequest().body(new MensajeRespuesta("error", "La categoria seleccionada no existe."));
             tour.setCategoria(categoria);
 
+            tour.setRating(rating);
             tour.setDuracion(duracion);
             tour.setDificultad(dificultad);
+            tour.setSalidas(salidas);
             tour.setPasajes(pasajes);
             tour.setTransporte(transporte);
             tour.setTraslado(traslado);
             tour.setGuia_es(guia_es);
+            tour.setItinerario(itinerario);
 
             /**** Alojamiento ****/
             Alojamiento alojamiento = alojamientoRepository.findById(alojamientoId).orElse(null);
