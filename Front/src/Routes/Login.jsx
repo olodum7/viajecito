@@ -1,15 +1,17 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import ButtonXL from "../Components/buttons/ButtonXL";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
   const [errors, setErrors] = useState({});
-  const [submit, setSubmit] = useState(false);
+  const [mensaje, setMensaje] = useState(null);
 
   const isEmailValid = (email) => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -17,13 +19,13 @@ const Login = () => {
   };
 
   const validateForm = () => {
-    const { username, password } = formData;
+    const { email, password } = formData;
     const newErrors = {};
 
-    if (!username) {
-      newErrors.username = "El email es obligatorio";
-    } else if (!isEmailValid(username)) {
-      newErrors.username = "El email no es válido";
+    if (!email) {
+      newErrors.email = "El email es obligatorio";
+    } else if (!isEmailValid(email)) {
+      newErrors.email = "El email no es válido";
     }
 
     if (!password) {
@@ -31,6 +33,9 @@ const Login = () => {
     }
 
     setErrors(newErrors);
+
+    // Devuelve true si no hay errores, de lo contrario, false
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleInputChange = (e) => {
@@ -39,17 +44,67 @@ const Login = () => {
       ...formData,
       [id]: value,
     });
+
+    // Limpiar mensajes de error cuando se cambian los valores
+    if (mensaje) {
+      setMensaje(null);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmit(true);
-    validateForm();
 
-    if (Object.keys(errors).length === 0) {
-      // Agregar solicitud al backend
+    // Validar el formulario antes de enviarlo
+    const isFormValid = validateForm();
+
+    if (isFormValid) {
+      const formDataToSend = new FormData();
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("password", formData.password);
+
+      fetch("http://localhost:8089/usuario/login", {
+        method: "POST",
+        body: formDataToSend,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.tipo === "ok") {
+            const userData = {
+              isLoggedIn: "true",
+              email: formData.email, 
+            };
+
+            localStorage.setItem("userData", JSON.stringify(userData));
+
+            // Éxito en el inicio de sesión
+            setMensaje({
+              tipo: "success",
+              texto: "Inicio de sesión exitoso.",
+            });
+            navigate("/");
+          } else {
+            // Error en el inicio de sesión
+            setMensaje({
+              tipo: "error",
+              texto: data.mensaje || "Error en el inicio de sesión.",
+            });
+          }
+        })
+        .catch((error) => {
+          console.error(
+            "Hubo un problema con la solicitud de inicio de sesión:",
+            error
+          );
+          setMensaje({
+            tipo: "error",
+            texto: "Hubo un problema con la solicitud de inicio de sesión.",
+          });
+        });
     } else {
-      console.error("El formulario no es válido. Por favor, corrige los errores.");
+      // Si el formulario no es válido, no se envía y se muestran errores
+      console.error(
+        "El formulario no es válido. Por favor, corrige los errores."
+      );
     }
   };
 
@@ -66,47 +121,60 @@ const Login = () => {
               <div className="card-body">
                 <form className="form-normal" onSubmit={handleSubmit}>
                   <div className="mb-3">
-                    <label htmlFor="username" className="form-label">
-                      Email
+                    <label htmlFor="email" className="form-label">
+                      Email*
                     </label>
                     <input
                       type="text"
-                      className={`form-control ${submit && errors.username ? "is-invalid" : ""}`}
-                      id="username"
-                      value={formData.username}
+                      className={`form-control ${
+                        errors.email ? "is-invalid" : ""
+                      }`}
+                      id="email"
+                      value={formData.email}
                       onChange={handleInputChange}
                     />
-                    {submit && errors.username && (
-                      <div className="invalid-feedback">{errors.username}</div>
+                    {errors.email && (
+                      <div className="invalid-feedback">{errors.email}</div>
                     )}
                   </div>
                   <div className="mb-5">
                     <label htmlFor="password" className="form-label">
-                      Contraseña
+                      Contraseña*
                     </label>
                     <input
                       type="password"
-                      className={`form-control ${submit && errors.password ? "is-invalid" : ""}`}
+                      className={`form-control ${
+                        errors.password ? "is-invalid" : ""
+                      }`}
                       id="password"
                       value={formData.password}
                       onChange={handleInputChange}
                     />
-                    {submit && errors.password && (
+                    {errors.password && (
                       <div className="invalid-feedback">{errors.password}</div>
                     )}
                   </div>
                   <ButtonXL
                     url="#"
                     buttonName="Iniciar sesión"
-                    isSubmit={true} 
+                    isSubmit={true}
                     disabled={Object.keys(errors).length > 0}
                   />
                   <p className="text-center mt-4 mb-0">
                     ¿Aún no tienes cuenta?
-                    <Link className="nav-item nav-link" to="/create">
+                    <Link className="nav-item nav-link" to="/sign-up">
                       Crear cuenta
                     </Link>
                   </p>
+                  {mensaje && (
+                    <div
+                      className={`mt-3 alert alert-${
+                        mensaje.tipo === "error" ? "danger" : "success"
+                      }`}
+                    >
+                      {mensaje.texto}
+                    </div>
+                  )}
                 </form>
               </div>
             </div>

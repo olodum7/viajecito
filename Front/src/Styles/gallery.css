@@ -1,10 +1,12 @@
 .images-grid {
     display: grid;
     width: 100%;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-columns: repeat(4, 1fr);
     grid-auto-flow: dense;
     margin: 1em 0;
+    max-height: 510px;
+    overflow: hidden;
 }
 
 .images-grid>*:first-child {
@@ -16,6 +18,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 50% 50%;
 }
 
 @media (max-width: 1199px) {

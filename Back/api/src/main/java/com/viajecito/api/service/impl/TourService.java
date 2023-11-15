@@ -76,12 +76,15 @@ public class TourService implements ITourService {
         dto.setSubtitulo(d.getSubtitulo());
         dto.setPrecio(d.getPrecio());
         dto.setCategoria(d.getCategoria().getNombre());
+        dto.setRating(d.getRating());
         dto.setDuracion(d.getDuracion());
         dto.setDificultad(d.getDificultad().getDescripcion());
+        dto.setSalidas(d.getSalidas());
         dto.setTransporte(d.getTransporte());
         dto.setTraslado(d.getTraslado());
         dto.setEntradas(d.getEntradas());
         dto.setGuia_es(d.getGuia_es());
+        dto.setItinerario(d.getItinerario());
         dto.setAlojamiento(d.getAlojamiento().getId());
 
         for (Imagen imagen : d.getImagenes())

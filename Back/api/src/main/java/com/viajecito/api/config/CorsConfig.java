@@ -19,6 +19,7 @@ public class CorsConfig implements WebMvcConfigurer{
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOrigin("http://localhost:5173"); // Origen permitido
+        config.addAllowedOrigin("http://127.0.0.1:5173"); // Origen permitido
         config.addAllowedMethod("*"); // Todos los métodos permitidos
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
@@ -28,6 +29,7 @@ public class CorsConfig implements WebMvcConfigurer{
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:5173")
+                .allowedOrigins("http://127.0.0.1:5173")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("Authorization", "Content-Type")
                 .allowCredentials(true);

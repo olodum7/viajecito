@@ -55,12 +55,12 @@ const Gallery = ({ imagenes }) => {
   }, []);
 
   return (
-    <section id="gallery-detail" className="gallery-container">
+    <section id="gallery-detail" className="gallery-container" data-aos="fade-up">
       <div className="container">
         <div className="row">
           <div className="images-grid gap-4">
             {imagenes.slice(0, 5).map((imagen, index) => (
-              <div key={index} onClick={() => openModal(index)}>
+              <div key={index} onClick={() => openModal(index)} className="gallery-detail-img-container">
                 <Image key={imagen} id={imagen} />
               </div>
             ))}

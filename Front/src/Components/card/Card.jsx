@@ -12,10 +12,11 @@ const Card = (props) => {
     subtitulo,
     precio,
     categoria,
+    rating,
     duracion,
     dificultad,
-    imagenes,
-    usuariosFav,
+    salidas,
+    imagenes
   } = props.data;
 
   // Defino las propiedades esperadas
@@ -26,15 +27,16 @@ const Card = (props) => {
       subtitulo: PropTypes.string,
       precio: PropTypes.number,
       categoria: PropTypes.string,
+      rating: PropTypes.string,
       duracion: PropTypes.string,
       dificultad: PropTypes.string,
+      salidas: PropTypes.string,
       imagenes: PropTypes.array,
-      usuariosFav: PropTypes.number,
     }),
   };
 
   return (
-    <div className="card">
+    <div className="card" data-aos="fade-up">
       <div className="img-wrapper">
         <Image key={imagenes[0]} id={imagenes[0]} />
         <Category_pills url="#" categoryName={categoria} />
@@ -42,7 +44,7 @@ const Card = (props) => {
       </div>
       <div className="card-body">
         <div className="card-headers">
-          <Link to={`tour/${id}`} className="card-link"><h2 className="card-h2">{titulo}</h2> </Link>
+          <h2 className="card-h2">{titulo}</h2> 
           <h3 className="mt-2 mb-5">{subtitulo}</h3>
         </div>
         <div className="card-details">
@@ -52,7 +54,7 @@ const Card = (props) => {
                 Desde <strong>USD {precio}</strong>
               </p>
             </div>
-            <div className="col-12 col-md-6 btn-container">
+            <div className="col-12 col-md-5 btn-container">
               <Button url={`tour/${id}`} buttonName="Reservar" />
             </div>
           </div>
@@ -77,7 +79,7 @@ const Card = (props) => {
                   fill="currentColor"
                 ></path>
               </svg>{" "}
-              0{usuariosFav}
+              {rating}
             </div>
             <div className="duration">
               <svg
@@ -143,7 +145,7 @@ const Card = (props) => {
                 <path d="M16 19h6"></path>
                 <path d="M19 16v6"></path>
               </svg>
-              {/* {data.releases} */}
+              {salidas}
             </div>
           </div>
         </div>

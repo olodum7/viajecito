@@ -12,7 +12,7 @@ const Breadcrumb = ({ tourName }) => {
 
     return (
       <li key={name} className={`breadcrumb-item ${isLast ? "active" : ""}`}>
-        {isLast ? tourName : <Link to={routeTo}>{name}</Link>}
+        {isLast ? tourName : <Link to={routeTo}>{name.charAt(0).toUpperCase() + name.slice(1)}</Link>}
       </li>
     );
   });
@@ -37,10 +37,6 @@ const Breadcrumb = ({ tourName }) => {
       </div>
     </div>
   );
-};
-
-Breadcrumb.propTypes = {
-    tourName: PropTypes.number.isRequired,
 };
 
 export default Breadcrumb;

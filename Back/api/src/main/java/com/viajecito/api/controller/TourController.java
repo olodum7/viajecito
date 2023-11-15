@@ -42,13 +42,16 @@ public class TourController {
                                      @RequestParam("subtitulo") String subtitulo,
                                      @RequestParam("precio") Double precio,
                                      @RequestParam("categoria") Long categoriaId,
+                                     @RequestParam("rating") String rating,
                                      @RequestParam("duracion") String duracion,
                                      @RequestParam("dificultad") TourDificultad dificultad,
+                                     @RequestParam("salidas") String salidas,
                                      @RequestParam("pasajes") Boolean pasajes,
                                      @RequestParam("transporte") String transporte,
                                      @RequestParam("traslado") Boolean traslado,
                                      @RequestParam("entradas") String entradas,
                                      @RequestParam("guia") Boolean guia_es,
+                                     @RequestParam("itinerario") String itinerario,
                                      @RequestParam("alojamiento") Long alojamientoId,
                                      @RequestPart("imagenes") List<MultipartFile> imagenes) throws BadRequestException{
 
@@ -77,12 +80,15 @@ public class TourController {
                 return ResponseEntity.badRequest().body(new MensajeRespuesta("error", "La categoria seleccionada no existe."));
             tour.setCategoria(categoria);
 
+            tour.setRating(rating);
             tour.setDuracion(duracion);
             tour.setDificultad(dificultad);
+            tour.setSalidas(salidas);
             tour.setPasajes(pasajes);
             tour.setTransporte(transporte);
             tour.setTraslado(traslado);
             tour.setGuia_es(guia_es);
+            tour.setItinerario(itinerario);
 
             /**** Alojamiento ****/
             Alojamiento alojamiento = alojamientoRepository.findById(alojamientoId).orElse(null);

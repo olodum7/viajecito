@@ -17,13 +17,16 @@ public class TourDTO implements Serializable {
     private String subtitulo;
     private Double precio;
     private String categoria;
+    private String rating;
     private String duracion;
     private String dificultad;
+    private String salidas;
     private Boolean pasajes;
     private String transporte;
     private Boolean traslado;
     private String entradas;
     private Boolean guia_es;
+    private String itinerario;
     private Long alojamiento;
     private Set<Long> imagenes;
     private Long usuariosFav;

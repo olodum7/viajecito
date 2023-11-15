@@ -1,11 +1,8 @@
-.card-title{
-    margin: 0px;
-}
 .form-normal label {
     color: var(--gray);
     display: block;
-    font-size: 0.8rem;
-    margin-bottom: 0.4rem;
+    font-size: .8rem;
+    margin-bottom: .4rem;
 }
 
 .form-normal input[type="text"],
@@ -17,9 +14,9 @@
     border-bottom: 2.5px solid var(--black) !important;
     border-radius: 0 !important;
     color: var(--black) !important;
-    font-size: .8rem !important;
+    font-size: 1.4rem !important;
     font-weight: 600 !important;
-    padding: 5px;
+    margin-bottom: 1rem;
 }
 
 .form-normal input[type="text"]:focus,
@@ -37,7 +34,7 @@
 
 .form-normal .form-control[type="file"] {
     width: 100%;
-    background-color: var(--white) !important;
+    background-color: var(--white)!important;
     border: none;
 }
 
@@ -90,14 +87,17 @@
     }
 }
 
+
 /* Formulario de registro */
+
 #register {
-    background: url("/fondo.png") no-repeat center bottom / cover;
+    background: url('/fondo.png') no-repeat center bottom / cover;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     width: 100%;
-    height: calc(100vh + 120px);
+    /*min-height: calc(100vh - 96px);*/
+    min-height: 100vh;
 }
 
 #register .row {
@@ -108,22 +108,19 @@
 }
 
 #register .register-form-container .card {
-    padding: 40px;
-    margin: 50px;
-    max-width: 500px;
-    width: 100%;
+    padding: 48px;
+    margin-right: 120px;
+    margin-top: 9rem;
+    margin-bottom: 3rem;
+    min-width: 540px;
 }
 
 #register .register-form-container .card h1 {
-    font-size: 1.3rem;
     font-weight: 600;
-    line-height: 1.0
 }
 
 #register .register-form-container .card p {
-    font-size: .9rem;
     color: var(--gray);
-    line-height: 1.0;
 }
 
 #register .register-form-container .card .card-body {
@@ -132,14 +129,13 @@
 
 #register .register-form-container .card .card-body .nav-link {
     display: inline-block;
-    padding: 0 0 0 0.4rem;
+    padding: 0 0 0 .4rem;
 }
 
 @media (min-width: 1400px) {
     #register .container-fluid {
         max-width: 1320px;
     }
-
     #register .register-form-container .card {
         margin-right: 0;
     }
@@ -148,24 +144,26 @@
 @media (max-width: 991px) {
     #register .register-form-container .card {
         margin-right: 0;
-        margin-top: 48px;
-        margin-bottom: 48px;
+        margin-top: 120px;
+        margin-bottom: 32px;
         min-width: 100%;
     }
-
     .container-fluid {
         padding: 0 24px;
     }
 }
 
+
 /* INICIO DE SESION */
+
 #login {
-    background: url("/fondo.png") no-repeat center bottom / cover;
+    background: url('/fondo.png') no-repeat center bottom / cover;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     width: 100%;
-    height: calc(100vh - 150px);
+    /*min-height: calc(100vh - 96px);*/
+    min-height: 100vh;
 }
 
 #login .row {
@@ -178,7 +176,9 @@
 #login .login-form-container .card {
     padding: 48px;
     margin-right: 120px;
-    min-width: 598px;
+    margin-top: 9rem;
+    margin-bottom: 3rem;
+    min-width: 540px;
 }
 
 #login .login-form-container .card h1 {
@@ -195,14 +195,13 @@
 
 #login .login-form-container .card .card-body .nav-link {
     display: inline-block;
-    padding: 0 0 0 0.4rem;
+    padding: 0 0 0 .4rem;
 }
 
 @media (min-width: 1400px) {
     #login .container-fluid {
         max-width: 1320px;
     }
-
     #login .login-form-container .card {
         margin-right: 0;
     }
@@ -211,9 +210,10 @@
 @media (max-width: 991px) {
     #login .login-form-container .card {
         margin-right: 0;
+        margin-top: 120px;
+        margin-bottom: 32px;
         min-width: 100%;
     }
-
     .container-fluid {
         padding: 0 24px;
     }

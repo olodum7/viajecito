@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import Categoria from "../Components/Category/CategoryTour";
-import Lodging from "../Components/Lodging/Lodging";
+import Categoria from "./../Components/category/CategoryTour";
+import Hotel from "../Components/hotel/Hotel";
 
 const AddTour = () => {
   const [mensaje, setMensaje] = useState("");
@@ -9,14 +9,17 @@ const AddTour = () => {
     subtitulo: "",
     precio: 0,
     categoria: 0,
+    rating: "4580",
     duracion: "",
     dificultad: "",
+    salidas: "Lunes y martes",
     pasajes: false,
     transporte: "",
     traslado: false,
     entradas: "",
     guia: false,
     alojamiento: 0,
+    itinerario: "www",
     imagenes: FileList,
   });
 
@@ -206,7 +209,7 @@ const AddTour = () => {
           </div>
         </div>
         <div className="row">
-          <Lodging tourData={{ alojamiento: parseInt(tourData.alojamiento) }} handleChange={handleChange} />
+          <Hotel tourData={{ alojamiento: parseInt(tourData.alojamiento) }} handleChange={handleChange} />
         </div>
         <div className="row">
           <div className="col">

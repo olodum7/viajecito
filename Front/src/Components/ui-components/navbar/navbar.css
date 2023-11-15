@@ -48,6 +48,82 @@
     opacity: .6;
 }
 
+
+/* Navbar-User */
+
+.navbar-user {
+    position: relative;
+}
+
+.navbar-user-greeting {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.navbar-user-greeting p {
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.navbar-user-button button {
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 64px;
+    color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.15rem;
+    width: 48px;
+    height: 48px;
+    transition: all 300ms;
+}
+
+.navbar-user-button button:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.navbar-user .options-panel {
+    background-color: var(--white);
+    border-radius: 1rem;
+    box-shadow: 0 0 16px rgba(118, 63, 196, .2);
+    color: var(--black);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 24px;
+    position: absolute;
+    top: 84px;
+    right: 0;
+    width: 240px;
+}
+
+.navbar-user .options-panel .options-panel-icon {
+    color: var(--primary);
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.navbar-user .options-panel a {
+    color: var(--black);
+    display: block;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    transition: all 450ms;
+}
+
+.navbar-user .options-panel a:last-child {
+    margin-bottom: 0;
+}
+
+.navbar-user .options-panel a:hover,
+.navbar-user .options-panel a:hover svg {
+    color: var(--secondary);
+}
+
 @media (max-width: 991px) {
     .navbar-collapse {
         padding-bottom: 64px;

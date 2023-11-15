@@ -1,12 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import mainLogo from "/public/logo.svg";
+import mainLogo from "/logo.svg";
 import Button from "/src/Components/buttons/Button.jsx";
-
+import NavUser from "./user/NavUser";
 
 const Navbar = () => {
   const location = useLocation();
   const [toggleIcon, setToggleIcon] = useState(false);
+
+  // Verificar si el usuario está logueado
+  const userDataJson = localStorage.getItem("userData");
+  const userData = JSON.parse(userDataJson);
+  const isLogged = userData && userData["isLoggedIn"] === "true";  
+
+  const handleLogout = () => {
+    localStorage.removeItem("userData");
+  };
+
 
   return (
     <header>
@@ -66,18 +76,24 @@ const Navbar = () => {
           </button>
 
           <div className="collapse navbar-collapse gap-3" id="navbarCollapse">
-            <div className="navbar-nav ms-lg-4">
-              <Link className="nav-item nav-link" to="/login">
-                Iniciar sesión
-              </Link>
-            </div>
-
-            { location.pathname !== '/signUp' && (
-              <div className="d-flex align-items-lg-center mt-3 mt-lg-0">
-                <Button url={'signUp'} buttonName="Crear cuenta" />
+            {!isLogged && location.pathname !== "/login" && (
+              <div className="navbar-nav ms-lg-4">
+                <Link className="nav-item nav-link" to="/login">
+                  Iniciar sesión
+                </Link>
               </div>
             )}
 
+            {!isLogged && location.pathname !== "/sign-up" && (
+              <div className="d-flex align-items-lg-center mt-3 mt-lg-0">
+                <Button url={"sign-up"} buttonName="Crear cuenta" />
+              </div>
+            )}
+
+            {isLogged && (
+              // Mostrar el componente NavUser si el usuario está logueado
+              <NavUser data={userData} logout={handleLogout} />
+            )}
           </div>
         </div>
       </nav>
