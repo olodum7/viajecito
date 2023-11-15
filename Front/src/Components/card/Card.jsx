@@ -54,7 +54,7 @@ const Card = (props) => {
                 Desde <strong>USD {precio}</strong>
               </p>
             </div>
-            <div className="col-12 col-md-6 btn-container">
+            <div className="col-12 col-md-5 btn-container">
               <Button url={`tour/${id}`} buttonName="Reservar" />
             </div>
           </div>

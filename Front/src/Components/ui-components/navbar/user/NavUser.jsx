@@ -122,7 +122,7 @@ const NavUser = ({ data, logout }) => {
             </div>
             Mis favoritos
           </Link>
-          <Link to="/" onClick={logout()}>
+          <Link to="/" onClick={logout}>
             <div className="options-panel-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -130,7 +130,7 @@ const NavUser = ({ data, logout }) => {
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
-                stroke-width="2"
+                strokeWidth="2"
                 stroke="currentColor"
                 fill="none"
                 strokeLinecap="round"

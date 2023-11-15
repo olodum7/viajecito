@@ -81,3 +81,7 @@
 [2023-11-13 17:22:27] [ ERROR] [ExceptionController:27] BadRequestException: No se ha encontrado un Tour con ID: 1
 [2023-11-13 17:22:33] [ ERROR] [ExceptionController:27] BadRequestException: No se ha encontrado un Tour con ID: 1
 [2023-11-13 20:06:12] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'com.viajecito.api.model.TourDificultad'; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type [java.lang.String] to type [@org.springframework.web.bind.annotation.RequestParam com.viajecito.api.model.TourDificultad] for value [MEDIA-ALTA]; nested exception is java.lang.IllegalArgumentException: No enum constant com.viajecito.api.model.TourDificultad.MEDIA-ALTA
+[2023-11-14 08:06:54] [ ERROR] [ExceptionController:27] BadRequestException: No se ha encontrado un Tour con ID: 6
+[2023-11-14 08:06:55] [ ERROR] [ExceptionController:27] BadRequestException: No se ha encontrado un Tour con ID: 6
+[2023-11-15 07:09:55] [ ERROR] [ExceptionController:41] BadRuntimeException FALTAN PARAMETROS: El parámetro 'pasajes' es obligatorio
+[2023-11-15 07:10:21] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Boolean'; nested exception is java.lang.IllegalArgumentException: Invalid boolean value [No incluye pasajes aéreos]

@@ -2,7 +2,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, minmax(382px, 520px));
-    grid-gap: 24px;
+    grid-gap: 24px 0;
     margin-bottom: 2em;
 }
 
@@ -68,13 +68,13 @@
     color: var(--black);
     background-color: var(--white);
     border-top: 1.2px solid var(--primary);
+    font-size: .85rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 0;
     padding: .8rem 0 0 0;
-    font-size: 16px;
 }
 
 .card .card-footer svg {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ButtonXL from "../Components/buttons/ButtonXL";
 
@@ -12,7 +12,6 @@ const Login = () => {
 
   const [errors, setErrors] = useState({});
   const [mensaje, setMensaje] = useState(null);
-  const [attemptedSubmit, setAttemptedSubmit] = useState(false);
 
   const isEmailValid = (email) => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -34,6 +33,9 @@ const Login = () => {
     }
 
     setErrors(newErrors);
+
+    // Devuelve true si no hay errores, de lo contrario, false
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleInputChange = (e) => {
@@ -42,13 +44,20 @@ const Login = () => {
       ...formData,
       [id]: value,
     });
+
+    // Limpiar mensajes de error cuando se cambian los valores
+    if (mensaje) {
+      setMensaje(null);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setAttemptedSubmit(true);
 
-    if (Object.keys(errors).length === 0) {
+    // Validar el formulario antes de enviarlo
+    const isFormValid = validateForm();
+
+    if (isFormValid) {
       const formDataToSend = new FormData();
       formDataToSend.append("email", formData.email);
       formDataToSend.append("password", formData.password);
@@ -74,6 +83,7 @@ const Login = () => {
             });
             navigate("/");
           } else {
+            // Error en el inicio de sesión
             setMensaje({
               tipo: "error",
               texto: data.mensaje || "Error en el inicio de sesión.",
@@ -85,13 +95,16 @@ const Login = () => {
             "Hubo un problema con la solicitud de inicio de sesión:",
             error
           );
-          setMensaje({ tipo: data.tipo, texto: data.mensaje });
+          setMensaje({
+            tipo: "error",
+            texto: "Hubo un problema con la solicitud de inicio de sesión.",
+          });
         });
     } else {
-      setMensaje({
-        tipo: "error",
-        texto: "Hubo un problema con la solicitud de inicio de sesión.",
-      });
+      // Si el formulario no es válido, no se envía y se muestran errores
+      console.error(
+        "El formulario no es válido. Por favor, corrige los errores."
+      );
     }
   };
 
@@ -114,13 +127,13 @@ const Login = () => {
                     <input
                       type="text"
                       className={`form-control ${
-                        attemptedSubmit && errors.email ? "is-invalid" : ""
+                        errors.email ? "is-invalid" : ""
                       }`}
                       id="email"
                       value={formData.email}
                       onChange={handleInputChange}
                     />
-                    {attemptedSubmit && errors.email && (
+                    {errors.email && (
                       <div className="invalid-feedback">{errors.email}</div>
                     )}
                   </div>
@@ -131,13 +144,13 @@ const Login = () => {
                     <input
                       type="password"
                       className={`form-control ${
-                        attemptedSubmit && errors.password ? "is-invalid" : ""
+                        errors.password ? "is-invalid" : ""
                       }`}
                       id="password"
                       value={formData.password}
                       onChange={handleInputChange}
                     />
-                    {attemptedSubmit && errors.password && (
+                    {errors.password && (
                       <div className="invalid-feedback">{errors.password}</div>
                     )}
                   </div>

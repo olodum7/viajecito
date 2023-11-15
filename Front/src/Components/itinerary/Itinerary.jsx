@@ -11,19 +11,39 @@ function formatItineraryText(rawText) {
     // Agregar "Día X - " al principio de la sección si no está presente
     const sectionWithDay = section.startsWith("Día ") ? section : `Día ${index + 1} - ${section}`;
 
-    const [titleAndContent, ...paragraphs] = sectionWithDay.split(".");
-    const [title, content] = titleAndContent.split(". ");
+    const paragraphs = sectionWithDay.split(/\n/).filter((paragraph) => paragraph.trim() !== "");
 
-    // Verifica si content está vacío antes de renderizar el párrafo
-    const contentElement = content ? <p className="p-0 m-0">{content}</p> : null;
+    const elements = paragraphs.map((paragraph, paragraphIndex) => {
+      if (paragraph.includes("Mañana:")) {
+        return (
+          <div key={paragraphIndex}>
+            <h5>Mañana:</h5>
+            <p>{paragraph.replace("Mañana:", "")}</p>
+          </div>
+        );
+      } else if (paragraph.includes("Tarde:")) {
+        return (
+          <div key={paragraphIndex}>
+            <h5>Tarde:</h5>
+            <p>{paragraph.replace("Tarde:", "")}</p>
+          </div>
+        );
+      } else if (paragraph.includes("Noche:")) {
+        return (
+          <div key={paragraphIndex}>
+            <h5>Noche:</h5>
+            <p>{paragraph.replace("Noche:", "")}</p>
+          </div>
+        );
+      } else {
+        return <p key={paragraphIndex}>{paragraph}</p>;
+      }
+    });
 
     return (
       <span key={index} className="p-0 mb-4">
-        <h4 className="p-0 m-0">{title}</h4>
-        {contentElement}
-        {paragraphs.length > 0 && (
-          <p className="p-0 m-0">{paragraphs.join(". ")}</p>
-        )}
+        <h4 className="p-0 m-0">{elements[0]}</h4>
+        {elements.slice(1)}
       </span>
     );
   });

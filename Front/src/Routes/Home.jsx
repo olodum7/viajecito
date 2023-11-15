@@ -4,22 +4,27 @@ import Banner from "../Components/ui-components/banner/Banner";
 import Hero from "../Components/ui-components/hero/Hero";
 import CategoryNav from "../Components/category/CategoryNav";
 import { Search } from "../Components/search/Search";
+import Pagination from "../Components/ui-components/pagination/Pagination.jsx";
 
 const Home = () => {
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [toursPerPage, setToursPerPage] = useState(6);
 
   useEffect(() => {
     fetch("http://localhost:8089/tour")
       .then((response) => response.json())
       .then((data) => {
-        setResult(data);
+        // Mezcla aleatoriamente el array de tours una vez al cargar los datos iniciales
+        const shuffledTours = randomArray(data);
+        setResult(shuffledTours);
       })
       .catch((error) => {
         console.error("Error al obtener los tours: \n", error);
       });
   }, []);
 
-  // Función para mostrar las cards de manera aleatoria cada vez que se ingresa al sitio
+  // Función para mostrar las cards de manera aleatoria
   const randomArray = (array) => {
     const random = [...array];
     for (let i = random.length - 1; i > 0; i--) {
@@ -29,8 +34,9 @@ const Home = () => {
     return random;
   };
 
-  // Mezclar aleatoriamente el array de tours
-  const shuffledTours = randomArray(result);
+  const lastTourIndex = currentPage * toursPerPage;
+  const firstTourIndex = lastTourIndex - toursPerPage;
+  const currentTours = result.slice(firstTourIndex, lastTourIndex);
 
   return (
     <>
@@ -43,10 +49,16 @@ const Home = () => {
           <h1>Explora nuestros destinos destacados</h1>
           <p className="mb-5 subtitle">Descubre un mundo de posibilidades</p>
           <div className="cards-wrapper">
-            {shuffledTours.map((tour) => (
+            {currentTours.map((tour) => (
               <Card data={tour} key={tour.id} />
             ))}
           </div>
+          <Pagination
+            totalTours={result.length}
+            toursPerPage={toursPerPage}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
         </section>
 
         <Banner />

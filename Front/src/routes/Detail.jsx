@@ -54,7 +54,7 @@ const Detail = () => {
           <div className="container-details">
             <h3 className="mb-4">Este paquete incluye:</h3>
 
-            {result.pasajes && (
+            {result.transporte && (
               <div className="row">
                 <div className="fly">
                   <svg
@@ -73,7 +73,7 @@ const Detail = () => {
                     <path d="M14.639 10.258l4.83 -1.294a2 2 0 1 1 1.035 3.863l-14.489 3.883l-4.45 -5.02l2.897 -.776l2.45 1.414l2.897 -.776l-3.743 -6.244l2.898 -.777l5.675 5.727z"></path>
                     <path d="M3 21h18"></path>
                   </svg>
-                  Pasajes aéreos
+                  {result.transporte}
                 </div>
               </div>
             )}
@@ -191,7 +191,7 @@ const Detail = () => {
                   {lodging.imagenes &&
                     lodging.imagenes.length > 0 &&
                     lodging.imagenes.slice(0, 3).map((imagen) => (
-                      <div className="col-3">
+                      <div className="col-4">
                         <Image key={imagen} id={imagen} />
                       </div>
                     ))}
