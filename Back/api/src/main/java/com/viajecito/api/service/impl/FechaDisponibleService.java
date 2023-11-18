@@ -19,7 +19,7 @@ public class FechaDisponibleService implements IFechaDisponibleService {
     private final ModelMapper modelMapper; // Use ModelMapper to convert entities to DTOs
 
     @Autowired
-    public IFechaDisponibleService (FechaDisponibleRepository fechaDisponibleRepository, ModelMapper modelMapper) {
+    public FechaDisponibleService (FechaDisponibleRepository fechaDisponibleRepository, ModelMapper modelMapper) {
         this.fechaDisponibleRepository = fechaDisponibleRepository;
         this.modelMapper = modelMapper;
     }
