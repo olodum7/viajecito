@@ -17,8 +17,8 @@ public class ControladorFecha {
     @GetMapping
     public List<FechaDisponible> obtenerFechasDisponibles() {
         List<FechaDisponible> fechasDisponibles = new ArrayList<>();
-        fechasDisponibles.add(new FechaDisponible("2023-11-16", true));
-        fechasDisponibles.add(new FechaDisponible("2023-11-17", false));
+        fechasDisponibles.add(new FechaDisponible());
+        fechasDisponibles.add(new FechaDisponible());
         // Add more dates...
 
         return fechasDisponibles;

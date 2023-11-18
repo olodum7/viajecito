@@ -1,12 +1,14 @@
 package com.viajecito.api.model;
 
+
+
 public enum AlojamientoTipo {
     HOTEL("Hotel"),
     APARTAMENTO("Apartamento"),
     CASA("Casa"),
     DEPARTAMENTO("Departamento"),
     HOSTEL("Hotel"),
-    CABAÑA("Cabaña");
+    CABANA("Cabaña");
 
     private final String descripcion;
     AlojamientoTipo(String descripcion){
