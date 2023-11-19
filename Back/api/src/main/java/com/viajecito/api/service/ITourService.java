@@ -12,5 +12,5 @@ public interface ITourService {
     void eliminar(Long id) throws BadRequestException;
     TourDTO modificar(Tour tour) throws BadRequestException;
     TourDTO buscarPorId(Long id) throws BadRequestException;
-    Collection<TourDTO> listarTodos();
+    Collection<TourDTO> listarTodos() throws BadRequestException;
 }

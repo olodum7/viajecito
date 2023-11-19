@@ -6,6 +6,9 @@ import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.*;
 import com.viajecito.api.repository.IAlojamientoRepository;
 import com.viajecito.api.repository.ICategoriaRepository;
+import com.viajecito.api.repository.ISalidaRepository;
+import com.viajecito.api.repository.ITourRepository;
+import com.viajecito.api.service.ISalidaService;
 import com.viajecito.api.service.ITourService;
 import com.viajecito.api.service.impl.ImagenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 
 @CrossOrigin
@@ -26,6 +30,9 @@ public class TourController {
     private ITourService tourService;
 
     @Autowired
+    private ITourRepository tourRepository;
+
+    @Autowired
     private ImagenService imagenService;
 
     @Autowired
@@ -33,6 +40,9 @@ public class TourController {
 
     @Autowired
     private IAlojamientoRepository alojamientoRepository;
+
+    @Autowired
+    private ISalidaRepository salidaRepository;
 
     @Autowired
     private ObjectMapper mapper;
@@ -45,7 +55,7 @@ public class TourController {
                                      @RequestParam("rating") String rating,
                                      @RequestParam("duracion") String duracion,
                                      @RequestParam("dificultad") TourDificultad dificultad,
-                                     @RequestParam("salidas") String salidas,
+                                     @RequestParam("salidas") List<Long> salidas,
                                      @RequestParam("pasajes") Boolean pasajes,
                                      @RequestParam("transporte") String transporte,
                                      @RequestParam("traslado") Boolean traslado,
@@ -57,7 +67,7 @@ public class TourController {
 
         Tour tour = new Tour();
         Set<Imagen> imagenesTour = new HashSet<>();
-        Set<Long> imagenesId = new HashSet<>();
+        Set<Salida> salidasTour = new HashSet<>();
 
         try {
             /************* VALIDACION DE CAMPOS *************/
@@ -83,7 +93,12 @@ public class TourController {
             tour.setRating(rating);
             tour.setDuracion(duracion);
             tour.setDificultad(dificultad);
-            tour.setSalidas(salidas);
+
+            /**** Salidas ****/
+            for (Long salida : salidas)
+                salidasTour.add(salidaRepository.findById(salida).orElse(null));
+            tour.setSalidas(salidasTour);
+
             tour.setPasajes(pasajes);
             tour.setTransporte(transporte);
             tour.setTraslado(traslado);
@@ -122,13 +137,60 @@ public class TourController {
     }
 
     @PutMapping
-    public ResponseEntity<?> modificar(@RequestBody Tour tour) throws BadRequestException{
-        try{
+    public ResponseEntity<?> modificar(@RequestParam("id") Long id,
+                                       @RequestParam("precio") Double precio,
+                                       @RequestParam("categoria") Long categoriaId,
+                                       @RequestParam("rating") String rating,
+                                       @RequestParam("duracion") String duracion,
+                                       @RequestParam("dificultad") TourDificultad dificultad,
+                                       @RequestParam("salidas") List<Long> salidas,
+                                       @RequestParam("pasajes") Boolean pasajes,
+                                       @RequestParam("transporte") String transporte,
+                                       @RequestParam("traslado") Boolean traslado,
+                                       @RequestParam("entradas") String entradas,
+                                       @RequestParam("guia") Boolean guia_es,
+                                       @RequestParam("itinerario") String itinerario,
+                                       @RequestParam("alojamiento") Long alojamientoId,
+                                       @RequestPart("imagenes") List<MultipartFile> imagenes) throws BadRequestException, IOException {
+
+        try {
+            Tour tour = tourRepository.findById(id).orElseThrow();
+            Set<Salida> salidasTour = new HashSet<>();
+            Categoria categoria = categoriaRepository.findById(categoriaId).orElseThrow();
+            Alojamiento alojamiento = alojamientoRepository.findById(alojamientoId).orElseThrow();
+
+            tour.setPrecio(precio);
+            tour.setCategoria(categoria);
+            tour.setRating(rating);
+            tour.setDuracion(duracion);
+            tour.setDificultad(dificultad);
+
+            /**** Salidas ****/
+            for (Long salida : salidas)
+                salidasTour.add(salidaRepository.findById(salida).orElse(null));
+            tour.setSalidas(salidasTour);
+
+            tour.setPasajes(pasajes);
+            tour.setTransporte(transporte);
+            tour.setTraslado(traslado);
+            tour.setEntradas(entradas);
+            tour.setGuia_es(guia_es);
+            tour.setItinerario(itinerario);
+            tour.setAlojamiento(alojamiento);
+
+            /** Elimino las imagenes existentes del tour y agrego las nuevas **/
+            tour.getImagenes().clear();
+            Set<Imagen> nuevasImagenes = imagenService.agregar(imagenes);
+
+            tour.setImagenes(nuevasImagenes);
+
             tourService.modificar(tour);
+            return ResponseEntity.ok(new MensajeRespuesta("ok", tourService.modificar(tour).getTitulo() + " modificado correctamente."));
         } catch (BadRequestException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
+        } catch (IOException e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
         }
-        return ResponseEntity.ok(new MensajeRespuesta("ok", "Tour " + tour.getTitulo() + " modificado correctamente."));
     }
 
     @GetMapping(path = "/{id}")
@@ -136,8 +198,14 @@ public class TourController {
         return tourService.buscarPorId(id);
     }
 
+    @GetMapping(path = "/disponibles")
+    public TourDTO buscarDisponibles(@RequestParam String  fechaSalida) throws BadRequestException {
+        LocalDate fechaSalidaLocalDate = LocalDate.parse(fechaSalida);
+        return null;
+    }
+
     @GetMapping
-    public Collection<TourDTO> listarTodos(){
+    public Collection<TourDTO> listarTodos() throws BadRequestException {
         return tourService.listarTodos();
     }
 }

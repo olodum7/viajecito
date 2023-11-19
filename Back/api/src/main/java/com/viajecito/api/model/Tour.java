@@ -1,5 +1,6 @@
 package com.viajecito.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,8 +46,11 @@ public class Tour {
     @Enumerated(EnumType.STRING)
     private TourDificultad dificultad;
 
-    @Column(name = "SALIDAS")
-    private String salidas;
+    @ManyToMany
+    @JoinTable(name = "TOUR_SALIDA",
+            joinColumns = @JoinColumn(name = "TOUR_ID"),
+            inverseJoinColumns = @JoinColumn(name = "SALIDA_ID"))
+    private Set<Salida> salidas = new HashSet<>();
 
     @Column(name = "PASAJES")
     private Boolean pasajes;

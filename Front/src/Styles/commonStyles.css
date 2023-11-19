@@ -361,25 +361,7 @@ section#detail .container-itinerary h5 {
     }
 }
 
-
-/*
-.div-img-container {
-    max-width: 350px;
-    max-height: 180px;
-    overflow: hidden;
-    margin-top: 10px;
-    margin-bottom: 50px;
+/** Check entradas en tour **/ 
+#cont-input-entradas{
+    display: none;
 }
-
-.div-img-container img {
-    display: flex;
-    width: 100%;
-}
-
-#list-tour {
-    height: calc(100vh);
-}
-
-#list-tour .container-fluid {
-    margin-top: 150px;
-} */

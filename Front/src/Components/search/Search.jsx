@@ -1,33 +1,35 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { addDays } from 'date-fns';
 import SearchButton from '../buttons/SearchButton'
 
-export function Search() {
-  const [country, setCountry] = useState("");
-  const [people, setPeople] = useState("");
-  const [startDate, setStartDate] = useState(null);
+const Search = ({onSearchClick}) => {
+  const [filter, setFilter] = useState({
+    location: "",
+    people: "",
+    startDate: new Date(), 
+    endDate: addDays(new Date(), 2),
+  });
+  
+  const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
 
-  const handleCountryChange = (event) => {
-    setCountry(event.target.value);
+  const handleChange = (name, value) => {
+    if (name === "startDate") {
+      setStartDate(value);
+      setEndDate(addDays(value, 2))
+    }
+    if (name === "endDate") {
+      setEndDate(value);
+    }
+    setFilter({ ...filter, [name]: value });
   };
 
-  const handlePeopleChange = (event) => {
-    setPeople(event.target.value);
-  };
-
-  const handleStartDateChange = (date) => {
-    setStartDate(date);
-  };
-
-  const handleEndDateChange = (date) => {
-    setEndDate(date);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Aquí puedes realizar alguna acción con los valores seleccionados
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevenir la recarga de la página
+    onSearchClick(filter);
   };
 
   return (
@@ -35,89 +37,54 @@ export function Search() {
       <div className="container">
         <form onSubmit={handleSubmit}>
           <div className="row justify-content-center align-items-center d-flex">
-            <div className="col-lg-3">
-              <div className="form-group">
-                <label htmlFor="country">Lugar</label>
-                <select
-                  id="country"
-                  name="country"
-                  className="form-control"
-                  value={country}
-                  onChange={handleCountryChange}
-                >
-                  <option value="" disabled className="inactive-option">
-                    ¿A dónde te gustaría ir?
-                  </option>
-                  <option value="usa" className="selected-option">
-                    Estados Unidos
-                  </option>
-                  <option value="canada" className="selected-option">
-                    Canadá
-                  </option>
-                  <option value="mexico" className="selected-option">
-                    México
-                  </option>
-                  <option value="spain" className="selected-option">
-                    España
-                  </option>
-                  <option value="france" className="selected-option">
-                    Francia
-                  </option>
-                </select>
-              </div>
-            </div>
             <div className="col-lg-4">
               <div className="form-group">
-                <label htmlFor="people">Personas</label>
-                <select
-                  id="people"
-                  name="people"
+                <label htmlFor="country">Lugar</label>
+                <input
                   className="form-control"
-                  value={people}
-                  onChange={handlePeopleChange}
-                >
-                  <option value="" disabled>
-                    ¿Cuántas personas viajarán contigo?
-                  </option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                </select>
+                  name="location"
+                  type="text"
+                  placeholder="¿A dónde te gustaría ir?"
+                  value={filter.location}
+                  onChange={(e) => handleChange(e.target.name, e.target.value)}
+                />
               </div>
             </div>
             <div className="col-lg-4">
               <div className="form-group">
                 <label htmlFor="date-range">Fechas</label>
+
                 <div className="input-daterange input-group">
-                  <DatePicker
+                  <DatePicker  name="startDate"
                     selected={startDate}
+                    onChange={(date) => handleChange("startDate", date)}
                     selectsStart
                     startDate={startDate}
                     endDate={endDate}
-                    onChange={handleStartDateChange}
-                    placeholderText="Fecha de Ida"
+                    minDate={new Date()}
+                    showIcon
+                    dateFormat="dd/MM/yyyy"
+                    todayButton="Hoy"
+                    placeholderText="Fecha de salida"
                   />
-                  <div className="input-group-addon"></div>
-                  <DatePicker
+                  <DatePicker name="endDate"
                     selected={endDate}
+                    onChange={(date) => handleChange("endDate", date)}
                     selectsEnd
                     startDate={startDate}
                     endDate={endDate}
-                    onChange={handleEndDateChange}
-                    placeholderText="Fecha de Vuelta"
+                    showIcon
+                    isClearable
+                    dateFormat="dd/MM/yyyy"
+                    minDate={addDays(startDate, 2)}
+                    todayButton="Hoy"
+                    placeholderText="Fecha de retorno"
                   />
                 </div>
               </div>
             </div>
-            <div className="col-lg-1">
-              <SearchButton />
+            <div className="col-lg-4 search-button">
+              <SearchButton/>
             </div>
           </div>
         </form>
@@ -125,3 +92,9 @@ export function Search() {
     </section>
   );
 }
+
+Search.propTypes = {
+  onSearchClick: PropTypes.func,
+};
+
+export default Search;

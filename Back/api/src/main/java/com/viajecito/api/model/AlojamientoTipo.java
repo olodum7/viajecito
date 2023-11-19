@@ -6,7 +6,7 @@ public enum AlojamientoTipo {
     CASA("Casa"),
     DEPARTAMENTO("Departamento"),
     HOSTEL("Hotel"),
-    CABAÑA("Cabaña");
+    CABANA("Cabaña");
 
     private final String descripcion;
     AlojamientoTipo(String descripcion){

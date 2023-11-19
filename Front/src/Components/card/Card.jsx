@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Image from "../image/Image";
 import Category_pills from "../category/CategoryPills";
@@ -6,34 +5,7 @@ import Button from "../buttons/Button";
 import FavButton from "../buttons/FavButton";
 
 const Card = (props) => {
-  const {
-    id,
-    titulo,
-    subtitulo,
-    precio,
-    categoria,
-    rating,
-    duracion,
-    dificultad,
-    salidas,
-    imagenes
-  } = props.data;
-
-  // Defino las propiedades esperadas
-  Card.propTypes = {
-    data: PropTypes.shape({
-      id: PropTypes.number,
-      titulo: PropTypes.string,
-      subtitulo: PropTypes.string,
-      precio: PropTypes.number,
-      categoria: PropTypes.string,
-      rating: PropTypes.string,
-      duracion: PropTypes.string,
-      dificultad: PropTypes.string,
-      salidas: PropTypes.string,
-      imagenes: PropTypes.array,
-    }),
-  };
+  const { id, titulo, subtitulo, precio, categoria, rating, duracion, dificultad, salidaDTO, imagenes } = props.data;
 
   return (
     <div className="card" data-aos="fade-up">
@@ -44,7 +16,7 @@ const Card = (props) => {
       </div>
       <div className="card-body">
         <div className="card-headers">
-          <h2 className="card-h2">{titulo}</h2> 
+          <h2 className="card-h2">{titulo}</h2>
           <h3 className="mt-2 mb-5">{subtitulo}</h3>
         </div>
         <div className="card-details">
@@ -99,7 +71,7 @@ const Card = (props) => {
                 <path d="M12 12l2 3"></path>
                 <path d="M12 7v5"></path>
               </svg>
-              {duracion}
+              {duracion} días
             </div>
             <div className="difficulty">
               <svg
@@ -145,13 +117,35 @@ const Card = (props) => {
                 <path d="M16 19h6"></path>
                 <path d="M19 16v6"></path>
               </svg>
-              {salidas}
+              {salidaDTO && salidaDTO.periodo}
             </div>
           </div>
         </div>
       </div>
     </div>
   );
+};
+
+const SalidasPropTypes = PropTypes.shape({
+  fechaDesde: PropTypes.string,
+  fechaHasta: PropTypes.string,
+  periodo: PropTypes.string,
+});
+
+// Defino las propiedades esperadas para Tour
+Card.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.number,
+    titulo: PropTypes.string,
+    subtitulo: PropTypes.string,
+    precio: PropTypes.number,
+    categoria: PropTypes.string,
+    rating: PropTypes.string,
+    duracion: PropTypes.string,
+    dificultad: PropTypes.string,
+    salidaDTO: PropTypes.arrayOf(SalidasPropTypes),
+    imagenes: PropTypes.array,
+  }),
 };
 
 export default Card;

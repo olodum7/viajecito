@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="56ceb4cf-309b-4bb5-94f6-1071cf032ed2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/SalidaDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/Salida.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/repository/ISalidaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/ISalidaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/SalidaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/reporteErrores.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/TourDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/TourDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/AlojamientoTipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/AlojamientoTipo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/Tour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/ITourService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/ITourService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/TourService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/TourService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reporteErrores.log" beforeDir="false" afterPath="$PROJECT_DIR$/reporteErrores.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Components/buttons/SearchButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/buttons/SearchButton.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Components/card/Card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/card/Card.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Components/category/CategoryNav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/category/CategoryNav.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Components/category/CategoryPills.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/category/CategoryPills.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Components/search/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/search/Search.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/AddTour.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/AddTour.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/SignUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/SignUp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Styles/buttons.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Styles/buttons.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Styles/category.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Styles/category.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Styles/commonStyles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Styles/commonStyles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Styles/forms.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Styles/forms.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Styles/search.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Styles/search.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/ImagenController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/UsuarioController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/ImagenDTO.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/SalidaDTO.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/TourDTO.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/Alojamiento.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/AlojamientoTipo.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/Imagen.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/Reserva.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/Salida.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/Tour.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/TourDificultad.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/repository/IImagenRepository.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/repository/ISalidaRepository.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/repository/ITourRepository.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/ISalidaService.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/ITourService.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/ImagenService.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/SalidaService.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/TourService.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2YHG7sKGiTeiyzQpF3FZ69zIb4n" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="56ceb4cf-309b-4bb5-94f6-1071cf032ed2" name="Changes" comment="" />
+      <created>1700174929810</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700174929810</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

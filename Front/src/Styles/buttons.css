@@ -38,6 +38,11 @@
 }
 
 .search-button {
+    display: flex;
+    justify-content: end;
+}
+
+.search-button button{
     background-color: var(--secondary);
     border: none;
     border-radius: 64px;
@@ -46,7 +51,7 @@
     transition: all 300ms;
 }
 
-.search-button:hover {
+.search-button button:hover {
     background-color: var(--primary);
     color: var(--white);
 }

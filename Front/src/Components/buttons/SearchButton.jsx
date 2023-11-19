@@ -1,6 +1,6 @@
 const SearchButton = () => {
   return (
-    <button type="submit" className="search-button">
+    <button type="submit">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="icon icon-tabler icon-tabler-search"
