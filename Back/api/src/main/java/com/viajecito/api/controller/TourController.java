@@ -131,7 +131,7 @@ public class TourController {
                                        @RequestParam("categoria") Long categoriaId,
                                        @RequestParam("rating") String rating,
                                        @RequestParam("duracion") String duracion,
-                                       @RequestParam("dificultad") String dificultadStr,
+                                       @RequestParam("dificultad") TourDificultad dificultad,
                                        @RequestParam("salidas") String salidas,
                                        @RequestParam(value = "pasajes", required = false) String pasajesStr,
                                        @RequestParam("transporte") String transporte,
@@ -139,15 +139,14 @@ public class TourController {
                                        @RequestParam(value = "entradas", required = false) String entradasStr,
                                        @RequestParam(value = "guia", required = false) String guiaStr,
                                        @RequestParam("itinerario") String itinerario,
-                                       @RequestParam("alojamiento") Long alojamientoId,
-                                       @RequestPart("imagenes") List<MultipartFile> imagenes) throws BadRequestException, IOException {
+                                       @RequestParam("alojamiento") Long alojamientoId
+                                       ) throws BadRequestException, IOException {
 
         try {
             Tour tour = tourRepository.findById(id).orElseThrow();
             Categoria categoria = categoriaRepository.findById(categoriaId).orElseThrow();
             Alojamiento alojamiento = alojamientoRepository.findById(alojamientoId).orElseThrow();
 
-            TourDificultad dificultad = TourDificultad.valueOf(dificultadStr);
             Boolean traslado = Boolean.valueOf(trasladoStr);
             Boolean pasajes = Boolean.valueOf(pasajesStr);
             Boolean entradas = Boolean.valueOf(entradasStr);
@@ -167,19 +166,9 @@ public class TourController {
             tour.setItinerario(itinerario);
             tour.setAlojamiento(alojamiento);
 
-            /** Elimino las imagenes existentes del tour y agrego las nuevas **/
-            /*for (Imagen imagenExistente : tour.getImagenes())
-                imagenService.eliminar(imagenExistente.getId());*/
-            tour.getImagenes().clear();
-            Set<Imagen> nuevasImagenes = imagenService.agregar(imagenes);
-
-            tour.setImagenes(nuevasImagenes);
-
             tourService.modificar(tour);
             return ResponseEntity.ok(new MensajeRespuesta("ok", tourService.modificar(tour).getTitulo() + " modificado correctamente."));
         } catch (BadRequestException e) {
-            return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
-        } catch (IOException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
         }
     }

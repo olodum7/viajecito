@@ -19,45 +19,33 @@ const List = () => {
 
   const handleEditCategoria = (tour) => {
     setEditingTour(tour);
-    //setNewCategoria(tour.categoria);
   };
 
   const handleSaveCategoria = () => {
 
-    // const categoriaURL = `http://localhost:8089/categoria`;
-
-    // fetch(categoriaURL, {
-    //   method: 'GET',
-    // })
-    // .then((response) => {
-    //   if (!response.ok) {
-    //     throw new Error('Error al obtener las categorías');
-    //   }
-    //   return response.json();
-    // })
-    // .then((categorias) => {
-    //   console.log('New Category:', newCategoria);
-    //   categorias.forEach((categoria) => {
-    //     console.log('Categoria Nombre:', categoria.nombre);
-    //     if (categoria.nombre === newCategoria) {
-    //       categoriaId = categoria.id;
-    //     }
-    //   });
-    //   setNewCategoria(categoriaId);
-    //   console.log('Category ID:', categoriaId);
-    // })
-    //   .catch((error) => {
-    //     console.error('Error:', error);
-    //   });
-
     const formData = new FormData();
+
     Object.entries(editingTour).forEach(([key, value]) => {
-      key === "categoria" ? formData.append("categoria", newCategoria) :
+
+      if (key === "categoria") {
+        const categoriaId = Number(newCategoria);
+        console.log(categoriaId);
+        formData.append("categoria", categoriaId);
+      } else if (key === "dificultad") {
+        formData.append("dificultad", value.toUpperCase());
+      } else {
         formData.append(key, value);
+        console.log(
+          "key: " + key + " value: " + value
+        );
+      }
     });
+
+    
+    setEditingTour(formData);
     console.log(editingTour);
     console.log(newCategoria);
-    console.log(formData);
+    console.log(editingTour.id);
 
     fetch(`http://localhost:8089/tour`, {
       method: "PUT",
@@ -67,7 +55,7 @@ const List = () => {
       .then(() => {
         setTours((prevTours) =>
           prevTours.map((tour) =>
-            tour.id === editingTour.id ? { ...tour, categoria: newCategoria } : tour
+            tour.id === editingTour.id ? { ...tour, categoria: newCategoria} : tour
           )
         );
         setEditingTour(null);
@@ -107,10 +95,9 @@ const List = () => {
             {editingTour === tour ? (
               <div className="row" id="categoria">
                 <Categoria
-                  tourData={{ categoria: parseInt(newCategoria) }}
+                  tourData={{ categoria: parseInt(newCategoria)}}
                   handleChange={(e) => setNewCategoria(e.target.value)}
                 />
-
                 <td><button onClick={handleSaveCategoria}>
                   Guardar Categoría
                 </button></td>
