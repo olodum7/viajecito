@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import Categoria from "./../Components/category/CategoryTour";
+import PropTypes from 'prop-types';
 
 const List = () => {
   const [tours, setTours] = useState([]);
   const [editingTour, setEditingTour] = useState(null);
   const [newCategoria, setNewCategoria] = useState("");
+  const [categories, setCategorias] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:8089/tour")
@@ -14,6 +16,15 @@ const List = () => {
       })
       .catch((error) => {
         console.error("Error al obtener los tours: \n", error);
+      });
+
+      fetch("http://localhost:8089/categoria")
+      .then((response) => response.json())
+      .then((data) => {
+        setCategorias(data);
+      })
+      .catch((error) => {
+        console.error("Error al obtener las categorías: \n", error);
       });
   }, []);
 
@@ -55,7 +66,7 @@ const List = () => {
       .then(() => {
         setTours((prevTours) =>
           prevTours.map((tour) =>
-            tour.id === editingTour.id ? { ...tour, categoria: newCategoria} : tour
+          tour.id === editingTour.id ? { ...tour, categoria: findCategoriaName(newCategoria) } : tour
           )
         );
         setEditingTour(null);
@@ -82,6 +93,11 @@ const List = () => {
       });
   };
 
+  const findCategoriaName = (categoriaId) => {
+    const categoria = categories.find((cat) => cat.id === Number(categoriaId));
+    return categoria ? categoria.nombre : categoriaId; // Retorna el nombre si se encuentra, de lo contrario el ID
+  };
+
   return (
     <table class="table">
       <thead><tr>
@@ -97,6 +113,7 @@ const List = () => {
                 <Categoria
                   tourData={{ categoria: parseInt(newCategoria)}}
                   handleChange={(e) => setNewCategoria(e.target.value)}
+                  categories={categories}
                 />
                 <td><button onClick={handleSaveCategoria}>
                   Guardar Categoría

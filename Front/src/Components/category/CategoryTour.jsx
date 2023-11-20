@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
-const CategoryTour = ({ tourData, handleChange }) => {
+const CategoryTour = ({ tourData, handleChange, categories }) => {
     const [categorias, setCategorias] = useState([]);
     const [descripcionCategoria, setDescripcionCategoria] = useState("");
 
@@ -60,6 +60,7 @@ const CategoryTour = ({ tourData, handleChange }) => {
 CategoryTour.propTypes = {
     tourData: PropTypes.shape({
         categoria: PropTypes.number.isRequired,
+        categories: PropTypes.array.isRequired,
     }).isRequired,
     handleChange: PropTypes.func.isRequired
 };
