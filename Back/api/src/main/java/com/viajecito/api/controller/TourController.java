@@ -6,6 +6,7 @@ import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.*;
 import com.viajecito.api.repository.IAlojamientoRepository;
 import com.viajecito.api.repository.ICategoriaRepository;
+import com.viajecito.api.repository.ITourRepository;
 import com.viajecito.api.service.ITourService;
 import com.viajecito.api.service.impl.ImagenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class TourController {
     private IAlojamientoRepository alojamientoRepository;
 
     @Autowired
+    private ITourRepository tourRepository;
+
+    @Autowired
     private ObjectMapper mapper;
 
     @PostMapping
@@ -50,7 +54,7 @@ public class TourController {
                                      @RequestParam("transporte") String transporte,
                                      @RequestParam("traslado") Boolean traslado,
                                      @RequestParam("entradas") String entradas,
-                                     @RequestParam("guia") Boolean guia_es,
+                                     @RequestParam("guia") Boolean guia,
                                      @RequestParam("itinerario") String itinerario,
                                      @RequestParam("alojamiento") Long alojamientoId,
                                      @RequestPart("imagenes") List<MultipartFile> imagenes) throws BadRequestException{
@@ -87,7 +91,7 @@ public class TourController {
             tour.setPasajes(pasajes);
             tour.setTransporte(transporte);
             tour.setTraslado(traslado);
-            tour.setGuia_es(guia_es);
+            tour.setGuia(guia);
             tour.setItinerario(itinerario);
 
             /**** Alojamiento ****/
@@ -122,13 +126,62 @@ public class TourController {
     }
 
     @PutMapping
-    public ResponseEntity<?> modificar(@RequestBody Tour tour) throws BadRequestException{
-        try{
+    public ResponseEntity<?> modificar(@RequestParam("id") Long id,
+                                       @RequestParam("precio") Double precio,
+                                       @RequestParam("categoria") Long categoriaId,
+                                       @RequestParam("rating") String rating,
+                                       @RequestParam("duracion") String duracion,
+                                       @RequestParam("dificultad") String dificultadStr,
+                                       @RequestParam("salidas") String salidas,
+                                       @RequestParam(value = "pasajes", required = false) String pasajesStr,
+                                       @RequestParam("transporte") String transporte,
+                                       @RequestParam(value = "traslado", required = false) String trasladoStr,
+                                       @RequestParam(value = "entradas", required = false) String entradasStr,
+                                       @RequestParam(value = "guia", required = false) String guiaStr,
+                                       @RequestParam("itinerario") String itinerario,
+                                       @RequestParam("alojamiento") Long alojamientoId,
+                                       @RequestPart("imagenes") List<MultipartFile> imagenes) throws BadRequestException, IOException {
+
+        try {
+            Tour tour = tourRepository.findById(id).orElseThrow();
+            Categoria categoria = categoriaRepository.findById(categoriaId).orElseThrow();
+            Alojamiento alojamiento = alojamientoRepository.findById(alojamientoId).orElseThrow();
+
+            TourDificultad dificultad = TourDificultad.valueOf(dificultadStr);
+            Boolean traslado = Boolean.valueOf(trasladoStr);
+            Boolean pasajes = Boolean.valueOf(pasajesStr);
+            Boolean entradas = Boolean.valueOf(entradasStr);
+            Boolean guia = Boolean.valueOf(guiaStr);
+
+            tour.setPrecio(precio);
+            tour.setCategoria(categoria);
+            tour.setRating(rating);
+            tour.setDuracion(duracion);
+            tour.setDificultad(dificultad);
+            tour.setSalidas(salidas);
+            tour.setPasajes(pasajes);
+            tour.setTransporte(transporte);
+            tour.setTraslado(traslado);
+            tour.setEntradas(String.valueOf(entradas));
+            tour.setGuia(guia);
+            tour.setItinerario(itinerario);
+            tour.setAlojamiento(alojamiento);
+
+            /** Elimino las imagenes existentes del tour y agrego las nuevas **/
+            /*for (Imagen imagenExistente : tour.getImagenes())
+                imagenService.eliminar(imagenExistente.getId());*/
+            tour.getImagenes().clear();
+            Set<Imagen> nuevasImagenes = imagenService.agregar(imagenes);
+
+            tour.setImagenes(nuevasImagenes);
+
             tourService.modificar(tour);
+            return ResponseEntity.ok(new MensajeRespuesta("ok", tourService.modificar(tour).getTitulo() + " modificado correctamente."));
         } catch (BadRequestException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
+        } catch (IOException e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
         }
-        return ResponseEntity.ok(new MensajeRespuesta("ok", "Tour " + tour.getTitulo() + " modificado correctamente."));
     }
 
     @GetMapping(path = "/{id}")

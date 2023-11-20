@@ -25,7 +25,7 @@ public class TourDTO implements Serializable {
     private String transporte;
     private Boolean traslado;
     private String entradas;
-    private Boolean guia_es;
+    private Boolean guia;
     private String itinerario;
     private Long alojamiento;
     private Set<Long> imagenes;

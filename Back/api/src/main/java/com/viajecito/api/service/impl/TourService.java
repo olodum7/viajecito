@@ -45,9 +45,6 @@ public class TourService implements ITourService {
 
     @Override
     public TourDTO modificar(Tour tour) throws BadRequestException {
-        /**** Controlo que el titulo no se repita ****/
-        if (tourRepository.findByTitulo(tour.getTitulo()).isPresent())
-            throw new BadRequestException("Ya existe un tour con el titulo ingresado.");
         return toDTO(tourRepository.save(tour));
     }
 
@@ -83,7 +80,7 @@ public class TourService implements ITourService {
         dto.setTransporte(d.getTransporte());
         dto.setTraslado(d.getTraslado());
         dto.setEntradas(d.getEntradas());
-        dto.setGuia_es(d.getGuia_es());
+        dto.setGuia(d.getGuia());
         dto.setItinerario(d.getItinerario());
         dto.setAlojamiento(d.getAlojamiento().getId());
 

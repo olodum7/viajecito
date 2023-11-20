@@ -5,7 +5,6 @@ const List = () => {
   const [tours, setTours] = useState([]);
   const [editingTour, setEditingTour] = useState(null);
   const [newCategoria, setNewCategoria] = useState("");
-  const [tourDetails, setTourDetails] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:8089/tour")
@@ -20,32 +19,44 @@ const List = () => {
 
   const handleEditCategoria = (tour) => {
     setEditingTour(tour);
-    setNewCategoria(tour.categoria);
-
-    fetch(`http://localhost:8089/tour/${tour.id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setTourDetails(data);
-      })
-      .catch((error) => {
-        console.error("Error al obtener los detalles del tour: \n", error);
-      });
+    //setNewCategoria(tour.categoria);
   };
 
   const handleSaveCategoria = () => {
-    // Validaciones de campos aquí
-    if (isNaN(parseInt(newCategoria))) {
-      console.error("La nueva categoría no es un número válido.");
-      return;
-    }
+
+    // const categoriaURL = `http://localhost:8089/categoria`;
+
+    // fetch(categoriaURL, {
+    //   method: 'GET',
+    // })
+    // .then((response) => {
+    //   if (!response.ok) {
+    //     throw new Error('Error al obtener las categorías');
+    //   }
+    //   return response.json();
+    // })
+    // .then((categorias) => {
+    //   console.log('New Category:', newCategoria);
+    //   categorias.forEach((categoria) => {
+    //     console.log('Categoria Nombre:', categoria.nombre);
+    //     if (categoria.nombre === newCategoria) {
+    //       categoriaId = categoria.id;
+    //     }
+    //   });
+    //   setNewCategoria(categoriaId);
+    //   console.log('Category ID:', categoriaId);
+    // })
+    //   .catch((error) => {
+    //     console.error('Error:', error);
+    //   });
 
     const formData = new FormData();
-    Object.entries(tourDetails).forEach(([key, value]) => {
-      formData.append(key, value);
+    Object.entries(editingTour).forEach(([key, value]) => {
+      key === "categoria" ? formData.append("categoria", newCategoria) :
+        formData.append(key, value);
     });
-
-    formData.append('categoria', newCategoria);
-
+    console.log(editingTour);
+    console.log(newCategoria);
     console.log(formData);
 
     fetch(`http://localhost:8089/tour`, {
@@ -56,7 +67,7 @@ const List = () => {
       .then(() => {
         setTours((prevTours) =>
           prevTours.map((tour) =>
-            tour.id === tourDetails.id ? { ...tour, categoria: newCategoria } : tour
+            tour.id === editingTour.id ? { ...tour, categoria: newCategoria } : tour
           )
         );
         setEditingTour(null);
@@ -68,11 +79,12 @@ const List = () => {
   };
 
   const handleDeleteTour = (id) => {
+    console.log();
     fetch(`http://localhost:8089/tour/${id}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then(() => {
         setTours((prevTours) =>
           prevTours.filter((tour) => tour.id !== id)
         );
@@ -95,7 +107,7 @@ const List = () => {
             {editingTour === tour ? (
               <div className="row" id="categoria">
                 <Categoria
-                  tourData={{ categoria: parseInt(tour.categoria) }}
+                  tourData={{ categoria: parseInt(newCategoria) }}
                   handleChange={(e) => setNewCategoria(e.target.value)}
                 />
 
@@ -116,7 +128,7 @@ const List = () => {
             )}
           </tr>
         ))}
-    </tbody>
+      </tbody>
     </table>
   );
 };

@@ -60,8 +60,8 @@ public class Tour {
     @Column(name = "ENTRADAS")
     private String entradas;
 
-    @Column(name = "GUIA_ES")
-    private Boolean guia_es;
+    @Column(name = "GUIA")
+    private Boolean guia;
 
     @Column(name = "ITINERARIO", columnDefinition = "TEXT")
     private String itinerario;
