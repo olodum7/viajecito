@@ -1,6 +1,29 @@
-const FavButton = () => {
+import { useContextGlobal } from "./../utils/global.context";
+import showToastMessage from "./../utils/toast.notifications";
+
+const FavButton = ({ tour }) => {
+  const { toursState, dispatch } = useContextGlobal();
+
+  const isFavorite = toursState.favs.some((item) => item.id === tour.id); 
+
+  const addFav = () => {
+    let favs = toursState.favs || []; 
+
+    const alreadyExists = favs.some((item) => item.id === tour.id);
+
+    if (!alreadyExists) {
+      dispatch({ type: "ADD_FAVS", payload: tour });
+      showToastMessage("success");
+    } else {
+      dispatch({ type: "REMOVE_FAVS", payload: tour });
+      showToastMessage("error");
+    }
+  };
+
+  const buttonClass = isFavorite ? "fav-btn active" : "fav-btn";
+
   return (
-    <div className="fav-btn">
+    <div className={buttonClass} onClick={addFav}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="icon icon-tabler icon-tabler-heart"

@@ -1,9 +1,27 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import ButtonXL from "../Components/buttons/ButtonXL";
 
+import { useContextGlobal } from "./../Components/utils/global.context";
+
 const Login = () => {
+  const { toursState, dispatch } = useContextGlobal();
+
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.fromProtectedRoute) {
+      Swal.fire({
+        title: 'Autenticación Requerida',
+        text: 'Debes estar logueado para ver ese contenido',
+        icon: 'info',
+        confirmButtonText: 'Ok'
+      });
+    }
+  }, [location]);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -71,10 +89,15 @@ const Login = () => {
           if (data.tipo === "ok") {
             const userData = {
               isLoggedIn: "true",
-              email: formData.email, 
+              id: data.id,
+              nombre: data.nombre,
+              apellido: data.apellido,
+              email: formData.email,
+              tipo: data.privilegios[0].authority,
             };
 
             localStorage.setItem("userData", JSON.stringify(userData));
+            dispatch({ type: "LOGIN", payload: userData });
 
             // Éxito en el inicio de sesión
             setMensaje({

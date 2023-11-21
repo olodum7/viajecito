@@ -1,37 +1,64 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useContextGlobal } from "./../../../utils/global.context";
 
-const NavUser = ({ data, logout }) => {
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [showOptions, setShowOptions] = useState(false);
+const NavUser = ({ logout, action, closeMenu }) => {
+  const { dispatch } = useContextGlobal();
+
+  const userData = JSON.parse(localStorage.getItem('userData'));
+  const [nombre, setNombre] = useState(userData.nombre);
+  const [apellido, setApellido] = useState(userData.apellido);
+  const [showOptions, setShowOptions] = useState(window.innerWidth < 992);
+
+  const optionsPanelRef = useRef(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:8089/usuario/?email=${data.email}`
-        );
-
-        if (response.ok) {
-          const userData = await response.json();
-          setNombre(userData.nombre);
-          setApellido(userData.apellido);
-        } else {
-          console.error("Error al obtener nombre y apellido del usuario.");
-        }
-      } catch (error) {
-        console.error("Error de red:", error);
+    const handleClickOutside = (event) => {
+      if (
+        optionsPanelRef.current &&
+        !optionsPanelRef.current.contains(event.target)
+      ) {
+        setShowOptions(false);
       }
     };
 
-    fetchData();
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 992) {
+        setShowOptions(true);
+      } else {
+        setShowOptions(false);
+      }
+    };
+  
+    handleResize();
+  
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    setShowOptions(action);
+  }, [action]);  
 
   const toggleOptions = () => {
     setShowOptions(!showOptions);
   };
-
+  
+  const handleOptionSelect = () => {
+    closeMenu();
+    toggleOptions();
+  };  
+  
   return (
     <div className="navbar-user">
       <div className="container">
@@ -52,8 +79,8 @@ const NavUser = ({ data, logout }) => {
         </div>
       </div>
       {showOptions && (
-        <div className="options-panel">
-          <Link>
+        <div className="options-panel" ref={optionsPanelRef}>
+          <Link to="/profile" onClick={handleOptionSelect}>
             <div className="options-panel-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +102,7 @@ const NavUser = ({ data, logout }) => {
             </div>
             Mis datos
           </Link>
-          <Link>
+          <Link onClick={handleOptionSelect}>
             <div className="options-panel-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +125,7 @@ const NavUser = ({ data, logout }) => {
             </div>
             Mis reservas
           </Link>
-          <Link>
+          <Link to="/profile/favs" onClick={handleOptionSelect}>
             <div className="options-panel-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +149,13 @@ const NavUser = ({ data, logout }) => {
             </div>
             Mis favoritos
           </Link>
-          <Link to="/" onClick={logout}>
+          <Link
+            to="/"
+            onClick={() => {
+              logout();
+              handleOptionSelect();
+            }}
+          >
             <div className="options-panel-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

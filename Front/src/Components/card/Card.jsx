@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Image from "../image/Image";
 import Category_pills from "../category/CategoryPills";
@@ -32,7 +31,7 @@ const Card = (props) => {
       dificultad: PropTypes.string,
       salidas: PropTypes.string,
       imagenes: PropTypes.array,
-    }),
+    }), 
   };
 
   return (
@@ -40,7 +39,7 @@ const Card = (props) => {
       <div className="img-wrapper">
         <Image key={imagenes[0]} id={imagenes[0]} />
         <Category_pills url="#" categoryName={categoria} />
-        <FavButton />
+        <FavButton tour={props.data} />
       </div>
       <div className="card-body">
         <div className="card-headers">

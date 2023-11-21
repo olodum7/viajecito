@@ -1,7 +1,9 @@
 package com.viajecito.api.service.impl;
 
+import com.viajecito.api.dto.TourDTO;
 import com.viajecito.api.dto.UsuarioDTO;
 import com.viajecito.api.exception.BadRequestException;
+import com.viajecito.api.model.Tour;
 import com.viajecito.api.model.Usuario;
 import com.viajecito.api.repository.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,4 +60,17 @@ public class UsuarioService implements UserDetailsService {
         System.out.println(passInDB);
         return passInDB.equals(password);
     }
+
+    public UsuarioDTO buscarPorId(Long id) throws BadRequestException {
+        Usuario encontrado = usuarioRepository.findById(id)
+                .orElseThrow(() -> new
+                        BadRequestException("No se ha encontrado un usuario con ID: " + id));
+        return toDTO(encontrado);
+    }
+    public void eliminar(Long id) throws BadRequestException {
+        if(buscarPorId(id) == null)
+            throw new BadRequestException("El usuario a eliminar no existe.");
+        usuarioRepository.deleteById(id);
+    }
+
 }
