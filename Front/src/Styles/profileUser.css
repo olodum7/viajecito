@@ -1,0 +1,19 @@
+#profile-user .content-wrapper {
+    padding: 0;
+}
+
+.profile-header {
+    background-color: var(--secondary);
+    color: var(--primary);
+    padding: 64px 0 8px 0;
+    width: 100%;
+}
+
+@media (max-width: 767px) {
+    #profile-user .btn {
+        font-size: 1rem;
+        margin-bottom: 48px;
+        padding: 16px;
+        width: 100%;
+    }
+}

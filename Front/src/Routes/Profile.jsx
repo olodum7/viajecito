@@ -9,14 +9,14 @@ import showToastMessage from "./../Components/utils/toast.notifications";
 const Profile = () => {
   const navigate = useNavigate();
   const { toursState, dispatch } = useContextGlobal();
-  const { id, nombre, apellido, email, tipo, imagenPerfil } = toursState.userData || {};
+  const { id, nombre, apellido, email, tipo } = toursState.userData || {};
 
   const deleteAccount = async () => {
     const result = await Swal.fire({
       title: "¿Quieres borrar tu cuenta?",
       text: "Esta acción es irreversible y borrará tu cuenta permanentemente.",
       icon: "warning",
-      customClass: 'modal-delete',
+      customClass: "modal-delete",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "F1406B",
@@ -35,7 +35,6 @@ const Profile = () => {
           dispatch({ type: "LOGOUT" });
           navigate("/");
           showToastMessage("deleteUser");
-          
         } else {
           console.error("Error al borrar la cuenta");
         }
@@ -46,31 +45,47 @@ const Profile = () => {
   };
 
   return (
-    <main>
-      <Breadcrumb tourName="Mis datos" />
-      <div className="container">
-        <section className="row content-wrapper">
-          <div className="col-md-4">
-            <img
-              src={imagenPerfil || "path_to_default_image.jpg"}
-              alt="Imagen de perfil"
-              className="img-fluid rounded-circle"
-            />
+    <main id="profile-user">
+      <section className="profile-header">
+        <div className="container-xl">
+          <div className="row">
+            <h1>Datos de perfil</h1>
           </div>
+        </div>
+      </section>
+      <Breadcrumb tourName="Mis datos" />
+      <div className="container-xl">
+        <section className="content-wrapper">
+          <div className="row justify-content-md-center gap-4">
+            <div className="col-2 col-md-2">
+              <img
+                src="./avatar.png"
+                alt="Imagen de perfil"
+                className="img-fluid rounded-circle"
+              />
+            </div>
 
-          <div className="col-md-8">
-            <h3>Datos del Usuario</h3>
-            <p>Email: {email}</p>
-            <p>Nombre: {nombre}</p>
-            <p>Apellido: {apellido}</p>
-            <p className="mb-3">Privilegios: {tipo}</p>
+            <div className="col-md-4">
+              <p>
+                <strong>Email:</strong> {email}
+              </p>
+              <p>
+                <strong>Nombre:</strong> {nombre}
+              </p>
+              <p>
+                <strong>Apellido:</strong> {apellido}
+              </p>
+              <p className="mb-4">
+                <strong>Privilegios:</strong> {tipo}
+              </p>
 
-            <Button
-              url=""
-              buttonName="Borrar cuenta"
-              action={deleteAccount}
-              customClass="delete-btn"
-            />
+              <Button
+                url=""
+                buttonName="Borrar cuenta"
+                action={deleteAccount}
+                customClass="delete-btn"
+              />
+            </div>
           </div>
         </section>
       </div>

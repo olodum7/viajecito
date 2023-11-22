@@ -15,8 +15,17 @@ const Login = () => {
   useEffect(() => {
     if (location.state?.fromProtectedRoute) {
       Swal.fire({
-        title: 'Autenticación Requerida',
+        title: 'Autenticación requerida',
         text: 'Debes estar logueado para ver ese contenido',
+        icon: 'info',
+        confirmButtonText: 'Ok'
+      });
+    }
+
+    if (location.state?.fromFavButton) {
+      Swal.fire({
+        title: 'Autenticación requerida',
+        text: 'Debes estar logueado para gestionar tus favoritos',
         icon: 'info',
         confirmButtonText: 'Ok'
       });

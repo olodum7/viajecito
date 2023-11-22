@@ -1,10 +1,13 @@
 import { useContextGlobal } from "./../utils/global.context";
 import showToastMessage from "./../utils/toast.notifications";
+import { useNavigate } from "react-router-dom";
 
 const FavButton = ({ tour }) => {
   const { toursState, dispatch } = useContextGlobal();
+  const navigate = useNavigate();
 
   const isFavorite = toursState.favs.some((item) => item.id === tour.id); 
+  const isLoggedIn = !!localStorage.getItem('userData');
 
   const addFav = () => {
     let favs = toursState.favs || []; 
@@ -20,10 +23,18 @@ const FavButton = ({ tour }) => {
     }
   };
 
-  const buttonClass = isFavorite ? "fav-btn active" : "fav-btn";
+  const buttonClass = isLoggedIn ? (isFavorite ? "fav-btn active" : "fav-btn") : "fav-btn";
+
+  const handleButtonClick = () => {
+    if (isLoggedIn) {
+      addFav();
+    } else {
+      navigate("/login", { state: { fromFavButton: true } }) ;
+    }
+  };
 
   return (
-    <div className={buttonClass} onClick={addFav}>
+    <div className={buttonClass} onClick={handleButtonClick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="icon icon-tabler icon-tabler-heart"

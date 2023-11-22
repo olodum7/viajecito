@@ -124,6 +124,11 @@
     color: var(--secondary);
 }
 
+.navbar-user .active-link,
+.navbar-user .active-link svg {
+    color: var(--secondary) !important;
+}
+
 @media (max-width: 991px) {
     .navbar-collapse {
         padding-bottom: 64px;

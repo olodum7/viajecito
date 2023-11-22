@@ -11,11 +11,12 @@ import List from "./Routes/List";
 import Favs from "./Routes/Favs";
 import Context from "./Components/utils/global.context";
 
-import ProtectedRoute from "./Components/utils/ProtectedRoute"; 
+import ProtectedRoute from "./Components/utils/ProtectedRoute";
 
 // Toast notification
 import { ToastContainer } from "react-toastify";
 import Profile from "./Routes/Profile";
+import Reservation from "./Routes/Reservation";
 
 createRoot(document.getElementById("root")).render(
   <Context>
@@ -34,6 +35,14 @@ createRoot(document.getElementById("root")).render(
             element={
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="reservation"
+            element={
+              <ProtectedRoute>
+                <Reservation />
               </ProtectedRoute>
             }
           />

@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useContextGlobal } from "./../../../utils/global.context";
 
 const NavUser = ({ logout, action, closeMenu }) => {
   const { dispatch } = useContextGlobal();
 
-  const userData = JSON.parse(localStorage.getItem('userData'));
+  const location = useLocation();
+  const [currentPage, setCurrentPage] = useState(location.pathname);
+
+  const handleLinkClick = (path) => {
+    setCurrentPage(path);
+  };
+
+  const userData = JSON.parse(localStorage.getItem("userData"));
   const [nombre, setNombre] = useState(userData.nombre);
   const [apellido, setApellido] = useState(userData.apellido);
   const [showOptions, setShowOptions] = useState(window.innerWidth < 992);
@@ -37,28 +44,28 @@ const NavUser = ({ logout, action, closeMenu }) => {
         setShowOptions(false);
       }
     };
-  
+
     handleResize();
-  
-    window.addEventListener('resize', handleResize);
+
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   useEffect(() => {
     setShowOptions(action);
-  }, [action]);  
+  }, [action]);
 
   const toggleOptions = () => {
     setShowOptions(!showOptions);
   };
-  
+
   const handleOptionSelect = () => {
     closeMenu();
     toggleOptions();
-  };  
-  
+  };
+
   return (
     <div className="navbar-user">
       <div className="container">
@@ -80,7 +87,14 @@ const NavUser = ({ logout, action, closeMenu }) => {
       </div>
       {showOptions && (
         <div className="options-panel" ref={optionsPanelRef}>
-          <Link to="/profile" onClick={handleOptionSelect}>
+          <Link
+            to="/profile"
+            onClick={() => {
+              handleLinkClick("/profile");
+              handleOptionSelect();
+            }}
+            className={currentPage === "/profile" ? "active-link" : ""}
+          >
             <div className="options-panel-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +116,14 @@ const NavUser = ({ logout, action, closeMenu }) => {
             </div>
             Mis datos
           </Link>
-          <Link onClick={handleOptionSelect}>
+          <Link
+            to="/reservation"
+            onClick={() => {
+              handleLinkClick("/reservation");
+              handleOptionSelect();
+            }}
+            className={currentPage === "/reservation" ? "active-link" : ""}
+          >
             <div className="options-panel-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +146,14 @@ const NavUser = ({ logout, action, closeMenu }) => {
             </div>
             Mis reservas
           </Link>
-          <Link to="/profile/favs" onClick={handleOptionSelect}>
+          <Link
+            to="/profile/favs"
+            onClick={() => {
+              handleLinkClick("/profile/favs");
+              handleOptionSelect();
+            }}
+            className={currentPage === "/profile/favs" ? "active-link" : ""}
+          >
             <div className="options-panel-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
