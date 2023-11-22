@@ -20,6 +20,28 @@
     color: var(--white) !important;
 }
 
+.btn.delete-btn {
+    background-color: var(--white) !important;
+    border: 2px solid var(--error) !important;
+    border-radius: 8px;
+    color: var(--error) !important;
+    font-size: .8rem;
+    padding: 8px 16px;
+    transition: all 300ms;
+}
+
+.btn.delete-btn:hover {
+    background-color: var(--error) !important;
+    color: var(--white) !important;
+}
+
+@media (max-width: 992px) {
+    .navbar-collapse .btn {
+        background-color: transparent !important;
+        border-radius: 0;
+    }
+}
+
 
 /* Secundario - Fondo blanco */
 
@@ -93,7 +115,8 @@
     transition: all 300ms;
 }
 
-.fav-btn svg:hover {
+.fav-btn svg:hover,
+.fav-btn.active svg {
     stroke: var(--secondary);
     fill: var(--secondary);
 }
@@ -217,4 +240,39 @@
 
 .return-container a:hover svg {
     stroke: var(--white);
+}
+
+
+/* Página de favoritos */
+
+.modal-delete .swal2-confirm {
+    border: 2px solid var(--error) !important;
+    background-color: var(--white) !important;
+    color: var(--error) !important;
+    width: fit-content;
+    padding: 8px 16px !important;
+    transition: all 300ms;
+}
+
+.modal-delete .swal2-confirm:hover {
+    background-color: var(--error) !important;
+    border-color: var(--error) !important;
+    color: var(--white) !important;
+}
+
+.modal-delete .swal2-cancel {
+    border: 2px solid var(--gray);
+    background-color: var(--white);
+    color: var(--gray);
+    font-weight: 600 !important;
+    padding: 8px 16px !important;
+    text-transform: uppercase !important;
+    width: 35% !important;
+    transition: all 300ms;
+}
+
+.modal-delete .swal2-cancel:hover {
+    background-color: var(--gray) !important;
+    border-color: var(--gray) !important;
+    color: var(--white) !important;
 }

@@ -85,3 +85,51 @@
 [2023-11-14 08:06:55] [ ERROR] [ExceptionController:27] BadRequestException: No se ha encontrado un Tour con ID: 6
 [2023-11-15 07:09:55] [ ERROR] [ExceptionController:41] BadRuntimeException FALTAN PARAMETROS: El parámetro 'pasajes' es obligatorio
 [2023-11-15 07:10:21] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Boolean'; nested exception is java.lang.IllegalArgumentException: Invalid boolean value [No incluye pasajes aéreos]
+[2023-11-16 21:19:38] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-16 21:20:59] [ ERROR] [ExceptionController:21] CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+[2023-11-16 21:21:38] [ ERROR] [ExceptionController:21] CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+[2023-11-16 21:22:13] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-16 21:22:53] [ ERROR] [ExceptionController:21] DataAccessResourceFailureException: Unable to acquire JDBC Connection; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+[2023-11-16 21:37:14] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-16 21:38:18] [ ERROR] [ExceptionController:21] HibernateException: Unable to access lob stream
+[2023-11-16 21:38:24] [ ERROR] [ExceptionController:21] HibernateException: Unable to access lob stream
+[2023-11-16 21:38:50] [ ERROR] [ExceptionController:21] HibernateException: Unable to access lob stream
+[2023-11-16 21:39:12] [ ERROR] [ExceptionController:21] HibernateException: Unable to access lob stream
+[2023-11-16 21:39:16] [ ERROR] [ExceptionController:21] HibernateException: Unable to access lob stream
+[2023-11-16 21:39:28] [ ERROR] [ExceptionController:21] HibernateException: Unable to access lob stream
+[2023-11-16 21:39:59] [ ERROR] [ExceptionController:21] HibernateException: Unable to access lob stream
+[2023-11-16 21:40:30] [ ERROR] [ExceptionController:21] HibernateException: Unable to access lob stream
+[2023-11-16 21:42:59] [ ERROR] [ExceptionController:21] HibernateException: Unable to access lob stream
+[2023-11-16 21:51:43] [ ERROR] [ExceptionController:21] HibernateException: Unable to access lob stream
+[2023-11-16 21:56:38] [ ERROR] [ExceptionController:21] HibernateException: Unable to access lob stream
+[2023-11-16 22:01:48] [ ERROR] [ExceptionController:21] HibernateException: Unable to access lob stream
+[2023-11-18 09:01:42] [ ERROR] [ExceptionController:21] HibernateException: Unable to access lob stream
+[2023-11-19 17:42:47] [ ERROR] [ExceptionController:21] UsernameNotFoundException: Usuario no encontrado.
+[2023-11-19 17:54:30] [ ERROR] [ExceptionController:41] BadRuntimeException FALTAN PARAMETROS: El parámetro 'email' es obligatorio
+[2023-11-19 18:02:30] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-11-19 18:02:48] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-11-19 18:15:03] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-11-19 18:15:21] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-11-19 18:15:30] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-11-19 18:18:29] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-11-19 18:18:31] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-11-19 18:20:40] [ ERROR] [ExceptionController:21] UsernameNotFoundException: Usuario no encontrado.
+[2023-11-19 18:20:48] [ ERROR] [ExceptionController:21] UsernameNotFoundException: Usuario no encontrado.
+[2023-11-19 18:20:54] [ ERROR] [ExceptionController:21] UsernameNotFoundException: Usuario no encontrado.
+[2023-11-19 18:22:01] [ ERROR] [ExceptionController:21] UsernameNotFoundException: Usuario no encontrado.
+[2023-11-19 18:22:01] [ ERROR] [ExceptionController:21] UsernameNotFoundException: Usuario no encontrado.
+[2023-11-19 18:22:02] [ ERROR] [ExceptionController:21] UsernameNotFoundException: Usuario no encontrado.
+[2023-11-19 18:22:02] [ ERROR] [ExceptionController:21] UsernameNotFoundException: Usuario no encontrado.
+[2023-11-19 18:24:36] [ ERROR] [ExceptionController:21] UsernameNotFoundException: Usuario no encontrado.
+[2023-11-19 18:25:47] [ ERROR] [ExceptionController:21] UsernameNotFoundException: Usuario no encontrado.
+[2023-11-19 18:25:49] [ ERROR] [ExceptionController:21] UsernameNotFoundException: Usuario no encontrado.
+[2023-11-19 18:38:22] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-11-19 18:50:14] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-11-19 18:51:19] [ ERROR] [ExceptionController:21] UsernameNotFoundException: Usuario no encontrado.
+[2023-11-19 18:51:32] [ ERROR] [ExceptionController:21] UsernameNotFoundException: Usuario no encontrado.
+[2023-11-19 18:51:32] [ ERROR] [ExceptionController:21] UsernameNotFoundException: Usuario no encontrado.
+[2023-11-19 18:51:33] [ ERROR] [ExceptionController:21] UsernameNotFoundException: Usuario no encontrado.
+[2023-11-20 19:31:17] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-11-20 19:31:38] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-11-20 20:27:05] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-11-20 20:28:12] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"

@@ -1,6 +1,40 @@
-const FavButton = () => {
+import { useContextGlobal } from "./../utils/global.context";
+import showToastMessage from "./../utils/toast.notifications";
+import { useNavigate } from "react-router-dom";
+
+const FavButton = ({ tour }) => {
+  const { toursState, dispatch } = useContextGlobal();
+  const navigate = useNavigate();
+
+  const isFavorite = toursState.favs.some((item) => item.id === tour.id); 
+  const isLoggedIn = !!localStorage.getItem('userData');
+
+  const addFav = () => {
+    let favs = toursState.favs || []; 
+
+    const alreadyExists = favs.some((item) => item.id === tour.id);
+
+    if (!alreadyExists) {
+      dispatch({ type: "ADD_FAVS", payload: tour });
+      showToastMessage("success");
+    } else {
+      dispatch({ type: "REMOVE_FAVS", payload: tour });
+      showToastMessage("error");
+    }
+  };
+
+  const buttonClass = isLoggedIn ? (isFavorite ? "fav-btn active" : "fav-btn") : "fav-btn";
+
+  const handleButtonClick = () => {
+    if (isLoggedIn) {
+      addFav();
+    } else {
+      navigate("/login", { state: { fromFavButton: true } }) ;
+    }
+  };
+
   return (
-    <div className="fav-btn">
+    <div className={buttonClass} onClick={handleButtonClick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="icon icon-tabler icon-tabler-heart"

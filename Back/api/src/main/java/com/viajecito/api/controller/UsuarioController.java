@@ -13,7 +13,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -43,16 +45,26 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> iniciarSesion(@RequestParam("email") String email,
-                                           @RequestParam("password") String password) {
-
+    public ResponseEntity<?> iniciarSesion(@RequestParam("email") String email, @RequestParam("password") String password) {
         System.out.println(email);
         System.out.println(password);
         try {
             UserDetails userDetails = usuarioService.loadUserByUsername(email);
 
             if (usuarioService.isPasswordMatch(userDetails.getPassword(), password)) {
-                return ResponseEntity.ok(new MensajeRespuesta("ok", "Inicio de sesión exitoso."));
+                Long userId = ((Usuario) userDetails).getId();
+                String userName = ((Usuario) userDetails).getNombre();
+                String userLastName = ((Usuario) userDetails).getApellido();
+
+                Map<String, Object> respuesta = new HashMap<>();
+                respuesta.put("tipo", "ok");
+                respuesta.put("mensaje", "Inicio de sesión exitoso.");
+                respuesta.put("id", userId);
+                respuesta.put("nombre", userName);
+                respuesta.put("apellido", userLastName);
+                respuesta.put("privilegios", userDetails.getAuthorities());
+
+                return ResponseEntity.ok(respuesta);
             } else {
                 // La contraseña no coincide
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
@@ -79,4 +91,16 @@ public class UsuarioController {
     public List<Usuario> listarTodos(){
         return usuarioService.listarTodos();
     }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<?> eliminarUsuario(@PathVariable Long id) throws BadRequestException {
+        try {
+            usuarioService.eliminar(id);
+            return ResponseEntity.ok(new MensajeRespuesta("ok", "Cuenta de usuario eliminada con éxito."));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new MensajeRespuesta("error", "Error al eliminar la cuenta de usuario."));
+        }
+    }
+
 }

@@ -1,23 +1,52 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import mainLogo from "/logo.svg";
 import Button from "/src/Components/buttons/Button.jsx";
 import NavUser from "./user/NavUser";
 
+import { useContextGlobal } from "./../../utils/global.context";
+
 const Navbar = () => {
+  const navRef = useRef(null);
+  const toggleButtonRef = useRef(null);
+
   const location = useLocation();
   const [toggleIcon, setToggleIcon] = useState(false);
 
   // Verificar si el usuario está logueado
-  const userDataJson = localStorage.getItem("userData");
-  const userData = JSON.parse(userDataJson);
-  const isLogged = userData && userData["isLoggedIn"] === "true";  
+  const { toursState, dispatch } = useContextGlobal();
+  const isLogged = toursState.isLoggedIn;
 
   const handleLogout = () => {
     localStorage.removeItem("userData");
+    dispatch({ type: "LOGOUT" });
   };
 
+  const handleOptionClick = () => {
+    setToggleIcon(false);
+  };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        navRef.current &&
+        !navRef.current.contains(event.target) &&
+        (!toggleButtonRef.current || !toggleButtonRef.current.contains(event.target))
+      ) {
+        setToggleIcon(false);
+      }
+    };
+  
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);  
+
+  const closeMenu = () => {
+    setToggleIcon(false);
+  };
+  
   return (
     <header>
       <nav className="navbar navbar-expand-lg px-0 py-3 fixed-top">
@@ -26,10 +55,9 @@ const Navbar = () => {
             <img src={mainLogo} className="h-8" alt="..." />
           </Link>
           <button
+            ref={toggleButtonRef}
             className="navbar-toggler"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse"
             aria-expanded="false"
             aria-label="Toggle navigation"
@@ -75,10 +103,10 @@ const Navbar = () => {
             </span>
           </button>
 
-          <div className="collapse navbar-collapse gap-3" id="navbarCollapse">
+          <div className={`collapse navbar-collapse gap-3 ${toggleIcon ? 'show' : ''}`} id="navbarCollapse" ref={navRef}>
             {!isLogged && location.pathname !== "/login" && (
               <div className="navbar-nav ms-lg-4">
-                <Link className="nav-item nav-link" to="/login">
+                <Link className="nav-item nav-link" to="/login" onClick={handleOptionClick}>
                   Iniciar sesión
                 </Link>
               </div>
@@ -86,13 +114,13 @@ const Navbar = () => {
 
             {!isLogged && location.pathname !== "/sign-up" && (
               <div className="d-flex align-items-lg-center mt-3 mt-lg-0">
-                <Button url={"sign-up"} buttonName="Crear cuenta" />
+                <Button url={"sign-up"} buttonName="Crear cuenta" action={handleOptionClick} />
               </div>
             )}
 
             {isLogged && (
               // Mostrar el componente NavUser si el usuario está logueado
-              <NavUser data={userData} logout={handleLogout} />
+              <NavUser logout={handleLogout} action={toggleIcon} closeMenu={closeMenu} />
             )}
           </div>
         </div>
