@@ -17,10 +17,12 @@ public class TourDTO implements Serializable {
     private Long id;
     private String titulo;
     private String subtitulo;
-    private Double precio;
+    private Double precioBase;
+    private Double precioAdulto;
+    private Double precioMenor;
     private String categoria;
     private String rating;
-    private String duracion;
+    private Integer duracion;
     private String dificultad;
     private SalidaDTO salidaDTO;
     private Boolean pasajes;

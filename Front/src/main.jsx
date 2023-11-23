@@ -8,6 +8,7 @@ import SignUp from './Routes/SignUp';
 import NotFound from "./Routes/NotFound";
 import Login from "./Routes/Login";
 import List from "./Routes/List";
+import Reserve from "./Routes/Reserve.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -17,9 +18,10 @@ createRoot(document.getElementById("root")).render(
         <Route path="tour" element={<AddTour />} />
         <Route path="tour/:id" element={<Detail />} />
         <Route path="sign-up" element={<SignUp />} />
-        <Route path="login" element={<Login/>} /> 
-        <Route path="list" element={<List/>} />
-        <Route path="*" element={<NotFound/>}/>
+        <Route path="login" element={<Login />} />
+        <Route path="list" element={<List />} />
+        <Route path="reserve" element={<Reserve />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   </BrowserRouter>

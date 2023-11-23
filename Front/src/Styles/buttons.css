@@ -223,3 +223,58 @@
 .return-container a:hover svg {
     stroke: var(--white);
 }
+
+/* Botones de mas y menos */
+.counter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.counter > div{
+    margin: 0px;
+    padding: 0px;
+}
+
+.counter h3{
+    font-size: 14px;
+}
+
+.counter h3,
+.counter p{
+    margin: 5px;
+    line-height: 1.5;
+}
+
+.counter p{
+    color: var(--gray);
+    font-size: 12px;
+}
+
+.counter-bttns{
+    display: flex;
+    margin: 10px;
+    padding: 5px;
+    align-items: center;
+}
+
+.counter-bttns button,
+.counter-bttns p {
+    padding: 0px 10px;
+    margin:  0px;
+}
+
+.counter-bttns p{
+    padding: 0px 15px;
+}
+
+.circle-bttn{
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    border: 1px solid var(--primary);
+    background-color: transparent;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--primary);
+}

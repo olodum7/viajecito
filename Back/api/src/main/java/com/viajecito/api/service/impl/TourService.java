@@ -1,6 +1,8 @@
 package com.viajecito.api.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.viajecito.api.dto.ReservaDTO;
+import com.viajecito.api.dto.ReservaDTOMin;
 import com.viajecito.api.dto.SalidaDTO;
 import com.viajecito.api.dto.TourDTO;
 import com.viajecito.api.exception.BadRequestException;
@@ -9,6 +11,7 @@ import com.viajecito.api.model.Salida;
 import com.viajecito.api.model.Tour;
 import com.viajecito.api.repository.ICategoriaRepository;
 import com.viajecito.api.repository.ITourRepository;
+import com.viajecito.api.service.IReservaService;
 import com.viajecito.api.service.ISalidaService;
 import com.viajecito.api.service.ITourService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -30,7 +34,10 @@ public class TourService implements ITourService {
     private ISalidaService salidaService;
 
     @Autowired
-    ObjectMapper mapper;
+    private IReservaService reservaService;
+
+    @Autowired
+    private ObjectMapper mapper;
 
     @Transactional
     @Override
@@ -71,6 +78,29 @@ public class TourService implements ITourService {
         return collection;
     }
 
+    @Override
+    public Collection<TourDTO> listarDisponibles(LocalDate fechaSalida) throws BadRequestException {
+        Collection<TourDTO> allTours = this.listarTodos();
+        Collection<TourDTO> toursDisponibles = new ArrayList<>();
+        Boolean libre = true;
+
+        for (TourDTO dto : allTours){
+            Collection<ReservaDTOMin> reservaDTOS = reservaService.listarTodasPorTour(toModel(dto));
+
+            for (ReservaDTOMin reservaDTO : reservaDTOS){
+                if (fechaSalida == reservaDTO.getFechaSalida());
+                libre = false;
+                break;
+            }
+
+            if (libre == true){
+                toursDisponibles.add(dto);
+            }
+        }
+
+        return toursDisponibles;
+    }
+
     private TourDTO toDTO(Tour d) throws BadRequestException {
         TourDTO dto = new TourDTO();
         Set<Long> imagenesId = new HashSet<>();
@@ -79,7 +109,9 @@ public class TourService implements ITourService {
         dto.setId(d.getId());
         dto.setTitulo(d.getTitulo());
         dto.setSubtitulo(d.getSubtitulo());
-        dto.setPrecio(d.getPrecio());
+        dto.setPrecioBase(d.getPrecioBase());
+        dto.setPrecioAdulto(d.getPrecioAdulto());
+        dto.setPrecioMenor(d.getPrecioMenor());
         dto.setCategoria(d.getCategoria().getNombre());
         dto.setRating(d.getRating());
         dto.setDuracion(d.getDuracion());

@@ -5,7 +5,7 @@ import Button from "../buttons/Button";
 import FavButton from "../buttons/FavButton";
 
 const Card = (props) => {
-  const { id, titulo, subtitulo, precio, categoria, rating, duracion, dificultad, salidaDTO, imagenes } = props.data;
+  const { id, titulo, subtitulo, precioBase, categoria, rating, duracion, dificultad, salidaDTO, imagenes } = props.data;
 
   return (
     <div className="card" data-aos="fade-up">
@@ -23,7 +23,7 @@ const Card = (props) => {
           <div className="row card-price">
             <div className="col">
               <p className="d-flex align-items-center">
-                Desde <strong>USD {precio}</strong>
+                Desde <strong>USD {precioBase}</strong>
               </p>
             </div>
             <div className="col-12 col-md-5 btn-container">
@@ -126,9 +126,11 @@ const Card = (props) => {
   );
 };
 
+
+// Defino las propiedades esperadas para las Salidas
 const SalidasPropTypes = PropTypes.shape({
-  fechaDesde: PropTypes.string,
-  fechaHasta: PropTypes.string,
+  fechaDesde: PropTypes.arrayOf(PropTypes.string),
+  fechaHasta: PropTypes.arrayOf(PropTypes.string),
   periodo: PropTypes.string,
 });
 
@@ -138,12 +140,14 @@ Card.propTypes = {
     id: PropTypes.number,
     titulo: PropTypes.string,
     subtitulo: PropTypes.string,
-    precio: PropTypes.number,
+    precioBase: PropTypes.number,
+    precioAdulto: PropTypes.number,
+    precioMenor: PropTypes.number,
     categoria: PropTypes.string,
     rating: PropTypes.string,
-    duracion: PropTypes.string,
+    duracion: PropTypes.number,
     dificultad: PropTypes.string,
-    salidaDTO: PropTypes.arrayOf(SalidasPropTypes),
+    salidaDTO: SalidasPropTypes,
     imagenes: PropTypes.array,
   }),
 };

@@ -5,26 +5,22 @@ import "react-datepicker/dist/react-datepicker.css";
 import { addDays } from 'date-fns';
 import SearchButton from '../buttons/SearchButton'
 
-const Search = ({onSearchClick}) => {
+const Search = ({ onSearchClick, startDate: propStartDate, endDate: propEndDate }) => {
   const [filter, setFilter] = useState({
     location: "",
     people: "",
-    startDate: new Date(), 
-    endDate: addDays(new Date(), 2),
+    startDate: propStartDate || new Date(),
+    endDate: propEndDate || addDays(new Date(), 2),
   });
-  
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null);
 
   const handleChange = (name, value) => {
     if (name === "startDate") {
-      setStartDate(value);
-      setEndDate(addDays(value, 2))
+      setFilter({ ...filter, startDate: value, endDate: addDays(value, 2) });
+    } else if (name === "endDate") {
+      setFilter({ ...filter, endDate: value });
+    } else {
+      setFilter({ ...filter, [name]: value });
     }
-    if (name === "endDate") {
-      setEndDate(value);
-    }
-    setFilter({ ...filter, [name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -56,11 +52,11 @@ const Search = ({onSearchClick}) => {
 
                 <div className="input-daterange input-group">
                   <DatePicker  name="startDate"
-                    selected={startDate}
+                    selected={filter.startDate}
                     onChange={(date) => handleChange("startDate", date)}
                     selectsStart
-                    startDate={startDate}
-                    endDate={endDate}
+                    startDate={filter.startDate}
+                    endDate={filter.endDate}
                     minDate={new Date()}
                     showIcon
                     dateFormat="dd/MM/yyyy"
@@ -68,15 +64,15 @@ const Search = ({onSearchClick}) => {
                     placeholderText="Fecha de salida"
                   />
                   <DatePicker name="endDate"
-                    selected={endDate}
+                    selected={filter.endDate}
                     onChange={(date) => handleChange("endDate", date)}
                     selectsEnd
-                    startDate={startDate}
-                    endDate={endDate}
+                    startDate={filter.startDate}
+                    endDate={filter.endDate}
                     showIcon
                     isClearable
                     dateFormat="dd/MM/yyyy"
-                    minDate={addDays(startDate, 2)}
+                    minDate={addDays(filter.startDate, 2)}
                     todayButton="Hoy"
                     placeholderText="Fecha de retorno"
                   />
@@ -95,6 +91,8 @@ const Search = ({onSearchClick}) => {
 
 Search.propTypes = {
   onSearchClick: PropTypes.func,
+  startDate: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date),
 };
 
 export default Search;

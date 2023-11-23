@@ -9,7 +9,7 @@ import Pagination from "../Components/ui-components/pagination/Pagination.jsx";
 const Home = () => {
   const [result, setResult] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [toursPerPage, setToursPerPage] = useState(10);
+  const toursPerPage = 6;
   const [clickedCategoryName, setClickedCategoryName] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
@@ -71,7 +71,7 @@ const Home = () => {
     <>
       <main>
         <Hero />
-        <Search onSearchClick={handleSearchClick} />
+        <Search onSearchClick={handleSearchClick} startDate={startDate} endDate={endDate} />
         <CategoryNav clickedCategoryName={clickedCategoryName} onCategoryClick={handleCategoryClick} />
 
         <section className="content-wrapper">

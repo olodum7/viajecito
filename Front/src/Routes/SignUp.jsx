@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ButtonXL from "./../Components/buttons/ButtonXL";
 
@@ -93,7 +93,6 @@ const SignUp = () => {
           });
           setErrors({});
           setAttemptedSubmit(false);
-          console.log(data);
           if (data.tipo === "ok") {
             // Éxito en el registro
             Swal.fire({
@@ -113,7 +112,7 @@ const SignUp = () => {
         .catch((error) => {
           // Error en la solicitud
           console.error("Error en el registro de usuario:", error);
-          setMensaje({ tipo: data.tipo, texto: data.mensaje });
+          setMensaje({ tipo: error.tipo, texto: error.mensaje });
         });
     } else {
       console.error(

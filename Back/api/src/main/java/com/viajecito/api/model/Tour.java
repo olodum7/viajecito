@@ -29,8 +29,14 @@ public class Tour {
     @Column(name = "SUB_TITULO")
     private String subtitulo;
 
-    @Column(name = "PRECIO")
-    private Double precio;
+    @Column(name = "PRECIO_BASE")
+    private Double precioBase;
+
+    @Column(name = "PRECIO_ADULTO")
+    private Double precioAdulto;
+
+    @Column(name = "PRECIO_MENOR")
+    private Double precioMenor;
 
     @ManyToOne
     @JoinColumn(name = "CATEGORIA_ID")
@@ -40,7 +46,7 @@ public class Tour {
     private String rating;
 
     @Column(name = "DURACION")
-    private String duracion;
+    private Integer duracion;
 
     @Column(name = "DIFICULTAD")
     @Enumerated(EnumType.STRING)
@@ -86,6 +92,6 @@ public class Tour {
             inverseJoinColumns = @JoinColumn(name = "USER_ID"))
     private Set<Usuario> usuarios = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
+    @OneToMany(mappedBy = "tour")
     private Set<Reserva> reservas = new HashSet<>();
 }

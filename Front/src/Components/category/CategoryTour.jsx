@@ -4,12 +4,9 @@ import PropTypes from 'prop-types';
 const CategoryTour = ({ tourData, handleChange }) => {
     const [categorias, setCategorias] = useState([]);
     const [descripcionCategoria, setDescripcionCategoria] = useState("");
-
-    console.log(tourData.categoria)
-
+    
     const handleCategoriaChange = (e) => {
         const selectedCategoriaId = e.target.value;
-        console.log(selectedCategoriaId)
         if (selectedCategoriaId != 0) {
             const selectedCategoria = categorias.find((categoria) => parseFloat(categoria.id) === parseFloat(selectedCategoriaId));
             if (selectedCategoria) {

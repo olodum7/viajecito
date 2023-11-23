@@ -42,6 +42,7 @@ public class SalidaService implements ISalidaService {
         String periodo = daysToStringPeriod(s.getDias(), s.getFechaDesde(), s.getFechaHasta());
         dto.setFechaSalidaDesde(s.getFechaDesde());
         dto.setFechaSalidaHasta(s.getFechaHasta());
+        dto.setDias(s.getDias());
         dto.setPeriodo(periodo);
 
         return dto;

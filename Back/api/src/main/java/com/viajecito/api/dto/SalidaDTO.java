@@ -15,5 +15,6 @@ import java.util.Set;
 public class SalidaDTO implements Serializable {
     private LocalDate fechaSalidaDesde;
     private LocalDate fechaSalidaHasta;
+    private String dias;
     private String periodo;
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,21 +25,21 @@ public class Reserva {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "FECHA_HORA_SALIDA")
-    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-    private LocalDateTime fechaHoraSalida;
+    @Column(name = "FECHA_SALIDA")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private LocalDate fechaSalida;
 
-    @Column(name = "CANT_DIAS")
-    private Integer cantDias;
+    @Column(name = "ACOMPANIANTES_MAYORES")
+    private Integer acompaniantes_mayores;
 
-    @Column(name = "ACOMPANIANTES")
-    private Integer acompaniantes;
+    @Column(name = "ACOMPANIANTES_MENORES")
+    private Integer acompaniantes_menores;
 
     @ManyToOne
     @JoinColumn(name = "USUARIO_ID")
     private Usuario usuario;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
-    @JsonIgnore
-    private Set<Tour> tour = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "TOUR_ID")
+    private Tour tour = new Tour();
 }

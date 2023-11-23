@@ -1,6 +1,8 @@
 package com.viajecito.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.viajecito.api.dto.ReservaDTO;
+import com.viajecito.api.dto.SalidaDTO;
 import com.viajecito.api.dto.TourDTO;
 import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.*;
@@ -8,6 +10,7 @@ import com.viajecito.api.repository.IAlojamientoRepository;
 import com.viajecito.api.repository.ICategoriaRepository;
 import com.viajecito.api.repository.ISalidaRepository;
 import com.viajecito.api.repository.ITourRepository;
+import com.viajecito.api.service.IReservaService;
 import com.viajecito.api.service.ISalidaService;
 import com.viajecito.api.service.ITourService;
 import com.viajecito.api.service.impl.ImagenService;
@@ -50,10 +53,12 @@ public class TourController {
     @PostMapping
     public ResponseEntity<?> agregar(@RequestParam("titulo") String titulo,
                                      @RequestParam("subtitulo") String subtitulo,
-                                     @RequestParam("precio") Double precio,
+                                     @RequestParam("precioBase") Double precioBase,
+                                     @RequestParam("precioAdulto") Double precioAdulto,
+                                     @RequestParam("precioMenor") Double precioMenor,
                                      @RequestParam("categoria") Long categoriaId,
                                      @RequestParam("rating") String rating,
-                                     @RequestParam("duracion") String duracion,
+                                     @RequestParam("duracion") Integer duracion,
                                      @RequestParam("dificultad") TourDificultad dificultad,
                                      @RequestParam("salidas") List<Long> salidas,
                                      @RequestParam("pasajes") Boolean pasajes,
@@ -71,18 +76,20 @@ public class TourController {
 
         try {
             /************* VALIDACION DE CAMPOS *************/
-            if (titulo == null || subtitulo == null || precio == null || categoriaId == null ||
+            if (titulo == null || subtitulo == null || precioBase == null || categoriaId == null ||
                     duracion == null || dificultad == null || (imagenes == null || imagenes.isEmpty())) {
                 return ResponseEntity.badRequest().body(new MensajeRespuesta("error", "Todos los campos son obligatorios."));
             }
 
-            if (titulo.isEmpty() || subtitulo.isEmpty() || precio.isNaN() || duracion.isEmpty() ) {
+            if (titulo.isEmpty() || subtitulo.isEmpty() || precioBase.isNaN() || duracion == 0 ) {
                 return ResponseEntity.badRequest().body(new MensajeRespuesta("error", "Los campos no pueden quedar vacíos."));
             }
 
             tour.setTitulo(titulo);
             tour.setSubtitulo(subtitulo);
-            tour.setPrecio(precio);
+            tour.setPrecioBase(precioBase);
+            tour.setPrecioAdulto(precioAdulto);
+            tour.setPrecioMenor(precioMenor);
 
             /**** Categoria ****/
             Categoria categoria = categoriaRepository.findById(categoriaId).orElse(null);
@@ -138,10 +145,12 @@ public class TourController {
 
     @PutMapping
     public ResponseEntity<?> modificar(@RequestParam("id") Long id,
-                                       @RequestParam("precio") Double precio,
+                                       @RequestParam("precioBase") Double precioBase,
+                                       @RequestParam("precioAdulto") Double precioAdulto,
+                                       @RequestParam("precioMenor") Double precioMenor,
                                        @RequestParam("categoria") Long categoriaId,
                                        @RequestParam("rating") String rating,
-                                       @RequestParam("duracion") String duracion,
+                                       @RequestParam("duracion") Integer duracion,
                                        @RequestParam("dificultad") TourDificultad dificultad,
                                        @RequestParam("salidas") List<Long> salidas,
                                        @RequestParam("pasajes") Boolean pasajes,
@@ -159,7 +168,9 @@ public class TourController {
             Categoria categoria = categoriaRepository.findById(categoriaId).orElseThrow();
             Alojamiento alojamiento = alojamientoRepository.findById(alojamientoId).orElseThrow();
 
-            tour.setPrecio(precio);
+            tour.setPrecioBase(precioBase);
+            tour.setPrecioAdulto(precioAdulto);
+            tour.setPrecioMenor(precioMenor);
             tour.setCategoria(categoria);
             tour.setRating(rating);
             tour.setDuracion(duracion);
@@ -199,9 +210,9 @@ public class TourController {
     }
 
     @GetMapping(path = "/disponibles")
-    public TourDTO buscarDisponibles(@RequestParam String  fechaSalida) throws BadRequestException {
+    public Collection<TourDTO> buscarDisponibles(@RequestParam("fechaSalida") String fechaSalida) throws BadRequestException {
         LocalDate fechaSalidaLocalDate = LocalDate.parse(fechaSalida);
-        return null;
+        return tourService.listarDisponibles(fechaSalidaLocalDate);
     }
 
     @GetMapping

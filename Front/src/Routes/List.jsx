@@ -72,7 +72,7 @@ const List = () => {
       method: "DELETE",
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then(() => {
         setTours((prevTours) =>
           prevTours.filter((tour) => tour.id !== id)
         );
@@ -83,7 +83,7 @@ const List = () => {
   };
 
   return (
-    <table class="table">
+    <table className="table">
       <thead><tr>
         <th>Nombre del Tour</th><th>Acciones</th>
       </tr>
@@ -105,10 +105,10 @@ const List = () => {
               </div>
             ) : (
               <td>
-                <button type="button" class="btn btn-warning" onClick={() => handleEditCategoria(tour)}>
+                <button type="button" className="btn btn-warning" onClick={() => handleEditCategoria(tour)}>
                   Editar Categoría
                 </button>
-                <button type="button" class="btn btn-danger" onClick={() => handleDeleteTour(tour.id)}>
+                <button type="button" className="btn btn-danger" onClick={() => handleDeleteTour(tour.id)}>
                   Eliminar Tour
                 </button>
               </td>
