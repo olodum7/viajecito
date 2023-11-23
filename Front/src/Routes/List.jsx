@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Categoria from "./../Components/category/CategoryTour";
+import Categoria from "../Components/category/CategoryTour";
 import PropTypes from 'prop-types';
 
 const List = () => {
@@ -82,7 +82,7 @@ const List = () => {
     fetch(`http://localhost:8089/tour/${id}`, {
       method: "DELETE",
     })
-      .then((response) => response.json())
+    //   .then((response) => response.json())
       .then(() => {
         setTours((prevTours) =>
           prevTours.filter((tour) => tour.id !== id)
@@ -99,8 +99,9 @@ const List = () => {
   };
 
   return (
-    <table class="table">
-      <thead><tr>
+    <table className="tableList">
+      <thead>
+        <tr>
         <th>Nombre del Tour</th><th>Acciones</th>
       </tr>
       </thead>
