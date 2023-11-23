@@ -3,13 +3,16 @@ import Card from "../Components/card/Card.jsx";
 import Banner from "../Components/ui-components/banner/Banner";
 import Hero from "../Components/ui-components/hero/Hero";
 import CategoryNav from "../Components/category/CategoryNav";
-import { Search } from "../Components/search/Search";
+import Search from "../Components/search/Search";
 import Pagination from "../Components/ui-components/pagination/Pagination.jsx";
 
 const Home = () => {
   const [result, setResult] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [toursPerPage, setToursPerPage] = useState(6);
+  const toursPerPage = 6;
+  const [clickedCategoryName, setClickedCategoryName] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(null);
   const [search, setSearch] = useState("");
 
   const [searchSubmitted, setSearchSubmitted] = useState(false);
@@ -44,6 +47,35 @@ const Home = () => {
       });
   }, []);
 
+  /* Filtros por categoria */
+  const handleCategoryClick = (categoryName) => {
+    // Si la misma categoría está clickeada nuevamente, resetea el filtro
+    setClickedCategoryName((prevCategoryName) =>
+      prevCategoryName === categoryName ? null : categoryName
+    );
+  };
+
+  /* Filtros por fecha */
+  const handleSearchClick = (filter) => {
+    const { startDate, endDate} = filter;
+    setStartDate(startDate);
+    setEndDate(endDate);
+  };
+
+  const filteredTours = result.filter((tour) => {
+    const fechaDesdeArray = tour.salidaDTO.fechaSalidaDesde;
+    const fechaHastaArray = tour.salidaDTO.fechaSalidaHasta;
+
+    const fechaDesde = new Date(fechaDesdeArray[0], fechaDesdeArray[1] - 1, fechaDesdeArray[2])
+    const fechaHasta = new Date(fechaHastaArray[0], fechaHastaArray[1] - 1, fechaHastaArray[2])
+
+    const categoryFilter = !clickedCategoryName || tour.categoria === clickedCategoryName;
+    const dateFilter =
+      (endDate === null || startDate >= fechaDesde && startDate <= fechaHasta);
+    return categoryFilter && dateFilter;
+
+  });
+
   useEffect(() => {
     if (search === "") {
       setSearchUsed(false);
@@ -54,10 +86,7 @@ const Home = () => {
   // Función para mostrar las cards de manera aleatoria
   const randomArray = (array) => {
     const random = [...array];
-    for (let i = random.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [random[i], random[j]] = [random[j], random[i]];
-    }
+    random.sort(() => Math.random() - 0.5);
     return random;
   };
 
@@ -69,6 +98,8 @@ const Home = () => {
     <>
       <main>
         <Hero />
+        <Search onSearchClick={handleSearchClick} startDate={startDate} endDate={endDate} />
+        <CategoryNav clickedCategoryName={clickedCategoryName} onCategoryClick={handleCategoryClick} />
         <Search
           onSearchChange={handleSearchChange}
           onSearchSubmit={handleSearchSubmit}

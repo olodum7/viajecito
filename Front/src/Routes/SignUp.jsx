@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ButtonXL from "./../Components/buttons/ButtonXL";
 
@@ -93,7 +93,6 @@ const SignUp = () => {
           });
           setErrors({});
           setAttemptedSubmit(false);
-          console.log(data);
           if (data.tipo === "ok") {
             // Éxito en el registro
             Swal.fire({
@@ -113,7 +112,7 @@ const SignUp = () => {
         .catch((error) => {
           // Error en la solicitud
           console.error("Error en el registro de usuario:", error);
-          setMensaje({ tipo: data.tipo, texto: data.mensaje });
+          setMensaje({ tipo: error.tipo, texto: error.mensaje });
         });
     } else {
       console.error(
@@ -143,11 +142,10 @@ const SignUp = () => {
                       </label>
                       <input
                         type="text"
-                        className={`form-control ${
-                          attemptedSubmit && errors.firstName
+                        className={`form-control ${attemptedSubmit && errors.firstName
                             ? "is-invalid"
                             : ""
-                        }`}
+                          }`}
                         id="firstName"
                         value={formData.firstName}
                         onChange={handleInputChange}
@@ -164,9 +162,8 @@ const SignUp = () => {
                       </label>
                       <input
                         type="text"
-                        className={`form-control ${
-                          attemptedSubmit && errors.lastName ? "is-invalid" : ""
-                        }`}
+                        className={`form-control ${attemptedSubmit && errors.lastName ? "is-invalid" : ""
+                          }`}
                         id="lastName"
                         value={formData.lastName}
                         onChange={handleInputChange}
@@ -184,9 +181,8 @@ const SignUp = () => {
                     </label>
                     <input
                       type="email"
-                      className={`form-control ${
-                        attemptedSubmit && errors.email ? "is-invalid" : ""
-                      }`}
+                      className={`form-control ${attemptedSubmit && errors.email ? "is-invalid" : ""
+                        }`}
                       id="email"
                       value={formData.email}
                       onChange={handleInputChange}
@@ -201,9 +197,8 @@ const SignUp = () => {
                     </label>
                     <input
                       type="password"
-                      className={`form-control ${
-                        attemptedSubmit && errors.password ? "is-invalid" : ""
-                      }`}
+                      className={`form-control ${attemptedSubmit && errors.password ? "is-invalid" : ""
+                        }`}
                       id="password"
                       value={formData.password}
                       onChange={handleInputChange}
@@ -218,11 +213,10 @@ const SignUp = () => {
                     </label>
                     <input
                       type="password"
-                      className={`form-control ${
-                        attemptedSubmit && errors.confirmPassword
+                      className={`form-control ${attemptedSubmit && errors.confirmPassword
                           ? "is-invalid"
                           : ""
-                      }`}
+                        }`}
                       id="confirmPassword"
                       value={formData.confirmPassword}
                       onChange={handleInputChange}
@@ -247,13 +241,9 @@ const SignUp = () => {
                     </Link>
                   </p>
                   {mensaje && (
-                    <div
-                      className={`mt-3 alert alert-${
-                        mensaje.tipo === "error" ? "danger" : "success"
-                      }`}
-                    >
-                      {mensaje.texto}
-                    </div>
+                  <div className={`mt-3 alert alert-${mensaje.tipo === "error" ? "danger" : "success"}`}  >
+                    {mensaje.texto}
+                  </div>
                   )}
                 </form>
               </div>

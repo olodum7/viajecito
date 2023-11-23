@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
 import ReturnButton from "/src/Components/buttons/ReturnButton.jsx";
-import PropTypes from 'prop-types';
 
 const Breadcrumb = ({ tourName }) => {
   const location = useLocation();

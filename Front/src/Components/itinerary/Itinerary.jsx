@@ -1,5 +1,3 @@
-import React from "react";
-
 function formatItineraryText(rawText) {
   if (!rawText) {
     return null;

@@ -1,5 +1,6 @@
 package com.viajecito.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,8 +29,14 @@ public class Tour {
     @Column(name = "SUB_TITULO")
     private String subtitulo;
 
-    @Column(name = "PRECIO")
-    private Double precio;
+    @Column(name = "PRECIO_BASE")
+    private Double precioBase;
+
+    @Column(name = "PRECIO_ADULTO")
+    private Double precioAdulto;
+
+    @Column(name = "PRECIO_MENOR")
+    private Double precioMenor;
 
     @ManyToOne
     @JoinColumn(name = "CATEGORIA_ID")
@@ -39,14 +46,17 @@ public class Tour {
     private String rating;
 
     @Column(name = "DURACION")
-    private String duracion;
+    private Integer duracion;
 
     @Column(name = "DIFICULTAD")
     @Enumerated(EnumType.STRING)
     private TourDificultad dificultad;
 
-    @Column(name = "SALIDAS")
-    private String salidas;
+    @ManyToMany
+    @JoinTable(name = "TOUR_SALIDA",
+            joinColumns = @JoinColumn(name = "TOUR_ID"),
+            inverseJoinColumns = @JoinColumn(name = "SALIDA_ID"))
+    private Set<Salida> salidas = new HashSet<>();
 
     @Column(name = "PASAJES")
     private Boolean pasajes;
@@ -82,6 +92,6 @@ public class Tour {
             inverseJoinColumns = @JoinColumn(name = "USER_ID"))
     private Set<Usuario> usuarios = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
+    @OneToMany(mappedBy = "tour")
     private Set<Reserva> reservas = new HashSet<>();
 }

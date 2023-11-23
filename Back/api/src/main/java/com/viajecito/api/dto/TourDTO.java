@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -15,12 +17,14 @@ public class TourDTO implements Serializable {
     private Long id;
     private String titulo;
     private String subtitulo;
-    private Double precio;
+    private Double precioBase;
+    private Double precioAdulto;
+    private Double precioMenor;
     private String categoria;
     private String rating;
-    private String duracion;
+    private Integer duracion;
     private String dificultad;
-    private String salidas;
+    private SalidaDTO salidaDTO;
     private Boolean pasajes;
     private String transporte;
     private Boolean traslado;

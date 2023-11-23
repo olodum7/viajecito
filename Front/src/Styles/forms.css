@@ -162,7 +162,6 @@
     align-items: center;
     justify-content: flex-end;
     width: 100%;
-    /*min-height: calc(100vh - 96px);*/
     min-height: 100vh;
 }
 
@@ -217,4 +216,15 @@
     .container-fluid {
         padding: 0 24px;
     }
+}
+
+.form-tour #itinerario{
+    width: 100%;
+    ;
+}
+
+.form-tour textarea{
+    border: none;
+    min-height: 200px;
+    border-bottom: 2px solid black;
 }

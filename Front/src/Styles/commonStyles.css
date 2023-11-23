@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap");
+
 :root {
     --primary: #763fc4;
     --secondary: #53f5da;
@@ -76,7 +77,6 @@ h1 {
     padding: 0;
     margin: 0;
 }
-
 
 /********** FORMULARIOS **********/
 
@@ -185,52 +185,6 @@ input[type="file"] {
     padding: 10px;
 }
 
-
-/*
-.p-img {
-    font-size: 0.8rem;
-}
-
-.div-imagenes {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 120px;
-    border: 2px dashed var(--gray);
-    border-radius: 8px;
-    padding: 0px 20px;
-    margin: 10px;
-}
-
-#cont-input-entradas {
-    display: none;
-}
-
-.div-error {
-    background-color: var(--error);
-    padding: 0px !important;
-    margin: 10px;
-}
-
-.div-error p,
-.div-ok p {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    padding: 5px;
-    margin: 0px;
-    font-weight: bold;
-    text-align: center;
-    transition: ease-in-out 1ms;
-    animation: bounce 0.5s 5 alternate;
-}
-
-.div-ok {
-    background-color: var(--success) !important;
-    padding: 0px !important;
-    margin: 10px;
-}
-*/
-
 section#form-container {
     display: flex;
     justify-content: center;
@@ -243,7 +197,50 @@ section#detail {
     margin-bottom: 6rem;
 }
 
-section#detail .row:first-child,
+section#detail .container-all {
+    display: flex;
+}
+
+section#detail .container-details {
+    max-width: 60%;
+    width: 100%;
+    margin-right: 40px;
+}
+
+section#detail .container-filters {
+    margin: 20px;
+}
+
+section#detail .container-filters .row {
+    margin: 20px 0px;
+}
+
+section#detail .container-filters .row:first-child{
+    margin-top: 0px;
+}
+
+section#detail .container-filters h2 {
+    font-size: 16px;
+    padding: 5px;
+    margin: 10px;
+}
+
+section#detail strong {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-left: .7rem;
+}
+
+section#detail .container-counter {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    max-width: 300px;
+    border-radius: 20px;
+    padding: 20px;
+    max-height: 200px;
+}
+
+section#detail > .row:first-child,
 section#detail .container-details {
     border-bottom: 1px solid var(--primary);
     padding-bottom: 2rem;
@@ -303,15 +300,14 @@ section#detail .container-itinerary h4 {
     font-weight: 600;
     line-height: 1.4rem;
     margin-top: 1rem;
-    margin-bottom: .4rem !important;
+    margin-bottom: 0.4rem !important;
 }
 
 section#detail .container-itinerary h5 {
-    font-size: .8rem;
+    font-size: 0.8rem;
     font-weight: 800;
     margin-top: 2rem;
 }
-
 
 /********** SCROLLBAR **********/
 
@@ -341,6 +337,7 @@ section#detail .container-itinerary h5 {
         margin-top: 4rem;
         padding: 24px;
     }
+
     .container-xl {
         padding: 0 24px;
     }
@@ -357,30 +354,13 @@ section#detail .container-itinerary h5 {
     main .content-wrapper {
         margin-top: 0;
     }
+
     .mb-5 {
         margin-bottom: 1.8rem !important;
     }
 }
 
-
-/*
-.div-img-container {
-    max-width: 350px;
-    max-height: 180px;
-    overflow: hidden;
-    margin-top: 10px;
-    margin-bottom: 50px;
+/** Check entradas en tour **/
+#cont-input-entradas {
+    display: none;
 }
-
-.div-img-container img {
-    display: flex;
-    width: 100%;
-}
-
-#list-tour {
-    height: calc(100vh);
-}
-
-#list-tour .container-fluid {
-    margin-top: 150px;
-} */

@@ -1,5 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const ButtonXL = ({ url, buttonName, isSubmit }) => {
   if (isSubmit) {
@@ -15,6 +15,12 @@ const ButtonXL = ({ url, buttonName, isSubmit }) => {
       </Link>
     );
   }
+};
+
+ButtonXL.propTypes = {
+  url: PropTypes.string,
+  buttonName: PropTypes.string,
+  isSubmit: PropTypes.bool,
 };
 
 export default ButtonXL

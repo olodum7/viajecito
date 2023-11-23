@@ -1,12 +1,17 @@
 package com.viajecito.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.viajecito.api.dto.ReservaDTO;
+import com.viajecito.api.dto.SalidaDTO;
 import com.viajecito.api.dto.TourDTO;
 import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.*;
 import com.viajecito.api.repository.IAlojamientoRepository;
 import com.viajecito.api.repository.ICategoriaRepository;
+import com.viajecito.api.repository.ISalidaRepository;
 import com.viajecito.api.repository.ITourRepository;
+import com.viajecito.api.service.IReservaService;
+import com.viajecito.api.service.ISalidaService;
 import com.viajecito.api.service.ITourService;
 import com.viajecito.api.service.impl.ImagenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 
 @CrossOrigin
@@ -27,6 +33,9 @@ public class TourController {
     private ITourService tourService;
 
     @Autowired
+    private ITourRepository tourRepository;
+
+    @Autowired
     private ImagenService imagenService;
 
     @Autowired
@@ -34,6 +43,9 @@ public class TourController {
 
     @Autowired
     private IAlojamientoRepository alojamientoRepository;
+
+    @Autowired
+    private ISalidaRepository salidaRepository;
 
     @Autowired
     private ITourRepository tourRepository;
@@ -44,12 +56,14 @@ public class TourController {
     @PostMapping
     public ResponseEntity<?> agregar(@RequestParam("titulo") String titulo,
                                      @RequestParam("subtitulo") String subtitulo,
-                                     @RequestParam("precio") Double precio,
+                                     @RequestParam("precioBase") Double precioBase,
+                                     @RequestParam("precioAdulto") Double precioAdulto,
+                                     @RequestParam("precioMenor") Double precioMenor,
                                      @RequestParam("categoria") Long categoriaId,
                                      @RequestParam("rating") String rating,
-                                     @RequestParam("duracion") String duracion,
+                                     @RequestParam("duracion") Integer duracion,
                                      @RequestParam("dificultad") TourDificultad dificultad,
-                                     @RequestParam("salidas") String salidas,
+                                     @RequestParam("salidas") List<Long> salidas,
                                      @RequestParam("pasajes") Boolean pasajes,
                                      @RequestParam("transporte") String transporte,
                                      @RequestParam("traslado") Boolean traslado,
@@ -61,22 +75,24 @@ public class TourController {
 
         Tour tour = new Tour();
         Set<Imagen> imagenesTour = new HashSet<>();
-        Set<Long> imagenesId = new HashSet<>();
+        Set<Salida> salidasTour = new HashSet<>();
 
         try {
             /************* VALIDACION DE CAMPOS *************/
-            if (titulo == null || subtitulo == null || precio == null || categoriaId == null ||
+            if (titulo == null || subtitulo == null || precioBase == null || categoriaId == null ||
                     duracion == null || dificultad == null || (imagenes == null || imagenes.isEmpty())) {
                 return ResponseEntity.badRequest().body(new MensajeRespuesta("error", "Todos los campos son obligatorios."));
             }
 
-            if (titulo.isEmpty() || subtitulo.isEmpty() || precio.isNaN() || duracion.isEmpty() ) {
+            if (titulo.isEmpty() || subtitulo.isEmpty() || precioBase.isNaN() || duracion == 0 ) {
                 return ResponseEntity.badRequest().body(new MensajeRespuesta("error", "Los campos no pueden quedar vacíos."));
             }
 
             tour.setTitulo(titulo);
             tour.setSubtitulo(subtitulo);
-            tour.setPrecio(precio);
+            tour.setPrecioBase(precioBase);
+            tour.setPrecioAdulto(precioAdulto);
+            tour.setPrecioMenor(precioMenor);
 
             /**** Categoria ****/
             Categoria categoria = categoriaRepository.findById(categoriaId).orElse(null);
@@ -87,7 +103,12 @@ public class TourController {
             tour.setRating(rating);
             tour.setDuracion(duracion);
             tour.setDificultad(dificultad);
-            tour.setSalidas(salidas);
+
+            /**** Salidas ****/
+            for (Long salida : salidas)
+                salidasTour.add(salidaRepository.findById(salida).orElse(null));
+            tour.setSalidas(salidasTour);
+
             tour.setPasajes(pasajes);
             tour.setTransporte(transporte);
             tour.setTraslado(traslado);
@@ -127,48 +148,61 @@ public class TourController {
 
     @PutMapping
     public ResponseEntity<?> modificar(@RequestParam("id") Long id,
-                                       @RequestParam("precio") Double precio,
+                                       @RequestParam("precioBase") Double precioBase,
+                                       @RequestParam("precioAdulto") Double precioAdulto,
+                                       @RequestParam("precioMenor") Double precioMenor,
                                        @RequestParam("categoria") Long categoriaId,
                                        @RequestParam("rating") String rating,
-                                       @RequestParam("duracion") String duracion,
+                                       @RequestParam("duracion") Integer duracion,
                                        @RequestParam("dificultad") TourDificultad dificultad,
-                                       @RequestParam("salidas") String salidas,
-                                       @RequestParam(value = "pasajes", required = false) String pasajesStr,
+                                       @RequestParam("salidas") List<Long> salidas,
+                                       @RequestParam("pasajes") Boolean pasajes,
                                        @RequestParam("transporte") String transporte,
-                                       @RequestParam(value = "traslado", required = false) String trasladoStr,
-                                       @RequestParam(value = "entradas", required = false) String entradasStr,
-                                       @RequestParam(value = "guia", required = false) String guiaStr,
+                                       @RequestParam("traslado") Boolean traslado,
+                                       @RequestParam("entradas") String entradas,
+                                       @RequestParam("guia") Boolean guia_es,
                                        @RequestParam("itinerario") String itinerario,
-                                       @RequestParam("alojamiento") Long alojamientoId
-                                       ) throws BadRequestException, IOException {
+                                       @RequestParam("alojamiento") Long alojamientoId,
+                                       @RequestPart("imagenes") List<MultipartFile> imagenes) throws BadRequestException, IOException {
 
         try {
             Tour tour = tourRepository.findById(id).orElseThrow();
+            Set<Salida> salidasTour = new HashSet<>();
             Categoria categoria = categoriaRepository.findById(categoriaId).orElseThrow();
             Alojamiento alojamiento = alojamientoRepository.findById(alojamientoId).orElseThrow();
 
-            Boolean traslado = Boolean.valueOf(trasladoStr);
-            Boolean pasajes = Boolean.valueOf(pasajesStr);
-            Boolean entradas = Boolean.valueOf(entradasStr);
-            Boolean guia = Boolean.valueOf(guiaStr);
-
-            tour.setPrecio(precio);
+            tour.setPrecioBase(precioBase);
+            tour.setPrecioAdulto(precioAdulto);
+            tour.setPrecioMenor(precioMenor);
             tour.setCategoria(categoria);
             tour.setRating(rating);
             tour.setDuracion(duracion);
             tour.setDificultad(dificultad);
-            tour.setSalidas(salidas);
+
+            /**** Salidas ****/
+            for (Long salida : salidas)
+                salidasTour.add(salidaRepository.findById(salida).orElse(null));
+            tour.setSalidas(salidasTour);
+
             tour.setPasajes(pasajes);
             tour.setTransporte(transporte);
             tour.setTraslado(traslado);
-            tour.setEntradas(String.valueOf(entradas));
-            tour.setGuia(guia);
+            tour.setEntradas(entradas);
+            tour.setGuia_es(guia_es);
             tour.setItinerario(itinerario);
             tour.setAlojamiento(alojamiento);
+
+            /** Elimino las imagenes existentes del tour y agrego las nuevas **/
+            tour.getImagenes().clear();
+            Set<Imagen> nuevasImagenes = imagenService.agregar(imagenes);
+
+            tour.setImagenes(nuevasImagenes);
 
             tourService.modificar(tour);
             return ResponseEntity.ok(new MensajeRespuesta("ok", tourService.modificar(tour).getTitulo() + " modificado correctamente."));
         } catch (BadRequestException e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
+        } catch (IOException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
         }
     }
@@ -178,8 +212,14 @@ public class TourController {
         return tourService.buscarPorId(id);
     }
 
+    @GetMapping(path = "/disponibles")
+    public Collection<TourDTO> buscarDisponibles(@RequestParam("fechaSalida") String fechaSalida) throws BadRequestException {
+        LocalDate fechaSalidaLocalDate = LocalDate.parse(fechaSalida);
+        return tourService.listarDisponibles(fechaSalidaLocalDate);
+    }
+
     @GetMapping
-    public Collection<TourDTO> listarTodos(){
+    public Collection<TourDTO> listarTodos() throws BadRequestException {
         return tourService.listarTodos();
     }
 }

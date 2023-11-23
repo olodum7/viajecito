@@ -1,6 +1,7 @@
 import mockCategories from "./../utils/mock.category";
+import PropTypes from 'prop-types';
 
-const CategoryNav = () => {
+const CategoryNav = ({ clickedCategoryName, onCategoryClick })=> {
   return (
     <section id="category-nav" className="container-fluid">
       <div className="container">
@@ -11,8 +12,8 @@ const CategoryNav = () => {
           <div className="col-12 col-md-10">
             <div className="row">
               {mockCategories.map((category) => (
-                <div key={category.id} className="col-6 col-lg-2" data-aos="zoom-in">
-                  <div className="category-item">
+                <div key={category.id} className="col-6 col-lg-2" data-aos="zoom-in" onClick={() => onCategoryClick(category.title)}>
+                  <div className="category-item" style={{ color: clickedCategoryName == category.title ? 'var(--primary)' : 'black' }}>
                     <div dangerouslySetInnerHTML={{ __html: category.icon }} />
                     <p>{category.title}</p>
                   </div>
@@ -24,6 +25,11 @@ const CategoryNav = () => {
       </div>
     </section>
   );
+};
+
+CategoryNav.propTypes = {
+  clickedCategoryName: PropTypes.string,
+  onCategoryClick: PropTypes.func,
 };
 
 export default CategoryNav;

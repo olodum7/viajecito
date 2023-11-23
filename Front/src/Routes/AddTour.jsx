@@ -1,18 +1,21 @@
 import { useState, useRef } from "react";
 import Categoria from "./../Components/category/CategoryTour";
 import Hotel from "../Components/hotel/Hotel";
+import { parse } from "date-fns";
 
 const AddTour = () => {
   const [mensaje, setMensaje] = useState("");
   const [tourData, setTourData] = useState({
     titulo: "",
     subtitulo: "",
-    precio: 0,
+    precioBase: 0,
+    precioAdulto: 0,
+    precioMenor: 0,
     categoria: 0,
     rating: "",
-    duracion: "",
+    duracion: 0,
     dificultad: "",
-    salidas: "",
+    salidas: [],
     pasajes: false,
     transporte: "",
     traslado: false,
@@ -33,12 +36,17 @@ const AddTour = () => {
   const handleChange = (e) => {
     const { name, value, checked, files } = e.target;
     let parsedValue = value;
+    let newName = name;
 
     if (name === "precio" && isNaN(value)) {
       parsedValue = parseInt(value);
     }
 
-    if ((name === "rating" || name === "salidas" || name === "transporte" || name === "itinerario") && value != "") {
+    if ((name === "rating" || name === "transporte" || name === "itinerario") && value != "") {
+      parsedValue = value;
+    }
+
+    if (name === "salidas") {
       parsedValue = value;
     }
 
@@ -57,6 +65,7 @@ const AddTour = () => {
     if (name === "checkEntradas" && checked) {
       document.getElementById("cont-input-entradas").style.display = "block";
       parsedValue = entradasRef.current.value;
+      newName = "entradas";
     } else if (name === "checkEntradas" && !checked) {
       document.getElementById("cont-input-entradas").style.display = "none";
     }
@@ -72,7 +81,7 @@ const AddTour = () => {
       console.log("No se seleccionaron archivos válidos o no se cumple con el minimo de 5 imagenes");
     }
 
-    setTourData({ ...tourData, [name]: parsedValue });
+    setTourData({ ...tourData, [newName]: parsedValue });
   };
 
   /* Reseteo de valores */
@@ -80,12 +89,14 @@ const AddTour = () => {
     setTourData({
       titulo: "",
       subtitulo: "",
-      precio: 0,
+      precioBase: 0,
+      precioAdulto: 0,
+      precioMenor: 0,
       categoria: 0,
       rating: "",
-      duracion: "",
+      duracion: 0,
       dificultad: "",
-      salidas: "",
+      salidas: [],
       pasajes: false,
       transporte: "",
       traslado: false,
@@ -160,8 +171,28 @@ const AddTour = () => {
         <div className="row">
           <div className="col">
             <div className="form-group mb-3">
-              <small>Precio*</small>
-              <input className="form-control" name="precio" type="number" value={tourData.precio} onChange={handleChange} />
+              <small>Precio Base*</small>
+              <input className="form-control" name="precioBase" type="number" value={tourData.precioBase} onChange={handleChange} />
+            </div>
+          </div>
+          <div className="col">
+            <div className="form-group mb-3">
+              <small>Precio por adulto*</small>
+              <input className="form-control" name="precioAdulto" type="number" value={tourData.precioAdulto} onChange={handleChange} />
+            </div>
+          </div>
+          <div className="col">
+            <div className="form-group mb-3">
+              <small>Precio por menores*</small>
+              <input className="form-control" name="precioMenor" type="number" value={tourData.precioMenor} onChange={handleChange} />
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <div className="form-group mb-3">
+              <small>Rating*</small>
+              <input className="form-control" name="rating" type="text" value={tourData.rating} onChange={handleChange} />
             </div>
           </div>
           <div className="col">
@@ -193,7 +224,7 @@ const AddTour = () => {
         <div className="row" id="categoria">
           <div className="col">
             <div className="form-group mb-3">
-              <small>Salida*</small>
+              <small>Salida (ID separados por coma) *</small>
               <input className="form-control" name="salidas" type="text" value={tourData.salidas} onChange={handleChange} />
             </div>
           </div>
@@ -251,7 +282,7 @@ const AddTour = () => {
           </div>
         </div>
         <div className="row">
-        <div className="col">
+          <div className="col">
             <div className="form-group mb-3">
               <label className="label-checkbox">
                 <input className="form-check-input" id="checkEntradas" name="checkEntradas" type="checkbox" value={tourData.entradas} onChange={handleChange} />
