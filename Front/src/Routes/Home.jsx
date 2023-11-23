@@ -29,11 +29,6 @@ const Home = () => {
     setCurrentPage(1);
   };
 
-  const filteredTours = result.filter((tour) => {
-    const tourName = tour.titulo || "";
-    return tourName.toLowerCase().includes(search.toLowerCase());
-  });
-
   useEffect(() => {
     fetch("http://localhost:8089/tour")
       .then((response) => response.json())
@@ -62,9 +57,16 @@ const Home = () => {
     setEndDate(endDate);
   };
 
+  
+  // const filteredTours = result.filter((tour) => {
+  //   const tourName = tour.titulo || "";
+  //   return tourName.toLowerCase().includes(search.toLowerCase());
+  // });
+
   const filteredTours = result.filter((tour) => {
     const fechaDesdeArray = tour.salidaDTO.fechaSalidaDesde;
     const fechaHastaArray = tour.salidaDTO.fechaSalidaHasta;
+    const tourName = tour.titulo || "";
 
     const fechaDesde = new Date(fechaDesdeArray[0], fechaDesdeArray[1] - 1, fechaDesdeArray[2])
     const fechaHasta = new Date(fechaHastaArray[0], fechaHastaArray[1] - 1, fechaHastaArray[2])
@@ -72,7 +74,7 @@ const Home = () => {
     const categoryFilter = !clickedCategoryName || tour.categoria === clickedCategoryName;
     const dateFilter =
       (endDate === null || startDate >= fechaDesde && startDate <= fechaHasta);
-    return categoryFilter && dateFilter;
+    return categoryFilter && dateFilter && tourName.toLowerCase().includes(search.toLowerCase());
 
   });
 
