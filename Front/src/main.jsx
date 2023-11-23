@@ -7,9 +7,10 @@ import Detail from "./Routes/Detail";
 import SignUp from "./Routes/SignUp";
 import NotFound from "./Routes/NotFound";
 import Login from "./Routes/Login";
-import List from "./Routes/List";
 import Favs from "./Routes/Favs";
+import AdminPanel from "./Routes/AdminPanel";
 import Context from "./Components/utils/global.context";
+import List from "./Routes/List";
 
 import ProtectedRoute from "./Components/utils/ProtectedRoute";
 
@@ -51,6 +52,14 @@ createRoot(document.getElementById("root")).render(
             element={
               <ProtectedRoute>
                 <Favs />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="admin"
+            element={
+              <ProtectedRoute>
+                <AdminPanel />
               </ProtectedRoute>
             }
           />

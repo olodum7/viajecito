@@ -328,6 +328,10 @@ section#detail .container-itinerary h5 {
     background: var(--primary);
 }
 
+.tableList {
+    margin-top: 7rem;
+}
+
 .table {
     margin-top: 7rem;
 }
