@@ -20,6 +20,8 @@ public class CorsConfig implements WebMvcConfigurer{
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOrigin("http://localhost:5173"); // Origen permitido
         config.addAllowedOrigin("http://127.0.0.1:5173"); // Origen permitido
+        config.addAllowedOrigin("http://127.0.0.1:5174");// Origen permitido
+        config.addAllowedOrigin("http://localhost:5174");// Origen permitido
         config.addAllowedMethod("*"); // Todos los métodos permitidos
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);

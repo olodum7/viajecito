@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="56ceb4cf-309b-4bb5-94f6-1071cf032ed2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/config/CorsConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Components/search/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/search/Search.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/AddTour.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/AddTour.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +27,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/config/CorsConfig.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/ImagenController.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/ReservaController.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" root0="SKIP_INSPECTION" />

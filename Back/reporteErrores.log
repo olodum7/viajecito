@@ -2232,3 +2232,10 @@
 [2023-11-20 19:31:38] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
 [2023-11-20 20:27:05] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
 [2023-11-20 20:28:12] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-11-23 19:08:30] [ ERROR] [ExceptionController:41] BadRuntimeException FALTAN PARAMETROS: El parámetro 'salidas' es obligatorio
+[2023-11-23 19:09:02] [ ERROR] [ExceptionController:41] BadRuntimeException FALTAN PARAMETROS: El parámetro 'salidas' es obligatorio
+[2023-11-23 19:12:10] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-23 19:12:53] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-23 19:15:52] [ ERROR] [ExceptionController:41] BadRuntimeException FALTAN PARAMETROS: El parámetro 'precioBase' es obligatorio
+[2023-11-23 19:18:40] [ ERROR] [ExceptionController:34] BadRuntimeException FALTAN DATOS: El parámetro 'imagenes' es obligatorio
+[2023-11-23 19:37:41] [ ERROR] [ExceptionController:41] BadRuntimeException FALTAN PARAMETROS: El parámetro 'salidas' es obligatorio

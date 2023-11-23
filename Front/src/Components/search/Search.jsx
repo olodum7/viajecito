@@ -32,7 +32,6 @@ const Search = ({ onSearchClick, onSearchChange, onSearchSubmit, startDate: prop
     }
   };
 
-
   const handleChange = (name, value) => {
     if (name === "startDate") {
       setFilter({ ...filter, startDate: value, endDate: addDays(value, 2) });
