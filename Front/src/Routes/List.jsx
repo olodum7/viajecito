@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import Categoria from "./../Components/category/CategoryTour";
+import PropTypes from 'prop-types';
 
 const List = () => {
   const [tours, setTours] = useState([]);
   const [editingTour, setEditingTour] = useState(null);
   const [newCategoria, setNewCategoria] = useState("");
-  const [tourDetails, setTourDetails] = useState(null);
+  const [categories, setCategorias] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:8089/tour")
@@ -16,37 +17,46 @@ const List = () => {
       .catch((error) => {
         console.error("Error al obtener los tours: \n", error);
       });
+
+      fetch("http://localhost:8089/categoria")
+      .then((response) => response.json())
+      .then((data) => {
+        setCategorias(data);
+      })
+      .catch((error) => {
+        console.error("Error al obtener las categorías: \n", error);
+      });
   }, []);
 
   const handleEditCategoria = (tour) => {
     setEditingTour(tour);
-    setNewCategoria(tour.categoria);
-
-    fetch(`http://localhost:8089/tour/${tour.id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setTourDetails(data);
-      })
-      .catch((error) => {
-        console.error("Error al obtener los detalles del tour: \n", error);
-      });
   };
 
   const handleSaveCategoria = () => {
-    // Validaciones de campos aquí
-    if (isNaN(parseInt(newCategoria))) {
-      console.error("La nueva categoría no es un número válido.");
-      return;
-    }
 
     const formData = new FormData();
-    Object.entries(tourDetails).forEach(([key, value]) => {
-      formData.append(key, value);
+
+    Object.entries(editingTour).forEach(([key, value]) => {
+
+      if (key === "categoria") {
+        const categoriaId = Number(newCategoria);
+        console.log(categoriaId);
+        formData.append("categoria", categoriaId);
+      } else if (key === "dificultad") {
+        formData.append("dificultad", value.toUpperCase());
+      } else {
+        formData.append(key, value);
+        console.log(
+          "key: " + key + " value: " + value
+        );
+      }
     });
 
-    formData.append('categoria', newCategoria);
-
-    console.log(formData);
+    
+    setEditingTour(formData);
+    console.log(editingTour);
+    console.log(newCategoria);
+    console.log(editingTour.id);
 
     fetch(`http://localhost:8089/tour`, {
       method: "PUT",
@@ -56,7 +66,7 @@ const List = () => {
       .then(() => {
         setTours((prevTours) =>
           prevTours.map((tour) =>
-            tour.id === tourDetails.id ? { ...tour, categoria: newCategoria } : tour
+          tour.id === editingTour.id ? { ...tour, categoria: findCategoriaName(newCategoria) } : tour
           )
         );
         setEditingTour(null);
@@ -68,11 +78,12 @@ const List = () => {
   };
 
   const handleDeleteTour = (id) => {
+    console.log();
     fetch(`http://localhost:8089/tour/${id}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then(() => {
         setTours((prevTours) =>
           prevTours.filter((tour) => tour.id !== id)
         );
@@ -80,6 +91,11 @@ const List = () => {
       .catch((error) => {
         console.error("Error al eliminar el tour: \n", error);
       });
+  };
+
+  const findCategoriaName = (categoriaId) => {
+    const categoria = categories.find((cat) => cat.id === Number(categoriaId));
+    return categoria ? categoria.nombre : categoriaId; // Retorna el nombre si se encuentra, de lo contrario el ID
   };
 
   return (
@@ -95,10 +111,10 @@ const List = () => {
             {editingTour === tour ? (
               <div className="row" id="categoria">
                 <Categoria
-                  tourData={{ categoria: parseInt(tour.categoria) }}
+                  tourData={{ categoria: parseInt(newCategoria)}}
                   handleChange={(e) => setNewCategoria(e.target.value)}
+                  categories={categories}
                 />
-
                 <td><button onClick={handleSaveCategoria}>
                   Guardar Categoría
                 </button></td>
@@ -116,7 +132,7 @@ const List = () => {
             )}
           </tr>
         ))}
-    </tbody>
+      </tbody>
     </table>
   );
 };

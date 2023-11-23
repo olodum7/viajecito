@@ -9,22 +9,25 @@ const AddTour = () => {
     subtitulo: "",
     precio: 0,
     categoria: 0,
-    rating: "4580",
+    rating: "",
     duracion: "",
     dificultad: "",
-    salidas: "Lunes y martes",
+    salidas: "",
     pasajes: false,
     transporte: "",
     traslado: false,
     entradas: "",
     guia: false,
+    itinerario: "",
     alojamiento: 0,
-    itinerario: "www",
     imagenes: FileList,
   });
 
   const entradasRef = useRef();
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const timer = setTimeout(() => {
+    setMensaje("");
+  }, 70000);
 
   /* Validaciones y conversion de datos */
   const handleChange = (e) => {
@@ -33,6 +36,10 @@ const AddTour = () => {
 
     if (name === "precio" && isNaN(value)) {
       parsedValue = parseInt(value);
+    }
+
+    if ((name === "rating" || name === "salidas" || name === "transporte" || name === "itinerario") && value != "") {
+      parsedValue = value;
     }
 
     if (name === "categoria" && isNaN(value)) {
@@ -58,11 +65,11 @@ const AddTour = () => {
       parsedValue = parseInt(value);
     }
 
-    if (name === "imagenes" && files.length > 0) {
+    if (name === "imagenes" && files.length > 5) {
       const fileList = Array.from(files);
       setSelectedFiles(fileList);
-    } else if (name === "imagenes"){
-      console.log("No se seleccionaron archivos válidos.");
+    } else if (name === "imagenes") {
+      console.log("No se seleccionaron archivos válidos o no se cumple con el minimo de 5 imagenes");
     }
 
     setTourData({ ...tourData, [name]: parsedValue });
@@ -71,12 +78,27 @@ const AddTour = () => {
   /* Reseteo de valores */
   const handleReset = () => {
     setTourData({
-      nombre: "",
-      descripcion: "",
-      precio: "",
-      categoria: "",
-      imagenes: null,
+      titulo: "",
+      subtitulo: "",
+      precio: 0,
+      categoria: 0,
+      rating: "",
+      duracion: "",
+      dificultad: "",
+      salidas: "",
+      pasajes: false,
+      transporte: "",
+      traslado: false,
+      entradas: "",
+      guia: false,
+      alojamiento: 0,
+      itinerario: "",
+      imagenes: FileList,
     });
+    setSelectedFiles([]);
+    clearTimeout(timer);
+    document.getElementById("cont-input-entradas").style.display = "none";
+    document.getElementById("cont-input-entradas").value = "";
   };
 
   /* Carga de datos */
@@ -87,7 +109,7 @@ const AddTour = () => {
     Object.entries(tourData).forEach(([key, value]) => {
       if (key === "imagenes") {
         for (let i = 0; i < selectedFiles.length; i++) {
-          formData.append("imagenes" , selectedFiles[i])
+          formData.append("imagenes", selectedFiles[i])
         }
       } else {
         formData.append(key, value);
@@ -103,6 +125,8 @@ const AddTour = () => {
       .then((response) => response.json())
       .then((data) => {
         setMensaje({ tipo: data.tipo, texto: data.mensaje });
+        if (data.tipo == 'ok')
+          handleReset();
       })
       .catch((error) => {
         console.error("Error al enviar el tour:", error);
@@ -124,6 +148,8 @@ const AddTour = () => {
               <input className="form-control" name="titulo" type="text" value={tourData.titulo} onChange={handleChange} />
             </div>
           </div>
+        </div>
+        <div className="row">
           <div className="col">
             <div className="form-group mb-3">
               <small>Subtitulo*</small>
@@ -136,6 +162,12 @@ const AddTour = () => {
             <div className="form-group mb-3">
               <small>Precio*</small>
               <input className="form-control" name="precio" type="number" value={tourData.precio} onChange={handleChange} />
+            </div>
+          </div>
+          <div className="col">
+            <div className="form-group mb-3">
+              <small>Rating*</small>
+              <input className="form-control" name="rating" type="text" value={tourData.rating} onChange={handleChange} />
             </div>
           </div>
           <div className="col">
@@ -159,7 +191,29 @@ const AddTour = () => {
           </div>
         </div>
         <div className="row" id="categoria">
+          <div className="col">
+            <div className="form-group mb-3">
+              <small>Salida*</small>
+              <input className="form-control" name="salidas" type="text" value={tourData.salidas} onChange={handleChange} />
+            </div>
+          </div>
           <Categoria tourData={{ categoria: parseInt(tourData.categoria) }} handleChange={handleChange} />
+        </div>
+        <div className="row" id="itinerario">
+          <div className="col">
+            <div className="form-group mb-3">
+              <small>Transporte*</small>
+              <input className="form-control" name="transporte" type="text" value={tourData.transporte} onChange={handleChange} />
+            </div>
+          </div>
+        </div>
+        <div className="row" id="itinerario">
+          <div className="col">
+            <div className="form-group mb-3">
+              <small>Itinerario*</small>
+              <textarea className="form-control" name="itinerario" type="text" value={tourData.itinerario} onChange={handleChange} />
+            </div>
+          </div>
         </div>
         <div className="row">
           <small>Imagenes*</small>
@@ -177,25 +231,27 @@ const AddTour = () => {
           <div className="col">
             <div className="form-group mb-3">
               <label className="label-checkbox">
-                <input className="form-check-input" name="pasajes" type="checkbox" value={tourData.pasajes} onChange={handleChange} />
+                <input className="form-check-input" name="pasajes" type="checkbox" checked={tourData.pasajes} onChange={handleChange} />
                 ¿Incluye pasajes?</label>
             </div>
           </div>
           <div className="col">
             <div className="form-group mb-3">
               <label className="label-checkbox">
-                <input className="form-check-input" name="traslado" type="checkbox" value={tourData.traslado} onChange={handleChange} />
+                <input className="form-check-input" name="traslado" type="checkbox" checked={tourData.traslado} onChange={handleChange} />
                 ¿Incluye traslados?</label>
             </div>
           </div>
           <div className="col">
             <div className="form-group mb-3">
               <label className="label-checkbox">
-                <input className="form-check-input" name="guia" type="checkbox" value={tourData.guia} onChange={handleChange} />
+                <input className="form-check-input" name="guia" type="checkbox" checked={tourData.guia} onChange={handleChange} />
                 ¿Incluye guia?</label>
             </div>
           </div>
-          <div className="col">
+        </div>
+        <div className="row">
+        <div className="col">
             <div className="form-group mb-3">
               <label className="label-checkbox">
                 <input className="form-check-input" id="checkEntradas" name="checkEntradas" type="checkbox" value={tourData.entradas} onChange={handleChange} />
@@ -216,11 +272,12 @@ const AddTour = () => {
             <button className="btn btn-secondary" type="button" onClick={handleReset}>Resetear Formulario</button>
             <button className="btn" type="button" onClick={handleSubmit}>Agregar</button>
           </div>
-          {mensaje &&
-            <div className={`div-${mensaje.tipo}`}>
-              <p> {mensaje.texto} </p>
+
+          {mensaje && (
+            <div className={`mt-3 alert alert-${mensaje.tipo === "error" ? "danger" : "success"}`} >
+              {mensaje.texto}
             </div>
-          }
+          )}
         </div>
       </form>
     </div>
