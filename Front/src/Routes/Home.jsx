@@ -10,6 +10,26 @@ const Home = () => {
   const [result, setResult] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [toursPerPage, setToursPerPage] = useState(6);
+  const [search, setSearch] = useState("");
+
+  const [searchSubmitted, setSearchSubmitted] = useState(false);
+  const [searchUsed, setSearchUsed] = useState(false);
+
+  const handleSearchSubmit = () => {
+    setSearchSubmitted(true);
+    setSearchUsed(true);
+    setCurrentPage(1);
+  };
+
+  const handleSearchChange = (searchText) => {
+    setSearch(searchText);
+    setCurrentPage(1);
+  };
+
+  const filteredTours = result.filter((tour) => {
+    const tourName = tour.titulo || "";
+    return tourName.toLowerCase().includes(search.toLowerCase());
+  });
 
   useEffect(() => {
     fetch("http://localhost:8089/tour")
@@ -24,6 +44,13 @@ const Home = () => {
       });
   }, []);
 
+  useEffect(() => {
+    if (search === "") {
+      setSearchUsed(false);
+      setSearchSubmitted(false);
+    }
+  }, [search]);
+
   // Función para mostrar las cards de manera aleatoria
   const randomArray = (array) => {
     const random = [...array];
@@ -36,29 +63,52 @@ const Home = () => {
 
   const lastTourIndex = currentPage * toursPerPage;
   const firstTourIndex = lastTourIndex - toursPerPage;
-  const currentTours = result.slice(firstTourIndex, lastTourIndex);
+  const currentTours = filteredTours.slice(firstTourIndex, lastTourIndex);
 
   return (
     <>
       <main>
         <Hero />
-        <Search />
+        <Search
+          onSearchChange={handleSearchChange}
+          onSearchSubmit={handleSearchSubmit}
+          search={search}
+        />
         <CategoryNav />
 
         <section className="content-wrapper">
-          <h1>Explora nuestros destinos destacados</h1>
-          <p className="mb-5 subtitle">Descubre un mundo de posibilidades</p>
+          {searchUsed ? (
+            currentTours.length > 0 ? (
+              <>
+                <h1>Resultados para "{search}"</h1>
+                <p className="mb-5 subtitle">
+                  Explora los destinos que coinciden con tu búsqueda
+                </p>
+              </>
+            ) : (
+              <h1>No se encontraron resultados para "{search}"</h1>
+            )
+          ) : (
+            <>
+              <h1>Explora nuestros destinos destacados</h1>
+              <p className="mb-5 subtitle">Descubre un mundo de posibilidades</p>
+            </>
+          )}
+
           <div className="cards-wrapper">
-            {currentTours.map((tour) => (
-              <Card data={tour} key={tour.id} />
-            ))}
+            {currentTours.length > 0 ? (
+              currentTours.map((tour) => <Card data={tour} key={tour.id} />)
+            ) : ''}
           </div>
-          <Pagination
-            totalTours={result.length}
-            toursPerPage={toursPerPage}
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage}
-          />
+
+          {filteredTours.length > toursPerPage && (
+            <Pagination
+              totalTours={filteredTours.length}
+              toursPerPage={toursPerPage}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+            />
+          )}
         </section>
 
         <Banner />
