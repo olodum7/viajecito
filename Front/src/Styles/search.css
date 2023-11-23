@@ -91,6 +91,7 @@ section#search-bar .suggestions-list li:hover {
     }
     section#search-bar .form-group .form-control {
         padding: 1rem 1.4rem;
+        min-width: 100%;
     }
     section#search-bar .form-group input {
         max-width: 120px;
