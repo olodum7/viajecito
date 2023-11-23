@@ -52,16 +52,10 @@ const Home = () => {
 
   /* Filtros por fecha */
   const handleSearchClick = (filter) => {
-    const { startDate, endDate} = filter;
+    const { startDate, endDate } = filter;
     setStartDate(startDate);
     setEndDate(endDate);
   };
-
-  
-  // const filteredTours = result.filter((tour) => {
-  //   const tourName = tour.titulo || "";
-  //   return tourName.toLowerCase().includes(search.toLowerCase());
-  // });
 
   const filteredTours = result.filter((tour) => {
     const fechaDesdeArray = tour.salidaDTO.fechaSalidaDesde;
@@ -100,26 +94,22 @@ const Home = () => {
     <>
       <main>
         <Hero />
-        <Search onSearchClick={handleSearchClick} startDate={startDate} endDate={endDate} />
-        <CategoryNav clickedCategoryName={clickedCategoryName} onCategoryClick={handleCategoryClick} />
-        <Search
-          onSearchChange={handleSearchChange}
-          onSearchSubmit={handleSearchSubmit}
-          search={search}
-        />
-        <CategoryNav />
+        <Search onSearchChange={handleSearchChange} onSearchSubmit={handleSearchSubmit} onSearchClick={handleSearchClick}
+          startDate={startDate} endDate={endDate} search={search} />
+        {/* <Search onSearchChange={handleSearchChange} onSearchSubmit={handleSearchSubmit} search={search} /> */}
 
+        <CategoryNav clickedCategoryName={clickedCategoryName} onCategoryClick={handleCategoryClick} />
         <section className="content-wrapper">
           {searchUsed ? (
             currentTours.length > 0 ? (
               <>
-                <h1>Resultados para "{search}"</h1>
+                <h1>Resultados para: {search}</h1>
                 <p className="mb-5 subtitle">
                   Explora los destinos que coinciden con tu búsqueda
                 </p>
               </>
             ) : (
-              <h1>No se encontraron resultados para "{search}"</h1>
+              <h1>No se encontraron resultados para: {search}</h1>
             )
           ) : (
             <>

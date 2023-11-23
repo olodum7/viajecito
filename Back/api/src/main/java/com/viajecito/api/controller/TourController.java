@@ -48,9 +48,6 @@ public class TourController {
     private ISalidaRepository salidaRepository;
 
     @Autowired
-    private ITourRepository tourRepository;
-
-    @Autowired
     private ObjectMapper mapper;
 
     @PostMapping
@@ -188,7 +185,7 @@ public class TourController {
             tour.setTransporte(transporte);
             tour.setTraslado(traslado);
             tour.setEntradas(entradas);
-            tour.setGuia_es(guia_es);
+            tour.setGuia(guia_es);
             tour.setItinerario(itinerario);
             tour.setAlojamiento(alojamiento);
 
