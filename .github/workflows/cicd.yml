@@ -28,21 +28,20 @@ jobs:
       - name: Build Docker image
         run: |
           cd Back/api
-          docker build -t viajecito/api-0.0.1-SNAPSHOT.jar .
+          docker build -t viajecito/api:viajecito-backend .
 
       - name: Publish image to DockerHub
-        run: docker push viajecito/api-0.0.1-SNAPSHOT.jar:latest
-
+        run: docker push viajecito/api:viajecito-backend
   deploy:
     needs: build
     runs-on: aws-ec2
     steps: 
       - name: Pull image from DockerHub
-        run: docker pull viajecito/api-0.0.1-SNAPSHOT.jar:latest
+        run: docker pull viajecito/api:viajecito-backend
 
       - name: Delete old containers
         run: docker rm -f viajecito-backend-container
 
       - name: Run docker container
-        run: docker run -d -p 8089:8089 --name viajecito-backend-container viajecito/api-0.0.1-SNAPSHOT
+        run: docker run -d -p 8089:8089 --name viajecito-backend-container viajecito/api:viajecito-backend
 
