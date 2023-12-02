@@ -17,18 +17,17 @@ jobs:
           distribution: 'temurin' 
           java-version: '11'
 
-      - name: Change to Backend/api directory
-        run: cd Back/api
-
       - name: Build Project
-        run: mvn clean install -DskipTests
+        run: |
+          cd Back/api
+          mvn clean install -DskipTests
 
       - name: Login to DockerHub
         run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
 
       - name: Build Docker image
         run: |
-          cd Backend/api
+          cd Back/api
           docker build -t viajecito/api-0.0.1-SNAPSHOT.jar .
 
       - name: Publish image to DockerHub
@@ -46,3 +45,4 @@ jobs:
 
       - name: Run docker container
         run: docker run -d -p 8089:8089 --name viajecito-backend-container viajecito/api-0.0.1-SNAPSHOT
+
