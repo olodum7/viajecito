@@ -8,7 +8,7 @@ const Image = ({ id }) => {
 
     const [imageURL, setImageURL] = useState(null);
     useEffect(() => {
-        fetch(`http://localhost:8089/imagen/${id}`)
+        fetch(`http://54.92.136.117:8089/imagen/${id}`)
             .then((response) => {
                 if (response.ok) {
                     return response.blob(); // Convertir la respuesta en un objeto Blob

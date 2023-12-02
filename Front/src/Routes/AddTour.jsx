@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import Categoria from "./../Components/category/CategoryTour";
-import Hotel from "../Components/hotel/Hotel";
+import Hotel from "./../Components/hotel/Hotel";
 
 const AddTour = () => {
   const [mensaje, setMensaje] = useState("");
@@ -126,7 +126,7 @@ const AddTour = () => {
 
     console.log(formData)
 
-    fetch("http://localhost:8089/tour", {
+    fetch("http://54.92.136.117:8089/tour", {
       method: "POST",
       body: formData
     })

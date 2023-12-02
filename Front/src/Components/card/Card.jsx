@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import Image from "../image/Image";
-import Category_pills from "../category/CategoryPills";
-import Button from "../buttons/Button";
-import FavButton from "../buttons/FavButton";
+import Image from "./../image/Image";
+import Category_pills from "./../category/CategoryPills";
+import Button from "./../buttons/Button";
+import FavButton from "./../buttons/FavButton";
 
 const Card = (props) => {
   const { id, titulo, subtitulo, precioBase, categoria, rating, duracion, dificultad, salidaDTO, imagenes } = props.data;

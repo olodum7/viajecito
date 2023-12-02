@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Image from "../image/Image";
+import Image from "./../image/Image";
 
 const GalleryModal = ({ closeModal, findPrev, findNext, hasPrev, hasNext, src }) => {
   // Defino las propiedades esperadas

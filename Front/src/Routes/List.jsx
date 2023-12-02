@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Categoria from "../Components/category/CategoryTour";
+import Categoria from "./../Components/category/CategoryTour";
 import PropTypes from 'prop-types';
 
 const List = () => {
@@ -9,7 +9,7 @@ const List = () => {
   const [categories, setCategorias] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8089/tour")
+    fetch("http://54.92.136.117:8089/tour")
       .then((response) => response.json())
       .then((data) => {
         setTours(data);
@@ -18,7 +18,7 @@ const List = () => {
         console.error("Error al obtener los tours: \n", error);
       });
 
-      fetch("http://localhost:8089/categoria")
+      fetch("http://54.92.136.117:8089/categoria")
       .then((response) => response.json())
       .then((data) => {
         setCategorias(data);

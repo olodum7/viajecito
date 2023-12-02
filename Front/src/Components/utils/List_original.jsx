@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Categoria from "../Components/Category/CategoryTour";
+import Categoria from "./../Components/Category/CategoryTour";
 
 const List = () => {
   const [tours, setTours] = useState([]);
@@ -8,7 +8,7 @@ const List = () => {
   const [tourDetails, setTourDetails] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8089/tour")
+    fetch("http://54.92.136.117:8089/tour")
       .then((response) => response.json())
       .then((data) => {
         setTours(data);
@@ -22,7 +22,7 @@ const List = () => {
     setEditingTour(tour);
     setNewCategoria(tour.categoria);
 
-    fetch(`http://localhost:8089/tour/${tour.id}`)
+    fetch(`http://54.92.136.117:8089/tour/${tour.id}`)
       .then((response) => response.json())
       .then((data) => {
         setTourDetails(data);
@@ -43,7 +43,7 @@ const List = () => {
 
     console.log(formData);
   
-    fetch(`http://localhost:8089/tour`, {
+    fetch(`http://54.92.136.117:8089/tour`, {
       method: "PUT",
       body: formData,
     })
@@ -63,7 +63,7 @@ const List = () => {
   };
 
   const handleDeleteTour = (id) => {
-    fetch(`http://localhost:8089/tour/${id}`, {
+    fetch(`http://54.92.136.117:8089/tour/${id}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
