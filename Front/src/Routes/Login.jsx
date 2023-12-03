@@ -22,6 +22,15 @@ const Login = () => {
       });
     }
 
+    if (location.state?.fromReserve) {
+      Swal.fire({
+        title: 'Autenticación requerida',
+        text: 'El login es obligatorio para completar una reserva. Por favor, registrese.',
+        icon: 'info',
+        confirmButtonText: 'Ok'
+      });
+    }
+
     if (location.state?.fromFavButton) {
       Swal.fire({
         title: 'Autenticación requerida',
