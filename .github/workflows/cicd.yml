@@ -2,7 +2,7 @@ name: CICD
 
 on:
   push:
-    branches: [00_Creando_CICD_Pipeline]
+    branches: [main]
 
 jobs:
   build:
@@ -53,5 +53,4 @@ jobs:
             -e AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }} \
             -e AWS_REGION='us-east-1' \
             --name viajecito-backend-container --network mi-red viajecito/api:viajecito-backend
- 
  
