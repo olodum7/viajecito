@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { addDays } from 'date-fns';
-import SearchButton from '../buttons/SearchButton'
+import SearchButton from './../buttons/SearchButton'
 
 const Search = ({ onSearchClick, onSearchChange, onSearchSubmit, startDate: propStartDate, endDate: propEndDate , search: propSearch }) => {
   const [filter, setFilter] = useState({

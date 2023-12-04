@@ -26,7 +26,8 @@ public class SalidaService implements ISalidaService {
 
     @Override
     public SalidaDTO agregar(Salida salida) {
-        return null;
+        Salida guardada = salidaRepository.save(salida);
+        return toDTO(guardada);
     }
 
     @Override
@@ -93,4 +94,31 @@ public class SalidaService implements ISalidaService {
         }
         return period;
     }
+
+    @Override
+    public List<SalidaDTO> obtenerTodas() {
+        List<Salida> salidas = salidaRepository.findAll();
+        return salidas.stream().map(this::toDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public SalidaDTO actualizar(Long id, Salida datosSalida) throws BadRequestException {
+        Salida salidaExistente = salidaRepository.findById(id)
+                .orElseThrow(() -> new BadRequestException("No se ha encontrado una Salida con ID: " + id));
+
+        salidaExistente.setFechaDesde(datosSalida.getFechaDesde());
+
+        Salida salidaActualizada = salidaRepository.save(salidaExistente);
+        return toDTO(salidaActualizada);
+    }
+
+    @Override
+    public boolean eliminar(Long id) {
+        if (salidaRepository.existsById(id)) {
+            salidaRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
 }

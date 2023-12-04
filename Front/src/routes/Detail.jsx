@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import Gallery from "./../Components/gallery/Gallery";
 import Image from "./../Components/image/Image.jsx";
 import Breadcrumb from "./../Components/breadcrumb/Breadcrumb.jsx";
-import Banner from "../Components/ui-components/banner/Banner";
-import Itinerary from "../Components/itinerary/Itinerary.jsx";
-import Counter from "../Components/buttons/Counter.jsx";
+import Banner from "./../Components/ui-components/banner/Banner";
+import Itinerary from "./../Components/itinerary/Itinerary.jsx";
+import Counter from "./../Components/buttons/Counter.jsx";
 import { addDays } from "date-fns";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -29,7 +29,7 @@ const Detail = () => {
 
   /* Obtengo el tour */
   useEffect(() => {
-    fetch(`http://localhost:8089/tour/${id}`)
+    fetch(`http://34.207.134.182:8089/tour/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setResult(data);
@@ -47,7 +47,7 @@ const Detail = () => {
   /* Obtengo el alojamiento */
   useEffect(() => {
     if (result.alojamiento) {
-      fetch(`http://localhost:8089/alojamiento/${result.alojamiento}`)
+      fetch(`http://34.207.134.182:8089/alojamiento/${result.alojamiento}`)
         .then((response) => response.json())
         .then((data) => {
           setLodging(data);

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import Card from "../Components/card/Card.jsx";
-import Banner from "../Components/ui-components/banner/Banner";
-import Hero from "../Components/ui-components/hero/Hero";
-import CategoryNav from "../Components/category/CategoryNav";
-import Search from "../Components/search/Search";
-import Pagination from "../Components/ui-components/pagination/Pagination.jsx";
+import Card from "./../Components/card/Card.jsx";
+import Banner from "./../Components/ui-components/banner/Banner";
+import Hero from "./../Components/ui-components/hero/Hero";
+import CategoryNav from "./../Components/category/CategoryNav";
+import Search from "./../Components/search/Search";
+import Pagination from "./../Components/ui-components/pagination/Pagination.jsx";
 
 const Home = () => {
   const [result, setResult] = useState([]);
@@ -30,7 +30,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8089/tour")
+    fetch("http://34.207.134.182:8089/tour")
       .then((response) => response.json())
       .then((data) => {
         // Mezcla aleatoriamente el array de tours una vez al cargar los datos iniciales

@@ -7,18 +7,13 @@ import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.model.Imagen;
 import com.viajecito.api.repository.IImagenRepository;
 import com.viajecito.api.service.IImagenService;
-import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class ImagenService implements IImagenService {
@@ -28,13 +23,17 @@ public class ImagenService implements IImagenService {
 
     @Autowired
     ObjectMapper mapper;
+
+    @Autowired
+    private StorageService storageService;
+
+    /*
+
     @Override
     public Set<Imagen> agregar(List<MultipartFile> imagenes) throws BadRequestException, IOException {
         Set<Imagen> agregadas = new HashSet<>();
 
-        /**** Recorro lista de imagenes ****/
         for(MultipartFile imagen : imagenes){
-            /** Corroboro que no este vacia **/
             if (imagen == null || imagen.getSize() == 0) {
                 throw new BadRequestException("Una o más imágenes no son válidas.");
             }
@@ -43,7 +42,6 @@ public class ImagenService implements IImagenService {
             byte[] contenido = imagen.getBytes();
 
             try{
-                /** Corroboro tamaño máximo **/
                 BufferedImage imagenBI = ImageIO.read(imagen.getInputStream());
                 if (imagenBI != null) {
                     int ancho = imagenBI.getWidth();
@@ -64,13 +62,57 @@ public class ImagenService implements IImagenService {
                     agregadas.add(imagenRepository.save(toModel(imagenDTO)));
                 }
 
-                /** Limpio temporales de forma manual **/
                 imagen.getInputStream().close();
             } catch (IOException e) {
                 throw new RuntimeException("AGREGAR: " + nombre + " " + e);
             }
         }
         return agregadas;
+    } */
+
+    @Override
+    public Set<Imagen> agregar(List<MultipartFile> imagenes) throws BadRequestException, IOException {
+        Set<Imagen> agregadas = new HashSet<>();
+        Integer contador = 1;
+
+        for (MultipartFile imagen : imagenes) {
+            if (imagen == null || imagen.getSize() == 0) {
+                throw new BadRequestException("Una o más imágenes no son válidas.");
+            }
+
+            String originalFilename = imagen.getOriginalFilename();
+            List<Imagen> imagenesExistentes = imagenRepository.findByNombre(originalFilename);
+            if (!imagenesExistentes.isEmpty()) {
+                agregadas.add(imagenesExistentes.get(0));
+            } else {
+                String descriptiveName = "alojamiento_" + imagen.getName().replaceAll("\\s+", "_").toLowerCase();
+                String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+                String keyName = descriptiveName + "_" + (contador++) + extension;
+
+                storageService.uploadFile(keyName, imagen);
+
+                Imagen nuevaImagen = new Imagen();
+                nuevaImagen.setNombre(originalFilename);
+                nuevaImagen.setUrl("https://1023c01-grupo1-s3.s3.us-west-1.amazonaws.com/" + keyName);
+
+                agregadas.add(imagenRepository.save(nuevaImagen));
+            }
+        }
+        return agregadas;
+    }
+
+    @Transactional
+    public Imagen agregar(Imagen imagen) {
+        return imagenRepository.save(imagen);
+    }
+
+    public List<Imagen> buscarPorNombre(String nombreArchivo) {
+        return imagenRepository.findByNombre(nombreArchivo);
+    }
+
+    public boolean existePorNombre(String nombreArchivo) {
+        List<Imagen> imagenes = imagenRepository.findByNombre(nombreArchivo);
+        return !imagenes.isEmpty();
     }
 
     @Override

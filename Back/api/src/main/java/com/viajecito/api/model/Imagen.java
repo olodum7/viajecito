@@ -25,9 +25,13 @@ public class Imagen {
     @Column(name = "NOMBRE")
     private String nombre;
 
-    @Column(name = "CONTENIDO")
+    /* @Column(name = "CONTENIDO")
     @Lob
     private byte[] contenido;
+     */
+    // Nuevo campo para la URL de la imagen
+    @Column(name = "URL")
+    private String url;
 
     @ManyToMany(mappedBy = "imagenes")
     @JsonIgnore

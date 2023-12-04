@@ -1,9 +1,9 @@
 import React from "react";
-import { useContextGlobal } from "../Components/utils/global.context";
+import { useContextGlobal } from "./../Components/utils/global.context";
 import { useNavigate } from "react-router-dom";
-import Breadcrumb from "../Components/breadcrumb/Breadcrumb";
-import Banner from "../Components/ui-components/banner/Banner";
-import Button from "../Components/buttons/Button";
+import Breadcrumb from "./../Components/breadcrumb/Breadcrumb";
+import Banner from "./../Components/ui-components/banner/Banner";
+import Button from "./../Components/buttons/Button";
 import showToastMessage from "./../Components/utils/toast.notifications";
 
 const Profile = () => {
@@ -26,7 +26,7 @@ const Profile = () => {
 
     if (result.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:8089/usuario/${id}`, {
+        const response = await fetch(`http://34.207.134.182:8089/usuario/${id}`, {
           method: "DELETE",
         });
 
