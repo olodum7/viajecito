@@ -53,3 +53,5 @@ jobs:
             -e AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }} \
             -e AWS_REGION='us-east-1' \
             --name viajecito-backend-container --network mi-red viajecito/api:viajecito-backend
+ 
+ 
