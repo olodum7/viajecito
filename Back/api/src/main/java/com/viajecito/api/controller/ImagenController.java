@@ -23,13 +23,20 @@ public class ImagenController{
     @Autowired
     private IImagenService imagenService;
 
+    /*
     @PostMapping
     public Set<Imagen> agregar(@RequestPart("imagenes") List<MultipartFile> imagenes) throws BadRequestException, IOException {
         Set<Imagen> resultado = new HashSet<>();
         resultado = imagenService.agregar(imagenes);
         return resultado;
+    } */
+
+    @PostMapping
+    public Set<Imagen> agregar(@RequestPart("imagenes") List<MultipartFile> imagenes) throws BadRequestException, IOException {
+        return imagenService.agregar(imagenes);
     }
 
+    /*
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
         Optional<ImagenDTO> imagen = imagenService.buscarPorId(id);
@@ -37,11 +44,9 @@ public class ImagenController{
             byte[] contenidoImagen = imagen.get().getContenido();
             HttpHeaders headers = new HttpHeaders();
 
-            /**** Formato de la imagen (extension) ****/
             String nombre = imagen.get().getNombre();
             String formatoImagen = nombre.substring(nombre.lastIndexOf(".")+1);
 
-            /**** Asigno el tipo de archivo ****/
             if (formatoImagen != null) {
                 switch (formatoImagen) {
                     case "png":
@@ -56,6 +61,19 @@ public class ImagenController{
             return new ResponseEntity(contenidoImagen, headers, HttpStatus.OK);
         } else {
             return ResponseEntity.badRequest().body(new MensajeRespuesta("error", "Error al obtener las imagenes"));
+        }
+    }
+    */
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
+        Optional<ImagenDTO> imagen = imagenService.buscarPorId(id);
+        if (imagen.isPresent()) {
+            // Devuelve la URL de la imagen en lugar del contenido binario
+            String urlImagen = imagen.get().getUrl();
+            return ResponseEntity.ok().body(new MensajeRespuesta("url", urlImagen));
+        } else {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta("error", "Error al obtener la imagen"));
         }
     }
 

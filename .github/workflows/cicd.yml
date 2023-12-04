@@ -32,6 +32,7 @@ jobs:
 
       - name: Publish image to DockerHub
         run: docker push viajecito/api:viajecito-backend
+
   deploy:
     needs: build
     runs-on: [aws-ec2]
@@ -46,5 +47,13 @@ jobs:
         run: sudo docker pull viajecito/api:viajecito-backend
 
       - name: Run docker container
-        run: sudo docker run -d -p 8089:8089 --name viajecito-backend-container viajecito/api:viajecito-backend
-
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+          AWS_REGION: 'us-east-1' # Asegúrate de que esta región coincida con tu configuración
+        run: |
+          sudo docker run -d -p 8089:8089 \
+            -e AWS_ACCESS_KEY_ID \
+            -e AWS_SECRET_ACCESS_KEY \
+            -e AWS_REGION \
+            --name viajecito-backend-container --network mi-red viajecito/api:viajecito-backend

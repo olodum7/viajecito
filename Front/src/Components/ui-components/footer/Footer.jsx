@@ -1,4 +1,4 @@
-import logoFooter from "./logo-footer.svg";
+import logoFooter from "/logo-footer.svg";
 
 const Footer = () => {
   return (

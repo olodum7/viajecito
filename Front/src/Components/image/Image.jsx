@@ -7,18 +7,25 @@ const Image = ({ id }) => {
     }
 
     const [imageURL, setImageURL] = useState(null);
+
     useEffect(() => {
-        fetch(`http://54.92.136.117:8089/imagen/${id}`)
+        fetch(`http://3.82.3.215:8089/imagen/${id}`)
             .then((response) => {
                 if (response.ok) {
-                    return response.blob(); // Convertir la respuesta en un objeto Blob
+                    return response.json();
                 } else {
                     throw new Error('La solicitud de la imagen no fue exitosa');
                 }
             })
-            .then((blob) => {
-                const objectURL = URL.createObjectURL(blob); // Crear una URL del Blob
-                setImageURL(objectURL); // Establecer la URL de la imagen en el estado
+            .then((data) => {
+                if (data && data.mensaje) {
+                    const parts = data.mensaje.split('/');
+                    const lastPartEncoded = encodeURIComponent(parts.pop());
+                    const encodedURL = parts.join('/') + '/' + lastPartEncoded;
+                    setImageURL(encodedURL);
+                } else {
+                    throw new Error('URL no encontrada en la respuesta');
+                }
             })
             .catch((error) => {
                 console.error(error);

@@ -89,7 +89,7 @@ const Login = () => {
       formDataToSend.append("email", formData.email);
       formDataToSend.append("password", formData.password);
 
-      fetch("http://54.92.136.117:8089/usuario/login", {
+      fetch("http://3.82.3.215:8089/usuario/login", {
         method: "POST",
         body: formDataToSend,
       })

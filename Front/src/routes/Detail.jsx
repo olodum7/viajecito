@@ -29,7 +29,7 @@ const Detail = () => {
 
   /* Obtengo el tour */
   useEffect(() => {
-    fetch(`hhttp://54.92.136.117:8089/tour/${id}`)
+    fetch(`http://3.82.3.215:8089/tour/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setResult(data);
@@ -47,7 +47,7 @@ const Detail = () => {
   /* Obtengo el alojamiento */
   useEffect(() => {
     if (result.alojamiento) {
-      fetch(`http://54.92.136.117:8089/alojamiento/${result.alojamiento}`)
+      fetch(`http://3.82.3.215:8089/alojamiento/${result.alojamiento}`)
         .then((response) => response.json())
         .then((data) => {
           setLodging(data);

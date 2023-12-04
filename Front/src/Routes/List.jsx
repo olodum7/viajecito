@@ -9,7 +9,7 @@ const List = () => {
   const [categories, setCategorias] = useState([]);
 
   useEffect(() => {
-    fetch("http://54.92.136.117:8089/tour")
+    fetch("http://3.82.3.215:8089/tour")
       .then((response) => response.json())
       .then((data) => {
         setTours(data);
@@ -18,7 +18,7 @@ const List = () => {
         console.error("Error al obtener los tours: \n", error);
       });
 
-      fetch("http://54.92.136.117:8089/categoria")
+      fetch("http://3.82.3.215:8089/categoria")
       .then((response) => response.json())
       .then((data) => {
         setCategorias(data);
@@ -58,7 +58,7 @@ const List = () => {
     console.log(newCategoria);
     console.log(editingTour.id);
 
-    fetch(`http://localhost:8089/tour`, {
+    fetch(`http://3.82.3.215:8089/tour`, {
       method: "PUT",
       body: formData,
     })
@@ -79,7 +79,7 @@ const List = () => {
 
   const handleDeleteTour = (id) => {
     console.log();
-    fetch(`http://localhost:8089/tour/${id}`, {
+    fetch(`http://3.82.3.215:8089/tour/${id}`, {
       method: "DELETE",
     })
     //   .then((response) => response.json())

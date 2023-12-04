@@ -16,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.viajecito.api.service.impl.StorageService;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -33,6 +35,9 @@ public class AlojamientoController {
 
     @Autowired
     private ObjectMapper mapper;
+
+    @Autowired
+    private StorageService storageService;
 
     @PostMapping
     public ResponseEntity<?> agregar(@RequestParam("nombre") String nombre,
@@ -54,13 +59,26 @@ public class AlojamientoController {
 
             /**** Si las imagenes no existen, se agregan ****/
             if (!imagenes.isEmpty()) {
-                imagenesAlojamiento = imagenService.agregar(imagenes);
+                Integer contador = 1;
+                for (MultipartFile imagen : imagenes) {
+                    String originalFilename = imagen.getOriginalFilename();
+                    String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+                    String descriptiveName = "alojamiento_" + nombre.replaceAll("\\s+", "_").toLowerCase();
+                    String keyName = descriptiveName + "_" + (contador++) + extension;
+
+                    if (!imagenService.existePorNombre(keyName)) {
+                        storageService.uploadFile(keyName, imagen);
+                        Imagen img = new Imagen();
+                        img.setNombre(originalFilename);
+                        img.setUrl("https://1023c01-grupo1-s3.s3.amazonaws.com/" + keyName);
+                        img = imagenService.agregar(img);
+                        imagenesAlojamiento.add(img);
+                    }
+                }
                 alojamiento.setImagenes(imagenesAlojamiento);
             }
             return ResponseEntity.ok(new MensajeRespuesta( "ok", alojamientoService.agregar(alojamiento).getTipo() + " agregado correctamente."));
         } catch (BadRequestException e) {
-            return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
-        } catch (IOException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
         }
     }
@@ -77,33 +95,51 @@ public class AlojamientoController {
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<?> modificar(@PathVariable Long id,
+                                       @RequestParam("nombre") String nombre,
                                        @RequestParam("tipo") AlojamientoTipo tipo,
                                        @RequestParam("ubicacion") String ubicacion,
-                                       @RequestPart("imagenes") List<MultipartFile> imagenes ) throws BadRequestException{
-        Set<Imagen> imagenesAlojamiento = new HashSet<>();
-
+                                       @RequestPart("imagenes") List<MultipartFile> imagenes) throws BadRequestException, IOException {
         try {
-            Optional<Alojamiento> alojamiento = alojamientoRepository.findById(id);
-            if(!alojamiento.isPresent())
+            Optional<Alojamiento> alojamientoOpt = alojamientoRepository.findById(id);
+            if (!alojamientoOpt.isPresent()) {
                 throw new BadRequestException("El alojamiento indicado no existe.");
-
-            alojamiento.get().setTipo(tipo);
-            alojamiento.get().setUbicacion(ubicacion);
-
-            /**** Si las imagenes no existen, se agregan ****/
-            /* Pendiente ver casos donde se eliminan */
-            if (!imagenes.isEmpty()) {
-                imagenesAlojamiento = imagenService.agregar(imagenes);
-                alojamiento.get().setImagenes(imagenesAlojamiento);
             }
 
-            alojamientoService.modificar(alojamiento.get());
+            Alojamiento alojamiento = alojamientoOpt.get();
+            alojamiento.setTipo(tipo);
+            alojamiento.setNombre(nombre);
+            alojamiento.setUbicacion(ubicacion);
+
+            Set<Imagen> imagenesAlojamiento = new HashSet<>(alojamiento.getImagenes()); // Imágenes existentes
+
+            if (!imagenes.isEmpty()) {
+                Integer contador = imagenesAlojamiento.size() + 1;
+                for (MultipartFile imagen : imagenes) {
+                    String originalFilename = imagen.getOriginalFilename();
+                    List<Imagen> imagenesExistentes = imagenService.buscarPorNombre(originalFilename);
+                    if (imagenesExistentes.isEmpty()) {
+                        String descriptiveName = "alojamiento_" + alojamiento.getNombre().replaceAll("\\s+", "_").toLowerCase();
+                        String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+                        String keyName = descriptiveName + "_" + (contador++) + extension;
+
+                        storageService.uploadFile(keyName, imagen);
+                        Imagen img = new Imagen();
+                        img.setNombre(originalFilename);
+                        img.setUrl("https://1023c01-grupo1-s3.s3.amazonaws.com/" + keyName);
+                        img = imagenService.agregar(img); // Agregar la imagen a la base de datos
+                        imagenesAlojamiento.add(img);
+                    } else {
+                        imagenesAlojamiento.add(imagenesExistentes.get(0)); // Reutiliza la instancia existente
+                    }
+                }
+            }
+
+            alojamiento.setImagenes(imagenesAlojamiento);
+            alojamientoService.modificar(alojamiento);
+            return ResponseEntity.status(HttpStatus.OK).body(new MensajeRespuesta("ok", "Alojamiento modificado correctamente."));
         } catch (BadRequestException e) {
-            throw new BadRequestException("No es posible modificar el alojamiento: " + e);
-        } catch (IOException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MensajeRespuesta("error", "No es posible modificar el alojamiento: " + e.getMessage()));
         }
-        return ResponseEntity.status(HttpStatus.OK).body("Alojamiento modificado correctamente.");
     }
 
     @GetMapping(path = "/{id}")

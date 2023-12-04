@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect} from "react";
 import { Link, useLocation } from "react-router-dom";
-import mainLogo from "./logo.svg";
+import mainLogo from "/logo.svg";
 import Button from "./../../buttons/Button";
 import NavUser from "./user/NavUser";
 
