@@ -3,8 +3,8 @@ import Card from "./../Components/card/Card";
 import Pagination from "./../Components/ui-components/pagination/Pagination";
 import { useContextGlobal } from "./../Components/utils/global.context";
 import Banner from "./../Components/ui-components/banner/Banner";
-import Breadcrumb from "../Components/breadcrumb/Breadcrumb";
-import Button from "../Components/buttons/Button";
+import Breadcrumb from "./../Components/breadcrumb/Breadcrumb";
+import Button from "./../Components/buttons/Button";
 
 const Favs = () => {
   const { toursState, dispatch } = useContextGlobal();

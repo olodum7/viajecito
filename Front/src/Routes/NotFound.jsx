@@ -1,4 +1,4 @@
-import Button from "../Components/buttons/Button";
+import Button from "./../Components/buttons/Button";
 
 const PageNotFound = () => {
     return (

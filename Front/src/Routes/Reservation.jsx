@@ -1,7 +1,7 @@
 import React from "react";
-import Breadcrumb from "../Components/breadcrumb/Breadcrumb";
-import Button from "../Components/buttons/Button";
-import Banner from "../Components/ui-components/banner/Banner";
+import Breadcrumb from "./../Components/breadcrumb/Breadcrumb";
+import Button from "./../Components/buttons/Button";
+import Banner from "./../Components/ui-components/banner/Banner";
 
 const Reservation = () => {
   return (

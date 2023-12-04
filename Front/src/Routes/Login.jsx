@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
-import ButtonXL from "../Components/buttons/ButtonXL";
+import ButtonXL from "./../Components/buttons/ButtonXL";
 
 import { useContextGlobal } from "./../Components/utils/global.context";
 
@@ -89,7 +89,7 @@ const Login = () => {
       formDataToSend.append("email", formData.email);
       formDataToSend.append("password", formData.password);
 
-      fetch("http://localhost:8089/usuario/login", {
+      fetch("http://34.207.134.182:8089/usuario/login", {
         method: "POST",
         body: formDataToSend,
       })

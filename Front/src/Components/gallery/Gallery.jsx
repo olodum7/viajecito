@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import GalleryModal from "./GalleryModal";
-import GalleryButton from "/src/Components/buttons/GalleryButton.jsx";
+import GalleryButton from "./../buttons/GalleryButton";
 import PropTypes from 'prop-types';
-import Image from "../image/Image";
+import Image from "./../image/Image";
 
 const Gallery = ({ imagenes }) => {
   const [currentIndex, setCurrentIndex] = useState(null);

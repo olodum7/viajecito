@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect} from "react";
 import { Link, useLocation } from "react-router-dom";
 import mainLogo from "/logo.svg";
-import Button from "/src/Components/buttons/Button.jsx";
+import Button from "./../../buttons/Button";
 import NavUser from "./user/NavUser";
 
 import { useContextGlobal } from "./../../utils/global.context";

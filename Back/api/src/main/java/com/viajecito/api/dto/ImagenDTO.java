@@ -9,6 +9,11 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter @Setter
 public class ImagenDTO implements Serializable {
+
     private String nombre;
-    private  byte[] contenido;
+    // private byte[] contenido;
+
+    // Nuevo campo para la URL de la imagen
+    private String url;
 }
+

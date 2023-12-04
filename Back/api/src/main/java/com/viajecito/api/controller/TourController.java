@@ -20,6 +20,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.viajecito.api.service.impl.StorageService;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
@@ -49,6 +51,9 @@ public class TourController {
 
     @Autowired
     private ObjectMapper mapper;
+
+    @Autowired
+    private StorageService storageService;
 
     @PostMapping
     public ResponseEntity<?> agregar(@RequestParam("titulo") String titulo,
@@ -121,14 +126,31 @@ public class TourController {
             tour.setEntradas(entradas);
 
             /**** Si las imagenes no existen, se agregan ****/
-            if (!imagenes.isEmpty()) {
+            /* if (!imagenes.isEmpty()) {
                 imagenesTour = imagenService.agregar(imagenes);
+                tour.setImagenes(imagenesTour);
+            } */
+            if (!imagenes.isEmpty()) {
+                Integer contador = 1;
+                for (MultipartFile imagen : imagenes) {
+                    String originalFilename = imagen.getOriginalFilename();
+                    String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+                    String descriptiveName = "tour_" + titulo.replaceAll("\\s+", "_").toLowerCase();
+                    String keyName = descriptiveName + "_" + (contador++) + extension;
+
+                    if (!imagenService.existePorNombre(keyName)) {
+                        storageService.uploadFile(keyName, imagen);
+                        Imagen img = new Imagen();
+                        img.setNombre(originalFilename);
+                        img.setUrl("https://1023c01-grupo1-s3.s3.amazonaws.com/" + keyName);
+                        img = imagenService.agregar(img);
+                        imagenesTour.add(img);
+                    }
+                }
                 tour.setImagenes(imagenesTour);
             }
             return ResponseEntity.ok(new MensajeRespuesta("ok", tourService.agregar(tour).getTitulo() + " agregado correctamente."));
         } catch (BadRequestException e) {
-            return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
-        } catch (IOException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
         }
     }
@@ -190,16 +212,35 @@ public class TourController {
             tour.setAlojamiento(alojamiento);
 
             /** Elimino las imagenes existentes del tour y agrego las nuevas **/
-            tour.getImagenes().clear();
-            Set<Imagen> nuevasImagenes = imagenService.agregar(imagenes);
+            //tour.getImagenes().clear();
+            Set<Imagen> imagenesTour = new HashSet<>(tour.getImagenes()); // Imágenes existentes
 
-            tour.setImagenes(nuevasImagenes);
+            if (!imagenes.isEmpty()) {
+                Integer contador = imagenesTour.size() + 1;
+                for (MultipartFile imagen : imagenes) {
+                    String originalFilename = imagen.getOriginalFilename();
+                    List<Imagen> imagenesExistentes = imagenService.buscarPorNombre(originalFilename);
+                    if (imagenesExistentes.isEmpty()) {
+                        String descriptiveName = "tour_" + tour.getTitulo().replaceAll("\\s+", "_").toLowerCase();
+                        String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+                        String keyName = descriptiveName + "_" + (contador++) + extension;
 
-            tourService.modificar(tour);
+                        storageService.uploadFile(keyName, imagen);
+                        Imagen img = new Imagen();
+                        img.setNombre(originalFilename);
+                        img.setUrl("https://1023c01-grupo1-s3.s3.amazonaws.com/" + keyName);
+                        img = imagenService.agregar(img); // Agregar la imagen a la base de datos
+                        imagenesTour.add(img);
+                    } else {
+                        imagenesTour.add(imagenesExistentes.get(0)); // Reutiliza la instancia existente
+                    }
+                }
+            }
+
+            tour.setImagenes(imagenesTour);
+
             return ResponseEntity.ok(new MensajeRespuesta("ok", tourService.modificar(tour).getTitulo() + " modificado correctamente."));
         } catch (BadRequestException e) {
-            return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
-        } catch (IOException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta("error", e.getMessage()));
         }
     }
