@@ -39,9 +39,5 @@
         "url": "https://github.com/olodum7/viajecito/issues"
     },
     "homepage": "https://github.com/olodum7/viajecito#readme",
-    "proxy": "http://localhost:8089",
-    "engines": {
-        "node": "16.13.0",
-        "npm": ">=6.0.0"
-    }
+    "proxy": "http://localhost:8089"
 }
