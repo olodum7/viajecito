@@ -53,7 +53,8 @@ jobs:
           AWS_REGION: 'us-east-1' # Asegúrate de que esta región coincida con tu configuración
         run: |
           sudo docker run -d -p 8089:8089 \
-            -e AWS_ACCESS_KEY_ID \
-            -e AWS_SECRET_ACCESS_KEY \
+            -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
+            -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
             -e AWS_REGION \
             --name viajecito-backend-container --network mi-red viajecito/api:viajecito-backend
+
