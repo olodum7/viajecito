@@ -77,7 +77,7 @@ const SignUp = () => {
       formDataToSend.append("email", formData.email);
       formDataToSend.append("password", formData.password);
 
-      fetch("http://3.82.3.215:8089/usuario", {
+      fetch("http://34.207.134.182:8089/usuario", {
         method: "POST",
         body: formDataToSend,
       })

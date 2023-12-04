@@ -26,7 +26,7 @@ const Profile = () => {
 
     if (result.isConfirmed) {
       try {
-        const response = await fetch(`http://3.82.3.215:8089/usuario/${id}`, {
+        const response = await fetch(`http://34.207.134.182:8089/usuario/${id}`, {
           method: "DELETE",
         });
 

@@ -9,7 +9,7 @@ const Image = ({ id }) => {
     const [imageURL, setImageURL] = useState(null);
 
     useEffect(() => {
-        fetch(`http://3.82.3.215:8089/imagen/${id}`)
+        fetch(`http://34.207.134.182:8089/imagen/${id}`)
             .then((response) => {
                 if (response.ok) {
                     return response.json();

@@ -126,7 +126,7 @@ const AddTour = () => {
 
     console.log(formData)
 
-    fetch("http://3.82.3.215:8089/tour", {
+    fetch("http://34.207.134.182:8089/tour", {
       method: "POST",
       body: formData
     })
