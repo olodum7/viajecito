@@ -30,7 +30,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetch("https://34.207.134.182:8089/tour")
+    fetch("http://34.207.134.182:8089/tour")
       .then((response) => response.json())
       .then((data) => {
         // Mezcla aleatoriamente el array de tours una vez al cargar los datos iniciales
