@@ -1,4 +1,4 @@
-package com.viajecito.api.config;
+/*package com.viajecito.api.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,4 +38,4 @@ public class CorsConfig implements WebMvcConfigurer{
                 .allowedHeaders("Authorization", "Content-Type")
                 .allowCredentials(true);
     }
-}
+}*/
