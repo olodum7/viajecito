@@ -22,6 +22,7 @@ public class CorsConfig implements WebMvcConfigurer{
         config.addAllowedOrigin("http://127.0.0.1:5173"); // Origen permitido
         config.addAllowedOrigin("http://127.0.0.1:5174");// Origen permitido
         config.addAllowedOrigin("http://localhost:5174");// Origen permitido
+        config.addAllowedOrigin("http://1023c01-grupo1-s3-front.s3-website-us-east-1.amazonaws.com");// Origen permitido
         config.addAllowedMethod("*"); // Todos los métodos permitidos
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
@@ -32,6 +33,7 @@ public class CorsConfig implements WebMvcConfigurer{
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:5173")
                 .allowedOrigins("http://127.0.0.1:5173")
+                .allowedOrigins("http://1023c01-grupo1-s3-front.s3-website-us-east-1.amazonaws.com")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("Authorization", "Content-Type")
                 .allowCredentials(true);
