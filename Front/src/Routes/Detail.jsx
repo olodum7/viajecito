@@ -7,9 +7,9 @@ import Banner from "./../Components/ui-components/banner/Banner";
 import Itinerary from "./../Components/itinerary/Itinerary.jsx";
 import Counter from "./../Components/buttons/Counter.jsx";
 import { addDays } from "date-fns";
-import 'react-date-range/dist/styles.css';
-import 'react-date-range/dist/theme/default.css';
-import { DateRange } from 'react-date-range';
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import { DateRange } from "react-date-range";
 
 const Detail = () => {
   const { id } = useParams();
@@ -17,11 +17,13 @@ const Detail = () => {
   const [lodging, setLodging] = useState({});
   const [numberOfAdults, setNumberOfAdults] = useState(1);
   const [numberOfChildren, setNumberOfChildren] = useState(0);
-  const [stateDate, setStateDate] = useState([{
-    startDate: new Date(),
-    endDate: new Date(),
-    key: "selection",
-  }]);
+  const [stateDate, setStateDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
   const [fechaSalidaDesde, setFechaSalidaDesde] = useState(new Date());
   const [fechaSalidaHasta, setFechaSalidaHasta] = useState(new Date());
   const [days, setDays] = useState([]);
@@ -33,11 +35,23 @@ const Detail = () => {
       .then((response) => response.json())
       .then((data) => {
         setResult(data);
-        setDays(data.salidaDTO.dias.split(',').map(Number));
+        setDays(data.salidaDTO.dias.split(",").map(Number));
         const fechaSalidaDesdeArray = data.salidaDTO.fechaSalidaDesde;
         const fechaSalidaHastaArray = data.salidaDTO.fechaSalidaHasta;
-        setFechaSalidaDesde(new Date(fechaSalidaDesdeArray[0], fechaSalidaDesdeArray[1] - 1, fechaSalidaDesdeArray[2]));
-        setFechaSalidaHasta(new Date(fechaSalidaHastaArray[0], fechaSalidaHastaArray[1] - 1, fechaSalidaHastaArray[2]));
+        setFechaSalidaDesde(
+          new Date(
+            fechaSalidaDesdeArray[0],
+            fechaSalidaDesdeArray[1] - 1,
+            fechaSalidaDesdeArray[2]
+          )
+        );
+        setFechaSalidaHasta(
+          new Date(
+            fechaSalidaHastaArray[0],
+            fechaSalidaHastaArray[1] - 1,
+            fechaSalidaHastaArray[2]
+          )
+        );
       })
       .catch((error) => {
         console.error("Error al obtener el detalle: \n", error);
@@ -58,23 +72,29 @@ const Detail = () => {
     }
   }, [result.alojamiento]);
 
-    // Define isDayDisabled como un callback
-    const isDayDisabled = useCallback((date) => {
+  // Define isDayDisabled como un callback
+  const isDayDisabled = useCallback(
+    (date) => {
       const dayOfWeek = date.getDay();
       const dayIndex = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
       return days[dayIndex] !== 1;
-    }, [days]);
+    },
+    [days]
+  );
 
   /* Fecha inicial */
   useEffect(() => {
     setStateDate((prevState) => {
-      const newStartDate = fechaSalidaDesde > new Date() ? fechaSalidaDesde : new Date();
+      const newStartDate =
+        fechaSalidaDesde > new Date() ? fechaSalidaDesde : new Date();
       const isStartDateDisabled = isDayDisabled(newStartDate);
-  
+
       return [
         {
           ...prevState[0],
-          startDate: isStartDateDisabled ? prevState[0].startDate : newStartDate,
+          startDate: isStartDateDisabled
+            ? prevState[0].startDate
+            : newStartDate,
           endDate: addDays(newStartDate, result.duracion - 1),
         },
       ];
@@ -94,13 +114,15 @@ const Detail = () => {
       startDate = nextEnabledDate;
     }
 
-    // Actualizo estado 
-    setStateDate([{
-      startDate,
-      endDate: addDays(startDate, result.duracion - 1),
-      key: 'selection'
-    }]);
-  }
+    // Actualizo estado
+    setStateDate([
+      {
+        startDate,
+        endDate: addDays(startDate, result.duracion - 1),
+        key: "selection",
+      },
+    ]);
+  };
 
   // const onClickReserve = () => {
   //   dataReserve.id = id
@@ -285,15 +307,25 @@ const Detail = () => {
             <div className="row">
               <h2>Personas</h2>
               <div className="container-counter">
-                <Counter data={{ type: "adults", text: "Adultos", minCount: 1 }} onChange={(value) => setNumberOfAdults(value)} />
-                <Counter data={{ type: "children", text: "Niños", minCount: 0 }} onChange={(value) => setNumberOfChildren(value)} />
+                <Counter
+                  data={{ type: "adults", text: "Adultos", minCount: 1 }}
+                  onChange={(value) => setNumberOfAdults(value)}
+                />
+                <Counter
+                  data={{ type: "children", text: "Niños", minCount: 0 }}
+                  onChange={(value) => setNumberOfChildren(value)}
+                />
               </div>
             </div>
             <div className="row">
               <h2>Fechas de salida</h2>
 
               <DateRange
-                minDate={fechaSalidaDesde && fechaSalidaDesde > new Date() ? fechaSalidaDesde : new Date()}
+                minDate={
+                  fechaSalidaDesde && fechaSalidaDesde > new Date()
+                    ? fechaSalidaDesde
+                    : new Date()
+                }
                 maxDate={fechaSalidaHasta}
                 disabledDay={isDayDisabled}
                 editableDateInputs={true}
@@ -307,12 +339,29 @@ const Detail = () => {
             <div className="row">
               <p>Precio por adulto: USD {result.precioAdulto}</p>
               <p>Precio por menor: USD {result.precioMenor}</p>
-              <p><strong>USD {result.precioBase + (result.precioAdulto * (numberOfAdults - 1)) + (result.precioMenor * numberOfChildren)}</strong></p>
-              <p>({result.traslado == true ? "Traslado" : "" + result.transporte?.length > 0 ? "Transporte" : ""})</p>
+              <p>
+                <strong>
+                  USD{" "}
+                  {result.precioBase +
+                    result.precioAdulto * (numberOfAdults - 1) +
+                    result.precioMenor * numberOfChildren}
+                </strong>
+              </p>
+              <p>
+                (
+                {result.traslado == true
+                  ? "Traslado"
+                  : "" + result.transporte?.length > 0
+                  ? "Transporte"
+                  : ""}
+                )
+              </p>
             </div>
             <div className="row">
               {/* <button className="btn" type="button" onClick={onClickReserve}>Completar reserva</button> */}
-              <button className="btn" type="button">Completar reserva</button>
+              <button className="btn" type="button">
+                Completar reserva
+              </button>
             </div>
           </div>
         </div>
@@ -325,7 +374,6 @@ const Detail = () => {
             </div>
           </div>
         </div>
-
       </section>
       <Banner />
     </main>
