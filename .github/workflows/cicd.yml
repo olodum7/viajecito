@@ -64,7 +64,7 @@ jobs:
 
       - name: Upload build to S3
         run: |
-          aws s3 sync Front/build/ s3://1023c01-grupo1-s3-front --acl public-read
+          aws s3 sync Front/dist/ s3://1023c01-grupo1-s3-front --acl public-read
 
   deploy-backend:
     needs: build-frontend
