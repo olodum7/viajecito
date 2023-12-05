@@ -11,9 +11,9 @@ import Favs from "./Routes/Favs";
 import AdminPanel from "./Routes/AdminPanel";
 import Context from "./Components/utils/global.context";
 import List from "./Routes/List";
-
 import ProtectedRoute from "./Components/utils/ProtectedRoute";
 
+import DetailReservation from "./Routes/DetailReservation";
 // Toast notification
 import { ToastContainer } from "react-toastify";
 import Profile from "./Routes/Profile";
@@ -30,6 +30,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="sign-up" element={<SignUp />} />
           <Route path="login" element={<Login />} />
           <Route path="list" element={<List />} />
+          <Route path="tour/:id/detailReservation" element={<DetailReservation/>}/>
 
           <Route
             path="profile"

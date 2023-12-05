@@ -11,6 +11,8 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { DateRange } from 'react-date-range';
 
+import Button from "../Components/buttons/Button.jsx";
+
 const Detail = () => {
   const { id } = useParams();
   const [result, setResult] = useState({});
@@ -312,7 +314,9 @@ const Detail = () => {
             </div>
             <div className="row">
               {/* <button className="btn" type="button" onClick={onClickReserve}>Completar reserva</button> */}
-              <button className="btn" type="button">Completar reserva</button>
+              {/*<button className="btn" type="button">Completar reserva</button>*/}
+              <Button url={'detailReservation'} buttonName="Iniciar reserva" />
+
             </div>
           </div>
         </div>

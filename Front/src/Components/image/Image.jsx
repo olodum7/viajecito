@@ -27,6 +27,7 @@ const Image = ({ id }) => {
 
     return (
         <>
+        
             <img src={imageURL} alt="Imagen" />
         </>
     );
