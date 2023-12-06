@@ -22,6 +22,10 @@
     color: blueviolet;
 }
 
+.mainRes .derecha{
+    padding-left: 30px;
+}
+
 .iconos svg{
     margin-right: 10px;
 }
@@ -30,7 +34,9 @@
     display: flex;
     justify-content: start;
     align-items: end;
+   
 }
+
 
 .arriba{
     margin-bottom: 80px;

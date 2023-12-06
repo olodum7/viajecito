@@ -10,8 +10,9 @@ import { addDays } from "date-fns";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { DateRange } from 'react-date-range';
-
 import Button from "../Components/buttons/Button.jsx";
+//import DetailReservation from "./DetailReservation.jsx";
+
 
 const Detail = () => {
   const { id } = useParams();
@@ -28,6 +29,78 @@ const Detail = () => {
   const [fechaSalidaHasta, setFechaSalidaHasta] = useState(new Date());
   const [days, setDays] = useState([]);
   // const dataReserve = {};
+
+  const {startDate, endDate} = stateDate[0]
+  
+
+  //FECHA ENTERA
+  /*const startDateValue = startDate.toLocaleDateString();
+  localStorage.setItem('startDateValue', startDateValue);
+
+  const endDateValue = endDate.toLocaleDateString();
+  localStorage.setItem('endDateValue', endDateValue);
+  //console.log("start", startDate);
+  console.log(startDateValue,"--", endDateValue);
+*/
+
+
+  /* DIA Y MES */
+  localStorage.getItem('startDateValue')
+  const dia1 = startDate.getDate();
+  const mes1 = startDate.getMonth()+1;
+  const fecha1 = dia1 + "/" + mes1;
+  
+  localStorage.getItem('endDateValue')
+  const dia2 = endDate.getDate();
+  const mes2 = endDate.getMonth()+1;
+  const fecha2 = dia2 + "/" + mes2;
+
+  localStorage.setItem('startDateValue', fecha1)
+  localStorage.setItem('endDateValue', fecha2)
+
+  console.log(fecha1, "-----",fecha2);
+
+//MES ESCRITO
+/*
+  const nombreMes = (mes) =>{
+    switch (mes) {
+      case 1:
+        return "enero";
+      case 2:
+        return "febrero";
+      case 3:
+        return "marzo";
+      case 4:
+        return "abril";
+      case 5:
+        return "mayo";
+      case 6:
+        return "junio";
+      case 7:
+        return "julio";
+      case 8:
+        return "agosto";
+      case 9:
+        return "septiembre";
+      case 10:
+        return "octubre";
+      case 11:
+        return "noviembre";
+      case 12:
+        return "diciembre";
+      default:
+        return "";
+    }
+  }
+
+  const nombreMes1 = nombreMes(mes1);
+  localStorage.setItem('startDateValue', fecha1)
+  localStorage.setItem('endDateValue', fecha2)
+  //console.log(fecha1, "-----",fecha2, nombreMes1);
+ console.log(dia1,"de", nombreMes1);
+*/
+  
+ 
 
   /* Obtengo el tour */
   useEffect(() => {
@@ -104,6 +177,7 @@ const Detail = () => {
     }]);
   }
 
+  // const dataReserve = {};
   // const onClickReserve = () => {
   //   dataReserve.id = id
   //   dataReserve.titulo = result.titulo
@@ -120,6 +194,14 @@ const Detail = () => {
   //   // localStorage.setItem('datosReserva', JSON.stringify(dataReserve));
   //   // window.location.href = '/reserve';
   // };
+
+  const dataToSend = {};
+  const handleClick = () => {
+    dataToSend.imagen = result.imagenes[0]
+    localStorage.setItem('myData', JSON.stringify(dataToSend));
+    // Redirige a la página de destino
+    window.location.href = '/detailReseration';
+  };
 
   return (
     <main>
@@ -313,10 +395,7 @@ const Detail = () => {
               <p>({result.traslado == true ? "Traslado" : "" + result.transporte?.length > 0 ? "Transporte" : ""})</p>
             </div>
             <div className="row">
-              {/* <button className="btn" type="button" onClick={onClickReserve}>Completar reserva</button> */}
-              {/*<button className="btn" type="button">Completar reserva</button>*/}
               <Button url={'detailReservation'} buttonName="Iniciar reserva" />
-
             </div>
           </div>
         </div>

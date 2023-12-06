@@ -7,62 +7,41 @@ import { useParams } from "react-router-dom";
 import { useContextGlobal } from "../Components/utils/global.context";
 import "../Styles/detailReservation.css"
 import Image from "../Components/image/Image";
-import PropTypes from 'prop-types';
-import { DateRange } from 'react-date-range';
-import Counter from "../Components/buttons/Counter.jsx";
-import { addDays } from "date-fns";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import Button from "../Components/buttons/Button.jsx";
 
+//{reservationId}
 
+const DetailReservation = (props) => {
 
-const DetailReservation = () => {
-   
    const [result, setResult] = useState({});
    const { id } = useParams();
    const [lodging, setLodging] = useState({});
    const { toursState, dispatch } = useContextGlobal();
    const { ids, nombre, apellido, email, tipo } = toursState.userData || {};
-   //const { imagenes } = props.data;
-   const [numberOfAdults, setNumberOfAdults] = useState(1);
-   const [numberOfChildren, setNumberOfChildren] = useState(0);
-   const [stateDate, setStateDate] = useState([{
-     startDate: new Date(),
-     endDate: new Date(),
-     key: "selection",
-   }]);
-   const [fechaSalidaDesde, setFechaSalidaDesde] = useState(new Date());
-   const [fechaSalidaHasta, setFechaSalidaHasta] = useState(new Date());
-   const [days, setDays] = useState([]);
-
-
-
-
-
-
 
    /* Obtengo el tour */
-  useEffect(() => {
-    fetch(`http://localhost:8089/tour/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setResult(data);
-        setDays(data.salidaDTO.dias.split(',').map(Number));
-        const fechaSalidaDesdeArray = data.salidaDTO.fechaSalidaDesde;
-        const fechaSalidaHastaArray = data.salidaDTO.fechaSalidaHasta;
-        setFechaSalidaDesde(new Date(fechaSalidaDesdeArray[0], fechaSalidaDesdeArray[1] - 1, fechaSalidaDesdeArray[2]));
-        setFechaSalidaHasta(new Date(fechaSalidaHastaArray[0], fechaSalidaHastaArray[1] - 1, fechaSalidaHastaArray[2]));
-      })
-      .catch((error) => {
-        console.error("Error al obtener el detalle: \n", error);
-      });
-  }, [id]);
+    useEffect(() => {
+      fetch(`http://localhost:8089/tour/${id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setResult(data);
+          //setDays(data.salidaDTO.dias.split(',').map(Number));
+          //const fechaSalidaDesdeArray = data.salidaDTO.fechaSalidaDesde;
+          //const fechaSalidaHastaArray = data.salidaDTO.fechaSalidaHasta;
+          //setFechaSalidaDesde(new Date(fechaSalidaDesdeArray[0], fechaSalidaDesdeArray[1] - 1, fechaSalidaDesdeArray[2]));
+          //setFechaSalidaHasta(new Date(fechaSalidaHastaArray[0], fechaSalidaHastaArray[1] - 1, fechaSalidaHastaArray[2]));
+        })
+        .catch((error) => {
+          console.error("Error al obtener el detalle: \n", error);
+        });
+    }, [id]);
 
   
   //Obtengo el alojamiento 
   
-  useEffect(() => {
+    useEffect(() => {
     if (result.alojamiento) {
       fetch(`http://localhost:8089/alojamiento/${result.alojamiento}`)
         .then((response) => response.json())
@@ -73,52 +52,22 @@ const DetailReservation = () => {
           console.error("Error al obtener el alojamiento: \n", error);
         });
     }
-  }, [result.alojamiento]);
-  /********************************************************************************** */
-  // Define isDayDisabled como un callback
-  const isDayDisabled = useCallback((date) => {
-    const dayOfWeek = date.getDay();
-    const dayIndex = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
-    return days[dayIndex] !== 1;
-  }, [days]);
+    }, [result.alojamiento]);
 
-/* Fecha inicial */
-useEffect(() => {
-  setStateDate((prevState) => {
-    const newStartDate = fechaSalidaDesde > new Date() ? fechaSalidaDesde : new Date();
-    const isStartDateDisabled = isDayDisabled(newStartDate);
+  
+  const startDateValue = localStorage.getItem('startDateValue');
+  const endDateValue = localStorage.getItem('endDateValue');
+  console.log(startDateValue, endDateValue);
 
-    return [
-      {
-        ...prevState[0],
-        startDate: isStartDateDisabled ? prevState[0].startDate : newStartDate,
-        endDate: addDays(newStartDate, result.duracion - 1),
-      },
-    ];
-  });
-}, [fechaSalidaDesde, result.duracion, isDayDisabled]);
+  
+  
 
-const onChangeRange = (item) => {
-  let startDate = item.selection.startDate;
-
-  // Inicio es un día deshabilitado?
-  if (isDayDisabled(startDate)) {
-    // Falso, encontrar el próximo
-    let nextEnabledDate = startDate;
-    while (isDayDisabled(nextEnabledDate)) {
-      nextEnabledDate = addDays(nextEnabledDate, 1);
-    }
-    startDate = nextEnabledDate;
-  }
-
-  // Actualizo estado 
-  setStateDate([{
-    startDate,
-    endDate: addDays(startDate, result.duracion - 1),
-    key: 'selection'
-  }]);
-}
-
+/*SOLO DIA Y MES 
+  const fecha1 = localStorage.getItem('startDatealue');
+  const fecha2 = localStorage.getItem('endDatealue');
+  console.log(fecha1,fecha2);
+  */
+  
 
   //Obtengo datos
     return(
@@ -130,25 +79,15 @@ const onChangeRange = (item) => {
             <div className="row hij arriba">
               <div className="col-md-6 imagen">
                   {/*<Image key={imagenes[0]} id={imagenes[0]} />*/}
-                  IMAGEN
-                  
+                  {/*<Image key={imagen} id={imagen} />*/}
+                  {/*<Image id={reservation.id}/> */}                 
+                  {/*<p>{startDateValue}</p>*/}
                   
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6 derecha">
                 <div className="row">
                   <strong>{result.titulo}</strong>
-                  <h1>Del  al </h1>
-                  
-                  {/*
-                  <DateRange
-                    minDate={fechaSalidaDesde && fechaSalidaDesde > new Date() ? fechaSalidaDesde : new Date()}
-                    maxDate={fechaSalidaHasta}
-                   
-                    editableDateInputs={true}
-                    onChange={onChangeRange}
-                    
-                    ranges={stateDate}
-                  />*/}
+                  <h1>  <strong>{startDateValue} </strong>  al <strong>{endDateValue}</strong></h1>
                 </div>
                 <div className="row iconos">
                   {result.transporte && (
@@ -292,10 +231,9 @@ const onChangeRange = (item) => {
                 <p><strong>Apellido:  </strong>{apellido}</p>
                 <p><strong>Email:  </strong>{email}</p>
               </div>
-              <div className="col-md-6 buttonn">
-                <Button buttonName="Confirmar reserva" />
+              <div className="col-md-6 buttonn derecha">
+                <Button  className="button" buttonName="Confirmar reserva" />
               </div>
-              
             </div>
             </div>
           <Banner/>
@@ -303,7 +241,4 @@ const onChangeRange = (item) => {
     )
 };
 
-DetailReservation.propTypes = {
-  imagenes: PropTypes.array
-};
 export default DetailReservation;
