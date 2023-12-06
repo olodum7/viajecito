@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="989c382f-75db-4632-adc7-8760db2a1f6f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Front/src/Components/salida/SalidaTour.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/Components/ui-components/modal/ModalCommon.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/Components/ui-components/modal/ModalEditTour.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/Components/utils/toastMessage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/Routes/EditTour.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/Styles/modal.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/reporteErrores.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/SalidaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/SalidaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/SalidaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/SalidaDTO.java" afterDir="false" />
@@ -39,14 +32,14 @@
       <change beforePath="$PROJECT_DIR$/../Front/src/Components/ui-components/navbar/user/NavUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/ui-components/navbar/user/NavUser.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Components/ui-components/pagination/Pagination.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/ui-components/pagination/Pagination.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Components/ui-components/pagination/pagination.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/ui-components/pagination/pagination.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Components/utils/List_original.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/utils/List_original.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Components/utils/List_original.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Components/utils/ProtectedRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/utils/ProtectedRoute.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Components/utils/global.context.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/utils/global.context.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Components/utils/toast.notifications.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Routes/AddTour.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/AddTour.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Routes/AdminPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/AdminPanel.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Routes/Favs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/Favs.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/List.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/List.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/List.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Routes/NotFound.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/NotFound.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Routes/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/Profile.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Styles/buttons.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Styles/buttons.css" afterDir="false" />

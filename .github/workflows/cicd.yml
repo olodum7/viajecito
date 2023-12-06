@@ -1,40 +1,38 @@
-name: CICD
-
 on:
   push:
     branches: [main]
 
 jobs:
-  # build-backend:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout source
-  #       uses: actions/checkout@v3
-  # 
-  #     - name: Setup Java
-  #       uses: actions/setup-java@v3  
-  #       with:
-  #         distribution: 'temurin' 
-  #         java-version: '11'
-  # 
-  #     - name: Build Project
-  #       run: |
-  #         cd Back/api
-  #         mvn clean install -DskipTests
-  # 
-  #     - name: Login to DockerHub
-  #       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-  # 
-  #     - name: Build Docker image
-  #       run: |
-  #         cd Back/api
-  #         docker build -t viajecito/api:viajecito-backend .
-  # 
-  #     - name: Publish image to DockerHub
-  #       run: docker push viajecito/api:viajecito-backend
+  build-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3  
+        with:
+          distribution: 'temurin' 
+          java-version: '11'
+
+      - name: Build Project
+        run: |
+          cd Back/api
+          mvn clean install -DskipTests
+
+      - name: Login to DockerHub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker image
+        run: |
+          cd Back/api
+          docker build -t viajecito/api:viajecito-backend .
+
+      - name: Publish image to DockerHub
+        run: docker push viajecito/api:viajecito-backend
 
   build-frontend:
-    # needs: build-backend
+    needs: build-backend
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
@@ -43,7 +41,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "16.13.1"
+          node-version: '16.13.1'
 
       - name: Install dependencies
         run: |
@@ -60,29 +58,29 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: "us-east-1"
+          aws-region: 'us-east-1'
 
       - name: Upload build to S3
         run: |
           aws s3 sync Front/dist/ s3://1023c01-grupo1-s3-front --acl public-read
 
-  # deploy-backend:
-  #   needs: build-frontend
-  #   runs-on: [aws-ec2]
-  #   steps:
-  #     - name: Stop old container
-  #       run: sudo docker stop viajecito-backend-container || true
-  #
-  #     - name: Delete old containers
-  #       run: sudo docker rm -f viajecito-backend-container || true
-  #
-  #     - name: Pull image from DockerHub
-  #       run: sudo docker pull viajecito/api:viajecito-backend
-  #
-  #     - name: Run docker container
-  #       run: |
-  #         sudo docker run -d -p 8089:8089 \
-  #           -e AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }} \
-  #           -e AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }} \
-  #           -e AWS_REGION='us-east-1' \
-  #           --name viajecito-backend-container viajecito/api:viajecito-backend
+  deploy-backend:
+    needs: build-frontend
+    runs-on: [aws-ec2]
+    steps: 
+      - name: Stop old container
+        run: sudo docker stop viajecito-backend-container || true
+
+      - name: Delete old containers
+        run: sudo docker rm -f viajecito-backend-container || true
+
+      - name: Pull image from DockerHub
+        run: sudo docker pull viajecito/api:viajecito-backend
+
+      - name: Run docker container
+        run: |
+          sudo docker run -d -p 8089:8089 \
+            -e AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }} \
+            -e AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }} \
+            -e AWS_REGION='us-east-1' \
+            --name viajecito-backend-container viajecito/api:viajecito-backend

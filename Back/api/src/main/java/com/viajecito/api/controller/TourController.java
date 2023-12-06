@@ -237,9 +237,9 @@ public class TourController {
 
             /** Elimino las imagenes existentes del tour y agrego las nuevas **/
             //tour.getImagenes().clear();
-            //Set<Imagen> imagenesTour = new HashSet<>(tour.getImagenes()); // Imágenes existentes
+            /*Set<Imagen> imagenesTour = new HashSet<>(tour.getImagenes()); // Imágenes existentes
 
-            /*if (!imagenes.isEmpty()) {
+            if (!imagenes.isEmpty()) {
                 Integer contador = imagenesTour.size() + 1;
                 for (MultipartFile imagen : imagenes) {
                     String originalFilename = imagen.getOriginalFilename();
@@ -259,11 +259,9 @@ public class TourController {
                         imagenesTour.add(imagenesExistentes.get(0)); // Reutiliza la instancia existente
                     }
                 }
-            }*/
+            }
 
-            /*tour.setImagenes(imagenesTour);*/
-
-            /* Viejo en BD */
+            tour.setImagenes(imagenesTour);*/
             /*tour.getImagenes().clear();
             Set<Imagen> nuevasImagenes = imagenService.agregar(imagenes);*/
 
