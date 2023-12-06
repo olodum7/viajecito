@@ -1,0 +1,43 @@
+.mainRes .imagen{
+    background: blueviolet;
+    color: aliceblue;
+    
+}
+
+.mainRes h1{
+    color: blueviolet;
+    padding-bottom: 20px;
+}
+
+.hij{
+    margin-top: 40px;
+    margin-bottom: px;
+}
+
+.abajo{
+    margin-bottom: 100px;
+}
+
+.col-md-6 .row strong{
+    color: blueviolet;
+}
+
+.mainRes .derecha{
+    padding-left: 30px;
+}
+
+.iconos svg{
+    margin-right: 10px;
+}
+
+.buttonn{
+    display: flex;
+    justify-content: start;
+    align-items: end;
+   
+}
+
+
+.arriba{
+    margin-bottom: 80px;
+}
