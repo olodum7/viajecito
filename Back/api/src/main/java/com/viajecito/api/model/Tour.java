@@ -52,10 +52,8 @@ public class Tour {
     @Enumerated(EnumType.STRING)
     private TourDificultad dificultad;
 
-    @ManyToMany
-    @JoinTable(name = "TOUR_SALIDA",
-            joinColumns = @JoinColumn(name = "TOUR_ID"),
-            inverseJoinColumns = @JoinColumn(name = "SALIDA_ID"))
+    @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Salida> salidas = new HashSet<>();
 
     @Column(name = "PASAJES")

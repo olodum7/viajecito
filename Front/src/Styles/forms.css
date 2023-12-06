@@ -218,13 +218,16 @@
     }
 }
 
-.form-tour #itinerario{
-    width: 100%;
-    ;
-}
-
 .form-tour textarea{
     border: none;
     min-height: 200px;
     border-bottom: 2px solid black;
+}
+
+.col-buttons a,
+.col-buttons button{
+    max-width: 300px;
+    font-size: 1rem;
+    margin: 0px 10px;
+    padding: 10px;
 }

@@ -1,11 +1,4 @@
-import React from "react";
-
-const Pagination = ({
-  totalTours,
-  toursPerPage,
-  setCurrentPage,
-  currentPage,
-}) => {
+const Pagination = ({totalTours, toursPerPage, setCurrentPage, currentPage}) => {
   const totalPages = Math.ceil(totalTours / toursPerPage);
 
   // Función para manejar el clic en el botón "atras"
@@ -39,8 +32,6 @@ const Pagination = ({
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-chevron-left"
-            width="18"
-            height="18"
             viewBox="0 0 24 24"
             strokeWidth="2"
             stroke="currentColor"
@@ -69,8 +60,6 @@ const Pagination = ({
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-chevron-right"
-            width="18"
-            height="18"
             viewBox="0 0 24 24"
             strokeWidth="2"
             stroke="currentColor"

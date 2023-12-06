@@ -1,6 +1,7 @@
 import { useContextGlobal } from "./../utils/global.context";
-import showToastMessage from "./../utils/toast.notifications";
+import showToastMessage from "../utils/toastMessage";
 import { useNavigate } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const FavButton = ({ tour }) => {
   const { toursState, dispatch } = useContextGlobal();
@@ -16,10 +17,10 @@ const FavButton = ({ tour }) => {
 
     if (!alreadyExists) {
       dispatch({ type: "ADD_FAVS", payload: tour });
-      showToastMessage("success");
+      showToastMessage("success", "¡Agregado a favoritos!");
     } else {
       dispatch({ type: "REMOVE_FAVS", payload: tour });
-      showToastMessage("error");
+      showToastMessage("error", "¡Eliminado de favoritos!");
     }
   };
 
@@ -52,6 +53,10 @@ const FavButton = ({ tour }) => {
       </svg>
     </div>
   );
+};
+
+FavButton.propTypes = {
+  tour: PropTypes.object.isRequired
 };
 
 export default FavButton;

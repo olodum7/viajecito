@@ -14,4 +14,15 @@ public enum TourDificultad {
     public String getDescripcion() {
         return descripcion;
     }
+
+    // Obtener el TourDificultad por descripción
+    public static TourDificultad fromDescripcion(String descripcion) {
+        for (TourDificultad dificultad : TourDificultad.values()) {
+            if (dificultad.descripcion.equals(descripcion)) {
+                return dificultad;
+            }
+        }
+        // Manejar el caso en que la descripción no coincida con ninguna enum
+        throw new IllegalArgumentException("No hay TourDificultad con la descripción: " + descripcion);
+    }
 }

@@ -39,7 +39,7 @@ public class Salida {
     @Column(name = "ACTIVO")
     private Boolean activo;
 
-    @ManyToMany(mappedBy = "salidas")
-    @JsonIgnore
-    private Set<Tour> tours = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "TOUR_ID")
+    private Tour tour;
 }
