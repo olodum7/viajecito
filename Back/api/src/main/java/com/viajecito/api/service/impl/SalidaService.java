@@ -1,6 +1,7 @@
 package com.viajecito.api.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.viajecito.api.controller.ExceptionController;
 import com.viajecito.api.dto.SalidaDTO;
 import com.viajecito.api.exception.BadRequestException;
 import com.viajecito.api.exception.BadRuntimeException;
@@ -8,7 +9,9 @@ import com.viajecito.api.model.Salida;
 import com.viajecito.api.model.Tour;
 import com.viajecito.api.repository.ISalidaRepository;
 import com.viajecito.api.service.ISalidaService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormatSymbols;
@@ -25,8 +28,13 @@ public class SalidaService implements ISalidaService {
     ObjectMapper mapper;
 
     @Override
-    public SalidaDTO agregar(Salida salida) {
-        return null;
+    public SalidaDTO agregar(Salida salida) throws BadRequestException {
+        return toDTO(salidaRepository.save(salida));
+    }
+
+    @Override
+    public SalidaDTO modificar(Salida salida) {
+        return toDTO(salidaRepository.save(salida));
     }
 
     @Override
@@ -34,6 +42,14 @@ public class SalidaService implements ISalidaService {
         Salida encontrada = salidaRepository.findById(id)
                 .orElseThrow(() -> new BadRequestException("No se ha encontrado una Salida con ID: " + id));
         return toDTO(encontrada);
+    }
+
+    @Override
+    public SalidaDTO buscarActivoPorTour(Tour tour) throws BadRequestException {
+        Salida resultado = new Salida();
+        resultado = salidaRepository.findByTour(tour)
+                .orElseThrow(() -> new BadRequestException("No se ha encontrado una Salida para el Tour: " + tour.getTitulo()));;
+        return toDTO(resultado);
     }
 
     private SalidaDTO toDTO(Salida s){
@@ -47,7 +63,6 @@ public class SalidaService implements ISalidaService {
 
         return dto;
     }
-
     private String daysToStringPeriod(String days, LocalDate desde, LocalDate hasta){
         String period = "";
         int mesDesde = desde.getMonthValue();
@@ -86,7 +101,9 @@ public class SalidaService implements ISalidaService {
                     : nombreMesDesde + "-" + nombreMesHasta + " " + hasta.getYear();
         } else if (filteredDaysMap.size() == 2) {
             period = String.join(" y ", sortedDays);
-        } else{
+        } else if (filteredDaysMap.size() == 1) {
+            period = String.join(",", sortedDays);
+        }else{
             period = String.join(",", sortedDays);
             int lastCommaIndex = period.lastIndexOf(",");
             period = period.substring(0, lastCommaIndex) + " y " + period.substring(lastCommaIndex + 1);

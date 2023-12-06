@@ -1,18 +1,18 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
-import Home from "./Routes/Home";
-import AddTour from "./Routes/AddTour";
-import Detail from "./Routes/Detail";
-import SignUp from "./Routes/SignUp";
 import NotFound from "./Routes/NotFound";
+import SignUp from "./Routes/SignUp";
 import Login from "./Routes/Login";
+import AddTour from "./Routes/AddTour";
+import EditTour from "./Routes/EditTour";
+import Home from "./Routes/Home";
+import Detail from "./Routes/Detail";
 import Favs from "./Routes/Favs";
 import AdminPanel from "./Routes/AdminPanel";
 import Context from "./Components/utils/global.context";
-import List from "./Routes/List";
-
 import ProtectedRoute from "./Components/utils/ProtectedRoute";
+import AddTourResp from "./Routes/AddTourResp";
 
 // Toast notification
 import { ToastContainer } from "react-toastify";
@@ -25,44 +25,52 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="tour" element={<AddTour />} />
           <Route path="tour/:id" element={<Detail />} />
           <Route path="sign-up" element={<SignUp />} />
           <Route path="login" element={<Login />} />
-          <Route path="list" element={<List />} />
+          <Route path="/resp" element={<AddTourResp />} />
 
-          <Route
-            path="profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="reservation"
-            element={
-              <ProtectedRoute>
-                <Reservation />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="profile/favs"
-            element={
-              <ProtectedRoute>
-                <Favs />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="admin"
-            element={
-              <ProtectedRoute>
-                <AdminPanel />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="profile" element={
+            <ProtectedRoute onlyAdmin={false}>
+              <Profile />
+            </ProtectedRoute>
+          } />
+
+          <Route path="reservation" element={
+            <ProtectedRoute onlyAdmin={false}>
+              <Reservation />
+            </ProtectedRoute>
+          } />
+
+          <Route path="profile/favs" element={
+            <ProtectedRoute onlyAdmin={false}>
+              <Favs />
+            </ProtectedRoute>
+          } />
+
+          <Route path="admin" element={
+            <ProtectedRoute onlyAdmin={true}>
+              <AdminPanel />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/admin/tour" element={
+            <ProtectedRoute onlyAdmin={true}>
+              <EditTour />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/admin/tour/add" element={
+            <ProtectedRoute onlyAdmin={true}>
+              <AddTour />
+            </ProtectedRoute>
+          } />
+
+          <Route path="admin/categories" element={
+            <ProtectedRoute onlyAdmin={true}>
+              {/* <List /> */}
+            </ProtectedRoute>
+          } />
 
           <Route path="*" element={<NotFound />} />
         </Route>

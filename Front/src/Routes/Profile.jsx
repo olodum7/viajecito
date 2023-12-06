@@ -1,10 +1,9 @@
-import React from "react";
 import { useContextGlobal } from "../Components/utils/global.context";
 import { useNavigate } from "react-router-dom";
 import Breadcrumb from "../Components/breadcrumb/Breadcrumb";
 import Banner from "../Components/ui-components/banner/Banner";
 import Button from "../Components/buttons/Button";
-import showToastMessage from "./../Components/utils/toast.notifications";
+import showToastMessage from "../Components/utils/toastMessage";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -34,7 +33,7 @@ const Profile = () => {
           localStorage.removeItem("userData");
           dispatch({ type: "LOGOUT" });
           navigate("/");
-          showToastMessage("deleteUser");
+          showToastMessage("success", "¡Cuenta eliminada con éxito!");
         } else {
           console.error("Error al borrar la cuenta");
         }

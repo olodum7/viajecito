@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Card from "./../Components/card/Card";
 import Pagination from "./../Components/ui-components/pagination/Pagination";
 import { useContextGlobal } from "./../Components/utils/global.context";

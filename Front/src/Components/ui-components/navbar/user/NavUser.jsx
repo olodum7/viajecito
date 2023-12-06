@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useContextGlobal } from "./../../../utils/global.context";
+import PropTypes from 'prop-types';
 
 const NavUser = ({ logout, action, closeMenu }) => {
-  const { dispatch } = useContextGlobal();
-
   const location = useLocation();
   const [currentPage, setCurrentPage] = useState(location.pathname);
 
@@ -13,8 +11,9 @@ const NavUser = ({ logout, action, closeMenu }) => {
   };
 
   const userData = JSON.parse(localStorage.getItem("userData"));
-  const [nombre, setNombre] = useState(userData.nombre);
-  const [apellido, setApellido] = useState(userData.apellido);
+  const nombre = userData.nombre;
+  const apellido = userData.apellido;
+  const rol = userData.tipo;
   const [showOptions, setShowOptions] = useState(window.innerWidth < 992);
 
   const optionsPanelRef = useRef(null);
@@ -87,6 +86,24 @@ const NavUser = ({ logout, action, closeMenu }) => {
       </div>
       {showOptions && (
         <div className="options-panel" ref={optionsPanelRef}>
+          { rol == "ROLE_ADMIN" &&
+          <Link
+            to="/admin"
+            onClick={() => {
+              handleLinkClick("/admin");
+              handleOptionSelect();
+            }}
+            className={currentPage === "/admin" ? "active-link" : ""}
+          >
+            <div className="options-panel-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-layout-wtf" viewBox="0 0 16 16">
+                <path d="M5 1v8H1V1zM1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1zm13 2v5H9V2zM9 1a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM5 13v2H3v-2zm-2-1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1zm12-1v2H9v-2zm-6-1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1z" />
+              </svg>
+            </div>
+            Administrar
+          </Link>
+          }
+
           <Link
             to="/profile"
             onClick={() => {
@@ -210,5 +227,11 @@ const NavUser = ({ logout, action, closeMenu }) => {
     </div>
   );
 };
+
+NavUser.propTypes = {
+  logout: PropTypes.func,
+  action: PropTypes.bool,
+  closeMenu: PropTypes.func,
+}
 
 export default NavUser;
