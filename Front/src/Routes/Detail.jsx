@@ -27,7 +27,6 @@ const Detail = () => {
   const [fechaSalidaDesde, setFechaSalidaDesde] = useState(new Date());
   const [fechaSalidaHasta, setFechaSalidaHasta] = useState(new Date());
   const [days, setDays] = useState([]);
-  // const dataReserve = {};
 
   /* Obtengo el tour */
   useEffect(() => {
@@ -36,22 +35,9 @@ const Detail = () => {
       .then((data) => {
         setResult(data);
         setDays(data.salidaDTO.dias.split(",").map(Number));
-        const fechaSalidaDesdeArray = data.salidaDTO.fechaSalidaDesde;
-        const fechaSalidaHastaArray = data.salidaDTO.fechaSalidaHasta;
-        setFechaSalidaDesde(
-          new Date(
-            fechaSalidaDesdeArray[0],
-            fechaSalidaDesdeArray[1] - 1,
-            fechaSalidaDesdeArray[2]
-          )
-        );
-        setFechaSalidaHasta(
-          new Date(
-            fechaSalidaHastaArray[0],
-            fechaSalidaHastaArray[1] - 1,
-            fechaSalidaHastaArray[2]
-          )
-        );
+
+        setFechaSalidaDesde(new Date(data.salidaDTO.fechaSalidaDesde));
+        setFechaSalidaHasta(new Date(data.salidaDTO.fechaSalidaHasta));
       })
       .catch((error) => {
         console.error("Error al obtener el detalle: \n", error);
@@ -85,16 +71,13 @@ const Detail = () => {
   /* Fecha inicial */
   useEffect(() => {
     setStateDate((prevState) => {
-      const newStartDate =
-        fechaSalidaDesde > new Date() ? fechaSalidaDesde : new Date();
+      const newStartDate = fechaSalidaDesde > new Date() ? fechaSalidaDesde : new Date();
       const isStartDateDisabled = isDayDisabled(newStartDate);
 
       return [
         {
           ...prevState[0],
-          startDate: isStartDateDisabled
-            ? prevState[0].startDate
-            : newStartDate,
+          startDate: isStartDateDisabled ? prevState[0].startDate : newStartDate,
           endDate: addDays(newStartDate, result.duracion - 1),
         },
       ];
