@@ -10,6 +10,7 @@ import Image from "../Components/image/Image";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import Button from "../Components/buttons/Button.jsx";
+import PropTypes from 'prop-types';
 
 //{reservationId}
 
@@ -20,7 +21,7 @@ const DetailReservation = (props) => {
    const [lodging, setLodging] = useState({});
    const { toursState, dispatch } = useContextGlobal();
    const { ids, nombre, apellido, email, tipo } = toursState.userData || {};
-
+   
    /* Obtengo el tour */
     useEffect(() => {
       fetch(`http://localhost:8089/tour/${id}`)
@@ -60,14 +61,14 @@ const DetailReservation = (props) => {
   console.log(startDateValue, endDateValue);
 
   
-  
 
 /*SOLO DIA Y MES 
   const fecha1 = localStorage.getItem('startDatealue');
   const fecha2 = localStorage.getItem('endDatealue');
   console.log(fecha1,fecha2);
   */
-  
+  //const img = result.imagenes;
+  //console.log(img);
 
   //Obtengo datos
     return(
@@ -78,11 +79,7 @@ const DetailReservation = (props) => {
             <Breadcrumb tourName={result.titulo} />
             <div className="row hij arriba">
               <div className="col-md-6 imagen">
-                  {/*<Image key={imagenes[0]} id={imagenes[0]} />*/}
-                  {/*<Image key={imagen} id={imagen} />*/}
-                  {/*<Image id={reservation.id}/> */}                 
-                  {/*<p>{startDateValue}</p>*/}
-                  
+                  <Image id="1"/>
               </div>
               <div className="col-md-6 derecha">
                 <div className="row">
@@ -240,5 +237,7 @@ const DetailReservation = (props) => {
         </main>
     )
 };
-
+DetailReservation.propTypes = {
+  imagenes: PropTypes.array
+};
 export default DetailReservation;
