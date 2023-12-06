@@ -12,7 +12,6 @@ import Favs from "./Routes/Favs";
 import AdminPanel from "./Routes/AdminPanel";
 import Context from "./Components/utils/global.context";
 import ProtectedRoute from "./Components/utils/ProtectedRoute";
-import AddTourResp from "./Routes/AddTourResp";
 
 // Toast notification
 import { ToastContainer } from "react-toastify";
@@ -28,7 +27,6 @@ createRoot(document.getElementById("root")).render(
           <Route path="tour/:id" element={<Detail />} />
           <Route path="sign-up" element={<SignUp />} />
           <Route path="login" element={<Login />} />
-          <Route path="/resp" element={<AddTourResp />} />
 
           <Route path="profile" element={
             <ProtectedRoute onlyAdmin={false}>
