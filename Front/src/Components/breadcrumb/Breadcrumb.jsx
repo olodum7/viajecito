@@ -1,7 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
-import ReturnButton from "./../buttons/ReturnButton";
+import PropTypes from 'prop-types';
+import ReturnButton from "/src/Components/buttons/ReturnButton.jsx";
 
-const Breadcrumb = ({ tourName }) => {
+const Breadcrumb = ({ pageName }) => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
 
@@ -11,13 +12,7 @@ const Breadcrumb = ({ tourName }) => {
 
     return (
       <li key={name} className={`breadcrumb-item ${isLast ? "active" : ""}`}>
-        {isLast ? (
-          tourName
-        ) : (
-          <Link to={routeTo}>
-            {name.charAt(0).toUpperCase() + name.slice(1)}
-          </Link>
-        )}
+        {isLast ? pageName : <Link to={routeTo}>{name.charAt(0).toUpperCase() + name.slice(1)}</Link>}
       </li>
     );
   });
@@ -43,5 +38,9 @@ const Breadcrumb = ({ tourName }) => {
     </div>
   );
 };
+
+Breadcrumb.propTypes = {
+  pageName: PropTypes.string,
+}
 
 export default Breadcrumb;

@@ -1,6 +1,5 @@
 /***** ESTILOS PARA TODOS LOS BOTONES E ICONOS *****/
 
-
 /* Principal */
 
 .btn,
@@ -25,7 +24,7 @@
     border: 2px solid var(--error) !important;
     border-radius: 8px;
     color: var(--error) !important;
-    font-size: .8rem;
+    font-size: 0.8rem;
     padding: 8px 16px;
     transition: all 300ms;
 }
@@ -42,7 +41,6 @@
     }
 }
 
-
 /* Secundario - Fondo blanco */
 
 .btn-secondary {
@@ -51,7 +49,6 @@
     background-color: var(--white);
     border: 1px solid var(--primary);
 }
-
 
 /* Botones en el navbar */
 
@@ -64,7 +61,7 @@
     justify-content: end;
 }
 
-.search-button button{
+.search-button button {
     background-color: var(--secondary);
     border: none;
     border-radius: 64px;
@@ -97,14 +94,15 @@
         text-transform: uppercase;
         padding: 1rem;
     }
+
     .search-button span {
         display: block;
     }
+
     .search-button svg {
         display: none;
     }
 }
-
 
 /* Icono favorito */
 
@@ -126,7 +124,6 @@
     fill: var(--secondary);
 }
 
-
 /* Botones XL */
 
 .btn-lg,
@@ -135,7 +132,6 @@
     width: 100%;
     padding: 16px 32px;
 }
-
 
 /* Galeria de imagenes */
 
@@ -192,7 +188,6 @@
     stroke: var(--white);
 }
 
-
 /* Return  */
 
 .return-container {
@@ -247,7 +242,6 @@
     stroke: var(--white);
 }
 
-
 /* Página de favoritos */
 
 .modal-delete .swal2-confirm {
@@ -289,27 +283,27 @@
     align-items: center;
 }
 
-.counter > div{
+.counter>div {
     margin: 0px;
     padding: 0px;
 }
 
-.counter h3{
+.counter h3 {
     font-size: 14px;
 }
 
 .counter h3,
-.counter p{
+.counter p {
     margin: 5px;
     line-height: 1.5;
 }
 
-.counter p{
+.counter p {
     color: var(--gray);
     font-size: 12px;
 }
 
-.counter-bttns{
+.counter-bttns {
     display: flex;
     margin: 10px;
     padding: 5px;
@@ -319,14 +313,14 @@
 .counter-bttns button,
 .counter-bttns p {
     padding: 0px 10px;
-    margin:  0px;
+    margin: 0px;
 }
 
-.counter-bttns p{
+.counter-bttns p {
     padding: 0px 15px;
 }
 
-.circle-bttn{
+.circle-bttn {
     height: 30px;
     width: 30px;
     border-radius: 100%;
@@ -335,4 +329,34 @@
     font-size: 18px;
     font-weight: 400;
     color: var(--primary);
+}
+
+/* Botones de acciones para la edicion de productos */
+.btn-svg {
+    border: none;
+    background-color: transparent;
+    color: var(--primary);
+    width: 15px;
+    height: 15px;
+    margin: 0px 10px;
+    padding: 0px;
+    font-weight: 500;
+}
+
+.btn-svg:hover {
+    color: var(--secondary);
+    transition: ease-in-out;
+}
+
+/** Boton agregar para las tablas **/
+.bttn-add {
+    border-radius: 10px;
+    width: 40px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
 }

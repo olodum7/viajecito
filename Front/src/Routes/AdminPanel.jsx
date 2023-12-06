@@ -1,29 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import Button from './../Components/buttons/Button';
+import Button from '../Components/buttons/Button';
+import Breadcrumb from '../Components/breadcrumb/Breadcrumb';
 
 const Admin = () => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    // lógica para verificar si el usuario es administrador
-    const userRole = localStorage.getItem('userRole'); 
-
-    if (userRole !== "role_user") {
-      // Redirigir si el usuario no tiene rol de administrador, lo dejo en user_role de momento
-    }
-    
-    // const userData = localStorage.getItem('userData'); 
-    // setUser(userData);
-  });
-
   return (
-    <div className="table">
-      <h1>Panel de Administración</h1>
-        <div>
-        <Button url="/list" buttonName="Listar Tours"/>
-        <Button url="/tour" buttonName="Agregar Tours"/>
+    <main>
+      <Breadcrumb tourName={"Panel administrador"} />
+      <div className="d-flex justify-content-end container-table">
+        <div className="div-table" >
+          <div className="row">
+            <div className="col">
+              <h2>Panel de Administración</h2>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <Button url="#" buttonName="Usuarios" />
+            </div>
+            <div className="col">
+              <Button url="/admin/tour" buttonName="Tours"/>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
+    </main>
   );
 };
 

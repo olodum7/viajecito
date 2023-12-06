@@ -16,6 +16,11 @@
     transition: all 300ms;
 }
 
+.pagination .pagination-btn-container svg{
+    height: 18px;
+    width: 18px;
+}
+
 .pagination .pagination-btn-container button:hover,
 .pagination .pagination-btn-container button.active {
     background-color: var(--primary);
@@ -47,4 +52,25 @@
     background-color: var(--secondary);
     border: 1px solid var(--secondary);
     color: var(--white);
+}
+
+/* Paginacion en las listas tipo tablas */
+.table-pagination .pagination {
+    display: flex;
+    justify-content: left;
+    margin: 5px;
+    width: 100%;
+}
+
+.table-pagination .pagination .pagination-btn-container button {
+    padding: 3px 10px;
+}
+
+.table-pagination .pagination .pagination-btn-container svg{
+    height: 15px;
+    width: 15px;
+}
+
+.table-pagination .pagination .pagination-btn-container button {
+    font-size: 14px;
 }

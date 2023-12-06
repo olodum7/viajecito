@@ -10,6 +10,7 @@ import com.viajecito.api.model.Imagen;
 import com.viajecito.api.model.Salida;
 import com.viajecito.api.model.Tour;
 import com.viajecito.api.repository.ICategoriaRepository;
+import com.viajecito.api.repository.ISalidaRepository;
 import com.viajecito.api.repository.ITourRepository;
 import com.viajecito.api.service.IReservaService;
 import com.viajecito.api.service.ISalidaService;
@@ -34,6 +35,9 @@ public class TourService implements ITourService {
     private ISalidaService salidaService;
 
     @Autowired
+    private ISalidaRepository salidaRepository;
+
+    @Autowired
     private IReservaService reservaService;
 
     @Autowired
@@ -46,7 +50,20 @@ public class TourService implements ITourService {
         /**** Controlo ingreso repetido ****/
         if (tourRepository.findByTitulo(tour.getTitulo()).isPresent())
             throw new BadRequestException("Ya existe un tour con los datos ingresados.");
-        return toDTO(tourRepository.save(tour));
+
+        Tour nuevo = tourRepository.save(tour);
+
+        /** Si la salida no existe la agrego **/
+        Salida nuevaSalida = new Salida();
+        Set<Salida> salidas = new HashSet<>();
+        for (Salida s : tour.getSalidas()){
+            s.setTour(nuevo);
+            nuevaSalida = salidaRepository.save(s);
+            salidas.add(nuevaSalida);
+        }
+
+        nuevo.setSalidas(salidas);
+        return toDTO(nuevo);
     }
 
     @Override
@@ -117,13 +134,9 @@ public class TourService implements ITourService {
         dto.setDuracion(d.getDuracion());
         dto.setDificultad(d.getDificultad().getDescripcion());
 
-        for (Salida salida : d.getSalidas()) {
-            if (salida.getActivo())
-                salidaDTO = salidaService.buscarPorId(salida.getId());
-            break;
-        }
-
+        salidaDTO = salidaService.buscarActivoPorTour(d);
         dto.setSalidaDTO(salidaDTO);
+
         dto.setTransporte(d.getTransporte());
         dto.setTraslado(d.getTraslado());
         dto.setEntradas(d.getEntradas());

@@ -79,11 +79,20 @@ h1 {
 }
 
 /********** FORMULARIOS **********/
-
-.form-container {
-    margin-top: 70px;
+.form-container,
+.container-table {
     width: 100vw;
-    min-height: 100vh;
+    min-height: calc(100vh - 200px);
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1000px;
+    margin-top: 0px;
+}
+
+.form-container{
+    margin-top: 70px;
 }
 
 .form-login {
@@ -92,26 +101,21 @@ h1 {
     padding: 40px 60px;
 }
 
-.form-tour {
-    display: flex;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1000px;
-}
-
-.form {
+.form,
+.div-table {
+    max-width: 80vw;
     width: 100%;
     border-radius: 16px;
     background: var(--white);
-    padding: 40px;
+    padding: 0px 40px;
 }
 
 .form-login .form {
     max-width: 450px;
 }
 
-.form-container .form h2 {
+.form-container .form h2,
+.container-table h2 {
     text-align: center;
     font-size: 1rem;
     font-weight: 500;
@@ -309,8 +313,31 @@ section#detail .container-itinerary h5 {
     margin-top: 2rem;
 }
 
-/********** SCROLLBAR **********/
+/* .table-header{
+    display: flex;
+} */
 
+.container-table .row {
+    margin: 10px;
+}
+
+.container-table .row:first-child {
+    margin: 0px;
+}
+
+.container-table h3{
+    font-size: 1rem;
+    border-bottom: 1px solid var(--black);
+}
+
+.container-table .table-pagination a{
+    border: none;
+    border-radius: 10px;
+    margin: 0px 10px;
+    min-width: 200px;
+}
+
+/********** SCROLLBAR **********/
 ::-webkit-scrollbar {
     width: 20px;
 }
@@ -334,6 +361,29 @@ section#detail .container-itinerary h5 {
 
 .table {
     margin-top: 7rem;
+}
+
+.content-section {
+    margin-top: 120px;
+}
+
+/* Estilos para los datos en forma de tablas */
+.table-data th, td{
+    padding: 5px 10px;
+}
+
+.table-data .thead-dark{
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.table-data .thead-dark th{
+    font-weight: 100;
+    min-width: 150px;
+}
+
+.table-data .thead-dark th:first-child{
+    min-width: 0px;
 }
 
 @media (max-width: 1200px) {
@@ -367,4 +417,13 @@ section#detail .container-itinerary h5 {
 /** Check entradas en tour **/
 #cont-input-entradas {
     display: none;
+}
+
+/** Pagina de adminsitrador **/
+.content-admin-panel{
+    padding: 40px;
+    max-width: 70vw;
+    min-height: 100vh;
+    width: 100%;
+    margin: 20px;
 }

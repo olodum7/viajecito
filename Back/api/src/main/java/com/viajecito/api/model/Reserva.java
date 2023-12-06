@@ -41,5 +41,5 @@ public class Reserva {
 
     @ManyToOne
     @JoinColumn(name = "TOUR_ID")
-    private Tour tour = new Tour();
+    private Tour tour;
 }

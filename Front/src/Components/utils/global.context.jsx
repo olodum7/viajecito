@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
+import PropTypes from 'prop-types';
 import reducer from './reducer'
 
 const localFavs = JSON.parse(localStorage.getItem('favs'))
@@ -35,6 +36,9 @@ export const ContextProvider = ({ children }) => {
   );
 };
 
-export default ContextProvider
+ContextProvider.propTypes = {
+  children: PropTypes.object
+}
 
+export default ContextProvider;
 export const useContextGlobal = () => useContext(ContextGlobal); 

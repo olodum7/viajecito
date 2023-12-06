@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
-const CategoryTour = ({ tourData, handleChange, categories }) => {
+const CategoryTour = ({ tourData, handleChange, className }) => {
     const [categorias, setCategorias] = useState([]);
     const [descripcionCategoria, setDescripcionCategoria] = useState("");
-    
+    const [selectedCategoria, setSelectedCategoria] = useState(0);
+
     const handleCategoriaChange = (e) => {
         const selectedCategoriaId = e.target.value;
         if (selectedCategoriaId != 0) {
@@ -14,9 +15,11 @@ const CategoryTour = ({ tourData, handleChange, categories }) => {
             } else {
                 setDescripcionCategoria("");
             }
+            setSelectedCategoria(selectedCategoriaId);
             handleChange(e);
-        }else{
+        } else {
             setDescripcionCategoria("");
+            setSelectedCategoria(0);
         }
     };
 
@@ -25,19 +28,26 @@ const CategoryTour = ({ tourData, handleChange, categories }) => {
             .then((response) => response.json())
             .then((data) => {
                 setCategorias(data);
+                if (tourData.categoriaNom && tourData.categoriaNom !== "") {
+                    const categoriaNombre = data.find((categoria) => categoria.nombre === tourData.categoriaNom);
+                    if (categoriaNombre) {
+                        setSelectedCategoria(parseInt(categoriaNombre.id));
+                        setDescripcionCategoria(categoriaNombre.descripcion);
+                    }
+                }
             })
             .catch((error) => {
                 console.error("Error al obtener las categorías: \n", error);
             });
-    }, []);
+    }, [tourData.categoriaNom]);
 
     return (
         <>
             <div className="col">
                 <div className="form-group mb-3">
                     <small>Categoria*</small>
-                    <select className="form-control" name="categoria" type="number" value={tourData.categoria} onChange={handleCategoriaChange} required>
-                        <option  key={0} value={0}>Seleccione...</option>
+                    <select type="number" className={className} id="categoria" value={selectedCategoria} onChange={handleCategoriaChange}>
+                        <option key={0} value={0}>Seleccione...</option>
                         {categorias.map((categoria) => (
                             <option key={categoria.id} value={categoria.id}> {categoria.nombre} </option>
                         ))}
@@ -56,10 +66,11 @@ const CategoryTour = ({ tourData, handleChange, categories }) => {
 
 CategoryTour.propTypes = {
     tourData: PropTypes.shape({
-        categoria: PropTypes.number.isRequired,
-        categories: PropTypes.array.isRequired,
+        categoria: PropTypes.number,
+        categoriaNom: PropTypes.string,
     }).isRequired,
-    handleChange: PropTypes.func.isRequired
+    handleChange: PropTypes.func.isRequired,
+    className: PropTypes.string
 };
 
 export default CategoryTour;
