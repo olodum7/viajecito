@@ -1,24 +1,21 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
-import NotFound from "./Routes/NotFound";
 import SignUp from "./Routes/SignUp";
 import Login from "./Routes/Login";
+import Profile from "./Routes/Profile";
+import AdminPanel from "./Routes/AdminPanel";
 import AddTour from "./Routes/AddTour";
 import EditTour from "./Routes/EditTour";
 import Home from "./Routes/Home";
 import Detail from "./Routes/Detail";
 import Favs from "./Routes/Favs";
-import AdminPanel from "./Routes/AdminPanel";
+import Reservation from "./Routes/Reservation";
+import DetailReservation from "./Routes/DetailReservation";
+import NotFound from "./Routes/NotFound";
 import Context from "./Components/utils/global.context";
 import ProtectedRoute from "./Components/utils/ProtectedRoute";
-import AddTourResp from "./Routes/AddTourResp";
-
-import DetailReservation from "./Routes/DetailReservation";
-// Toast notification
 import { ToastContainer } from "react-toastify";
-import Profile from "./Routes/Profile";
-import Reservation from "./Routes/Reservation";
 
 createRoot(document.getElementById("root")).render(
   <Context>
