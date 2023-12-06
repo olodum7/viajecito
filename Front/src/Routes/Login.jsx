@@ -122,7 +122,11 @@ const Login = () => {
               tipo: "success",
               texto: "Inicio de sesión exitoso.",
             });
-            navigate("/");
+            if (location.state?.fromReserve) {
+              navigate("/detailReservation");
+            } else {
+              navigate("/");
+            }
           } else {
             // Error en el inicio de sesión
             setMensaje({

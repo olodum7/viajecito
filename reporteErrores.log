@@ -69,3 +69,5 @@
 [2023-12-02 18:39:05] [ ERROR] [ExceptionController:21] NullPointerException: Cannot invoke "com.viajecito.api.model.Salida.getActivo()" because "salida" is null
 [2023-12-02 18:41:24] [ ERROR] [ExceptionController:21] NullPointerException: Cannot invoke "com.viajecito.api.model.Salida.getActivo()" because "salida" is null
 [2023-12-02 19:47:03] [ ERROR] [ExceptionController:21] NullPointerException: Cannot invoke "com.viajecito.api.model.Salida.getActivo()" because "salida" is null
+[2023-12-05 09:19:49] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-12-05 09:20:14] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"

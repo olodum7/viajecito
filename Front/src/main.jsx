@@ -26,7 +26,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="tour" element={<AddTour />} />
-          {/* <Route path="tour/:id" element={<Detail />} /> */}
+          {<Route path="tour/:id" element={<Detail />} />}
           <Route path="sign-up" element={<SignUp />} />
           <Route path="login" element={<Login />} />
           <Route path="list" element={<List />} />
@@ -40,10 +40,10 @@ createRoot(document.getElementById("root")).render(
             }
           />
           <Route
-            path="tour/:id"
+            path="detailReservation"
             element={
               <ProtectedRoute>
-                <Detail />
+                {/* { <Detail /> } */}
               </ProtectedRoute>
             }
           />

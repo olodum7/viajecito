@@ -8,18 +8,15 @@ const ProtectedRoute = ({ children }) => {
 
   const currentPath = location.pathname;
 
-  const isTourDetailRoute = currentPath && currentPath.includes('/tour/');
+  const isReservationDetailRoute = currentPath === '/detailReservation';
   const isFavsRoute = currentPath === '/profile/favs';
 
   const getRedirectState = () => {
-    if (isTourDetailRoute && !isAuthenticated) {
+    if (isReservationDetailRoute && !isAuthenticated) {
       return { fromReserve: true };
     } else if (isFavsRoute && !isAuthenticated) {
       return { fromFavButton: true };
-    }
-
-    // Opción predeterminada para otras rutas protegidas
-    if (!isAuthenticated) {
+    } else {
       return { fromProtectedRoute: true };
     }
   };

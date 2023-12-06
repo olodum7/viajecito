@@ -102,7 +102,7 @@ const Detail = () => {
     }]);
   }
 
-  // const onClickReserve = () => {
+  const onClickReserve = () => {
   //   dataReserve.id = id
   //   dataReserve.titulo = result.titulo
   //   dataReserve.subtitulo = result.subtitulo
@@ -116,8 +116,8 @@ const Detail = () => {
   //   dataReserve.menores = numberOfChildren
 
   //   // localStorage.setItem('datosReserva', JSON.stringify(dataReserve));
-  //   // window.location.href = '/reserve';
-  // };
+   window.location.href = '/detailReservation';
+   };
 
   return (
     <main>
@@ -311,8 +311,8 @@ const Detail = () => {
               <p>({result.traslado == true ? "Traslado" : "" + result.transporte?.length > 0 ? "Transporte" : ""})</p>
             </div>
             <div className="row">
-              {/* <button className="btn" type="button" onClick={onClickReserve}>Completar reserva</button> */}
-              <button className="btn" type="button">Completar reserva</button>
+              {<button className="btn" type="button" onClick={onClickReserve}>Completar reserva</button>}
+              {/* <button className="btn" type="button">Completar reserva</button> */}
             </div>
           </div>
         </div>
