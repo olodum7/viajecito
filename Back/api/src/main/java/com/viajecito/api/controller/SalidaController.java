@@ -18,7 +18,7 @@ public class SalidaController {
     private SalidaService salidaService;
 
     @PostMapping
-    public ResponseEntity<SalidaDTO> agregarSalida(@RequestBody Salida salida) {
+    public ResponseEntity<SalidaDTO> agregarSalida(@RequestBody Salida salida) throws BadRequestException {
         SalidaDTO nuevaSalida = salidaService.agregar(salida);
         return nuevaSalida != null ? ResponseEntity.ok(nuevaSalida) : ResponseEntity.badRequest().build();
     }
