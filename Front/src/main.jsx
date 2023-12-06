@@ -16,7 +16,6 @@ import ProtectedRoute from "./Components/utils/ProtectedRoute";
 // Toast notification
 import { ToastContainer } from "react-toastify";
 import Profile from "./Routes/Profile";
-import Reservation from "./Routes/Reservation";
 
 createRoot(document.getElementById("root")).render(
   <Context>
@@ -24,7 +23,8 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="tour/:id" element={<Detail />} />
+          <Route path="tour" element={<AddTour />} />
+          {<Route path="tour/:id" element={<Detail />} />}
           <Route path="sign-up" element={<SignUp />} />
           <Route path="login" element={<Login />} />
 
@@ -33,13 +33,14 @@ createRoot(document.getElementById("root")).render(
               <Profile />
             </ProtectedRoute>
           } />
-
-          <Route path="reservation" element={
-            <ProtectedRoute onlyAdmin={false}>
-              <Reservation />
-            </ProtectedRoute>
-          } />
-
+          <Route
+            path="detailReservation"
+            element={
+              <ProtectedRoute>
+                {/* { <Detail /> } */}
+              </ProtectedRoute>
+            }
+          />
           <Route path="profile/favs" element={
             <ProtectedRoute onlyAdmin={false}>
               <Favs />
@@ -69,7 +70,6 @@ createRoot(document.getElementById("root")).render(
               {/* <List /> */}
             </ProtectedRoute>
           } />
-
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

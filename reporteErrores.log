@@ -64,3 +64,10 @@
 [2023-11-20 19:00:31] [ ERROR] [ExceptionController:21] IllegalArgumentException: No enum constant com.viajecito.api.model.TourDificultad.Baja
 [2023-11-20 19:07:42] [ ERROR] [ExceptionController:21] NoSuchElementException: No value present
 [2023-11-20 20:03:38] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "NaN"
+[2023-12-02 18:34:52] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.util.List'; nested exception is java.lang.NumberFormatException: For input string: "Septiembre-Febrero"
+[2023-12-02 18:35:00] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.util.List'; nested exception is java.lang.NumberFormatException: For input string: "Septiembre-Febrero"
+[2023-12-02 18:39:05] [ ERROR] [ExceptionController:21] NullPointerException: Cannot invoke "com.viajecito.api.model.Salida.getActivo()" because "salida" is null
+[2023-12-02 18:41:24] [ ERROR] [ExceptionController:21] NullPointerException: Cannot invoke "com.viajecito.api.model.Salida.getActivo()" because "salida" is null
+[2023-12-02 19:47:03] [ ERROR] [ExceptionController:21] NullPointerException: Cannot invoke "com.viajecito.api.model.Salida.getActivo()" because "salida" is null
+[2023-12-05 09:19:49] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+[2023-12-05 09:20:14] [ ERROR] [ExceptionController:21] MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"

@@ -22,6 +22,15 @@ const Login = () => {
       });
     }
 
+    if (location.state?.fromReserve) {
+      Swal.fire({
+        title: 'Autenticación requerida',
+        text: 'El login es obligatorio para completar una reserva. Por favor, registrese.',
+        icon: 'info',
+        confirmButtonText: 'Ok'
+      });
+    }
+
     if (location.state?.fromFavButton) {
       Swal.fire({
         title: 'Autenticación requerida',
@@ -113,7 +122,11 @@ const Login = () => {
               tipo: "success",
               texto: "Inicio de sesión exitoso.",
             });
-            navigate("/");
+            if (location.state?.fromReserve) {
+              navigate("/detailReservation");
+            } else {
+              navigate("/");
+            }
           } else {
             // Error en el inicio de sesión
             setMensaje({
