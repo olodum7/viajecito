@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const NavUser = ({ logout, action, closeMenu }) => {
   const location = useLocation();
@@ -71,6 +71,7 @@ const NavUser = ({ logout, action, closeMenu }) => {
         <div className="row">
           <div className="col navbar-user-greeting">
             <p>Hola {nombre}!</p>
+            <p className="small">{rol == "ROLE_ADMIN" && ('Super Admin')}  </p>
           </div>
           <div className="col-4 navbar-user-button">
             <button onClick={toggleOptions} className="btn btn-primary">
@@ -86,23 +87,38 @@ const NavUser = ({ logout, action, closeMenu }) => {
       </div>
       {showOptions && (
         <div className="options-panel" ref={optionsPanelRef}>
-          { rol == "ROLE_ADMIN" &&
-          <Link
-            to="/admin"
-            onClick={() => {
-              handleLinkClick("/admin");
-              handleOptionSelect();
-            }}
-            className={currentPage === "/admin" ? "active-link" : ""}
-          >
-            <div className="options-panel-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-layout-wtf" viewBox="0 0 16 16">
-                <path d="M5 1v8H1V1zM1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1zm13 2v5H9V2zM9 1a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM5 13v2H3v-2zm-2-1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1zm12-1v2H9v-2zm-6-1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1z" />
-              </svg>
-            </div>
-            Administrar
-          </Link>
-          }
+          {rol == "ROLE_ADMIN" && (
+            <Link
+              to="/admin"
+              onClick={() => {
+                handleLinkClick("/admin");
+                handleOptionSelect();
+              }}
+              className={currentPage === "/admin" ? "active-link" : ""}
+            >
+              <div className="options-panel-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-layout-dashboard"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                  stroke="currentColor"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M4 4h6v8h-6z" />
+                  <path d="M4 16h6v4h-6z" />
+                  <path d="M14 12h6v8h-6z" />
+                  <path d="M14 4h6v4h-6z" />
+                </svg>
+              </div>
+              Administrar
+            </Link>
+          )}
 
           <Link
             to="/profile"
@@ -133,67 +149,74 @@ const NavUser = ({ logout, action, closeMenu }) => {
             </div>
             Mis datos
           </Link>
-          <Link
-            to="profile/reservation"
-            onClick={() => {
-              handleLinkClick("profile/reservation");
-              handleOptionSelect();
-            }}
-            className={currentPage === "profile/reservation" ? "active-link" : ""}
-          >
-            <div className="options-panel-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-ticket"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+
+          {rol == "ROLE_USER" && (
+            <>
+              <Link
+                to="profile/reservation"
+                onClick={() => {
+                  handleLinkClick("profile/reservation");
+                  handleOptionSelect();
+                }}
+                className={
+                  currentPage === "profile/reservation" ? "active-link" : ""
+                }
               >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M15 5l0 2"></path>
-                <path d="M15 11l0 2"></path>
-                <path d="M15 17l0 2"></path>
-                <path d="M5 5h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-3a2 2 0 0 0 0 -4v-3a2 2 0 0 1 2 -2"></path>
-              </svg>
-            </div>
-            Mis reservas
-          </Link>
-          <Link
-            to="/profile/favs"
-            onClick={() => {
-              handleLinkClick("/profile/favs");
-              handleOptionSelect();
-            }}
-            className={currentPage === "/profile/favs" ? "active-link" : ""}
-          >
-            <div className="options-panel-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-heart-filled"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                <div className="options-panel-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="icon icon-tabler icon-tabler-ticket"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M15 5l0 2"></path>
+                    <path d="M15 11l0 2"></path>
+                    <path d="M15 17l0 2"></path>
+                    <path d="M5 5h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-3a2 2 0 0 0 0 -4v-3a2 2 0 0 1 2 -2"></path>
+                  </svg>
+                </div>
+                Mis reservas
+              </Link>
+              <Link
+                to="/profile/favs"
+                onClick={() => {
+                  handleLinkClick("/profile/favs");
+                  handleOptionSelect();
+                }}
+                className={currentPage === "/profile/favs" ? "active-link" : ""}
               >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path
-                  d="M6.979 3.074a6 6 0 0 1 4.988 1.425l.037 .033l.034 -.03a6 6 0 0 1 4.733 -1.44l.246 .036a6 6 0 0 1 3.364 10.008l-.18 .185l-.048 .041l-7.45 7.379a1 1 0 0 1 -1.313 .082l-.094 -.082l-7.493 -7.422a6 6 0 0 1 3.176 -10.215z"
-                  strokeWidth="0"
-                  fill="currentColor"
-                ></path>
-              </svg>
-            </div>
-            Mis favoritos
-          </Link>
+                <div className="options-panel-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="icon icon-tabler icon-tabler-heart-filled"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                      d="M6.979 3.074a6 6 0 0 1 4.988 1.425l.037 .033l.034 -.03a6 6 0 0 1 4.733 -1.44l.246 .036a6 6 0 0 1 3.364 10.008l-.18 .185l-.048 .041l-7.45 7.379a1 1 0 0 1 -1.313 .082l-.094 -.082l-7.493 -7.422a6 6 0 0 1 3.176 -10.215z"
+                      strokeWidth="0"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </div>
+                Mis favoritos
+              </Link>
+            </>
+          )}
           <Link
             to="/"
             onClick={() => {
@@ -232,6 +255,6 @@ NavUser.propTypes = {
   logout: PropTypes.func,
   action: PropTypes.bool,
   closeMenu: PropTypes.func,
-}
+};
 
 export default NavUser;

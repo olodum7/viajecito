@@ -430,7 +430,7 @@ section#detail .container-details .hotel-gallery img {
 }
 
 .content-section {
-    margin-top: 120px;
+    margin-top: 60px;
 }
 
 
@@ -521,14 +521,13 @@ section .table-data {
 }
 
 .col-img-hotel {
-    height: 120px;
-    overflow: hidden;
     display: flex;
     align-items: center;
 }
 
 .col-img-hotel img {
     width: 100%;
+    height: 120px;
     object-fit: fill;
 }
 
@@ -671,4 +670,31 @@ section#reserve .form-normal {
     .col-img-hotel {
         height: 80px;
     }
+}
+
+.panel-admin {
+    min-height: 70vh;
+}
+
+.btn-admin-container a {
+    background-color: var(--primary) !important;
+    border-radius: 4px;
+    color: var(--white) !important;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2.8rem;
+    height: 300px;
+    margin: 16px;
+    text-decoration: none;
+}
+
+.btn-admin-container a:hover {
+    background-color: var(--secondary) !important;
+    color: var(--primary) !important;
+}
+
+.btn-admin-container svg {
+    width: 6rem;
 }

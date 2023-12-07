@@ -66,8 +66,17 @@ const EditTour = () => {
   };
 
   return (
+
+<main>
+    <section className="profile-header">
+    <div className="container-xl">
+      <div className="row">
+        <h1>Administrar tours</h1>
+      </div>
+    </div>
+  </section>
+  <Breadcrumb tourName={"Editar tour"} />
     <section className="content-wrapper content-section">
-      <Breadcrumb tourName={"Editar tour"} />
       <div className="d-flex justify-content-end container-table">
         <div className="div-table" >
 
@@ -109,6 +118,7 @@ const EditTour = () => {
         </div>
       </div>
     </section>
+    </main>
   );
 };
 
