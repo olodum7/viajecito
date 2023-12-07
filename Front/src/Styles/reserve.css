@@ -1,11 +1,3 @@
-#reserve {
-    margin-top: 0px;
-    width: 100vw;
-    min-height: calc(100vh - 200px);
-    max-width: 1200px;
-    margin-top: 0px;
-}
-
 #reserve h6 {
     color: var(--primary);
     font-weight: 600;
