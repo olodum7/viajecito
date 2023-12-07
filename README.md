@@ -18,7 +18,7 @@ Viajecito permite a los viajeros explorar y reservar tours que capturan la esenc
 
 Consulta la documentación completa y prueba los endpoints de la API a través de Swagger UI:
 
-[![Swagger UI](http://34.207.134.182:8089/swagger-ui/index.html)
+[Swagger UI](http://34.207.134.182:8089/swagger-ui/index.html)
 
 ## Instalación 🚀
 
