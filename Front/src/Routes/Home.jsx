@@ -65,35 +65,16 @@ const Home = () => {
     }
   }, [startDate, endDate]);
 
-  /*
-  const filteredTours = result.filter((tour) => {
-    const fechaDesdeArray = tour.salidaDTO.fechaSalidaDesde;
-    const fechaHastaArray = tour.salidaDTO.fechaSalidaHasta;
-    const tourName = tour.titulo || "";
-
-    const fechaDesde = new Date(fechaDesdeArray[0], fechaDesdeArray[1] - 1, fechaDesdeArray[2])
-    const fechaHasta = new Date(fechaHastaArray[0], fechaHastaArray[1] - 1, fechaHastaArray[2])
-
-    const categoryFilter = !clickedCategoryName || tour.categoria === clickedCategoryName;
-    const dateFilter =
-      (endDate === null || startDate >= fechaDesde && startDate <= fechaHasta);
-    return categoryFilter && dateFilter && tourName.toLowerCase().includes(search.toLowerCase());
-
-  }); */
-
   const filteredTours = result.filter((tour) => {
     const tourName = tour.titulo || "";
-    const fechaDesde = new Date(tour.salidaDTO.fechaSalidaDesde);
-  
-    // Ajuste para el índice del mes (restar 1)
-    const correctedMonth = fechaDesde.getMonth();
-  
+    const fechaDesde = new Date(tour.salidaDTO.fechaSalidaDesde)
+    const fechaHasta = new Date(tour.salidaDTO.fechaSalidaHasta)
+
     const categoryFilter = !clickedCategoryName || tour.categoria === clickedCategoryName;
-    const dayFilter = startDate ? fechaDesde.getDate() === startDate.getDate() : true;
-    const monthFilter = startDate ? correctedMonth === (startDate.getMonth()) : true;
+    const dateFilter = (endDate === null || startDate >= fechaDesde && startDate <= fechaHasta);
     const searchFilter = tourName.toLowerCase().includes(search.toLowerCase());
   
-    return categoryFilter && (dayFilter || monthFilter) && searchFilter;
+    return categoryFilter && dateFilter && searchFilter;
   });  
 
   useEffect(() => {
@@ -126,7 +107,6 @@ const Home = () => {
           endDate={endDate}
           search={search}
         />
-        {/* <Search onSearchChange={handleSearchChange} onSearchSubmit={handleSearchSubmit} search={search} /> */}
 
         <CategoryNav
           clickedCategoryName={clickedCategoryName}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import Breadcrumb from "../Components/breadcrumb/Breadcrumb";
 import Banner from "../Components/ui-components/banner/Banner";
 import Pagination from "../Components/ui-components/pagination/Pagination";
@@ -87,7 +87,7 @@ const Reservation = () => {
               <tbody>
                 {combinedData.map((combinedData) => (
                   <tr key={combinedData.idReserva}>
-                    <td>{format(new Date(combinedData.fechaSalida), 'dd/MM/yyyy')}</td>
+                    <td>{format(parseISO(combinedData.fechaSalida), 'dd/MM/yyyy', { timeZone: 'UTC' })}</td>
                     <td>{combinedData.tourData.titulo}</td>
                     <td>{combinedData.tourData.categoria}</td>
                     <td>{combinedData.acompaniantes_mayores} </td>
