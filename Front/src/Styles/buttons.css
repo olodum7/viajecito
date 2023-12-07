@@ -4,7 +4,8 @@
 /* Principal */
 
 .btn,
-.swal2-confirm {
+.swal2-confirm,
+.btn-iniciar-reserva {
     background-color: var(--secondary) !important;
     border-radius: 32px;
     color: var(--primary) !important;
@@ -15,9 +16,14 @@
 }
 
 .btn:hover,
-.swal2-confirm:hover {
+.swal2-confirm:hover,
+.btn-iniciar-reserva:hover {
     background-color: var(--primary) !important;
     color: var(--white) !important;
+}
+
+.btn-iniciar-reserva {
+    width: 200px;
 }
 
 .btn.delete-btn {
@@ -251,6 +257,16 @@
     stroke: var(--white);
 }
 
+@media (max-width: 570px) {
+    .return-container {
+        text-align: left;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 32px;
+    }
+}
+
 
 /* Página de favoritos */
 
@@ -319,6 +335,8 @@
     display: flex;
     margin: 10px;
     padding: 5px;
+    width: 120px;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -341,6 +359,11 @@
     font-size: 18px;
     font-weight: 400;
     color: var(--primary);
+}
+
+.circle-bttn:hover {
+    background-color: var(--primary);
+    color: var(--white);
 }
 
 

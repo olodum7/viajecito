@@ -26,12 +26,12 @@ const Breadcrumb = ({ pageName }) => {
   return (
     <div className="container-xl breadcrumb-container mb-3">
       <div className="row">
-        <div className="col-8">
+        <div className="col-sm-12 col-md-8">
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">{breadcrumbItems}</ol>
           </nav>
         </div>
-        <div className="col-4">
+        <div className="col-sm-12 col-md-4">
           <ReturnButton />
         </div>
       </div>
