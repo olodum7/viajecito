@@ -30,7 +30,7 @@ const Detail = () => {
 
   /* Obtengo el tour */
   useEffect(() => {
-    fetch(`http://localhost:8089/tour/${id}`)
+    fetch(`http://34.207.134.182:8089/tour/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setResult(data);

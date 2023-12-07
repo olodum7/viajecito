@@ -205,7 +205,7 @@ const Login = () => {
                   />
                   <p className="text-center mt-4 mb-0">
                     ¿Aún no tienes cuenta?
-                    <Link className="nav-item nav-link" to="/sign-up">
+                    <Link className="nav-item nav-link" to="/signUp">
                       Crear cuenta
                     </Link>
                   </p>

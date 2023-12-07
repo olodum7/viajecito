@@ -133,7 +133,7 @@ const AddTour = () => {
         }
       });
       
-      fetch("http://localhost:8089/tour", {
+      fetch("http://34.207.134.182:8089/tour", {
         method: "POST",
         body: formDataToSend,
       })

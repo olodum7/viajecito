@@ -6,16 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="56ceb4cf-309b-4bb5-94f6-1071cf032ed2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/ReservaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/ReservaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/ReservaDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/ReservaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/ReservaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reporteErrores.log" beforeDir="false" afterPath="$PROJECT_DIR$/reporteErrores.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Components/ui-components/navbar/user/NavUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/ui-components/navbar/user/NavUser.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Components/ui-components/pagination/Pagination.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/ui-components/pagination/Pagination.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Routes/AddTour.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/AddTour.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Styles/commonStyles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Styles/commonStyles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/main.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

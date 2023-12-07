@@ -15,7 +15,7 @@ const Reservation = () => {
     const formDataToSend = new FormData();
     formDataToSend.append("email", email);
 
-    fetch("http://localhost:8089/reserva/reservations", {
+    fetch("http://34.207.134.182:8089/reserva/reservations", {
       method: "POST",
       body: formDataToSend,
     })
@@ -40,7 +40,7 @@ const Reservation = () => {
   }, [email]);
 
   const obtenerTours = (idTour) => {
-    return fetch(`http://localhost:8089/tour/${idTour}`)
+    return fetch(`http://34.207.134.182:8089/tour/${idTour}`)
       .then((response) => response.json())
       .catch((error) => {
         console.error("Error al obtener el detalle: \n", error);

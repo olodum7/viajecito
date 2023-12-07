@@ -26,7 +26,7 @@ const Reserve = () => {
         formDataToSend.append("menores", numberOfChildren);
         formDataToSend.append("tour", tourData.id);
 
-        fetch("http://localhost:8089/reserva", {
+        fetch("http://34.207.134.182:8089/reserva", {
             method: "POST",
             body: formDataToSend
         })

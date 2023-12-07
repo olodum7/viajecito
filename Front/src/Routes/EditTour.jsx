@@ -14,7 +14,7 @@ const EditTour = () => {
 
   useEffect(() => {
     if (editingTours) {
-      fetch("http://localhost:8089/tour")
+      fetch("http://34.207.134.182:8089/tour")
         .then((response) => response.json())
         .then((data) => {
           setTours(data);
@@ -33,7 +33,7 @@ const EditTour = () => {
     });
 
     /* Confirmo los datos a la BD */
-    fetch(`http://localhost:8089/tour`, {
+    fetch(`http://34.207.134.182:8089/tour`, {
       method: "PUT",
       body: formData,
     })
@@ -52,7 +52,7 @@ const EditTour = () => {
   const currentTours = tours.slice(firstTourIndex, lastTourIndex);
 
   const handleTourDelete = (id) => {
-    fetch(`http://localhost:8089/tour/${id}`, {
+    fetch(`http://34.207.134.182:8089/tour/${id}`, {
       method: "DELETE",
     })
       .then(() => {
