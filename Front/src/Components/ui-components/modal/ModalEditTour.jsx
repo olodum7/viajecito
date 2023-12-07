@@ -30,14 +30,14 @@ function ModalEditTour({ tourData, handleSave }) {
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { id, value } = e.target;
         let parsedValue = value;
 
-        if (name === "precioAdulto" || name === "precioMenor" || name === "categoria") {
+        if (id === "precioAdulto" || id === "precioMenor" || id === "categoria") {
             parsedValue = parseInt(value);
         }
 
-        setTourDataModified({ ...tourDataModified, [name]: parsedValue });
+        setTourDataModified({ ...tourDataModified, [id]: parsedValue });
     };
 
     const handleButtonSave = () => {
@@ -62,13 +62,13 @@ function ModalEditTour({ tourData, handleSave }) {
                         <div className="col">
                             <div className="form-group mb-3">
                                 <small>Duración en días*</small>
-                                <input className="form-control" name="duracion" type="number" value={tourData.duracion} onChange={handleChange} />
+                                <input className="form-control" id="duracion" type="number" value={tourData.duracion} onChange={handleChange} />
                             </div>
                         </div>
                         <div className="col">
                             <div className="form-group mb-3">
                                 <small>Dificultad*</small>
-                                <select className="form-control" name="dificultad" value={tourDataModified.dificultad} onChange={handleChange} required>
+                                <select className="form-control" id="dificultad" value={tourDataModified.dificultad} onChange={handleChange} required>
                                     <option value="">Seleccione...</option>
                                     <option value="ALTA">Alta</option>
                                     <option value="MEDIA_ALTA">Media-Alta</option>
@@ -92,13 +92,13 @@ function ModalEditTour({ tourData, handleSave }) {
                         <div className="col">
                             <div className="form-group mb-3">
                                 <small>Precio por adulto*</small>
-                                <input className="form-control" name="precioAdulto" type="number" value={tourDataModified["precioAdulto"]} onChange={handleChange} />
+                                <input className="form-control" id="precioAdulto" type="number" value={tourDataModified["precioAdulto"]} onChange={handleChange} />
                             </div>
                         </div>
                         <div className="col">
                             <div className="form-group mb-3">
                                 <small>Precio por menores*</small>
-                                <input className="form-control" name="precioMenor" type="number" value={tourDataModified["precioMenor"]} onChange={handleChange} />
+                                <input className="form-control" id="precioMenor" type="number" value={tourDataModified["precioMenor"]} onChange={handleChange} />
                             </div>
                         </div>
                     </div>

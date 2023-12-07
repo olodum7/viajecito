@@ -13,9 +13,9 @@ import java.time.LocalDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter @Setter
 public class ReservaDTO implements Serializable {
+    private Long idReserva;
     private LocalDate fechaSalida;
     private Integer acompaniantes_mayores;
     private Integer acompaniantes_menores;
-    private String usuario;
-    private Tour tour;
+    private Long tourId;
 }

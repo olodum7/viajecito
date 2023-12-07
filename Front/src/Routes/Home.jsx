@@ -126,8 +126,8 @@ const Home = () => {
 
           {filteredTours.length > toursPerPage && (
             <Pagination
-              totalTours={filteredTours.length}
-              toursPerPage={toursPerPage}
+              total={filteredTours.length}
+              perPage={toursPerPage}
               setCurrentPage={setCurrentPage}
               currentPage={currentPage}
             />

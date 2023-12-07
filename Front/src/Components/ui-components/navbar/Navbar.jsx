@@ -112,9 +112,9 @@ const Navbar = () => {
               </div>
             )}
 
-            {!isLogged && location.pathname !== "/sign-up" && (
+            {!isLogged && location.pathname !== "/signUp" && (
               <div className="d-flex align-items-lg-center mt-3 mt-lg-0">
-                <Button url={"sign-up"} buttonName="Crear cuenta" action={handleOptionClick} />
+                <Button url={"signUp"} buttonName="Crear cuenta" action={handleOptionClick} />
               </div>
             )}
 

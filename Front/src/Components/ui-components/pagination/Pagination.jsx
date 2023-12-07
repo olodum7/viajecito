@@ -1,5 +1,5 @@
-const Pagination = ({totalTours, toursPerPage, setCurrentPage, currentPage}) => {
-  const totalPages = Math.ceil(totalTours / toursPerPage);
+const Pagination = ({total, perPage, setCurrentPage, currentPage}) => {
+  const totalPages = Math.ceil(total / perPage);
 
   // Función para manejar el clic en el botón "atras"
   const handlePreviousClick = () => {

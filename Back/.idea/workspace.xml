@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="989c382f-75db-4632-adc7-8760db2a1f6f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../.github/workflows/cicd.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/cicd.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+    <list default="true" id="56ceb4cf-309b-4bb5-94f6-1071cf032ed2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reporteErrores.log" beforeDir="false" afterPath="$PROJECT_DIR$/reporteErrores.log" afterDir="false" />
+>>>>>>> 350acaf5bb8801673407fa9daafaf1e2b0cc36f6
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +38,6 @@
     <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/ExceptionController.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/ImagenController.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/ReservaController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/SalidaController.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/UsuarioController.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/CategoriaDTO.java" root0="SKIP_INSPECTION" />
@@ -87,30 +94,10 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
-    <configuration name="ApiApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.viajecito.api.ApiApplication" />
-      <module name="api" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.viajecito.api.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.ApiApplication" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="989c382f-75db-4632-adc7-8760db2a1f6f" name="Changes" comment="" />
+      <changelist id="56ceb4cf-309b-4bb5-94f6-1071cf032ed2" name="Changes" comment="" />
       <created>1700174929810</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

@@ -24,7 +24,7 @@ const CategoryTour = ({ tourData, handleChange, className }) => {
     };
 
     useEffect(() => {
-        fetch("http://54.92.136.117:8089/categoria")
+        fetch("http://34.207.134.182:8089/categoria")
             .then((response) => response.json())
             .then((data) => {
                 setCategorias(data);
