@@ -27,7 +27,7 @@ const Card = (props) => {
               </p>
             </div>
             <div className="col-12 col-md-5 btn-container">
-              <Button url={`tour/${id}`} buttonName="Reservar" />
+              <Button url={`tour/${id}`} buttonName="Ver detalle" />
             </div>
           </div>
           <div className="card-footer">

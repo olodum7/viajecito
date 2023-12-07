@@ -1,92 +1,211 @@
-
-// import { useEffect, useState } from "react";
-// import Image from "../Components/image/Image";
-// import { parseJSON } from "date-fns";
+import { useState } from "react";
+import { useLocation, useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
+import { es as esLocale } from 'date-fns/locale';
+import Image from "../Components/image/Image";
+import Breadcrumb from '../Components/breadcrumb/Breadcrumb';
+import ButtonXL from "../Components/buttons/ButtonXL";
 
 const Reserve = () => {
-    // const [datoReserve, setDatoReserve] = useState({});
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { tourData, hotelData, userData, reserveData } = location.state || {};
+    const { stateDate, numberOfAdults, numberOfChildren } = reserveData;
+    const { startDate, endDate } = stateDate;
+    const formattedDates = ('0' + new Date(startDate).getDate()).slice(-2) + " al " + format(new Date(endDate), 'dd \'de\' MMMM \'del\' yyyy', { locale: esLocale });
+    const { nombre, apellido, email } = userData;
+    const [mensaje, setMensaje] = useState(null);
 
-    // useEffect(() => {
-    //     const datoAlmacenado = localStorage.getItem('datosReserva');
-    //     setDatoReserve(datoAlmacenado);
-    //     console.log(parseJSON(datoAlmacenado))
-    //     console.log(datoAlmacenado)
-    //     localStorage.removeItem('datosReserva')
-    // }, []);
+    const handleReserveSubmit = (e) => {
+        e.preventDefault();
 
-    // const { id, titulo, subtitulo, precioFinal, categoria, duracion, dificultad, fechaSalida, imagen, mayores, menores } = datoReserve;
-    // console.log(datoReserve)
+        const formDataToSend = new FormData();
+        formDataToSend.append("fechaSalida", format(new Date(startDate), 'dd/MM/yyyy'));
+        formDataToSend.append("username", email);
+        formDataToSend.append("mayores", numberOfAdults);
+        formDataToSend.append("menores", numberOfChildren);
+        formDataToSend.append("tour", tourData.id);
 
-    // const [mensaje, setMensaje] = useState("");
-    // const reserveData = {
-    //     fechaSalida: fechaSalida,
-    //     username: "",
-    //     mayores: mayores,
-    //     menores: menores,
-    //     tour: id
-    // };
+        fetch("http://localhost:8089/reserva", {
+            method: "POST",
+            body: formDataToSend
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.tipo === "ok") {
+                    // Éxito en el registro
+                    Swal.fire({
+                        title: tourData.titulo,
+                        text: "Estimado@ " + apellido + "," + nombre + " su reserva fue realizada con éxito.",
+                        icon: "success",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            navigate("/profile/reservation");
+                        }
+                    });
+                } else {
+                    setMensaje({ tipo: data.tipo, texto: data.mensaje });
+                }
+            })
+            .catch((error) => {
+                console.error("Error al enviar el tour:", error);
+            });
+    };
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-
-    //     /* Obtengo el usuario */
-    //     const email = localStorage.getItem("userData").email;
-    //     reserveData.username = email;
-
-    //     const formData = new FormData();
-    //     Object.entries(reserveData).forEach(([key, value]) => {
-    //         formData.append(key, value);
-    //     });
-
-    //     console.log(formData)
-
-    //     fetch("http://localhost:8089/reserve", {
-    //         method: "POST",
-    //         body: formData
-    //     })
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             setMensaje({ tipo: data.tipo, texto: data.mensaje });
-    //         })
-    //         .catch((error) => {
-    //             console.error("Error al enviar el tour:", error);
-    //         });
-    // };
-    
     return (
         <main>
-            {/* <section>
-                <div className="row">
-                    <div className="col">
-                        <Image key={imagen} id={imagen} />
+            <Breadcrumb pageName={"Reserva del tour: " + tourData.titulo} />
+            <section className="content-wrapper" id='reserve'>
+                <form className="form-normal" onSubmit={handleReserveSubmit}>
+                    <div className="row">
+                        <div className="col">
+                            <Image key={tourData.imagenes[0]} id={tourData.imagenes[0]} />
+                        </div>
+                        <div className="col">
+                            <div className="row">
+                                <h6>{tourData.titulo}</h6>
+                                <h4> {formattedDates}</h4>
+                            </div>
+
+                            {tourData.transporte && (
+                                <div className="row">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="icon icon-tabler icon-tabler-plane-departure"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth="2"
+                                        stroke="currentColor"
+                                        fill="none"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M14.639 10.258l4.83 -1.294a2 2 0 1 1 1.035 3.863l-14.489 3.883l-4.45 -5.02l2.897 -.776l2.45 1.414l2.897 -.776l-3.743 -6.244l2.898 -.777l5.675 5.727z"></path>
+                                        <path d="M3 21h18"></path>
+                                    </svg> {tourData.transporte}
+                                </div>
+                            )}
+
+                            {tourData.traslado && (
+                                <div className="row">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="icon icon-tabler icon-tabler-bus-stop"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth="2"
+                                        stroke="currentColor"
+                                        fill="none"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M3 3m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z"></path>
+                                        <path d="M18 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                                        <path d="M10 5h7c2.761 0 5 3.134 5 7v5h-2"></path>
+                                        <path d="M16 17h-8"></path>
+                                        <path d="M16 5l1.5 7h4.5"></path>
+                                        <path d="M9.5 10h7.5"></path>
+                                        <path d="M12 5v5"></path>
+                                        <path d="M5 9v11"></path>
+                                    </svg> Traslados a las distintas excursiones
+                                </div>
+                            )}
+
+                            {tourData.entradas && (
+                                <div className="row">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="icon icon-tabler icon-tabler-ticket"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth="2"
+                                        stroke="currentColor"
+                                        fill="none"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M15 5l0 2"></path>
+                                        <path d="M15 11l0 2"></path>
+                                        <path d="M15 17l0 2"></path>
+                                        <path d="M5 5h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-3a2 2 0 0 0 0 -4v-3a2 2 0 0 1 2 -2"></path>
+                                    </svg>
+                                    {tourData.entradas}
+                                </div>
+                            )}
+
+                            {tourData.guia && (
+                                <div className="row">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-language"
+                                        width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor"
+                                        fill="none" strokeLinecap="round" strokeLinejoin="round" >
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M4 5h7"></path>
+                                        <path d="M9 3v2c0 4.418 -2.239 8 -5 8"></path>
+                                        <path d="M5 9c0 2.144 2.952 3.908 6.7 4"></path>
+                                        <path d="M12 20l4 -9l4 9"></path>
+                                        <path d="M19.1 18h-6.2"></path>
+                                    </svg>
+                                    Guía en español
+                                </div>
+                            )}
+
+                            <div className="row">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    className="icon icon-tabler icon-tabler-building-skyscraper"
+                                    width="24" height="24" viewBox="0 0 24 24" strokeWidth="2"
+                                    stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" >
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M3 21l18 0"></path>
+                                    <path d="M5 21v-14l8 -4v18"></path>
+                                    <path d="M19 21v-10l-6 -4"></path>
+                                    <path d="M9 9l0 .01"></path>
+                                    <path d="M9 12l0 .01"></path>
+                                    <path d="M9 15l0 .01"></path>
+                                    <path d="M9 18l0 .01"></path>
+                                </svg>
+                                {hotelData.nombre}
+                            </div>
+
+                            <div className="row more-info">
+                                <div className="col">
+                                    <h2>Más información del Tour</h2>
+                                    <p> Duración: {tourData.duracion} días</p>
+                                    <p> Categoria: {tourData.categoria}</p>
+                                    <p> Adultos: {numberOfAdults}</p>
+                                    {numberOfChildren > 0 &&
+                                        <p> Menores: {numberOfChildren}</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col">
-                        <h1>{id + "-" + titulo}</h1>
-                        <h2> {subtitulo} </h2>
-                        <h3>{categoria}</h3>
+
+                    <div className="row more-info">
+                        <div className="col user-data">
+                            <h2> Información del usuario </h2>
+                            <p>{apellido + ", " + nombre}</p>
+                            <p>{email}</p>
+                        </div>
+                        <div className="col">
+                            <ButtonXL url="" buttonName="Confirmar reserva" isSubmit={true} />
+                        </div>
                     </div>
+                </form>
+            </section>
+
+            {mensaje && (
+                <div className={`mt-3 alert alert-${mensaje.tipo === "error" ? "danger" : "success"}`} >
+                    {mensaje.texto}
                 </div>
-                <div className="row">
-                    <div className="col">
-                        <p>{duracion}</p>
-                        <p>{dificultad}</p>
-                        <p>{fechaSalida}</p>
-                        <p>Precio: USD {precioFinal}</p>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        <button className="btn" type="button" onClick={handleSubmit}>Reservar</button>
-                    </div>
-                </div>
-                {mensaje && (
-                    <div className={`mt-3 alert alert-${mensaje.tipo === "error" ? "danger" : "success"}`} >
-                        {mensaje.texto}
-                    </div>
-                )}
-            </section> */}
+            )}
+
         </main>
     )
 }
-
 export default Reserve;

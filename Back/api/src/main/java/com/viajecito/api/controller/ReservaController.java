@@ -22,6 +22,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
+import java.util.Collections;
 
 @CrossOrigin
 @RestController
@@ -101,8 +102,8 @@ public class ReservaController {
         }
     }
 
-    @GetMapping
-    public Collection<ReservaDTO> listarTodasPorUsuario(@RequestParam("username") String email){
+    @PostMapping("/reservations")
+    public Collection<ReservaDTO> listarTodasPorUsuario(@RequestParam("email") String email) {
         Usuario usuario = usuarioRepository.findByEmail(email).orElse(null);
         return reservaService.listarTodasPorUsuario(usuario);
     }

@@ -74,8 +74,8 @@ const EditTour = () => {
           <div className="d-flex justify-content-between">
             <div className="table-pagination">
               <Pagination
-                totalTours={tours.length}
-                toursPerPage={toursPerPage}
+                total={tours.length}
+                perPage={toursPerPage}
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage} />
             </div>

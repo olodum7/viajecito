@@ -91,7 +91,7 @@ h1 {
     margin-top: 0px;
 }
 
-.form-container{
+.form-container {
     margin-top: 70px;
 }
 
@@ -196,7 +196,8 @@ section#form-container {
     margin-bottom: 4em;
 }
 
-section#detail {
+section#detail,
+section#reserve {
     margin-top: 2.5rem;
     margin-bottom: 6rem;
 }
@@ -215,11 +216,7 @@ section#detail .container-filters {
     margin: 20px;
 }
 
-section#detail .container-filters .row {
-    margin: 20px 0px;
-}
-
-section#detail .container-filters .row:first-child{
+section#detail .container-filters .row:first-child {
     margin-top: 0px;
 }
 
@@ -233,7 +230,7 @@ section#detail strong {
     color: var(--primary);
     font-weight: 600;
     font-size: 1.8rem;
-    margin-left: .7rem;
+    margin-left: 0.7rem;
 }
 
 section#detail .container-counter {
@@ -241,14 +238,25 @@ section#detail .container-counter {
     max-width: 300px;
     border-radius: 20px;
     padding: 20px;
-    max-height: 200px;
+    max-height: 300px;
 }
 
-section#detail > .row:first-child,
+section#detail>.row:first-child,
 section#detail .container-details {
     border-bottom: 1px solid var(--primary);
     padding-bottom: 2rem;
     margin-bottom: 2rem;
+}
+
+section#detail .row>.row>* {
+    width: auto;
+}
+
+section#detail .row .row {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    margin-left: 0px;
 }
 
 section#detail h1 {
@@ -292,13 +300,13 @@ section#detail .container-details .hotel-gallery img {
     width: 100%;
 }
 
-section#detail .container-itinerary h3 {
+.container-itinerary h3 {
     color: var(--primary);
     font-size: 1.7rem;
     font-weight: 600;
 }
 
-section#detail .container-itinerary h4 {
+.container-itinerary h4 {
     color: var(--primary);
     font-size: 1rem;
     font-weight: 600;
@@ -307,15 +315,11 @@ section#detail .container-itinerary h4 {
     margin-bottom: 0.4rem !important;
 }
 
-section#detail .container-itinerary h5 {
+.container-itinerary h5 {
     font-size: 0.8rem;
     font-weight: 800;
     margin-top: 2rem;
 }
-
-/* .table-header{
-    display: flex;
-} */
 
 .container-table .row {
     margin: 10px;
@@ -325,12 +329,12 @@ section#detail .container-itinerary h5 {
     margin: 0px;
 }
 
-.container-table h3{
+.container-table h3 {
     font-size: 1rem;
     border-bottom: 1px solid var(--black);
 }
 
-.container-table .table-pagination a{
+.container-table .table-pagination a {
     border: none;
     border-radius: 10px;
     margin: 0px 10px;
@@ -368,21 +372,22 @@ section#detail .container-itinerary h5 {
 }
 
 /* Estilos para los datos en forma de tablas */
-.table-data th, td{
+.table-data th,
+td {
     padding: 5px 10px;
 }
 
-.table-data .thead-dark{
+.table-data .thead-dark {
     background-color: var(--primary);
     color: var(--white);
 }
 
-.table-data .thead-dark th{
+.table-data .thead-dark th {
     font-weight: 100;
     min-width: 150px;
 }
 
-.table-data .thead-dark th:first-child{
+.table-data .thead-dark th:first-child {
     min-width: 0px;
 }
 
@@ -420,10 +425,44 @@ section#detail .container-itinerary h5 {
 }
 
 /** Pagina de adminsitrador **/
-.content-admin-panel{
+.content-admin-panel {
     padding: 40px;
     max-width: 70vw;
     min-height: 100vh;
     width: 100%;
     margin: 20px;
+}
+
+section {
+    min-width: 70vw;
+}
+
+section .table-data {
+    min-width: 100%;
+}
+
+.col-img-hotel {
+    max-width: 300px;
+    max-height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.col-img-hotel img {
+    width: 100%;
+}
+
+section#detail strong {
+    font-size: 4rem;
+}
+
+/* DateRange colores */
+.rdrInRange{
+    color: var(--primary) !important;
+}
+
+.rdrStartEdge,
+.rdrEndEdge {
+    color: #a179db !important;
 }

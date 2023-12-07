@@ -7,9 +7,7 @@ import { useContextGlobal } from "./../Components/utils/global.context";
 
 const Login = () => {
   const { toursState, dispatch } = useContextGlobal();
-
   const navigate = useNavigate();
-
   const location = useLocation();
 
   useEffect(() => {
