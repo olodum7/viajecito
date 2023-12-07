@@ -528,7 +528,7 @@ section .table-data {
 .col-img-hotel img {
     width: 100%;
     height: 120px;
-    object-fit: fill;
+    object-fit: cover;
 }
 
 section#detail strong {
