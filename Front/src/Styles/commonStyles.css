@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap");
-
 :root {
     --primary: #763fc4;
     --secondary: #53f5da;
@@ -78,7 +77,9 @@ h1 {
     margin: 0;
 }
 
+
 /********** FORMULARIOS **********/
+
 .form-container,
 .container-table {
     width: 100vw;
@@ -341,7 +342,9 @@ section#detail .container-details .hotel-gallery img {
     min-width: 200px;
 }
 
+
 /********** SCROLLBAR **********/
+
 ::-webkit-scrollbar {
     width: 20px;
 }
@@ -371,7 +374,9 @@ section#detail .container-details .hotel-gallery img {
     margin-top: 120px;
 }
 
+
 /* Estilos para los datos en forma de tablas */
+
 .table-data th,
 td {
     padding: 5px 10px;
@@ -396,7 +401,6 @@ td {
         margin-top: 4rem;
         padding: 24px;
     }
-
     .container-xl {
         padding: 0 24px;
     }
@@ -413,18 +417,21 @@ td {
     main .content-wrapper {
         margin-top: 0;
     }
-
     .mb-5 {
         margin-bottom: 1.8rem !important;
     }
 }
 
+
 /** Check entradas en tour **/
+
 #cont-input-entradas {
     display: none;
 }
 
+
 /** Pagina de adminsitrador **/
+
 .content-admin-panel {
     padding: 40px;
     max-width: 70vw;
@@ -433,9 +440,12 @@ td {
     margin: 20px;
 }
 
+
+/*
 section {
     min-width: 70vw;
 }
+*/
 
 section .table-data {
     min-width: 100%;
@@ -457,12 +467,57 @@ section#detail strong {
     font-size: 4rem;
 }
 
+
 /* DateRange colores */
-.rdrInRange{
+
+.rdrInRange {
     color: var(--primary) !important;
 }
 
 .rdrStartEdge,
 .rdrEndEdge {
     color: #a179db !important;
+}
+
+
+/*Sobreescribiendo estilos datepicker*/
+
+.react-datepicker__close-icon {
+    display: none !important;
+}
+
+.react-datepicker {
+    font-family: "Sora", sans-serif !important;
+    background-color: var(--white) !important;
+    color: var(--black) !important;
+    border: 1px solid var(--light-gray) !important;
+}
+
+.react-datepicker__header {
+    background-color: var(--primary) !important;
+    border-bottom: 1px solid var(--light-gray) !important;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__current-month {
+    color: var(--white) !important;
+}
+
+.react-datepicker__navigation-icon::before {
+    border-color: var(--secondary) !important;
+}
+
+.react-datepicker__today-button {
+    background-color: var(--primary) !important;
+    color: var(--white) !important;
+}
+
+.react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::after {
+    border-top-color: var(--primary) !important;
+}
+
+.react-datepicker__day--in-range {
+    border-radius: 0.3rem;
+    background-color: var(--secondary) !important;
+    color: var(--primary) !important;
 }

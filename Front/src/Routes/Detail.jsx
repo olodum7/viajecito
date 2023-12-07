@@ -28,17 +28,28 @@ const Detail = () => {
   const [fechaSalidaHasta, setFechaSalidaHasta] = useState(new Date());
   const [days, setDays] = useState([]);
 
+  const parseDate = (dateArray) => {
+    const date = new Date(dateArray[0], dateArray[1] - 1, dateArray[2]);
+    return isNaN(date.getTime()) ? null : date;
+  };
+
+  const processDays = (daysString) => {
+    const daysArray = daysString.split(',').map(day => Math.max(Number(day), 0));
+    while (daysArray.length < 7) {
+      daysArray.push(0);
+    }
+    return daysArray.slice(0, 7);
+  };
+
   /* Obtengo el tour */
   useEffect(() => {
     fetch(`http://34.207.134.182:8089/tour/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setResult(data);
-        setDays(data.salidaDTO.dias.split(',').map(Number));
-        const fechaSalidaDesdeArray = data.salidaDTO.fechaSalidaDesde;
-        const fechaSalidaHastaArray = data.salidaDTO.fechaSalidaHasta;
-        setFechaSalidaDesde(new Date(fechaSalidaDesdeArray[0], fechaSalidaDesdeArray[1] - 1, fechaSalidaDesdeArray[2]));
-        setFechaSalidaHasta(new Date(fechaSalidaHastaArray[0], fechaSalidaHastaArray[1] - 1, fechaSalidaHastaArray[2]));
+        setDays(processDays(data.salidaDTO.dias));
+        setFechaSalidaDesde(parseDate(data.salidaDTO.fechaSalidaDesde.split('-')));
+        setFechaSalidaHasta(parseDate(data.salidaDTO.fechaSalidaHasta.split('-')));
       })
       .catch((error) => {
         console.error("Error al obtener el detalle: \n", error);
@@ -48,7 +59,7 @@ const Detail = () => {
   /* Obtengo el alojamiento */
   useEffect(() => {
     if (result.alojamiento) {
-      fetch(`http://localhost:8089/alojamiento/${result.alojamiento}`)
+      fetch(`http://34.207.134.182:8089/alojamiento/${result.alojamiento}`)
         .then((response) => response.json())
         .then((data) => {
           setLodging(data);
@@ -61,12 +72,13 @@ const Detail = () => {
 
   // Extraigo las fechas reservadas para deshabilitarlas en el calendario
   useEffect(() => {
-    fetch(`http://localhost:8089/reserva/tour${id}`)
+    fetch(`http://34.207.134.182:8089/reserva/tour${id}`)
       .then((response) => response.json())
       .then((data) => {
         const reserveDates = data.map((reserve) => {
-          return new Date(reserve.fechaSalida);
-        });
+          const date = new Date(reserve.fechaSalida);
+          return isNaN(date.getTime()) ? null : date;
+        }).filter(date => date !== null);        
 
         setDisabledDates(reserveDates);
       })
@@ -78,69 +90,46 @@ const Detail = () => {
   // Funcion para obtener dia habil
   const getValidStartDate = (startDate, disabledDates) => {
     let validDate = startDate;
-    while (disabledDates.includes(validDate) || isDayDisabled(validDate)) {
+    let attempts = 0;
+    while ((disabledDates.includes(validDate) || isDayDisabled(validDate)) && attempts < 365) {
       validDate = addDays(validDate, 1);
+      attempts++;
     }
     return validDate;
   };
 
   // Define isDayDisabled como un callback
   const isDayDisabled = useCallback((date) => {
+    if (days.length < 7) return true;
     const dayOfWeek = date.getDay();
     const dayIndex = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
     return days[dayIndex] !== 1;
   }, [days]);
 
-  /* Fecha inicial */
-  // useEffect(() => {
-  //   setStateDate((prevState) => {
-  //     const newStartDate = fechaSalidaDesde > new Date() ? fechaSalidaDesde : getValidStartDate(new Date(), disabledDates);
-  //     return [
-  //       {
-  //         ...prevState[0],
-  //         startDate: newStartDate,
-  //         endDate: addDays(newStartDate, result.duracion - 1),
-  //       },
-  //     ];
-  //   });
-  // }, [fechaSalidaDesde, result.duracion, disabledDates]);
-
   useEffect(() => {
     setStateDate((prevState) => {
-      const newStartDate = fechaSalidaDesde > new Date() ? fechaSalidaDesde : new Date();
-      const isStartDateDisabled = isDayDisabled(newStartDate);
-
-      return [
-        {
-          ...prevState[0],
-          startDate: isStartDateDisabled ? prevState[0].startDate : newStartDate,
-          endDate: addDays(newStartDate, result.duracion - 1),
-        },
-      ];
+      let newStartDate = fechaSalidaDesde > new Date() ? fechaSalidaDesde : new Date();
+      newStartDate = getValidStartDate(newStartDate, disabledDates);
+      return [{
+        ...prevState[0],
+        startDate: newStartDate,
+        endDate: addDays(newStartDate, result.duracion - 1),
+      }];
     });
-  }, [fechaSalidaDesde, result.duracion, isDayDisabled]);
+  }, [fechaSalidaDesde, result.duracion, disabledDates, isDayDisabled]);
 
   const onChangeRange = (item) => {
     let startDate = item.selection.startDate;
-
-    // // Inicio es un día deshabilitado?
-    // if (isDayDisabled(startDate)) {
-    //   // Falso, encontrar el próximo
-    //   let nextEnabledDate = startDate;
-    //   while (isDayDisabled(nextEnabledDate)) {
-    //     nextEnabledDate = addDays(nextEnabledDate, 1);
-    //   }
-    //   startDate = nextEnabledDate;
-    // }
-
-    // Actualizo estado 
+    if (isDayDisabled(startDate)) {
+      startDate = getValidStartDate(startDate, disabledDates);
+    }
     setStateDate([{
       startDate,
       endDate: addDays(startDate, result.duracion - 1),
       key: 'selection'
     }]);
-  }
-
+  };
+  
   return (
     <main>
       <Breadcrumb tourName={result.titulo} />

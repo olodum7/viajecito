@@ -38,3 +38,11 @@ section#banner .banner-illustration img {
         right: 20%;
     }
 }
+
+@media (max-width: 992px) {
+    section#banner .banner-illustration img {
+        position: absolute;
+        top: -12rem;
+        right: 0%;
+    }
+}

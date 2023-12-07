@@ -9,12 +9,12 @@ const Search = ({ onSearchClick, onSearchChange, onSearchSubmit, startDate: prop
   const [filter, setFilter] = useState({
     location: "",
     people: "",
-    startDate: propStartDate || new Date(),
-    endDate: propEndDate || addDays(new Date(), 2),
+    startDate: null, 
+    endDate: null, 
   });
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const keywords = ["Tailandia", "Camboya", "Vietnam", "Auroras en el norte", "Artico", "Japón", "Tradición", "Andino", "Bicicleta", "Gourmet", "Lima", "Riviera", "Maya", "Cenotes", "Ruinas", "Playas paradisíacas", "Patagonia Argentina", "Bariloche", "Chivito uruguayo", "Rio de Janeiro", "Uyuni", "Salar de Uyuni", "Bolivia"];
+  const keywords = ["Tailandia", "Camboya", "Vietnam", "Auroras en el norte", "Artico", "Japón", "Tradición", "Andino", "Bicicleta", "Gourmet", "Lima", "Riviera", "Maya", "Cenotes", "Ruinas", "Playas paradisíacas", "Patagonia Argentina", "Bariloche", "Chivito uruguayo", "Río de Janeiro", "Uyuni", "Salar de Uyuni", "Bolivia"];
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
@@ -33,15 +33,9 @@ const Search = ({ onSearchClick, onSearchChange, onSearchSubmit, startDate: prop
   };
 
   const handleChange = (name, value) => {
-    if (name === "startDate") {
-      setFilter({ ...filter, startDate: value, endDate: addDays(value, 2) });
-    } else if (name === "endDate") {
-      setFilter({ ...filter, endDate: value });
-    } else {
-      setFilter({ ...filter, [name]: value });
-    }
+    setFilter({ ...filter, [name]: value });
   };
-
+  
   const handleSuggestionClick = (suggestion) => {
     onSearchChange(suggestion);
     setShowSuggestions(false);

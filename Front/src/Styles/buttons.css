@@ -1,5 +1,6 @@
 /***** ESTILOS PARA TODOS LOS BOTONES E ICONOS *****/
 
+
 /* Principal */
 
 .btn,
@@ -41,6 +42,7 @@
     }
 }
 
+
 /* Secundario - Fondo blanco */
 
 .btn-secondary {
@@ -49,6 +51,7 @@
     background-color: var(--white);
     border: 1px solid var(--primary);
 }
+
 
 /* Botones en el navbar */
 
@@ -94,15 +97,18 @@
         text-transform: uppercase;
         padding: 1rem;
     }
-
     .search-button span {
         display: block;
     }
-
     .search-button svg {
         display: none;
     }
+    .search-button button {
+        padding: .6rem;
+        width: 100%;
+    }
 }
+
 
 /* Icono favorito */
 
@@ -124,6 +130,7 @@
     fill: var(--secondary);
 }
 
+
 /* Botones XL */
 
 .btn-lg,
@@ -132,6 +139,7 @@
     width: 100%;
     padding: 16px 32px;
 }
+
 
 /* Galeria de imagenes */
 
@@ -188,6 +196,7 @@
     stroke: var(--white);
 }
 
+
 /* Return  */
 
 .return-container {
@@ -242,6 +251,7 @@
     stroke: var(--white);
 }
 
+
 /* Página de favoritos */
 
 .modal-delete .swal2-confirm {
@@ -276,7 +286,9 @@
     color: var(--white) !important;
 }
 
+
 /* Botones de mas y menos */
+
 .counter {
     display: flex;
     justify-content: space-between;
@@ -331,7 +343,9 @@
     color: var(--primary);
 }
 
+
 /* Botones de acciones para la edicion de productos */
+
 .btn-svg {
     border: none;
     background-color: transparent;
@@ -348,7 +362,9 @@
     transition: ease-in-out;
 }
 
+
 /** Boton agregar para las tablas **/
+
 .bttn-add {
     border-radius: 10px;
     width: 40px;
