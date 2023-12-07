@@ -134,12 +134,12 @@ const NavUser = ({ logout, action, closeMenu }) => {
             Mis datos
           </Link>
           <Link
-            to="/reservation"
+            to="profile/reservation"
             onClick={() => {
-              handleLinkClick("/reservation");
+              handleLinkClick("profile/reservation");
               handleOptionSelect();
             }}
-            className={currentPage === "/reservation" ? "active-link" : ""}
+            className={currentPage === "profile/reservation" ? "active-link" : ""}
           >
             <div className="options-panel-icon">
               <svg

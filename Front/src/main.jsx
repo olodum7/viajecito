@@ -11,7 +11,8 @@ import Home from "./Routes/Home";
 import Detail from "./Routes/Detail";
 import Favs from "./Routes/Favs";
 import Reservation from "./Routes/Reservation";
-import DetailReservation from "./Routes/DetailReservation";
+import Reserve from "./Routes/Reserve";
+// import DetailReservation from "./Routes/DetailReservation";
 import NotFound from "./Routes/NotFound";
 import Context from "./Components/utils/global.context";
 import ProtectedRoute from "./Components/utils/ProtectedRoute";
@@ -26,7 +27,6 @@ createRoot(document.getElementById("root")).render(
           <Route path="tour/:id" element={<Detail />} />
           <Route path="sign-up" element={<SignUp />} />
           <Route path="login" element={<Login />} />
-          <Route path="tour/:id/detailReservation" element={<DetailReservation/>}/>
 
           <Route path="profile" element={
             <ProtectedRoute onlyAdmin={false}>
@@ -34,7 +34,7 @@ createRoot(document.getElementById("root")).render(
             </ProtectedRoute>
           } />
 
-          <Route path="reservation" element={
+          <Route path="profile/reservation" element={
             <ProtectedRoute onlyAdmin={false}>
               <Reservation />
             </ProtectedRoute>
@@ -52,13 +52,13 @@ createRoot(document.getElementById("root")).render(
             </ProtectedRoute>
           } />
 
-          <Route path="/admin/tour" element={
+          <Route path="admin/tour" element={
             <ProtectedRoute onlyAdmin={true}>
               <EditTour />
             </ProtectedRoute>
           } />
 
-          <Route path="/admin/tour/add" element={
+          <Route path="admin/tour/add" element={
             <ProtectedRoute onlyAdmin={true}>
               <AddTour />
             </ProtectedRoute>
@@ -67,6 +67,12 @@ createRoot(document.getElementById("root")).render(
           <Route path="admin/categories" element={
             <ProtectedRoute onlyAdmin={true}>
               {/* <List /> */}
+            </ProtectedRoute>
+          } />
+
+          <Route path="reserve" element={
+            <ProtectedRoute onlyAdmin={false}>
+              <Reserve />
             </ProtectedRoute>
           } />
 

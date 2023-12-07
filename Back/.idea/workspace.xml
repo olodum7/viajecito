@@ -6,43 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="56ceb4cf-309b-4bb5-94f6-1071cf032ed2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/SalidaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/SalidaDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/Reserva.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/Salida.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/Salida.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/Tour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/TourDificultad.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/model/TourDificultad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/repository/ISalidaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/repository/ISalidaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/ISalidaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/ISalidaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/ITourService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/ITourService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/SalidaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/SalidaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/TourService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/TourService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/ReservaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/ReservaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/dto/ReservaDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/ReservaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/ReservaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reporteErrores.log" beforeDir="false" afterPath="$PROJECT_DIR$/reporteErrores.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Components/breadcrumb/Breadcrumb.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/breadcrumb/Breadcrumb.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Components/buttons/Button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/buttons/Button.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Components/buttons/FavButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/buttons/FavButton.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Components/category/CategoryTour.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/category/CategoryTour.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Components/hotel/Hotel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/hotel/Hotel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Components/ui-components/navbar/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/ui-components/navbar/Navbar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Components/ui-components/navbar/user/NavUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/ui-components/navbar/user/NavUser.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Components/ui-components/pagination/Pagination.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/ui-components/pagination/Pagination.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Components/ui-components/pagination/pagination.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/ui-components/pagination/pagination.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Components/utils/List_original.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Components/utils/ProtectedRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/utils/ProtectedRoute.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Components/utils/global.context.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Components/utils/global.context.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Components/utils/toast.notifications.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Routes/AddTour.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/AddTour.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/AdminPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/AdminPanel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/Favs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/Favs.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/List.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/NotFound.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/NotFound.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Routes/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Routes/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Styles/buttons.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Styles/buttons.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/Styles/commonStyles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Styles/commonStyles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/Styles/forms.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/Styles/forms.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/main.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,6 +68,7 @@
     <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/ReservaService.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/SalidaService.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/api/src/main/java/com/viajecito/api/service/impl/TourService.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/api/src/main/resources/application.properties" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

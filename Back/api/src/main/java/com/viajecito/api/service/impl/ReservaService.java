@@ -69,9 +69,9 @@ public class ReservaService implements IReservaService {
 
     private ReservaDTO toDTO(Reserva r){
         ReservaDTO dto = new ReservaDTO();
+        dto.setIdReserva(r.getId());
         dto.setFechaSalida(r.getFechaSalida());
-        dto.setTour(r.getTour());
-        dto.setUsuario(r.getUsuario().getUsername());
+        dto.setTourId(r.getTour().getId());
         dto.setAcompaniantes_mayores(r.getAcompaniantes_mayores());
         dto.setAcompaniantes_menores(r.getAcompaniantes_menores());
         return dto;

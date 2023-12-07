@@ -132,11 +132,7 @@ const AddTour = () => {
           formDataToSend.append(key, value);
         }
       });
-
-      formDataToSend.forEach((value, key) => {
-        console.log(`${key}:${value}`);
-      });
-
+      
       fetch("http://localhost:8089/tour", {
         method: "POST",
         body: formDataToSend,
