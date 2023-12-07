@@ -178,10 +178,10 @@ public class TourController {
                                        @RequestParam("precioAdulto") Double precioAdulto,
                                        @RequestParam("precioMenor") Double precioMenor,
                                        @RequestParam("categoria") Long categoriaId,
-                                       @RequestParam("rating") String rating,
+                                       //@RequestParam("rating") String rating,
                                        @RequestParam("duracion") Integer duracion,
-                                       @RequestParam("dificultad") TourDificultad dificultad,
-                                       @RequestParam("salida[dias]") String dias,
+                                       @RequestParam("dificultad") TourDificultad dificultad
+                                       /** @RequestParam("salida[dias]") String dias,
                                        @RequestParam("salida[fechaDesde]")@DateTimeFormat(pattern = "dd/MM/yyyy")LocalDate fechaDesde,
                                        @RequestParam("salida[fechaHasta]")@DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate fechaHasta,
                                        @RequestParam("pasajes") Boolean pasajes,
@@ -191,7 +191,7 @@ public class TourController {
                                        @RequestParam("guia") Boolean guia_es,
                                        @RequestParam("itinerario") String itinerario,
                                        @RequestParam("alojamiento") Long alojamientoId,
-                                       @RequestPart("imagenes") List<MultipartFile> imagenes
+                                       @RequestPart("imagenes") List<MultipartFile> imagenes **/
                                        ) throws BadRequestException, IOException {
 
         try {
