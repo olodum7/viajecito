@@ -41,7 +41,26 @@ Navega a través de una variedad de categorías y descubre tours que se alinean 
 
 ## Infraestructura 🌐
 
+El proceso de CI/CD de Viajecito está automatizado con GitHub Actions y aprovecha la robusta infraestructura de AWS.
+
+- **GitHub Actions**: Al realizar un push al branch principal, se activan los workflows definidos para el despliegue automático del backend y el frontend.
+  - `build-backend`: Construye la imagen de Docker del backend a partir del `Dockerfile`, y luego la sube a Docker Hub.
+  - `build-frontend`: Ejecuta `npm run build` para preparar el build de producción y lo despliega en un bucket S3 destinado al hosting del frontend.
+  - `deploy-backend`: Toma la imagen del backend de Docker Hub y la despliega en un contenedor de Docker que se ejecuta en una instancia de Amazon EC2 dedicada a la API.
+
+- **AWS S3**: Se utilizan dos buckets de S3:
+  - Un bucket para alojar el build del frontend y servir el contenido estático a los usuarios.
+  - Otro bucket para almacenar las imágenes que son cargadas en los tours, las cuales son referenciadas en la base de datos.
+
+- **Amazon EC2**: Se emplean dos instancias de EC2:
+  - Una para ejecutar el contenedor de Docker que aloja la base de datos MySQL, aislada dentro de una VPC para seguridad adicional.
+  - Otra para ejecutar el contenedor de Docker que aloja la API del backend.
+
+- **MySQL**: La base de datos corre en su propio contenedor en una de las instancias EC2 y almacena toda la información necesaria para el funcionamiento de Viajecito, incluyendo los datos de los tours y reservas.
+
 ![Diagrama de Infraestructura](/Front/public/viajecito-diagrama-infraestructura.png)
+
+Esta infraestructura está diseñada para asegurar la escalabilidad, la eficiencia y la seguridad en el despliegue.
 
 ## Colaboradores 🤝
 
