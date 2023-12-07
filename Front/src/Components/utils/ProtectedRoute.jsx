@@ -1,16 +1,12 @@
-import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NotFound from '../../Routes/NotFound';
 
 const ProtectedRoute = ({ children, onlyAdmin }) => {
   const isAuthenticated = Boolean(localStorage.getItem('userData')); 
-
   const location = useLocation();
-
   const currentPath = location.pathname;
-
-  const isReservationDetailRoute = currentPath === '/detailReservation';
+  const isReservationDetailRoute = currentPath === '/reserve';
   const isFavsRoute = currentPath === '/profile/favs';
 
   const getRedirectState = () => {

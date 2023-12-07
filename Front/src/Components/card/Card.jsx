@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 import Image from "./../image/Image";
 import Category_pills from "./../category/CategoryPills";
 import Button from "./../buttons/Button";
@@ -6,6 +7,7 @@ import FavButton from "./../buttons/FavButton";
 
 const Card = (props) => {
   const { id, titulo, subtitulo, precioBase, categoria, rating, duracion, dificultad, salidaDTO, imagenes } = props.data;
+  const currentPath = useLocation().pathname;
 
   return (
     <div className="card" data-aos="fade-up">
@@ -26,9 +28,11 @@ const Card = (props) => {
                 Desde <strong>USD {precioBase}</strong>
               </p>
             </div>
-            <div className="col-12 col-md-5 btn-container">
-              <Button url={`tour/${id}`} buttonName="Ver detalle" />
-            </div>
+            {currentPath != "/profile/favs" &&
+              <div className="col-12 col-md-5 btn-container">
+                <Button url={`tour/${id}`} buttonName="Ver detalle" />
+              </div>
+            }
           </div>
           <div className="card-footer">
             <div className="rating">

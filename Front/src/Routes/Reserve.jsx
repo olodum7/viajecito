@@ -12,10 +12,7 @@ const Reserve = () => {
   const { tourData, hotelData, userData, reserveData } = location.state || {};
   const { stateDate, numberOfAdults, numberOfChildren } = reserveData;
   const { startDate, endDate } = stateDate;
-  const formattedDates =
-    ("0" + new Date(startDate).getDate()).slice(-2) +
-    " al " +
-    format(new Date(endDate), "dd 'de' MMMM 'del' yyyy", { locale: esLocale });
+  const formattedDates = ("0" + new Date(startDate).getDate()).slice(-2) + " al " + format(new Date(endDate), "dd 'de' MMMM 'del' yyyy", { locale: esLocale });
   const { nombre, apellido, email } = userData;
   const [mensaje, setMensaje] = useState(null);
 

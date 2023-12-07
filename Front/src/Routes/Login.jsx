@@ -121,7 +121,26 @@ const Login = () => {
               texto: "Inicio de sesión exitoso.",
             });
             if (location.state?.fromReserve) {
-              navigate("/detailReservation");
+              /* 
+              <Link
+                    className="btn btn-lg w-full w-lg-auto"
+                    to={"/reserve"}
+                    state={{
+                      tourData: result,
+                      hotelData: lodging,
+                      userData: JSON.parse(localStorage.getItem("userData")),
+                      reserveData: {
+                        stateDate: stateDate[0],
+                        numberOfAdults,
+                        numberOfChildren,
+                      },
+                    }}
+                  >
+                    Iniciar reserva
+                  </Link>
+              */
+              // navigate("/reserve");
+              navigate("/");
             } else {
               navigate("/");
             }
@@ -169,9 +188,8 @@ const Login = () => {
                     </label>
                     <input
                       type="text"
-                      className={`form-control ${
-                        errors.email ? "is-invalid" : ""
-                      }`}
+                      className={`form-control ${errors.email ? "is-invalid" : ""
+                        }`}
                       id="email"
                       value={formData.email}
                       onChange={handleInputChange}
@@ -186,9 +204,8 @@ const Login = () => {
                     </label>
                     <input
                       type="password"
-                      className={`form-control ${
-                        errors.password ? "is-invalid" : ""
-                      }`}
+                      className={`form-control ${errors.password ? "is-invalid" : ""
+                        }`}
                       id="password"
                       value={formData.password}
                       onChange={handleInputChange}
@@ -211,9 +228,8 @@ const Login = () => {
                   </p>
                   {mensaje && (
                     <div
-                      className={`mt-3 alert alert-${
-                        mensaje.tipo === "error" ? "danger" : "success"
-                      }`}
+                      className={`mt-3 alert alert-${mensaje.tipo === "error" ? "danger" : "success"
+                        }`}
                     >
                       {mensaje.texto}
                     </div>
