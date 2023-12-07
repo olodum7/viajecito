@@ -11,8 +11,8 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const toursPerPage = 6;
   const [clickedCategoryName, setClickedCategoryName] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null);
+  const [startDate, setStartDate] = useState(null);  
+  const [endDate, setEndDate] = useState(null);     
   const [search, setSearch] = useState("");
 
   const [searchSubmitted, setSearchSubmitted] = useState(false);
@@ -53,10 +53,19 @@ const Home = () => {
   /* Filtros por fecha */
   const handleSearchClick = (filter) => {
     const { startDate, endDate } = filter;
-    setStartDate(startDate);
-    setEndDate(endDate);
+    setStartDate(startDate || null);
+    setEndDate(endDate || null);
+    setCurrentPage(1); // Resetear la página
   };
 
+  useEffect(() => {
+    if (!startDate && !endDate) {
+      // Si no hay filtros de fecha, mostrar todos los tours
+      setResult(result);
+    }
+  }, [startDate, endDate]);
+
+  /*
   const filteredTours = result.filter((tour) => {
     const fechaDesdeArray = tour.salidaDTO.fechaSalidaDesde;
     const fechaHastaArray = tour.salidaDTO.fechaSalidaHasta;
@@ -70,7 +79,22 @@ const Home = () => {
       (endDate === null || startDate >= fechaDesde && startDate <= fechaHasta);
     return categoryFilter && dateFilter && tourName.toLowerCase().includes(search.toLowerCase());
 
-  });
+  }); */
+
+  const filteredTours = result.filter((tour) => {
+    const tourName = tour.titulo || "";
+    const fechaDesde = new Date(tour.salidaDTO.fechaSalidaDesde);
+  
+    // Ajuste para el índice del mes (restar 1)
+    const correctedMonth = fechaDesde.getMonth();
+  
+    const categoryFilter = !clickedCategoryName || tour.categoria === clickedCategoryName;
+    const dayFilter = startDate ? fechaDesde.getDate() === startDate.getDate() : true;
+    const monthFilter = startDate ? correctedMonth === (startDate.getMonth()) : true;
+    const searchFilter = tourName.toLowerCase().includes(search.toLowerCase());
+  
+    return categoryFilter && (dayFilter || monthFilter) && searchFilter;
+  });  
 
   useEffect(() => {
     if (search === "") {
@@ -94,11 +118,20 @@ const Home = () => {
     <>
       <main>
         <Hero />
-        <Search onSearchChange={handleSearchChange} onSearchSubmit={handleSearchSubmit} onSearchClick={handleSearchClick}
-          startDate={startDate} endDate={endDate} search={search} />
+        <Search
+          onSearchChange={handleSearchChange}
+          onSearchSubmit={handleSearchSubmit}
+          onSearchClick={handleSearchClick}
+          startDate={startDate}
+          endDate={endDate}
+          search={search}
+        />
         {/* <Search onSearchChange={handleSearchChange} onSearchSubmit={handleSearchSubmit} search={search} /> */}
 
-        <CategoryNav clickedCategoryName={clickedCategoryName} onCategoryClick={handleCategoryClick} />
+        <CategoryNav
+          clickedCategoryName={clickedCategoryName}
+          onCategoryClick={handleCategoryClick}
+        />
         <section className="content-wrapper">
           {searchUsed ? (
             currentTours.length > 0 ? (
@@ -114,14 +147,16 @@ const Home = () => {
           ) : (
             <>
               <h1>Explora nuestros destinos destacados</h1>
-              <p className="mb-5 subtitle">Descubre un mundo de posibilidades</p>
+              <p className="mb-5 subtitle">
+                Descubre un mundo de posibilidades
+              </p>
             </>
           )}
 
           <div className="cards-wrapper">
-            {currentTours.length > 0 ? (
-              currentTours.map((tour) => <Card data={tour} key={tour.id} />)
-            ) : ''}
+            {currentTours.length > 0
+              ? currentTours.map((tour) => <Card data={tour} key={tour.id} />)
+              : ""}
           </div>
 
           {filteredTours.length > toursPerPage && (

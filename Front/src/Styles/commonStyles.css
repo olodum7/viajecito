@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap");
-
 :root {
     --primary: #763fc4;
     --secondary: #53f5da;
@@ -78,7 +77,9 @@ h1 {
     margin: 0;
 }
 
+
 /********** FORMULARIOS **********/
+
 .form-container,
 .container-table {
     width: 100vw;
@@ -206,11 +207,13 @@ section#detail .container-all {
     display: flex;
 }
 
+
+/*
 section#detail .container-details {
     max-width: 60%;
     width: 100%;
     margin-right: 40px;
-}
+} */
 
 section#detail .container-filters {
     margin: 20px;
@@ -233,12 +236,25 @@ section#detail strong {
     margin-left: 0.7rem;
 }
 
+
+/*
 section#detail .container-counter {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     max-width: 300px;
     border-radius: 20px;
     padding: 20px;
     max-height: 300px;
+}
+*/
+
+section#detail .hotel-gallery .row>div {
+    padding: 4px !important;
+}
+
+section#detail .container-personas {
+    border-top: 1px solid var(--primary);
+    margin-top: 48px;
+    padding-top: 32px;
 }
 
 section#detail>.row:first-child,
@@ -248,6 +264,36 @@ section#detail .container-details {
     margin-bottom: 2rem;
 }
 
+section#detail .personas-costos {
+    background-color: var(--primary);
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    margin-bottom: 2rem;
+    padding: .4rem;
+    text-align: center;
+}
+
+section#detail .personas-costos strong {
+    color: var(--white);
+    font-weight: 600;
+    font-size: inherit;
+    margin-right: 0.7rem;
+    margin-left: 0.7rem;
+}
+
+section#detail .personas-costos p {
+    margin-bottom: 0;
+}
+
+section#detail .personas-costos .break-oculto {
+    display: none;
+}
+
+
+/*
 section#detail .row>.row>* {
     width: auto;
 }
@@ -258,6 +304,7 @@ section#detail .row .row {
     margin: 10px;
     margin-left: 0px;
 }
+*/
 
 section#detail h1 {
     color: var(--primary);
@@ -270,8 +317,15 @@ section#detail h2 {
     font-weight: 600;
 }
 
-section#detail h3 {
+section#detail h3,
+section#reserve h3 {
     font-size: 1rem;
+    font-weight: 600;
+}
+
+section#detail .price h3 {
+    color: var(--primary);
+    font-size: 2.2rem;
     font-weight: 600;
 }
 
@@ -279,11 +333,11 @@ section#detail .container-details .row {
     margin-bottom: 1rem;
 }
 
-section#detail .container-details .row svg {
+section#detail .container-details svg {
     margin-right: 8px;
 }
 
-section#detail .container-details .row em {
+section#detail .container-details em {
     color: var(--primary);
     font-style: normal;
     font-weight: 600;
@@ -298,6 +352,12 @@ section#detail .container-details .hotel-gallery .row {
 
 section#detail .container-details .hotel-gallery img {
     width: 100%;
+}
+
+.container-itinerary {
+    border-top: 1px solid var(--primary);
+    margin-top: 32px;
+    padding-top: 24px;
 }
 
 .container-itinerary h3 {
@@ -341,7 +401,9 @@ section#detail .container-details .hotel-gallery img {
     min-width: 200px;
 }
 
+
 /********** SCROLLBAR **********/
+
 ::-webkit-scrollbar {
     width: 20px;
 }
@@ -371,7 +433,9 @@ section#detail .container-details .hotel-gallery img {
     margin-top: 120px;
 }
 
+
 /* Estilos para los datos en forma de tablas */
+
 .table-data th,
 td {
     padding: 5px 10px;
@@ -396,7 +460,6 @@ td {
         margin-top: 4rem;
         padding: 24px;
     }
-
     .container-xl {
         padding: 0 24px;
     }
@@ -407,24 +470,37 @@ td {
         font-size: 14px;
         line-height: 1.4;
     }
+    section#detail .price {
+        margin-bottom: 48px;
+    }
+    section#reserve {
+        margin-top: 1rem;
+        margin-bottom: 6rem;
+    }
 }
 
 @media (max-width: 767px) {
     main .content-wrapper {
         margin-top: 0;
     }
-
     .mb-5 {
         margin-bottom: 1.8rem !important;
     }
+    section#detail .personas-costos .break-oculto {
+        display: block;
+    }
 }
 
+
 /** Check entradas en tour **/
+
 #cont-input-entradas {
     display: none;
 }
 
+
 /** Pagina de adminsitrador **/
+
 .content-admin-panel {
     padding: 40px;
     max-width: 70vw;
@@ -433,17 +509,19 @@ td {
     margin: 20px;
 }
 
+
+/*
 section {
     min-width: 70vw;
 }
+*/
 
 section .table-data {
     min-width: 100%;
 }
 
 .col-img-hotel {
-    max-width: 300px;
-    max-height: 200px;
+    height: 120px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -451,18 +529,123 @@ section .table-data {
 
 .col-img-hotel img {
     width: 100%;
+    object-fit: fill;
 }
 
 section#detail strong {
     font-size: 4rem;
 }
 
+
 /* DateRange colores */
-.rdrInRange{
+
+.rdrInRange {
     color: var(--primary) !important;
 }
 
 .rdrStartEdge,
 .rdrEndEdge {
     color: #a179db !important;
+}
+
+
+/*Sobreescribiendo estilos datepicker*/
+
+.react-datepicker__close-icon {
+    display: none !important;
+}
+
+.react-datepicker {
+    font-family: "Sora", sans-serif !important;
+    background-color: var(--white) !important;
+    color: var(--black) !important;
+    border: 1px solid var(--light-gray) !important;
+}
+
+.react-datepicker__header {
+    background-color: var(--primary) !important;
+    border-bottom: 1px solid var(--light-gray) !important;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__current-month {
+    color: var(--white) !important;
+}
+
+.react-datepicker__navigation-icon::before {
+    border-color: var(--secondary) !important;
+}
+
+.react-datepicker__today-button,
+.rdrMonthName {
+    background-color: var(--primary) !important;
+    color: var(--white) !important;
+}
+
+.react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::after {
+    border-top-color: var(--primary) !important;
+}
+
+.react-datepicker__day--in-range,
+.rdrNextPrevButton {
+    border-radius: 0.3rem;
+    background-color: var(--secondary) !important;
+    color: var(--primary) !important;
+}
+
+.rdrNextPrevButton:hover {
+    background-color: var(--primary) !important;
+    color: var(--white) !important;
+}
+
+.rdrNextPrevButton:hover .rdrNextButton i {
+    border-color: var(--white) !important;
+}
+
+.rdrDateDisplayWrapper {
+    display: none !important;
+}
+
+.rdrCalendarWrapper {
+    color: var(--black) !important;
+    font-family: "Sora", sans-serif !important;
+}
+
+.rdrInRange .rdrDayNumber {
+    color: var(--white) !important;
+}
+
+#detail .rdrDateRangeWrapper,
+section#reserve .form-normal {
+    box-shadow: 0 0 16px rgba(118, 63, 196, .2);
+    border-radius: 16px;
+    background-color: var(--white);
+    padding: 1.8rem;
+}
+
+#detail svg {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+@media (max-width: 992px) {
+    #detail .rdrMonths {
+        align-items: center;
+        flex-direction: column;
+    }
+    #detail .rdrDateRangeWrapper {
+        margin: 0 2.5%;
+        width: 95%;
+    }
+    .fecha-salida-container {
+        border-top: 1px solid var(--primary);
+        margin-top: 24px;
+        padding-top: 24px;
+    }
+    .price-container {
+        text-align: center;
+    }
+    .col-img-hotel {
+        height: 80px;
+    }
 }

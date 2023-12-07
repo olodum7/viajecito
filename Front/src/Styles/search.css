@@ -110,11 +110,10 @@ section#search-bar .suggestions-list li:hover {
         padding: 1rem 1.4rem;
     }
     section#search-bar .form-group input {
-        font-size: 1rem;
-        max-width: 40vw;
+        font-size: .8rem;
     }
     section#search-bar .form-group #search-input {
-        font-size: 1rem;
+        font-size: .8rem;
         max-width: 83vw;
     }
 }

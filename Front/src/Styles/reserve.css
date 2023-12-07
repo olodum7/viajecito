@@ -6,39 +6,46 @@
     margin-top: 0px;
 }
 
-#reserve img {
-    max-width: 500px;
-    max-height: 400px;
-    width: 100%;
-}
-
 #reserve h6 {
     color: var(--primary);
     font-weight: 600;
-    margin: 10px;
-    font-size: 16px;
+    margin: 0 0 10px;
+    font-size: 1rem;
 }
 
 #reserve h4 {
-    color: var(--primary);
+    color: var(--black);
     font-weight: 600;
-    margin: 20px 10px;
-    font-size: 28px;
+    margin: 0;
+    font-size: 2rem;
 }
 
-#reserve .row>* {
-    width: auto;
+#reserve .reserve-confirm {
+    padding: 0 2px !important;
 }
 
-#reserve .row {
+#reserve .reserve-confirm img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+#reserve .detalles-reserva {
     display: flex;
-    align-items: center;
+    align-items: start;
+    flex-wrap: nowrap;
+    flex-direction: column;
     margin: 10px;
     margin-left: 0px;
 }
 
+#reserve .detalles-reserva .row>* {
+    width: auto;
+}
+
 #reserve .more-info,
-#reserve .user-data h2{
+#reserve .user-data h2 {
     margin: 0;
     padding: 0;
     /* max-width: 500px; */
@@ -58,4 +65,24 @@
 #reserve .user-data p {
     font-weight: 600;
     color: var(--dark);
+}
+
+#reserve .detalles-reserva {
+    border-top: 1px solid var(--primary);
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+}
+
+@media (max-width: 992px) {
+    #reserve .reserve-confirm img {
+        height: 80px;
+        width: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+    }
+    #reserve .info-user-reserva {
+        border-top: 1px solid var(--primary);
+        padding-top: 48px;
+        margin-top: 32px;
+    }
 }

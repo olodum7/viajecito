@@ -1,9 +1,11 @@
 /***** ESTILOS PARA TODOS LOS BOTONES E ICONOS *****/
 
+
 /* Principal */
 
 .btn,
-.swal2-confirm {
+.swal2-confirm,
+.btn-iniciar-reserva {
     background-color: var(--secondary) !important;
     border-radius: 32px;
     color: var(--primary) !important;
@@ -14,9 +16,14 @@
 }
 
 .btn:hover,
-.swal2-confirm:hover {
+.swal2-confirm:hover,
+.btn-iniciar-reserva:hover {
     background-color: var(--primary) !important;
     color: var(--white) !important;
+}
+
+.btn-iniciar-reserva {
+    width: 200px;
 }
 
 .btn.delete-btn {
@@ -41,6 +48,7 @@
     }
 }
 
+
 /* Secundario - Fondo blanco */
 
 .btn-secondary {
@@ -49,6 +57,7 @@
     background-color: var(--white);
     border: 1px solid var(--primary);
 }
+
 
 /* Botones en el navbar */
 
@@ -94,15 +103,18 @@
         text-transform: uppercase;
         padding: 1rem;
     }
-
     .search-button span {
         display: block;
     }
-
     .search-button svg {
         display: none;
     }
+    .search-button button {
+        padding: .6rem;
+        width: 100%;
+    }
 }
+
 
 /* Icono favorito */
 
@@ -124,6 +136,7 @@
     fill: var(--secondary);
 }
 
+
 /* Botones XL */
 
 .btn-lg,
@@ -132,6 +145,7 @@
     width: 100%;
     padding: 16px 32px;
 }
+
 
 /* Galeria de imagenes */
 
@@ -188,6 +202,7 @@
     stroke: var(--white);
 }
 
+
 /* Return  */
 
 .return-container {
@@ -242,6 +257,17 @@
     stroke: var(--white);
 }
 
+@media (max-width: 570px) {
+    .return-container {
+        text-align: left;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 32px;
+    }
+}
+
+
 /* Página de favoritos */
 
 .modal-delete .swal2-confirm {
@@ -276,7 +302,9 @@
     color: var(--white) !important;
 }
 
+
 /* Botones de mas y menos */
+
 .counter {
     display: flex;
     justify-content: space-between;
@@ -307,6 +335,8 @@
     display: flex;
     margin: 10px;
     padding: 5px;
+    width: 120px;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -331,7 +361,14 @@
     color: var(--primary);
 }
 
+.circle-bttn:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+
 /* Botones de acciones para la edicion de productos */
+
 .btn-svg {
     border: none;
     background-color: transparent;
@@ -348,7 +385,9 @@
     transition: ease-in-out;
 }
 
+
 /** Boton agregar para las tablas **/
+
 .bttn-add {
     border-radius: 10px;
     width: 40px;
