@@ -628,6 +628,29 @@ section#reserve .form-normal {
     margin-right: 8px;
 }
 
+.policy-section {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 4.5rem 0;
+    width: 100%;
+}
+
+.policy-section h2 {
+    font-weight: 600;
+    font-size: 1.8rem;
+    text-decoration: underline;
+    margin-bottom: 2rem !important;
+}
+
+.policy-section h5 {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.policy-section p {
+    font-size: .8rem;
+}
+
 @media (max-width: 992px) {
     #detail .rdrMonths {
         align-items: center;
