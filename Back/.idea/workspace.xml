@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="989c382f-75db-4632-adc7-8760db2a1f6f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.github/workflows/cicd.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/cicd.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
     <list default="true" id="56ceb4cf-309b-4bb5-94f6-1071cf032ed2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/viajecito/api/controller/TourController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reporteErrores.log" beforeDir="false" afterPath="$PROJECT_DIR$/reporteErrores.log" afterDir="false" />
+>>>>>>> 350acaf5bb8801673407fa9daafaf1e2b0cc36f6
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
