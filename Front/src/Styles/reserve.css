@@ -1,3 +1,7 @@
+#reserve {
+    width: 100%;
+}
+
 #reserve h6 {
     color: var(--primary);
     font-weight: 600;
