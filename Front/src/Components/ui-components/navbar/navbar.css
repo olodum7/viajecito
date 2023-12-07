@@ -62,6 +62,10 @@
     align-content: center;
 }
 
+.navbar-user-greeting .small {
+    color: var(--black)
+}
+
 .navbar-user-greeting p {
     color: var(--primary);
     font-weight: 600;
