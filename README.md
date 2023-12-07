@@ -1,8 +1,6 @@
-![Página de Inicio](/Front/public/viajecito-logo.png)
+![logo](/Front/public/viajecito-logo.png)
 
-# Viajecito 🌎✈️
-
-_Tu aventura empieza hoy. Encuentra y reserva tours y experiencias únicas. Un proyecto del primer track de Certified Tech Developer._
+🌍 _Un Proyecto Integrador de Certified Tech Developer, una  iniciativa educativa co-creada por Digital House, Mercado Libre y Globant._
 
 ## Descripción
 
@@ -15,6 +13,12 @@ Viajecito permite a los viajeros explorar y reservar tours que capturan la esenc
 - **Base de Datos**: MySQL, gestionada en Docker y AWS EC2.
 - **Almacenamiento**: AWS S3 para imágenes y contenido estático.
 - **Despliegue**: GitHub Actions con runners en AWS EC2.
+
+## Documentación de la API 📄
+
+Consulta la documentación completa y prueba los endpoints de la API a través de Swagger UI:
+
+[![Swagger UI](http://34.207.134.182:8089/swagger-ui/index.html)
 
 ## Instalación 🚀
 
