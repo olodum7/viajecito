@@ -5,7 +5,7 @@ const Lodging = ({ tourData, handleChange, className }) => {
     const[alojamientos, setAlojamientos] = useState([]);
     
     useEffect(() => {
-        fetch("http://3.82.3.215:8089/alojamiento")
+        fetch("http://34.207.134.182:8089/alojamiento")
             .then((response) => response.json())
             .then((data) => {
                 setAlojamientos(data);
